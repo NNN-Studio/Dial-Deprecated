@@ -3,35 +3,46 @@ import Foundation
 import AppKit
 
 enum WheelSensitivity: String {
+    
     case low = "low"
     case medium = "medium"
     case high = "high"
     case extreme = "extreme"
+    
 }
 
 enum ScrollDirection: String {
+    
     case standard = "standard"
     case natural = "natural"
+    
 }
 
 enum Mode: String {
+    
     case scrolling = "scrolling"
     case playback = "playback"
+    
 }
 
 enum HapticsMode: String {
+    
     case enabled = "enabled"
     case disabled = "disabled"
+    
 }
 
 extension NSMenuItem {
+    
     convenience init(title: String) {
         self.init()
         self.title = title
     }
+    
 }
 
 class MenuOptionItem<Type>: NSMenuItem {
+    
     init(title: String, option: Type) {
         super.init(title: title, action: nil, keyEquivalent: "")
         self.representedObject = option
@@ -41,23 +52,22 @@ class MenuOptionItem<Type>: NSMenuItem {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var selected : Bool
-    {
+    var selected : Bool {
         get { return self.state == .on }
         set (on) { self.state = on ? .on : .off }
     }
     
-    var option : Type
-    {
+    var option : Type {
         get
         {
             return self.representedObject as! Type
         }
     }
+    
 }
 
-class ControllerOptionItem: MenuOptionItem<Mode>
-{
+class ControllerOptionItem: MenuOptionItem<Mode> {
+    
     let controller: Controller
     
     init(title: String, mode: Mode, controller: Controller) {
@@ -68,10 +78,12 @@ class ControllerOptionItem: MenuOptionItem<Mode>
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
 }
 
 
 extension NSMenu {
+    
     func addMenuItems(_ items: StatusBarController.MenuItems) {
         self.addItem(items.title)
         self.addItem(items.connectionStatus)
@@ -101,18 +113,19 @@ extension NSMenu {
         self.addItem(items.separator3)
         self.addItem(items.quit)
     }
+    
 }
 
-class StatusBarController
-{
-    private let statusBar: NSStatusBar
-    private let statusItem: NSStatusItem
-    private let menu: NSMenu
-    private let dial: Dial
+class StatusBarController {
+    
+    private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    private let menu = NSMenu()
     private let menuItems = MenuItems()
+    private let dial: Dial
     
     struct MenuItems {
-        let title = NSMenuItem.init(title: "Mac Dial")
+        
+        let title = NSMenuItem.init(title: "Dial")
         let connectionStatus = NSMenuItem.init()
         let separator = NSMenuItem.separator()
         let scrollMode = ControllerOptionItem.init(title: "Scroll mode", mode: .scrolling, controller: ScrollController())
@@ -137,10 +150,10 @@ class StatusBarController
         ]
         let separator3 = NSMenuItem.separator()
         let quit = NSMenuItem.init(title: "Quit")
+        
     }
     
-    var currentMode: Mode
-    {
+    var currentMode: Mode {
         get {
             switch UserDefaults.standard.string(forKey: "mode")
             {
@@ -164,8 +177,7 @@ class StatusBarController
         }
     }
     
-    var currentController: Controller
-    {
+    var currentController: Controller {
         get {
             switch (currentMode)
             {
@@ -182,6 +194,7 @@ class StatusBarController
             let raw = UserDefaults.standard.string(forKey: "sensitivity") ?? WheelSensitivity.medium.rawValue
             return WheelSensitivity(rawValue: raw)
         }
+        
         set (sensitivity) {
             switch sensitivity {
             case .low:
@@ -211,6 +224,7 @@ class StatusBarController
             let raw = UserDefaults.standard.string(forKey: "direction") ?? ScrollDirection.natural.rawValue
             return ScrollDirection(rawValue: raw)
         }
+        
         set (scrollingDirection) {
             switch scrollingDirection {
             case .standard:
@@ -235,6 +249,7 @@ class StatusBarController
             let raw = UserDefaults.standard.string(forKey: "hapticsmode") ?? HapticsMode.disabled.rawValue
             return HapticsMode(rawValue: raw)
         }
+        
         set (hapticsModeSet) {
             switch hapticsModeSet {
             case .disabled:
@@ -256,10 +271,6 @@ class StatusBarController
     
     init( _ dial: Dial) {
         self.dial = dial
-        self.menu = NSMenu.init()
-        
-        statusBar = NSStatusBar.init()
-        statusItem = statusBar.statusItem(withLength: NSStatusItem.variableLength)
         
         menu.minimumWidth = 260
         
@@ -349,10 +360,10 @@ class StatusBarController
         
         if let button = statusItem.button {
             if (menuItems.scrollMode.state == .on) {
-                button.image = #imageLiteral(resourceName: "icon-scroll")
+                button.image = NSImage(named: NSImage.Name("Dial"))!
             }
             else if (menuItems.playbackMode.state == .on) {
-                button.image = #imageLiteral(resourceName: "icon-playback")
+                button.image = NSImage(named: NSImage.Name("Dial"))!
             }
             
             button.image?.size = NSSize(width: 18, height: 18)
@@ -391,9 +402,9 @@ class StatusBarController
         let item = sender as! NSMenuItem
         hapticsMode = (item.representedObject as! HapticsMode)
     }
-
+    
     @objc func quitApp(sender: AnyObject) {
         NSApplication.shared.terminate(self)
     }
-
+    
 }

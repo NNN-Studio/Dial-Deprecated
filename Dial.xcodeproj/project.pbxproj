@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28B685282AEBFB80008EBE98 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 28B685272AEBFB80008EBE98 /* Localizable.xcstrings */; };
+		28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B6852A2AEC01D6008EBE98 /* Data.swift */; };
 		C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882FA1926F1430C00595EE1 /* AppDelegate.swift */; };
 		C882FA1E26F1430D00595EE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C882FA1D26F1430D00595EE1 /* Assets.xcassets */; };
-		C882FA2126F1430D00595EE1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C882FA2026F1430D00595EE1 /* Preview Assets.xcassets */; };
 		C882FA2426F1430D00595EE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C882FA2226F1430D00595EE1 /* Main.storyboard */; };
 		C882FA2D26F143E300595EE1 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882FA2C26F143E300595EE1 /* StatusBarController.swift */; };
 		C89D24292703BA5E00B1A458 /* Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = C89D24282703BA5E00B1A458 /* Controller.swift */; };
@@ -22,18 +23,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C882FA1626F1430C00595EE1 /* MacDial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacDial.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28B685242AEBFAAD008EBE98 /* Dial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dial.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		28B685272AEBFB80008EBE98 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		28B6852A2AEC01D6008EBE98 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		C882FA1926F1430C00595EE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C882FA1D26F1430D00595EE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		C882FA2026F1430D00595EE1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C882FA2326F1430D00595EE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C882FA2526F1430D00595EE1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C882FA2626F1430D00595EE1 /* MacDial.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MacDial.entitlements; sourceTree = "<group>"; };
+		C882FA2626F1430D00595EE1 /* Dial.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Dial.entitlements; sourceTree = "<group>"; };
 		C882FA2C26F143E300595EE1 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
 		C89D24282703BA5E00B1A458 /* Controller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controller.swift; sourceTree = "<group>"; };
 		C89D242A2703CF4500B1A458 /* ScrollController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollController.swift; sourceTree = "<group>"; };
 		C89D242C2704870C00B1A458 /* PlaybackController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaybackController.swift; sourceTree = "<group>"; };
-		C89F3155270106E400A8B365 /* MacDial-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacDial-Bridging-Header.h"; sourceTree = "<group>"; };
+		C89F3155270106E400A8B365 /* Dial-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dial-Bridging-Header.h"; sourceTree = "<group>"; };
 		C89F31582701090400A8B365 /* Dial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dial.swift; sourceTree = "<group>"; };
 		C89F315A2701266400A8B365 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		C89F315C2701266A00A8B365 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -54,48 +56,57 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C882FA0D26F1430C00595EE1 = {
+		28B685262AEBFB5A008EBE98 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C882FA1826F1430C00595EE1 /* MacDial */,
-				C882FA1726F1430C00595EE1 /* Products */,
-				C89F31562701079000A8B365 /* Frameworks */,
-			);
-			sourceTree = "<group>";
-		};
-		C882FA1726F1430C00595EE1 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C882FA1626F1430C00595EE1 /* MacDial.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C882FA1826F1430C00595EE1 /* MacDial */ = {
-			isa = PBXGroup;
-			children = (
-				C882FA1926F1430C00595EE1 /* AppDelegate.swift */,
-				C89F3155270106E400A8B365 /* MacDial-Bridging-Header.h */,
-				C882FA2C26F143E300595EE1 /* StatusBarController.swift */,
-				C89D24282703BA5E00B1A458 /* Controller.swift */,
-				C882FA1D26F1430D00595EE1 /* Assets.xcassets */,
-				C882FA2226F1430D00595EE1 /* Main.storyboard */,
-				C882FA2526F1430D00595EE1 /* Info.plist */,
-				C882FA2626F1430D00595EE1 /* MacDial.entitlements */,
-				C882FA1F26F1430D00595EE1 /* Preview Content */,
-				C89F31582701090400A8B365 /* Dial.swift */,
 				C89D242A2703CF4500B1A458 /* ScrollController.swift */,
 				C89D242C2704870C00B1A458 /* PlaybackController.swift */,
 			);
-			path = MacDial;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		C882FA1F26F1430D00595EE1 /* Preview Content */ = {
+		28B685292AEC01BC008EBE98 /* Contents */ = {
 			isa = PBXGroup;
 			children = (
-				C882FA2026F1430D00595EE1 /* Preview Assets.xcassets */,
+				C882FA2C26F143E300595EE1 /* StatusBarController.swift */,
+				C89D24282703BA5E00B1A458 /* Controller.swift */,
+				C89F31582701090400A8B365 /* Dial.swift */,
 			);
-			path = "Preview Content";
+			path = Contents;
+			sourceTree = "<group>";
+		};
+		28B6852C2AEC01E8008EBE98 /* Infrastructures */ = {
+			isa = PBXGroup;
+			children = (
+				28B6852A2AEC01D6008EBE98 /* Data.swift */,
+			);
+			path = Infrastructures;
+			sourceTree = "<group>";
+		};
+		C882FA0D26F1430C00595EE1 = {
+			isa = PBXGroup;
+			children = (
+				C882FA1826F1430C00595EE1 /* Dial */,
+				C89F31562701079000A8B365 /* Frameworks */,
+				28B685242AEBFAAD008EBE98 /* Dial.app */,
+			);
+			sourceTree = "<group>";
+		};
+		C882FA1826F1430C00595EE1 /* Dial */ = {
+			isa = PBXGroup;
+			children = (
+				28B6852C2AEC01E8008EBE98 /* Infrastructures */,
+				28B685292AEC01BC008EBE98 /* Contents */,
+				28B685262AEBFB5A008EBE98 /* Controller */,
+				C882FA1926F1430C00595EE1 /* AppDelegate.swift */,
+				C89F3155270106E400A8B365 /* Dial-Bridging-Header.h */,
+				C882FA1D26F1430D00595EE1 /* Assets.xcassets */,
+				C882FA2226F1430D00595EE1 /* Main.storyboard */,
+				C882FA2626F1430D00595EE1 /* Dial.entitlements */,
+				C882FA2526F1430D00595EE1 /* Info.plist */,
+				28B685272AEBFB80008EBE98 /* Localizable.xcstrings */,
+			);
+			path = Dial;
 			sourceTree = "<group>";
 		};
 		C89F31562701079000A8B365 /* Frameworks */ = {
@@ -111,9 +122,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C882FA1526F1430C00595EE1 /* MacDial */ = {
+		C882FA1526F1430C00595EE1 /* Dial */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C882FA2926F1430D00595EE1 /* Build configuration list for PBXNativeTarget "MacDial" */;
+			buildConfigurationList = C882FA2926F1430D00595EE1 /* Build configuration list for PBXNativeTarget "Dial" */;
 			buildPhases = (
 				C882FA1226F1430C00595EE1 /* Sources */,
 				C882FA1326F1430C00595EE1 /* Frameworks */,
@@ -123,9 +134,9 @@
 			);
 			dependencies = (
 			);
-			name = MacDial;
+			name = Dial;
 			productName = MacDial;
-			productReference = C882FA1626F1430C00595EE1 /* MacDial.app */;
+			productReference = 28B685242AEBFAAD008EBE98 /* Dial.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -143,7 +154,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C882FA1126F1430C00595EE1 /* Build configuration list for PBXProject "MacDial" */;
+			buildConfigurationList = C882FA1126F1430C00595EE1 /* Build configuration list for PBXProject "Dial" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -152,11 +163,11 @@
 				Base,
 			);
 			mainGroup = C882FA0D26F1430C00595EE1;
-			productRefGroup = C882FA1726F1430C00595EE1 /* Products */;
+			productRefGroup = C882FA0D26F1430C00595EE1;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C882FA1526F1430C00595EE1 /* MacDial */,
+				C882FA1526F1430C00595EE1 /* Dial */,
 			);
 		};
 /* End PBXProject section */
@@ -167,8 +178,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C882FA2426F1430D00595EE1 /* Main.storyboard in Resources */,
-				C882FA2126F1430D00595EE1 /* Preview Assets.xcassets in Resources */,
 				C882FA1E26F1430D00595EE1 /* Assets.xcassets in Resources */,
+				28B685282AEBFB80008EBE98 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +190,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */,
 				C882FA2D26F143E300595EE1 /* StatusBarController.swift in Sources */,
 				C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */,
 				C89D24292703BA5E00B1A458 /* Controller.swift in Sources */,
@@ -326,16 +338,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MacDial/MacDial.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = Dial/Dial.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"MacDial/Preview Content\"";
 				DEVELOPMENT_TEAM = 7XRF3J9RS4;
 				ENABLE_PREVIEWS = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/lib/hidapi/hidapi";
-				INFOPLIST_FILE = MacDial/Info.plist;
+				INFOPLIST_FILE = Dial/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -346,7 +357,7 @@
 				OTHER_LDFLAGS = "-lhidapi";
 				PRODUCT_BUNDLE_IDENTIFIER = studio.nnn.Dial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/MacDial/MacDial-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Dial/Dial-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -356,16 +367,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = MacDial/MacDial.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_ENTITLEMENTS = Dial/Dial.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_ASSET_PATHS = "\"MacDial/Preview Content\"";
 				DEVELOPMENT_TEAM = 7XRF3J9RS4;
 				ENABLE_PREVIEWS = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/lib/hidapi/hidapi";
-				INFOPLIST_FILE = MacDial/Info.plist;
+				INFOPLIST_FILE = Dial/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -377,7 +387,7 @@
 				OTHER_LDFLAGS = "-lhidapi";
 				PRODUCT_BUNDLE_IDENTIFIER = studio.nnn.Dial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/MacDial/MacDial-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Dial/Dial-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -385,7 +395,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C882FA1126F1430C00595EE1 /* Build configuration list for PBXProject "MacDial" */ = {
+		C882FA1126F1430C00595EE1 /* Build configuration list for PBXProject "Dial" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C882FA2726F1430D00595EE1 /* Debug */,
@@ -394,7 +404,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C882FA2926F1430D00595EE1 /* Build configuration list for PBXNativeTarget "MacDial" */ = {
+		C882FA2926F1430D00595EE1 /* Build configuration list for PBXNativeTarget "Dial" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C882FA2A26F1430D00595EE1 /* Debug */,

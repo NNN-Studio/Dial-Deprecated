@@ -259,6 +259,7 @@ class Dial
     @objc
     private func threadProc(arg: NSObject) {
         
+        /*
         hid_monitor { vendorId, productId, serialNumber in
             if (vendorId==Device.VendorId && productId==Device.ProductId) {
                 DispatchQueue.main.async {
@@ -270,6 +271,7 @@ class Dial
 
             }
         }
+         */
         
         while run {
             
