@@ -66,6 +66,10 @@ struct Data {
     }
     
     static func registerDefaults() {
+        Key.dialMode.register(DialMode.scroll.rawValue)
+        Key.haptics.register(true)
+        Key.sensitivity.register(36)
+        Key.direction.register(Direction.clockwise.rawValue)
     }
     
 }
