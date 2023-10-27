@@ -1,5 +1,234 @@
 {
   "sourceLanguage" : "en",
-  "strings" : {},
+  "strings" : {
+    "App/PermissionsAlert/Content" : {
+      "comment" : "permissions alert content",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Dial needs Accessibility permissions to function properly. In the next dialog, you will be asked to open the Settings in order to grant them."
+          }
+        }
+      }
+    },
+    "App/PermissionsAlert/Title" : {
+      "comment" : "permissions alert title",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Permissions Required"
+          }
+        }
+      }
+    },
+    "Menu/ConnectionStatus/Off" : {
+      "comment" : "if (!connected)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Surface Dial disconnected"
+          }
+        }
+      }
+    },
+    "Menu/ConnectionStatus/On" : {
+      "comment" : "if (connected)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Surface Dial: %@"
+          }
+        }
+      }
+    },
+    "Menu/DialMode/Playback" : {
+      "comment" : "dial mode playback",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Playback"
+          }
+        }
+      }
+    },
+    "Menu/DialMode/Scroll" : {
+      "comment" : "dial mode scroll",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Scroll"
+          }
+        }
+      }
+    },
+    "Menu/DialMode/Zoom" : {
+      "comment" : "dial mode zoom",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Zoom"
+          }
+        }
+      }
+    },
+    "Menu/Direction" : {
+      "comment" : "direction",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Direction"
+          }
+        }
+      }
+    },
+    "Menu/Direction/Clockwise" : {
+      "comment" : "clockwise",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Clockwise"
+          }
+        }
+      }
+    },
+    "Menu/Direction/Counterclockwise" : {
+      "comment" : "counterclockwise",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Counterclockwise"
+          }
+        }
+      }
+    },
+    "Menu/Haptics" : {
+      "comment" : "haptics",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Haptics"
+          }
+        }
+      }
+    },
+    "Menu/Quit" : {
+      "comment" : "quit",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Quit"
+          }
+        }
+      }
+    },
+    "Menu/Sensitivity" : {
+      "comment" : "sensitivity",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensitivity"
+          }
+        }
+      }
+    },
+    "Menu/Sensitivity/Extreme" : {
+      "comment" : "extreme",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Extreme"
+          }
+        }
+      }
+    },
+    "Menu/Sensitivity/High" : {
+      "comment" : "high",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "High"
+          }
+        }
+      }
+    },
+    "Menu/Sensitivity/Low" : {
+      "comment" : "low",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Low"
+          }
+        }
+      }
+    },
+    "Menu/Sensitivity/Natural" : {
+      "comment" : "natural",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Natural"
+          }
+        }
+      }
+    },
+    "Menu/Sensitivity/SuperHigh" : {
+      "comment" : "super high",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Super High"
+          }
+        }
+      }
+    },
+    "Menu/Sep0Title" : {
+      "comment" : "dial mode",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Dial Mode"
+          }
+        }
+      }
+    }
+  },
   "version" : "1.0"
 }

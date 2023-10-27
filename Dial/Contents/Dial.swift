@@ -6,9 +6,11 @@ import SwiftUI
 
 extension NSString {
     convenience init(wcharArray: UnsafeMutablePointer<wchar_t>) {
-        self.init(bytes: UnsafePointer(wcharArray),
-                        length: wcslen(wcharArray) * MemoryLayout<wchar_t>.stride,
-                        encoding: String.Encoding.utf32LittleEndian.rawValue)!
+        self.init(
+            bytes: UnsafePointer(wcharArray),
+            length: wcslen(wcharArray) * MemoryLayout<wchar_t>.stride,
+            encoding: String.Encoding.utf32LittleEndian.rawValue
+        )!
     }
 }
 
@@ -21,7 +23,7 @@ class Dial
     
     enum Rotation {
         case Clockwise (Int)
-        case CounterClockwise (Int)
+        case Counterclockwise (Int)
     }
     
     enum InputReport
@@ -44,28 +46,27 @@ class Dial
         // Identifiers for the Surface Dial
         static let VendorId: UInt16 = 0x045E
         static let ProductId: UInt16 = 0x091B
+        
         private var dev: OpaquePointer?
         private let readBuffer = ReadBuffer(size: 1024)
         
-        var wheelSensivitity = 36
         
-        var scrollDirection = 1
         
-        var haptics = false
+        var sensitivity = Data.sensitivity.rawValue
+        
+        var direction = Data.direction.rawValue
+        
+        var haptics = Data.haptics
         
         init() {
-            
         }
         
         var isConnected: Bool {
-            get {
-                return dev != nil
-            }
+            dev != nil
         }
         
         var manufacturer: String {
             get {
-                
                 guard let dev = self.dev else {
                     return ""
                 }
@@ -102,15 +103,17 @@ class Dial
             if let dev = self.dev {
                 hid_close(dev)
             }
+            
             dev = nil
         }
         
         // https://github.com/daniel5151/surface-dial-linux/blob/main/src/dial_device/haptics.rs
         func updateSensitivity() {
             if isConnected {
-                let steps_lo = wheelSensivitity & 0xff;
-                let steps_hi = (wheelSensivitity >> 8) & 0xff;
+                let steps_lo = sensitivity & 0xff;
+                let steps_hi = (sensitivity >> 8) & 0xff;
                 var buf: Array<UInt8> = []
+                
                 buf.append(1)
                 buf.append(UInt8(steps_lo)) // steps
                 buf.append(UInt8(steps_hi)) // steps
@@ -139,7 +142,6 @@ class Dial
         private func parse(bytes: UnsafeMutableBufferPointer<UInt8>) -> InputReport {
             switch bytes[0] {
             case 1 where bytes.count >= 4:
-                
                 let buttonState = bytes[1]&1 == 1 ? ButtonState.pressed : .released
                 
                 let rotation = { () -> Rotation? in
@@ -147,7 +149,7 @@ class Dial
                         case 1:
                             return .Clockwise(1)
                         case 0xff:
-                            return .CounterClockwise(1)
+                            return .Counterclockwise(1)
                         default:
                             return nil
                 }}()
@@ -160,14 +162,11 @@ class Dial
         
         func read() -> InputReport?
         {
-            guard let dev = self.dev else {
-                return nil
-            }
+            guard let dev = self.dev else { return nil }
             
             let readBytes = hid_read(dev, readBuffer.pointer, readBuffer.size)
             
             if readBytes <= 0 {
-                print("Device disconnected")
                 self.dev = nil;
                 return nil;
             }
@@ -183,37 +182,39 @@ class Dial
     
     private var thread: Thread?
     private var run: Bool = false
+    
     let device = Device()
+    
     private let semaphore = DispatchSemaphore(value: 0)
     private var lastButtonState = ButtonState.released
     
     var onButtonStateChanged: ((ButtonState) -> Void)?
     var onRotation: ((Rotation, Int) -> Void)?
     
-    var wheelSensitivity: Int {
+    var sensitivity: Int {
         get {
-            return device.wheelSensivitity
+            device.sensitivity
         }
         
         set (value) {
-            device.wheelSensivitity = value
+            device.sensitivity = value
             device.updateSensitivity()
         }
     }
     
-    var scrollDirection: Int {
+    var direction: Int {
         get {
-            return device.scrollDirection
+            device.direction
         }
         
         set (value) {
-            device.scrollDirection = value
+            device.direction = value
         }
     }
     
     var haptics: Bool {
         get {
-            return device.haptics
+            device.haptics
         }
         
         set (value) {
@@ -240,19 +241,18 @@ class Dial
     
     func stop() {
         self.haptics = false
-        self.wheelSensitivity = 36
+        self.sensitivity = 36
         run = false;
         if let thread = self.thread {
             semaphore.signal()
             device.disconnect()
+            
             while !thread.isFinished { }
             self.thread = nil;
         }
-        
     }
     
-    private func connect() -> Bool
-    {
+    private func connect() -> Bool {
         return false
     }
     
@@ -274,7 +274,6 @@ class Dial
          */
         
         while run {
-            
             if !device.isConnected {
                 print("Trying to open device...")
                 if device.connect() {
@@ -300,7 +299,7 @@ class Dial
                     }
                     
                     if rotation != nil {
-                        onRotation?(rotation!, scrollDirection)
+                        onRotation?(rotation!, direction)
                     }
                     
                     self.lastButtonState = buttonState
@@ -312,7 +311,7 @@ class Dial
                 }
             }
             
-            let _ = semaphore.wait(timeout: .now().advanced(by: .seconds(60)))
+            semaphore.wait(timeout: .now().advanced(by: .seconds(60)))
         }
     }
 }

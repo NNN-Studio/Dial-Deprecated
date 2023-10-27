@@ -17,13 +17,27 @@ enum DialMode: Int {
     
 }
 
+enum Sensitivity: Int {
+    
+    case low = 16
+    
+    case natural = 32
+    
+    case high = 64
+    
+    case superHigh = 128
+    
+    case extreme = 360
+    
+}
+
 enum Direction: Int {
     
     /// Clockwise to scroll down.
-    case clockwise = 0
+    case clockwise = 1
     
-    /// Anticlockwise to scroll down.
-    case anticlockwise = 1
+    /// Counterclockwise to scroll down.
+    case counterclockwise = -1
     
 }
 
@@ -51,10 +65,6 @@ struct Data {
             UserDefaults.standard.set(value, forKey: rawValue)
         }
         
-        func array() -> [Any]? {
-            UserDefaults.standard.array(forKey: rawValue)
-        }
-        
         func bool() -> Bool {
             UserDefaults.standard.bool(forKey: rawValue)
         }
@@ -68,8 +78,48 @@ struct Data {
     static func registerDefaults() {
         Key.dialMode.register(DialMode.scroll.rawValue)
         Key.haptics.register(true)
-        Key.sensitivity.register(36)
+        Key.sensitivity.register(Sensitivity.natural.rawValue)
         Key.direction.register(Direction.clockwise.rawValue)
+    }
+    
+    static var dialMode: DialMode {
+        get {
+            DialMode(rawValue: Key.dialMode.integer()) ?? .scroll
+        }
+        
+        set(dialMode) {
+            Key.dialMode.set(dialMode.rawValue)
+        }
+    }
+    
+    static var haptics: Bool {
+        get {
+            Key.haptics.bool()
+        }
+        
+        set(flag) {
+            Key.haptics.set(flag)
+        }
+    }
+    
+    static var sensitivity: Sensitivity {
+        get {
+            Sensitivity(rawValue: Key.sensitivity.integer()) ?? .natural
+        }
+        
+        set(sensitivity) {
+            Key.sensitivity.set(sensitivity.rawValue)
+        }
+    }
+    
+    static var direction: Direction {
+        get {
+            Direction(rawValue: Key.direction.integer()) ?? .clockwise
+        }
+        
+        set(direction) {
+            Key.direction.set(direction.rawValue)
+        }
     }
     
 }

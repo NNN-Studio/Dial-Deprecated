@@ -4,18 +4,21 @@ import AppKit
 
 class ScrollController: Controller
 {
-    enum Direction {
+    enum Action {
+        
         case up
+        
         case down
+        
     }
     
-    private func sendMouse(button direction: Direction) {
+    private func sendMouse(button action: Action) {
         let mousePos = NSEvent.mouseLocation
         let screenHeight = NSScreen.main?.frame.height ?? 0
         
         let translatedMousePos = NSPoint(x: mousePos.x, y: screenHeight - mousePos.y)
         
-        let event = CGEvent(mouseEventSource: nil, mouseType: direction == .down ? .leftMouseDown : .leftMouseUp, mouseCursorPosition: translatedMousePos, mouseButton: .left)
+        let event = CGEvent(mouseEventSource: nil, mouseType: action == .down ? .leftMouseDown : .leftMouseUp, mouseCursorPosition: translatedMousePos, mouseButton: .left)
         
         event?.post(tap: .cghidEventTap)
     }
@@ -30,22 +33,22 @@ class ScrollController: Controller
     
     var lastRotate: TimeInterval = Date().timeIntervalSince1970
     
-    func onRotate(_ rotation: Dial.Rotation,_ scrollDirection: Int) {
+    func onRotate(_ rotation: Dial.Rotation, _ direction: Int) {
         var steps = 0
+        
         switch rotation {
         case .Clockwise(let d):
             steps = d
-        case .CounterClockwise(let d):
+        case .Counterclockwise(let d):
             steps = -d
         }
         
-        steps *= scrollDirection;
+        steps *= direction;
         
         let diff = (Date().timeIntervalSince1970 - lastRotate) * 1000
-        let multiplifer = Int(1 + ((150 - min(diff, 150)) / 40))
+        let multiplier = Int(1 + ((150 - min(diff, 150)) / 40))
         
-        
-        let event = CGEvent(scrollWheelEvent2Source: nil, units: .line, wheelCount: 1, wheel1: Int32(steps * multiplifer), wheel2: 0, wheel3: 0)
+        let event = CGEvent(scrollWheelEvent2Source: nil, units: .line, wheelCount: 1, wheel1: Int32(steps * multiplier), wheel2: 0, wheel3: 0)
         
         event?.post(tap: .cghidEventTap)
         
