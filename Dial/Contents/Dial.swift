@@ -114,27 +114,38 @@ class Dial
                 let steps_hi = (sensitivity >> 8) & 0xff;
                 var buf: Array<UInt8> = []
                 
-                buf.append(1)
-                buf.append(UInt8(steps_lo)) // steps
-                buf.append(UInt8(steps_hi)) // steps
-                buf.append(0x00) // Repeat Count
-                buf.append(self.haptics ? 0x03 : 0x02) // auto trigger
-                buf.append(0x00) // Waveform Cutoff Time
-                buf.append(0x00) // retrigger period
-                buf.append(0x00) // retrigger period
+                buf.append(0x01) // Report ID
+                buf.append(UInt8(steps_lo)) // Steps
+                buf.append(UInt8(steps_hi)) // Steps
+                buf.append(0x00) // Repeat count
+                
+                // 0x02: none
+                // 0x03: buzz
+                // 0x04: continuous vibration
+                buf.append(self.haptics ? 0x03 : 0x02) // Auto trigger
+                
+                buf.append(0x00) // Waveform cutoff time
+                buf.append(0x00) // Retrigger period (lo)
+                buf.append(0x00) // Retrigger period (hi)
                 
                 hid_send_feature_report(dev, buf, 8)
             }
         }
         
-        func impact(repeatCount: UInt8 = 0) {
+        func buzz(repeatCount: UInt8 = 0) {
+            if repeatCount <= 0 {
+                return
+            }
+            
             if isConnected {
                 var buf: Array<UInt8> = []
+                
                 buf.append(0x01) // Report ID
-                buf.append(repeatCount) // RepeatCount
-                buf.append(0x03) // ManualTrigger
-                buf.append(0x00) // RetriggerPeriod (lo)
-                buf.append(0x00) // RetriggerPeriod (hi)
+                buf.append(repeatCount - 1) // Repeat count
+                buf.append(0x03) // Buzz
+                buf.append(0x00) // Retrigger period (lo)
+                buf.append(0x00) // Retrigger period (hi)
+                
                 hid_write(dev, buf, 5)
             }
         }
@@ -217,7 +228,7 @@ class Dial
             device.haptics
         }
         
-        set (value) {
+        set(value) {
             device.haptics = value
             device.updateSensitivity()
         }
@@ -279,6 +290,7 @@ class Dial
                 if device.connect() {
                     print("Device \(device.serialNumber) opened.")
                     device.updateSensitivity() // thanks @bernhard-adobe
+                    device.buzz(repeatCount: 3)
                 } else {
                     print("Device couldn't be opened.")
                 }

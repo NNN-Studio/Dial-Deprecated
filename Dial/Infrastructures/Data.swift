@@ -11,9 +11,7 @@ enum DialMode: Int {
     
     case scroll = 0
     
-    case zoom = 1
-    
-    case playback = 2
+    case playback = 1
     
 }
 

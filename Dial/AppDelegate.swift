@@ -5,8 +5,14 @@ import SwiftUI
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
+    static var instance: AppDelegate? {
+        NSApplication.shared.delegate as? AppDelegate
+    }
 
     var statusBarController: StatusBarController?
+    
+    var dialWindow: DialWindow?
     
     let dial = Dial()
     
@@ -30,12 +36,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         requestPermissions()
-        dial.start();
-        statusBarController = StatusBarController.init(dial)
+        dial.start()
+        
+        statusBarController = StatusBarController(dial)
+        dialWindow = DialWindow(
+            contentRect: NSRect.zero,
+            styleMask: [.borderless],
+            backing: .buffered,
+            defer: true
+        )
+        dialWindow?.isReleasedWhenClosed = false
+        dialWindow?.animationBehavior = .utilityWindow
     }
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
-        dial.stop();
+        dial.stop()
     }
+    
+}
+
+extension AppDelegate {
+    
+    func showDialWindow() {
+        dialWindow?.show()
+    }
+    
+    func hideDialWindow() {
+        DispatchQueue.main.sync {
+            dialWindow?.hide()
+        }
+    }
+    
 }
 

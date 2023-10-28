@@ -82,7 +82,6 @@ extension NSMenu {
         
         
         self.addItem(items.scrollMode)
-        self.addItem(items.zoomMode)
         self.addItem(items.playbackMode)
         
         self.addItem(items.sep1)
@@ -124,6 +123,9 @@ class StatusBarController {
     
     private let dial: Dial
     
+    private var mainController = (instance: MainController(), handled: false)
+    private var controllerHandlingDispatch: DispatchWorkItem?
+    
     struct MenuItems {
         
         let connectionStatus = NSMenuItem()
@@ -137,11 +139,6 @@ class StatusBarController {
         let scrollMode = ControllerOptionItem(
             NSLocalizedString("Menu/DialMode/Scroll", value: "Scroll", comment: "dial mode scroll"),
             mode: .scroll,
-            controller: ScrollController()
-        )
-        let zoomMode = ControllerOptionItem(
-            NSLocalizedString("Menu/DialMode/Zoom", value: "Zoom", comment: "dial mode zoom"),
-            mode: .zoom,
             controller: ScrollController()
         )
         let playbackMode = ControllerOptionItem(
@@ -183,7 +180,6 @@ class StatusBarController {
         
         func setDialMode(_ dialMode: DialMode) {
             scrollMode.flag = dialMode == .scroll
-            zoomMode.flag = dialMode == .zoom
             playbackMode.flag = dialMode == .playback
         }
         
@@ -205,13 +201,15 @@ class StatusBarController {
     
     var controller: Controller {
         get {
-            switch (Data.dialMode) {
-            case .scroll:
-                return menuItems.scrollMode.controller
-            case .zoom:
-                return menuItems.scrollMode.controller
-            case .playback:
-                return menuItems.playbackMode.controller
+            if mainController.handled {
+                return mainController.instance
+            } else {
+                return switch (Data.dialMode) {
+                case .scroll:
+                    menuItems.scrollMode.controller
+                case .playback:
+                    menuItems.playbackMode.controller
+                }
             }
         }
     }
@@ -222,21 +220,15 @@ class StatusBarController {
         
         menuItems.connectionStatus.target = self
         menuItems.connectionStatus.action = #selector(reconnect(_:))
-        if #available(macOS 11.0, *) {
-            menuItems.connectionStatus.offStateImage = NSImage(systemSymbolName: "arrow.triangle.capsulepath", accessibilityDescription: nil)!
-        }
+        menuItems.connectionStatus.offStateImage = NSImage(systemSymbolName: "arrow.triangle.2.circlepath", accessibilityDescription: nil)!
         
         menuItems.scrollMode.target = self
         menuItems.scrollMode.action = #selector(setDialMode(_:))
-        menuItems.scrollMode.flag = Data.dialMode == .scroll;
-        
-        menuItems.zoomMode.target = self
-        menuItems.zoomMode.action = #selector(setDialMode(_:))
-        menuItems.zoomMode.flag = Data.dialMode == .zoom;
+        menuItems.scrollMode.flag = Data.dialMode == .scroll
         
         menuItems.playbackMode.target = self
         menuItems.playbackMode.action = #selector(setDialMode(_:))
-        menuItems.playbackMode.flag = Data.dialMode == .playback;
+        menuItems.playbackMode.flag = Data.dialMode == .playback
         
         for option in menuItems.sensitivityOptions {
             option.target = self
@@ -275,9 +267,23 @@ class StatusBarController {
             switch state {
             case .pressed:
                 controller.onDown()
+                
+                controllerHandlingDispatch = DispatchWorkItem { [self] in
+                    controller.onUp()
+                    mainController.handled = true
+                    controller.onDown()
+                }
+                if let controllerHandlingDispatch {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.35, execute: controllerHandlingDispatch)
+                }
+                
                 break
             case .released:
                 controller.onUp()
+                
+                mainController.handled = false
+                controllerHandlingDispatch?.cancel()
+                
                 break
             }
         }
@@ -297,26 +303,37 @@ class StatusBarController {
             )
             menuItems.connectionStatus.flag = true
             menuItems.connectionStatus.isEnabled = false
+            
+            statusItem.button?.appearsDisabled = false
         }
         
         else {
             menuItems.connectionStatus.title = NSLocalizedString("Menu/ConnectionStatus/Off", value: "Surface Dial disconnected", comment: "if (!connected)")
             menuItems.connectionStatus.flag = false
             menuItems.connectionStatus.isEnabled = true
+            
+            statusItem.button?.appearsDisabled = true
         }
     }
     
     private func updateIcon() {
         if let button = statusItem.button {
-            if (menuItems.scrollMode.state == .on) {
+            if !dial.device.isConnected {
                 button.image = NSImage(named: NSImage.Name("Dial"))!
             }
             
-            else if (menuItems.playbackMode.state == .on) {
-                button.image = NSImage(named: NSImage.Name("Dial"))!
+            else {
+                switch Data.dialMode {
+                case .scroll:
+                    button.image = NSImage(named: NSImage.Name("DialScroll"))!
+                    break
+                case .playback:
+                    button.image = NSImage(named: NSImage.Name("DialPlayback"))!
+                    break
+                }
             }
             
-            button.image?.size = NSSize(width: 18, height: 18)
+            button.image?.size = NSSize(width: 22, height: 22)
             button.imagePosition = .imageOnly
         }
     }
@@ -349,7 +366,7 @@ extension StatusBarController {
     @objc func setSensitivity(
         _ sender: Any?
     ) {
-        guard 
+        guard
             let item = sender as? NSMenuItem,
             let sensitivity = item.representedObject as? Sensitivity
         else { return }
@@ -362,7 +379,7 @@ extension StatusBarController {
     @objc func setDirection(
         _ sender: Any?
     ) {
-        guard 
+        guard
             let item = sender as? NSMenuItem,
             let direction = item.representedObject as? Direction
         else { return }

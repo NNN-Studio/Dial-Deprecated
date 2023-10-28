@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2867F1832AEC8D3B0029C937 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F1822AEC8D3B0029C937 /* WindowController.swift */; };
+		2867F18C2AECACC80029C937 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F18B2AECACC80029C937 /* MainController.swift */; };
 		28B685282AEBFB80008EBE98 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 28B685272AEBFB80008EBE98 /* Localizable.xcstrings */; };
 		28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B6852A2AEC01D6008EBE98 /* Data.swift */; };
 		C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882FA1926F1430C00595EE1 /* AppDelegate.swift */; };
@@ -23,10 +25,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2867F1822AEC8D3B0029C937 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		2867F18A2AEC94D50029C937 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Main.xcstrings; sourceTree = "<group>"; };
+		2867F18B2AECACC80029C937 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		28B685242AEBFAAD008EBE98 /* Dial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28B685272AEBFB80008EBE98 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		28B6852A2AEC01D6008EBE98 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		28B6852D2AEC2CF5008EBE98 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		C882FA1926F1430C00595EE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C882FA1D26F1430D00595EE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C882FA2326F1430D00595EE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -57,19 +61,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		28B685262AEBFB5A008EBE98 /* Controller */ = {
+		28B685262AEBFB5A008EBE98 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				C89D242A2703CF4500B1A458 /* ScrollController.swift */,
 				C89D242C2704870C00B1A458 /* PlaybackController.swift */,
+				2867F18B2AECACC80029C937 /* MainController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		28B685292AEC01BC008EBE98 /* Contents */ = {
 			isa = PBXGroup;
 			children = (
 				C882FA2C26F143E300595EE1 /* StatusBarController.swift */,
+				2867F1822AEC8D3B0029C937 /* WindowController.swift */,
 				C89D24282703BA5E00B1A458 /* Controller.swift */,
 				C89F31582701090400A8B365 /* Dial.swift */,
 			);
@@ -98,7 +104,7 @@
 			children = (
 				28B6852C2AEC01E8008EBE98 /* Infrastructures */,
 				28B685292AEC01BC008EBE98 /* Contents */,
-				28B685262AEBFB5A008EBE98 /* Controller */,
+				28B685262AEBFB5A008EBE98 /* Controllers */,
 				C882FA1926F1430C00595EE1 /* AppDelegate.swift */,
 				C89F3155270106E400A8B365 /* Dial-Bridging-Header.h */,
 				C882FA1D26F1430D00595EE1 /* Assets.xcassets */,
@@ -196,7 +202,9 @@
 				C882FA2D26F143E300595EE1 /* StatusBarController.swift in Sources */,
 				C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */,
 				C89D24292703BA5E00B1A458 /* Controller.swift in Sources */,
+				2867F18C2AECACC80029C937 /* MainController.swift in Sources */,
 				C89D242D2704870C00B1A458 /* PlaybackController.swift in Sources */,
+				2867F1832AEC8D3B0029C937 /* WindowController.swift in Sources */,
 				C89F31592701090400A8B365 /* Dial.swift in Sources */,
 				C89D242B2703CF4500B1A458 /* ScrollController.swift in Sources */,
 			);
@@ -209,7 +217,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				C882FA2326F1430D00595EE1 /* Base */,
-				28B6852D2AEC2CF5008EBE98 /* zh-Hans */,
+				2867F18A2AEC94D50029C937 /* mul */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -271,6 +279,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -329,6 +338,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -357,11 +367,12 @@
 					"@executable_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/lib/hidapi/build/src/mac";
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-lhidapi";
 				PRODUCT_BUNDLE_IDENTIFIER = studio.nnn.Dial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Dial/Dial-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
@@ -387,11 +398,12 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/lib/hidapi/build/src/mac";
 				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = "$(SRCROOT)/lib/hidapi/build_x86/src/mac";
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-lhidapi";
 				PRODUCT_BUNDLE_IDENTIFIER = studio.nnn.Dial;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/Dial/Dial-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};

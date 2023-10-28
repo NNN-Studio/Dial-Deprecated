@@ -2,8 +2,8 @@
 import Foundation
 import AppKit
 
-class ScrollController: Controller
-{
+class ScrollController: Controller {
+    
     enum Action {
         
         case up
@@ -54,4 +54,5 @@ class ScrollController: Controller
         
         lastRotate = Date().timeIntervalSince1970
     }
+    
 }

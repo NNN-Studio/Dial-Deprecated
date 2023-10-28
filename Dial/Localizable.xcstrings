@@ -73,18 +73,6 @@
         }
       }
     },
-    "Menu/DialMode/Zoom" : {
-      "comment" : "dial mode zoom",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Zoom"
-          }
-        }
-      }
-    },
     "Menu/Direction" : {
       "comment" : "direction",
       "extractionState" : "extracted_with_value",
