@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import LaunchAtLogin
 
 enum DialMode: Int {
     
@@ -78,6 +79,16 @@ struct Data {
         Key.haptics.register(true)
         Key.sensitivity.register(Sensitivity.natural.rawValue)
         Key.direction.register(Direction.clockwise.rawValue)
+    }
+    
+    static var startsWithMacOS: Bool {
+        get {
+            LaunchAtLogin.isEnabled
+        }
+        
+        set(flag) {
+            LaunchAtLogin.isEnabled = flag
+        }
     }
     
     static var dialMode: DialMode {

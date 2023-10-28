@@ -45,8 +45,8 @@ class ControllerOptionItem: MenuOptionItem<DialMode> {
 
 class StateOptionItem: MenuOptionItem<NSControl.StateValue> {
     
-    init(_ title: String, state: NSControl.StateValue) {
-        super.init(title, option: state)
+    init(_ title: String) {
+        super.init(title, option: .mixed)
     }
     
     required init(coder: NSCoder) {
@@ -72,19 +72,19 @@ extension NSMenuItem {
 extension NSMenu {
     
     func addMenuItems(_ items: StatusBarController.MenuItems) {
-        self.addItem(items.connectionStatus)
+        addItem(items.connectionStatus)
         
-        self.addItem(items.sep0)
+        addItem(items.sep0)
         
         items.sep0Title.isEnabled = false
-        self.addItem(items.sep0Title)
+        addItem(items.sep0Title)
         
         
         
-        self.addItem(items.scrollMode)
-        self.addItem(items.playbackMode)
+        addItem(items.scrollMode)
+        addItem(items.playbackMode)
         
-        self.addItem(items.sep1)
+        addItem(items.sep1)
         
         
         
@@ -92,25 +92,27 @@ extension NSMenu {
         for sensitivityOption in items.sensitivityOptions {
             items.sensitivity.submenu?.addItem(sensitivityOption)
         }
-        self.addItem(items.sensitivity)
+        addItem(items.sensitivity)
         
         items.direction.submenu = NSMenu()
         for scrollDirectionOption in items.directionOptions {
             items.direction.submenu?.addItem(scrollDirectionOption)
         }
-        self.addItem(items.direction)
+        addItem(items.direction)
         
-        self.addItem(items.sep2)
-        
-        
-        
-        self.addItem(items.haptics)
-        
-        self.addItem(items.sep3)
+        addItem(items.sep2)
         
         
         
-        self.addItem(items.quit)
+        addItem(items.haptics)
+        
+        addItem(items.sep3)
+        
+        
+        
+        addItem(items.startsWithMacOS)
+        
+        addItem(items.quit)
     }
     
 }
@@ -170,13 +172,17 @@ class StatusBarController {
         
         
         
-        let haptics = StateOptionItem(NSLocalizedString("Menu/Haptics", value: "Haptics", comment: "haptics"), state: .on)
+        let haptics = StateOptionItem(NSLocalizedString("Menu/Haptics", value: "Haptics", comment: "haptics"))
         
         let sep3 = NSMenuItem.separator()
         
         
         
+        let startsWithMacOS = StateOptionItem(NSLocalizedString("Menu/StartsWithMacOS", value: "Starts with macOS", comment: "starts with macos"))
+        
         let quit = NSMenuItem(title: NSLocalizedString("Menu/Quit", value: "Quit", comment: "quit"))
+        
+        
         
         func setDialMode(_ dialMode: DialMode) {
             scrollMode.flag = dialMode == .scroll
@@ -191,10 +197,6 @@ class StatusBarController {
         func setDirection(_ direction: Direction) {
             directionOptions
                 .forEach { $0.flag = $0.option == direction }
-        }
-        
-        func setHaptics(_ flag: Bool) {
-            haptics.flag = flag
         }
         
     }
@@ -216,11 +218,13 @@ class StatusBarController {
     
     init( _ dial: Dial) {
         self.dial = dial
+        statusItem.button?.appearsDisabled = true
         menu.autoenablesItems = false
         
         menuItems.connectionStatus.target = self
         menuItems.connectionStatus.action = #selector(reconnect(_:))
         menuItems.connectionStatus.offStateImage = NSImage(systemSymbolName: "arrow.triangle.2.circlepath", accessibilityDescription: nil)!
+        
         
         menuItems.scrollMode.target = self
         menuItems.scrollMode.action = #selector(setDialMode(_:))
@@ -245,6 +249,10 @@ class StatusBarController {
         menuItems.haptics.target = self
         menuItems.haptics.action = #selector(setHaptics(_:))
         menuItems.haptics.flag = Data.haptics
+        
+        menuItems.startsWithMacOS.target = self
+        menuItems.startsWithMacOS.action = #selector(setStartsWithMacOS(_:))
+        menuItems.startsWithMacOS.flag = Data.startsWithMacOS
         
         menuItems.quit.target = self
         menuItems.quit.action = #selector(quitApp(_:))
@@ -392,11 +400,20 @@ extension StatusBarController {
     @objc func setHaptics(
         _ sender: Any?
     ) {
-        let haptics = !Data.haptics
+        let flag = !Data.haptics
         
-        Data.haptics = haptics
-        dial.haptics = haptics
-        menuItems.setHaptics(haptics)
+        Data.haptics = flag
+        dial.haptics = flag
+        menuItems.haptics.flag = flag
+    }
+    
+    @objc func setStartsWithMacOS(
+        _ sender: Any?
+    ) {
+        let flag = !Data.startsWithMacOS
+        
+        Data.startsWithMacOS = flag
+        menuItems.startsWithMacOS.flag = flag
     }
     
     @objc func quitApp(

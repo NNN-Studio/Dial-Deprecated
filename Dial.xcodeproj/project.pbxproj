@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2867F1832AEC8D3B0029C937 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F1822AEC8D3B0029C937 /* WindowController.swift */; };
 		2867F18C2AECACC80029C937 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F18B2AECACC80029C937 /* MainController.swift */; };
+		2867F18F2AECC6E90029C937 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 2867F18E2AECC6E90029C937 /* LaunchAtLogin */; };
 		28B685282AEBFB80008EBE98 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 28B685272AEBFB80008EBE98 /* Localizable.xcstrings */; };
 		28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B6852A2AEC01D6008EBE98 /* Data.swift */; };
 		C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882FA1926F1430C00595EE1 /* AppDelegate.swift */; };
@@ -54,6 +55,7 @@
 			files = (
 				C89F315F270126E100A8B365 /* AppKit.framework in Frameworks */,
 				C89F315B2701266400A8B365 /* CoreFoundation.framework in Frameworks */,
+				2867F18F2AECC6E90029C937 /* LaunchAtLogin in Frameworks */,
 				C89F315D2701266A00A8B365 /* IOKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,6 +144,9 @@
 			dependencies = (
 			);
 			name = Dial;
+			packageProductDependencies = (
+				2867F18E2AECC6E90029C937 /* LaunchAtLogin */,
+			);
 			productName = MacDial;
 			productReference = 28B685242AEBFAAD008EBE98 /* Dial.app */;
 			productType = "com.apple.product-type.application";
@@ -171,6 +176,9 @@
 				"zh-Hans",
 			);
 			mainGroup = C882FA0D26F1430C00595EE1;
+			packageReferences = (
+				2867F18D2AECC6E90029C937 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+			);
 			productRefGroup = C882FA0D26F1430C00595EE1;
 			projectDirPath = "";
 			projectRoot = "";
@@ -431,6 +439,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2867F18D2AECC6E90029C937 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2867F18E2AECC6E90029C937 /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2867F18D2AECC6E90029C937 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
+			productName = LaunchAtLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C882FA0E26F1430C00595EE1 /* Project object */;
 }

@@ -216,6 +216,18 @@
           }
         }
       }
+    },
+    "Menu/StartsWithMacOS" : {
+      "comment" : "starts with macos",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Starts with macOS"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
