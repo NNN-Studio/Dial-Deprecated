@@ -117,7 +117,7 @@ extension NSMenu {
     
 }
 
-class StatusBarController {
+class StatusBarController: NSObject, NSMenuDelegate {
     
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     private let menu = NSMenu()
@@ -127,6 +127,12 @@ class StatusBarController {
     
     private var mainController = (instance: MainController(), handled: false)
     private var controllerHandlingDispatch: DispatchWorkItem?
+    
+    private var lastActions: (
+        mouseDown: Date?,
+        mouseUp: Date?,
+        rotation: Date?
+    )
     
     struct MenuItems {
         
@@ -218,6 +224,8 @@ class StatusBarController {
     
     init( _ dial: Dial) {
         self.dial = dial
+        super.init()
+        
         statusItem.button?.appearsDisabled = true
         menu.autoenablesItems = false
         
@@ -260,10 +268,12 @@ class StatusBarController {
         
         
         menu.addMenuItems(menuItems)
-        statusItem.menu = menu
+        menu.delegate = self
         
         if let button = statusItem.button {
             button.target = self
+            button.action = #selector(toggle(_:))
+            button.sendAction(on: [.leftMouseUp, .rightMouseUp])
             updateIcon()
         }
         
@@ -271,34 +281,44 @@ class StatusBarController {
             self?.updateConnectionStatus()
         }
         
+        dial.device.hapticsMode = { self.controller.hapticsMode() }
+        
         dial.onButtonStateChanged = { [unowned self] state in
             switch state {
             case .pressed:
-                controller.onDown()
+                controller.onMouseDown(last: lastActions.mouseDown?.timeIntervalSince(.now))
                 
                 controllerHandlingDispatch = DispatchWorkItem { [self] in
-                    controller.onUp()
                     mainController.handled = true
-                    controller.onDown()
+                    dial.device.updateSensitivity()
+                    controller.onMouseDown(last: lastActions.mouseDown?.timeIntervalSince(.now))
                 }
                 if let controllerHandlingDispatch {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.35, execute: controllerHandlingDispatch)
                 }
                 
+                lastActions.mouseDown = .now
                 break
             case .released:
-                controller.onUp()
+                controller.onMouseUp(last: lastActions.mouseUp?.timeIntervalSince(.now))
                 
                 mainController.handled = false
+                dial.device.updateSensitivity()
                 controllerHandlingDispatch?.cancel()
                 
+                lastActions.mouseUp = .now
                 break
             }
         }
         
         dial.onRotation = { [unowned self] rotation, direction in
-            controller.onRotate(rotation, direction)
+            controller.onRotation(rotation, direction, last: lastActions.rotation?.timeIntervalSince(.now))
+            lastActions.rotation = .now
         }
+    }
+    
+    func menuDidClose(_ menu: NSMenu) {
+        statusItem.menu = nil
     }
     
     private func updateConnectionStatus() {
@@ -321,6 +341,8 @@ class StatusBarController {
             menuItems.connectionStatus.isEnabled = true
             
             statusItem.button?.appearsDisabled = true
+            
+            updateIcon()
         }
     }
     
@@ -349,6 +371,24 @@ class StatusBarController {
 }
 
 extension StatusBarController {
+    
+    @objc func toggle(
+        _ sender: Any?
+    ) {
+        if let event = NSApp.currentEvent, event.type == .leftMouseUp {
+            if dial.device.isConnected {
+                let _ = Data.cycleDialMode(1)
+                Data.dialMode = Data.dialMode
+                menuItems.setDialMode(Data.dialMode)
+                updateIcon()
+            } else {
+                reconnect(nil)
+            }
+        } else {
+            statusItem.menu = menu
+            statusItem.button?.performClick(nil)
+        }
+    }
     
     @objc func reconnect(
         _ sender: Any?
@@ -380,7 +420,6 @@ extension StatusBarController {
         else { return }
         
         Data.sensitivity = sensitivity
-        dial.sensitivity = sensitivity.rawValue
         menuItems.setSensitivity(sensitivity)
     }
     
@@ -393,7 +432,6 @@ extension StatusBarController {
         else { return }
         
         Data.direction = direction
-        dial.direction = direction.rawValue
         menuItems.setDirection(direction)
     }
     
@@ -403,7 +441,6 @@ extension StatusBarController {
         let flag = !Data.haptics
         
         Data.haptics = flag
-        dial.haptics = flag
         menuItems.haptics.flag = flag
     }
     

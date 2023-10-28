@@ -87,13 +87,38 @@ class DialWindow: NSWindow {
     }
     
     func show() {
-        center()
         (contentViewController as? WindowController)?.updateColoredWidgets()
         makeKeyAndOrderFront(nil)
+        updatePosition()
     }
     
     func hide() {
         close()
+    }
+    
+    func updatePosition(_ animate: Bool = false) {
+        guard
+            let screenSize = NSScreen.main?.frame.size,
+            let stackView = (contentViewController as? WindowController)?.stackView
+        else {
+            center()
+            return
+        }
+        
+        let enabledSubview = stackView.subviews[Data.dialMode.rawValue]
+        
+        let cursorPosition = NSEvent.mouseLocation
+        let framePosition = frame.origin
+        let offset = enabledSubview.frame.origin.applying(CGAffineTransform(
+            translationX: stackView.frame.origin.x + enabledSubview.frame.width / 2,
+            y: stackView.frame.origin.y + enabledSubview.frame.height / 2
+        ))
+        
+        NSAnimationContext.runAnimationGroup { context in
+            context.allowsImplicitAnimation = animate
+            
+            setFrameOrigin(cursorPosition.applying(CGAffineTransform(translationX: -offset.x, y: -offset.y)))
+        }
     }
     
 }
@@ -113,14 +138,14 @@ class WindowController: NSViewController {
         let enabled = Data.dialMode.rawValue == index
         
         if let box = subview as? NSBox {
-            box.borderColor = .clear
-            box.fillColor = .controlAccentColor.withAlphaComponent(0.2)
-            box.isTransparent = !enabled
+            box.animator().borderColor = .clear
+            box.animator().fillColor = .controlAccentColor.withAlphaComponent(0.2)
+            box.animator().isTransparent = !enabled
             
             box.subviews.forEach {
                 $0.subviews.forEach {
                     if let imageView = $0 as? NSImageView {
-                        imageView.contentTintColor = enabled ? .controlAccentColor : .secondaryLabelColor
+                        imageView.animator().contentTintColor = enabled ? .controlAccentColor : .secondaryLabelColor
                     }
                 }
             }

@@ -5,6 +5,7 @@ import Cocoa
 import SwiftUI
 
 extension NSString {
+    
     convenience init(wcharArray: UnsafeMutablePointer<wchar_t>) {
         self.init(
             bytes: UnsafePointer(wcharArray),
@@ -12,28 +13,42 @@ extension NSString {
             encoding: String.Encoding.utf32LittleEndian.rawValue
         )!
     }
+    
 }
 
-class Dial
-{
+class Dial {
+    
     enum ButtonState {
+        
         case pressed
         case released
+        
     }
     
     enum Rotation {
-        case Clockwise (Int)
-        case Counterclockwise (Int)
+        
+        case clockwise (Int)
+        case counterclockwise (Int)
+        
     }
     
-    enum InputReport
-    {
+    enum InputReport {
+        
         case dial(ButtonState, Rotation?)
         case unknown
+        
     }
     
-    class Device
-    {
+    enum HapticsMode: UInt8 {
+        
+        case none = 0x02
+        case buzz = 0x03
+        case continuous = 0x04
+        
+    }
+    
+    class Device {
+        
         private struct ReadBuffer {
             let pointer: UnsafeMutablePointer<UInt8>
             let size: Int
@@ -52,14 +67,7 @@ class Dial
         
         
         
-        var sensitivity = Data.sensitivity.rawValue
-        
-        var direction = Data.direction.rawValue
-        
-        var haptics = Data.haptics
-        
-        init() {
-        }
+        var hapticsMode = { HapticsMode.buzz }
         
         var isConnected: Bool {
             dev != nil
@@ -108,10 +116,10 @@ class Dial
         }
         
         // https://github.com/daniel5151/surface-dial-linux/blob/main/src/dial_device/haptics.rs
-        func updateSensitivity() {
+        func updateSensitivity(sensitivity: Sensitivity = Data.sensitivity, haptics: Bool = Data.haptics) {
             if isConnected {
-                let steps_lo = sensitivity & 0xff;
-                let steps_hi = (sensitivity >> 8) & 0xff;
+                let steps_lo = sensitivity.rawValue & 0xff;
+                let steps_hi = (sensitivity.rawValue >> 8) & 0xff;
                 var buf: Array<UInt8> = []
                 
                 buf.append(0x01) // Report ID
@@ -122,7 +130,7 @@ class Dial
                 // 0x02: none
                 // 0x03: buzz
                 // 0x04: continuous vibration
-                buf.append(self.haptics ? 0x03 : 0x02) // Auto trigger
+                buf.append(haptics ? hapticsMode().rawValue : 0x02) // Auto trigger
                 
                 buf.append(0x00) // Waveform cutoff time
                 buf.append(0x00) // Retrigger period (lo)
@@ -132,7 +140,7 @@ class Dial
             }
         }
         
-        func buzz(repeatCount: UInt8 = 0) {
+        func buzz(_ repeatCount: UInt8 = 1) {
             if repeatCount <= 0 {
                 return
             }
@@ -142,7 +150,7 @@ class Dial
                 
                 buf.append(0x01) // Report ID
                 buf.append(repeatCount - 1) // Repeat count
-                buf.append(0x03) // Buzz
+                buf.append(HapticsMode.buzz.rawValue) // Buzz
                 buf.append(0x00) // Retrigger period (lo)
                 buf.append(0x00) // Retrigger period (hi)
                 
@@ -158,9 +166,9 @@ class Dial
                 let rotation = { () -> Rotation? in
                     switch bytes[2] {
                         case 1:
-                            return .Clockwise(1)
+                            return .clockwise(1)
                         case 0xff:
-                            return .Counterclockwise(1)
+                            return .counterclockwise(1)
                         default:
                             return nil
                 }}()
@@ -189,6 +197,7 @@ class Dial
             
             return parse(bytes: array)
         }
+        
     }
     
     private var thread: Thread?
@@ -200,39 +209,7 @@ class Dial
     private var lastButtonState = ButtonState.released
     
     var onButtonStateChanged: ((ButtonState) -> Void)?
-    var onRotation: ((Rotation, Int) -> Void)?
-    
-    var sensitivity: Int {
-        get {
-            device.sensitivity
-        }
-        
-        set (value) {
-            device.sensitivity = value
-            device.updateSensitivity()
-        }
-    }
-    
-    var direction: Int {
-        get {
-            device.direction
-        }
-        
-        set (value) {
-            device.direction = value
-        }
-    }
-    
-    var haptics: Bool {
-        get {
-            device.haptics
-        }
-        
-        set(value) {
-            device.haptics = value
-            device.updateSensitivity()
-        }
-    }
+    var onRotation: ((Rotation, Direction) -> Void)?
     
     init() {
         hid_init()
@@ -251,20 +228,20 @@ class Dial
     }
     
     func stop() {
-        self.haptics = false
-        self.sensitivity = 36
-        run = false;
-        if let thread = self.thread {
+        device.updateSensitivity(sensitivity: .natural, haptics: false)
+        run = false
+        
+        if let thread {
             semaphore.signal()
             device.disconnect()
             
             while !thread.isFinished { }
-            self.thread = nil;
+            self.thread = nil
         }
     }
     
     private func connect() -> Bool {
-        return false
+        false
     }
     
     @objc
@@ -287,21 +264,19 @@ class Dial
         while run {
             if !device.isConnected {
                 print("Trying to open device...")
+                
                 if device.connect() {
                     print("Device \(device.serialNumber) opened.")
+                    device.buzz(3)
                     device.updateSensitivity() // thanks @bernhard-adobe
-                    device.buzz(repeatCount: 3)
                 } else {
                     print("Device couldn't be opened.")
                 }
             }
             
             while device.isConnected {
-                
                 switch device.read() {
-                
                 case .dial(let buttonState, let rotation):
-                    
                     switch buttonState {
                     case .pressed where lastButtonState == .released:
                         onButtonStateChanged?(.pressed)
@@ -311,19 +286,22 @@ class Dial
                     }
                     
                     if rotation != nil {
-                        onRotation?(rotation!, direction)
+                        onRotation?(rotation!, Data.direction)
                     }
                     
                     self.lastButtonState = buttonState
-                
+                    break
                 case .unknown:
                     print("Unknown input report.")
+                    break
                 case nil:
                     print("Device disconnected.")
+                    break
                 }
             }
             
-            semaphore.wait(timeout: .now().advanced(by: .seconds(60)))
+            let _ = semaphore.wait(timeout: .now().advanced(by: .seconds(60)))
         }
     }
+    
 }

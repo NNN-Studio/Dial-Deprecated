@@ -1,11 +1,14 @@
 
 import Foundation
 
-protocol Controller: AnyObject
-{
-    func onDown()
+protocol Controller: AnyObject {
     
-    func onUp()
+    func hapticsMode() -> Dial.HapticsMode
     
-    func onRotate(_ rotation: Dial.Rotation, _ direction: Int)
+    func onMouseDown(last: TimeInterval?)
+    
+    func onMouseUp(last: TimeInterval?)
+    
+    func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?)
+    
 }

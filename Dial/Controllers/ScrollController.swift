@@ -7,7 +7,6 @@ class ScrollController: Controller {
     enum Action {
         
         case up
-        
         case down
         
     }
@@ -23,36 +22,43 @@ class ScrollController: Controller {
         event?.post(tap: .cghidEventTap)
     }
     
-    func onDown() {
+    func hapticsMode() -> Dial.HapticsMode {
+        .continuous
+    }
+    
+    func onMouseDown(last: TimeInterval?) {
         sendMouse(button: .down)
     }
     
-    func onUp() {
+    func onMouseUp(last: TimeInterval?) {
         sendMouse(button: .up)
     }
     
-    var lastRotate: TimeInterval = Date().timeIntervalSince1970
-    
-    func onRotate(_ rotation: Dial.Rotation, _ direction: Int) {
+    func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?) {
         var steps = 0
         
         switch rotation {
-        case .Clockwise(let d):
+        case .clockwise(let d):
             steps = d
-        case .Counterclockwise(let d):
+        case .counterclockwise(let d):
             steps = -d
         }
         
-        steps *= direction;
+        steps *= direction.rawValue
         
-        let diff = (Date().timeIntervalSince1970 - lastRotate) * 1000
+        let diff = last ?? 0 * 1000
         let multiplier = Int(1 + ((150 - min(diff, 150)) / 40))
         
-        let event = CGEvent(scrollWheelEvent2Source: nil, units: .line, wheelCount: 1, wheel1: Int32(steps * multiplier), wheel2: 0, wheel3: 0)
+        let event = CGEvent(
+            scrollWheelEvent2Source: nil,
+            units: .line,
+            wheelCount: 1,
+            wheel1: Int32(steps * multiplier),
+            wheel2: 0,
+            wheel3: 0
+        )
         
         event?.post(tap: .cghidEventTap)
-        
-        lastRotate = Date().timeIntervalSince1970
     }
     
 }

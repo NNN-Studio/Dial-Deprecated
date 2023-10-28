@@ -6,7 +6,6 @@ import AppKit
 // https://stackoverflow.com/a/55854051
 func HIDPostAuxKey(key: Int32, modifiers: [NSEvent.ModifierFlags], _repeat: Int = 1) {
     func doKey(down: Bool) {
-        
         var rawFlags: UInt = (down ? 0xa00 : 0xb00);
         
         for modifier in modifiers {
@@ -32,6 +31,7 @@ func HIDPostAuxKey(key: Int32, modifiers: [NSEvent.ModifierFlags], _repeat: Int 
         let cev = ev?.cgEvent
         cev?.post(tap: CGEventTapLocation.cghidEventTap)
     }
+    
     for _ in 0..<_repeat {
         doKey(down: true)
         doKey(down: false)
@@ -42,44 +42,49 @@ func HIDPostAuxKey(key: Int32, modifiers: [NSEvent.ModifierFlags], _repeat: Int 
 
 class PlaybackController : Controller {
     
-    var lastClick = Date().timeIntervalSince1970
+    var willPlayDispatch: DispatchWorkItem?
     
-    func onDown() {
-        
+    func hapticsMode() -> Dial.HapticsMode {
+        .buzz
     }
     
-    func onUp() {
-        
-        let clickDelay = Date().timeIntervalSince1970 - lastClick
-        
+    func onMouseDown(last: TimeInterval?) {
+    }
+    
+    func onMouseUp(last: TimeInterval?) {
         // Next song on double click
-        if (clickDelay < 0.5) {
+        if let last, last.magnitude < 0.35 {
             // Undo pause sent on first click
             HIDPostAuxKey(key: NX_KEYTYPE_PLAY, modifiers: [], _repeat: 1)
             
-            HIDPostAuxKey(key: NX_KEYTYPE_NEXT, modifiers: [])
+            if willPlayDispatch == nil {
+                HIDPostAuxKey(key: NX_KEYTYPE_NEXT, modifiers: [])
+            } else {
+                willPlayDispatch?.cancel()
+            }
+        } else {
+            // Play / Pause on single click
+            willPlayDispatch = DispatchWorkItem {
+                HIDPostAuxKey(key: NX_KEYTYPE_PLAY, modifiers: [], _repeat: 1)
+            }
+            if let willPlayDispatch {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                    self.willPlayDispatch?.perform()
+                    self.willPlayDispatch = nil
+                }
+            }
         }
-        else { // Play / Pause on single click
-            
-            HIDPostAuxKey(key: NX_KEYTYPE_PLAY, modifiers: [], _repeat: 1)
-        }
-        
-        lastClick = Date().timeIntervalSince1970
     }
     
-    
-    
-    func onRotate(_ rotation: Dial.Rotation, _ direction: Int) {
-        
+    func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?) {
         let modifiers = [NSEvent.ModifierFlags.shift, NSEvent.ModifierFlags.option]
         
         switch (rotation) {
-        case .Clockwise(let _repeat):
-            HIDPostAuxKey(key: NX_KEYTYPE_SOUND_UP, modifiers: modifiers, _repeat: _repeat * direction)
+        case .clockwise(let _repeat):
+            HIDPostAuxKey(key: NX_KEYTYPE_SOUND_UP, modifiers: modifiers, _repeat: _repeat * direction.rawValue)
             break
-        case .Counterclockwise(let _repeat):
-            HIDPostAuxKey(key: NX_KEYTYPE_SOUND_DOWN, modifiers: modifiers, _repeat: _repeat * direction)
-            
+        case .counterclockwise(let _repeat):
+            HIDPostAuxKey(key: NX_KEYTYPE_SOUND_DOWN, modifiers: modifiers, _repeat: _repeat * direction.rawValue)
             break
         }
     }

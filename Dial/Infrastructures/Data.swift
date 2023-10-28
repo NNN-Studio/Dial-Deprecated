@@ -8,7 +8,7 @@
 import Foundation
 import LaunchAtLogin
 
-enum DialMode: Int {
+enum DialMode: Int, CaseIterable {
     
     case scroll = 0
     
@@ -99,6 +99,19 @@ struct Data {
         set(dialMode) {
             Key.dialMode.set(dialMode.rawValue)
         }
+    }
+    
+    static func cycleDialMode(_ signum: Int, wrap: Bool = true) -> Bool {
+        let value = dialMode.rawValue + signum.signum()
+        let maxRawValue = DialMode.allCases.count
+        let inRange = NSRange(location: 0, length: maxRawValue).contains(value)
+        
+        if wrap || inRange {
+            dialMode = DialMode(rawValue: value % maxRawValue) ?? .scroll
+            return true
+        }
+        
+        return false
     }
     
     static var haptics: Bool {

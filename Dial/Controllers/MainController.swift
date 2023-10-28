@@ -9,16 +9,39 @@ import Foundation
 
 class MainController: Controller {
     
-    func onDown() {
-        AppDelegate.instance?.showDialWindow()
+    func hapticsMode() -> Dial.HapticsMode {
+        .none
     }
     
-    func onUp() {
-        AppDelegate.instance?.hideDialWindow()
+    func onMouseDown(last: TimeInterval?) {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            AppDelegate.instance?.buzz()
+            AppDelegate.instance?.showDialWindow()
+        }
     }
     
-    func onRotate(_ rotation: Dial.Rotation, _ direction: Int) {
+    func onMouseUp(last: TimeInterval?) {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            AppDelegate.instance?.hideDialWindow()
+        }
+    }
+    
+    func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?) {
+        var step: Int
+        switch rotation {
+        case .clockwise(let _repeat):
+            step = _repeat
+        case .counterclockwise(let _repeat):
+            step = -_repeat
+        }
+        step *= direction.rawValue
         
+        if Data.cycleDialMode(-step.signum(), wrap: false) {
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                AppDelegate.instance?.buzz()
+                AppDelegate.instance?.updateDialWindow()
+            }
+        }
     }
     
 }
