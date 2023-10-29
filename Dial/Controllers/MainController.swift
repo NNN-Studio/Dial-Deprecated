@@ -13,20 +13,16 @@ class MainController: Controller {
         .none
     }
     
-    func onMouseDown(last: TimeInterval?) {
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            AppDelegate.instance?.buzz()
-            AppDelegate.instance?.showDialWindow()
-        }
+    func onMouseDown(last: TimeInterval?, isDoubleClick: Bool) {
+        AppDelegate.instance?.buzz()
+        AppDelegate.instance?.showDialWindow()
     }
     
-    func onMouseUp(last: TimeInterval?) {
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            AppDelegate.instance?.hideDialWindow()
-        }
+    func onMouseUp(last: TimeInterval?, isClick: Bool) {
+        AppDelegate.instance?.hideDialWindow()
     }
     
-    func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?) {
+    func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?, buttonState: Dial.ButtonState) {
         var step: Int
         switch rotation {
         case .clockwise(let _repeat):
@@ -37,10 +33,8 @@ class MainController: Controller {
         step *= direction.rawValue
         
         if Data.cycleDialMode(-step.signum(), wrap: false) {
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
-                AppDelegate.instance?.buzz()
-                AppDelegate.instance?.updateDialWindow()
-            }
+            AppDelegate.instance?.buzz()
+            AppDelegate.instance?.updateDialWindow()
         }
     }
     

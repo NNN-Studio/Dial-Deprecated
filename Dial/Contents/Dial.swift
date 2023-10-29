@@ -21,20 +21,56 @@ class Dial {
     enum ButtonState {
         
         case pressed
+        
         case released
         
     }
     
     enum Rotation {
         
-        case clockwise (Int)
-        case counterclockwise (Int)
+        case clockwise(Int)
+        
+        case counterclockwise(Int)
+        
+        var magnitude: Int {
+            switch self {
+            case .clockwise(let r):
+                r
+            case .counterclockwise(let r):
+                r
+            }
+        }
+        
+        var negate: Rotation {
+            switch self {
+            case .clockwise(let r):
+                .counterclockwise(r)
+            case .counterclockwise(let r):
+                .clockwise(r)
+            }
+        }
+        
+        func withDirection(_ direction: Direction) -> Rotation {
+            var reversed = false
+            switch self {
+            case .clockwise(_) where direction == .clockwise:
+                reversed = true
+                break
+            case .counterclockwise(_) where direction == .counterclockwise:
+                reversed = false
+                break
+            default:
+                break
+            }
+            return reversed ? negate : self
+        }
         
     }
     
     enum InputReport {
         
         case dial(ButtonState, Rotation?)
+        
         case unknown
         
     }
@@ -42,7 +78,9 @@ class Dial {
     enum HapticsMode: UInt8 {
         
         case none = 0x02
+        
         case buzz = 0x03
+        
         case continuous = 0x04
         
     }
@@ -95,7 +133,7 @@ class Dial {
                 
                 let buffer = UnsafeMutablePointer<wchar_t>.allocate(capacity: 255)
                 hid_get_serial_number_string(dev, buffer, 255)
-                    
+                
                 return NSString(wcharArray: buffer) as String
             }
         }
@@ -165,13 +203,13 @@ class Dial {
                 
                 let rotation = { () -> Rotation? in
                     switch bytes[2] {
-                        case 1:
-                            return .clockwise(1)
-                        case 0xff:
-                            return .counterclockwise(1)
-                        default:
-                            return nil
-                }}()
+                    case 1:
+                        return .clockwise(1)
+                    case 0xff:
+                        return .counterclockwise(1)
+                    default:
+                        return nil
+                    }}()
                 
                 return .dial(buttonState, rotation)
             default:
@@ -246,20 +284,6 @@ class Dial {
     
     @objc
     private func threadProc(arg: NSObject) {
-        
-        /*
-        hid_monitor { vendorId, productId, serialNumber in
-            if (vendorId==Device.VendorId && productId==Device.ProductId) {
-                DispatchQueue.main.async {
-                    // We cannot capture 'self' here since this is a c function pointer
-                    // Luckily we can find ourselves again through the AppDelegate
-                    let app = NSApplication.shared.delegate as! AppDelegate
-                    app.dial.semaphore.signal()
-                }
-
-            }
-        }
-         */
         
         while run {
             if !device.isConnected {

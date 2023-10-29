@@ -4,37 +4,21 @@ import AppKit
 
 class ScrollController: Controller {
     
-    enum Action {
-        
-        case up
-        case down
-        
-    }
-    
-    private func sendMouse(button action: Action) {
-        let mousePos = NSEvent.mouseLocation
-        let screenHeight = NSScreen.main?.frame.height ?? 0
-        
-        let translatedMousePos = NSPoint(x: mousePos.x, y: screenHeight - mousePos.y)
-        
-        let event = CGEvent(mouseEventSource: nil, mouseType: action == .down ? .leftMouseDown : .leftMouseUp, mouseCursorPosition: translatedMousePos, mouseButton: .left)
-        
-        event?.post(tap: .cghidEventTap)
-    }
-    
     func hapticsMode() -> Dial.HapticsMode {
         .continuous
     }
     
-    func onMouseDown(last: TimeInterval?) {
-        sendMouse(button: .down)
+    func onMouseDown(last: TimeInterval?, isDoubleClick: Bool) {
+        postMouse(button: .pressed)
     }
     
-    func onMouseUp(last: TimeInterval?) {
-        sendMouse(button: .up)
+    func onMouseUp(last: TimeInterval?, isClick: Bool) {
+        postMouse(button: .released)
     }
     
-    func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?) {
+    func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?, buttonState: Dial.ButtonState) {
+        postMouse(button: .released)
+        
         var steps = 0
         
         switch rotation {

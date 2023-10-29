@@ -83,6 +83,7 @@ extension NSMenu {
         
         addItem(items.scrollMode)
         addItem(items.playbackMode)
+        addItem(items.missionMode)
         
         addItem(items.sep1)
         
@@ -133,6 +134,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
         mouseUp: Date?,
         rotation: Date?
     )
+    private var buttonState = Dial.ButtonState.released
     
     struct MenuItems {
         
@@ -153,6 +155,11 @@ class StatusBarController: NSObject, NSMenuDelegate {
             NSLocalizedString("Menu/DialMode/Playback", value: "Playback", comment: "dial mode playback"),
             mode: .playback,
             controller: PlaybackController()
+        )
+        let missionMode = ControllerOptionItem(
+            NSLocalizedString("Menu/DialMode/Mission", value: "Mission", comment: "dial mode mission"),
+            mode: .mission,
+            controller: MissionController()
         )
         
         let sep1 = NSMenuItem.separator()
@@ -217,6 +224,8 @@ class StatusBarController: NSObject, NSMenuDelegate {
                     menuItems.scrollMode.controller
                 case .playback:
                     menuItems.playbackMode.controller
+                case .mission:
+                    menuItems.missionMode.controller
                 }
             }
         }
@@ -284,23 +293,34 @@ class StatusBarController: NSObject, NSMenuDelegate {
         dial.device.hapticsMode = { self.controller.hapticsMode() }
         
         dial.onButtonStateChanged = { [unowned self] state in
+            buttonState = state
+            let last = (
+                down: lastActions.mouseDown == nil ? nil : Date.now.timeIntervalSince(lastActions.mouseDown!),
+                up: lastActions.mouseUp == nil ? nil : Date.now.timeIntervalSince(lastActions.mouseUp!)
+            )
+            let isDoubleClick = last.down?.magnitude ?? 1 <= NSEvent.doubleClickInterval
+            let isClick = last.down?.magnitude ?? 1 <= NSEvent.doubleClickInterval * 0.6
+            
             switch state {
             case .pressed:
-                controller.onMouseDown(last: lastActions.mouseDown?.timeIntervalSince(.now))
+                controller.onMouseDown(last: last.down, isDoubleClick: isDoubleClick)
                 
+                // Click and hold long to switch mode
                 controllerHandlingDispatch = DispatchWorkItem { [self] in
+                    controller.onMouseUp(last: last.up, isClick: false)
                     mainController.handled = true
                     dial.device.updateSensitivity()
-                    controller.onMouseDown(last: lastActions.mouseDown?.timeIntervalSince(.now))
+                    controller.onMouseDown(last: last.down, isDoubleClick: false)
                 }
+                
                 if let controllerHandlingDispatch {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.35, execute: controllerHandlingDispatch)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: controllerHandlingDispatch)
                 }
                 
                 lastActions.mouseDown = .now
                 break
             case .released:
-                controller.onMouseUp(last: lastActions.mouseUp?.timeIntervalSince(.now))
+                controller.onMouseUp(last: last.up, isClick: isClick)
                 
                 mainController.handled = false
                 dial.device.updateSensitivity()
@@ -312,7 +332,8 @@ class StatusBarController: NSObject, NSMenuDelegate {
         }
         
         dial.onRotation = { [unowned self] rotation, direction in
-            controller.onRotation(rotation, direction, last: lastActions.rotation?.timeIntervalSince(.now))
+            controllerHandlingDispatch?.cancel()
+            controller.onRotation(rotation, direction, last: lastActions.rotation?.timeIntervalSince(.now), buttonState: buttonState)
             lastActions.rotation = .now
         }
     }
@@ -341,9 +362,9 @@ class StatusBarController: NSObject, NSMenuDelegate {
             menuItems.connectionStatus.isEnabled = true
             
             statusItem.button?.appearsDisabled = true
-            
-            updateIcon()
         }
+        
+        updateIcon()
     }
     
     private func updateIcon() {
@@ -360,11 +381,11 @@ class StatusBarController: NSObject, NSMenuDelegate {
                 case .playback:
                     button.image = NSImage(named: NSImage.Name("DialPlayback"))!
                     break
+                case .mission:
+                    button.image = NSImage(named: NSImage.Name("DialMission"))!
+                    break
                 }
             }
-            
-            button.image?.size = NSSize(width: 22, height: 22)
-            button.imagePosition = .imageOnly
         }
     }
     
@@ -372,15 +393,20 @@ class StatusBarController: NSObject, NSMenuDelegate {
 
 extension StatusBarController {
     
+    private func _setDialMode(_ mode: DialMode) {
+        Data.dialMode = mode
+        menuItems.setDialMode(mode)
+        dial.device.updateSensitivity()
+        updateIcon()
+    }
+    
     @objc func toggle(
         _ sender: Any?
     ) {
         if let event = NSApp.currentEvent, event.type == .leftMouseUp {
             if dial.device.isConnected {
                 let _ = Data.cycleDialMode(1)
-                Data.dialMode = Data.dialMode
-                menuItems.setDialMode(Data.dialMode)
-                updateIcon()
+                _setDialMode(Data.dialMode)
             } else {
                 reconnect(nil)
             }
@@ -404,11 +430,7 @@ extension StatusBarController {
         guard let item = sender as? ControllerOptionItem
         else { return }
         
-        let dialMode = item.option
-        
-        Data.dialMode = dialMode
-        menuItems.setDialMode(dialMode)
-        updateIcon()
+        _setDialMode(item.option)
     }
     
     @objc func setSensitivity(

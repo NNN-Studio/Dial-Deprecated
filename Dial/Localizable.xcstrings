@@ -49,6 +49,18 @@
         }
       }
     },
+    "Menu/DialMode/Mission" : {
+      "comment" : "dial mode mission",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Mission"
+          }
+        }
+      }
+    },
     "Menu/DialMode/Playback" : {
       "comment" : "dial mode playback",
       "extractionState" : "extracted_with_value",

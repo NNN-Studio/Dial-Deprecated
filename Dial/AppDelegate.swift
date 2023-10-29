@@ -59,20 +59,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension AppDelegate {
     
     func buzz(_ repeatCount: UInt8 = 1) {
-        dial.device.buzz(repeatCount)
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.dial.device.buzz(repeatCount)
+        }
     }
     
     func showDialWindow() {
-        dialWindow?.show()
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.dialWindow?.show()
+        }
     }
     
     func hideDialWindow() {
-        dialWindow?.hide()
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.dialWindow?.show()
+        }
     }
     
     func updateDialWindow() {
-        dialWindow?.updatePosition(true)
-        (dialWindow?.contentViewController as? WindowController)?.updateColoredWidgets()
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.dialWindow?.updatePosition(true)
+            (self.dialWindow?.contentViewController as? WindowController)?.updateColoredWidgets()
+        }
     }
     
 }

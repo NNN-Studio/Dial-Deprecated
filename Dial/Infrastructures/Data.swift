@@ -14,6 +14,8 @@ enum DialMode: Int, CaseIterable {
     
     case playback = 1
     
+    case mission = 2
+    
 }
 
 enum Sensitivity: Int {
@@ -37,6 +39,29 @@ enum Direction: Int {
     
     /// Counterclockwise to scroll down.
     case counterclockwise = -1
+    
+    var negate: Direction {
+        switch self {
+        case .clockwise:
+            .counterclockwise
+        case .counterclockwise:
+            .clockwise
+        }
+    }
+    
+    func withSignum(_ signum: Int) -> Direction {
+        let reversed = signum.signum() < 0
+        return reversed ? negate : self
+    }
+    
+    func withRotation(_ rotation: Dial.Rotation) -> Direction {
+        switch rotation {
+        case .clockwise(_):
+            self
+        case .counterclockwise(_):
+            self.negate
+        }
+    }
     
 }
 

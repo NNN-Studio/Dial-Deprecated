@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2801CAB52AEDF18000E95B5F /* MissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2801CAB42AEDF18000E95B5F /* MissionController.swift */; };
 		2867F1832AEC8D3B0029C937 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F1822AEC8D3B0029C937 /* WindowController.swift */; };
 		2867F18C2AECACC80029C937 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F18B2AECACC80029C937 /* MainController.swift */; };
 		2867F18F2AECC6E90029C937 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 2867F18E2AECC6E90029C937 /* LaunchAtLogin */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2801CAB42AEDF18000E95B5F /* MissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionController.swift; sourceTree = "<group>"; };
 		2867F1822AEC8D3B0029C937 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		2867F18A2AEC94D50029C937 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Main.xcstrings; sourceTree = "<group>"; };
 		2867F18B2AECACC80029C937 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -66,9 +68,11 @@
 		28B685262AEBFB5A008EBE98 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C89D24282703BA5E00B1A458 /* Controller.swift */,
 				C89D242A2703CF4500B1A458 /* ScrollController.swift */,
 				C89D242C2704870C00B1A458 /* PlaybackController.swift */,
 				2867F18B2AECACC80029C937 /* MainController.swift */,
+				2801CAB42AEDF18000E95B5F /* MissionController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -78,7 +82,6 @@
 			children = (
 				C882FA2C26F143E300595EE1 /* StatusBarController.swift */,
 				2867F1822AEC8D3B0029C937 /* WindowController.swift */,
-				C89D24282703BA5E00B1A458 /* Controller.swift */,
 				C89F31582701090400A8B365 /* Dial.swift */,
 			);
 			path = Contents;
@@ -208,6 +211,7 @@
 			files = (
 				28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */,
 				C882FA2D26F143E300595EE1 /* StatusBarController.swift in Sources */,
+				2801CAB52AEDF18000E95B5F /* MissionController.swift in Sources */,
 				C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */,
 				C89D24292703BA5E00B1A458 /* Controller.swift in Sources */,
 				2867F18C2AECACC80029C937 /* MainController.swift in Sources */,
