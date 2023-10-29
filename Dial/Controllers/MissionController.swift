@@ -10,20 +10,22 @@ import AppKit
 
 class MissionController: Controller {
     
+    private var inMission = false
+    
     func hapticsMode() -> Dial.HapticsMode {
         .none
     }
     
-    func onMouseDown(last: TimeInterval?, isDoubleClick: Bool) {
-    }
-    
     func onMouseUp(last: TimeInterval?, isClick: Bool) {
-        if isClick {
-            postKey(keys: [0x24 /* Return */])
+        if inMission && isClick {
+            postKeys([Keyboard.keyReturn])
+            inMission = false
         }
     }
     
     func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?, buttonState: Dial.ButtonState) {
+        inMission = true
+        
         var modifiers: [NSEvent.ModifierFlags]
         var action: [Dial.ButtonState: [Direction: [Int32]]] = [:]
         
@@ -38,11 +40,11 @@ class MissionController: Controller {
                 modifiers.append(NSEvent.ModifierFlags.shift)
             }
             
-            action[.released] = [.clockwise: [0x30 /* Tab */], .counterclockwise: [0x30 /* Tab */]]
+            action[.released] = [.clockwise: [Keyboard.keyTab], .counterclockwise: [Keyboard.keyTab]]
             break
         }
         
-        postKey(keys: action[buttonState]![direction.withRotation(rotation)]!, modifiers: modifiers)
+        postKeys(action[buttonState]![direction.withRotation(rotation)]!, modifiers: modifiers)
         AppDelegate.instance?.dial.device.buzz()
     }
     

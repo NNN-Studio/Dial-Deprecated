@@ -72,7 +72,7 @@ extension AppDelegate {
     
     func hideDialWindow() {
         DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.dialWindow?.show()
+            self.dialWindow?.hide()
         }
     }
     

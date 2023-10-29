@@ -4,6 +4,8 @@ import AppKit
 
 protocol Controller: AnyObject {
     
+    // MARK: - Protocol
+    
     func hapticsMode() -> Dial.HapticsMode
     
     func onMouseDown(last: TimeInterval?, isDoubleClick: Bool)
@@ -12,28 +14,64 @@ protocol Controller: AnyObject {
     
     func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?, buttonState: Dial.ButtonState)
     
+    func onHandle()
+    
 }
 
 extension Controller {
     
-    func postMouse(button action: Dial.ButtonState) {
+    // MARK: - Default Implementations
+    
+    func onMouseDown(last: TimeInterval?, isDoubleClick: Bool) {
+    }
+    
+    func onMouseUp(last: TimeInterval?, isClick: Bool) {
+    }
+    
+    func onHandle() {
+    }
+    
+}
+
+extension Controller {
+    
+    // MARK: - Extension Methods
+    
+    func postMouse(_ button: CGMouseButton, buttonState action: Dial.ButtonState) {
         let mousePos = NSEvent.mouseLocation
         let screenHeight = NSScreen.main?.frame.height ?? 0
         
         let translatedMousePos = NSPoint(x: mousePos.x, y: screenHeight - mousePos.y)
+        var mouseType: CGEventType?
         
-        let event = CGEvent(
-            mouseEventSource: nil,
-            mouseType: action == .pressed ? .leftMouseDown : .leftMouseUp,
-            mouseCursorPosition: translatedMousePos,
-            mouseButton: .left
-        )
+        switch button {
+        case .left:
+            mouseType = action == .pressed ? .leftMouseDown : .leftMouseUp
+            break
+        case .right:
+            mouseType = action == .pressed ? .rightMouseDown : .rightMouseUp
+            break
+        case .center:
+            mouseType = action == .pressed ? .otherMouseDown : .otherMouseUp
+            break
+        @unknown default:
+            break
+        }
         
-        event?.post(tap: .cghidEventTap)
+        if let mouseType {
+            let event = CGEvent(
+                mouseEventSource: nil,
+                mouseType: mouseType,
+                mouseCursorPosition: translatedMousePos,
+                mouseButton: button
+            )
+            
+            event?.post(tap: .cghidEventTap)
+        }
     }
     
     // https://stackoverflow.com/a/55854051
-    func postAuxKey(keys: [Int32], modifiers: [NSEvent.ModifierFlags] = [], _repeat: Int = 1) {
+    func postAuxKeys(_ keys: [Int32], modifiers: [NSEvent.ModifierFlags] = [], _repeat: Int = 1) {
         func doKey(_ key: Int32, down: Bool) {
             var rawFlags: UInt = (down ? 0xa00 : 0xb00);
             
@@ -69,7 +107,7 @@ extension Controller {
         }
     }
     
-    func postKey(keys: [Int32], modifiers: [NSEvent.ModifierFlags] = [], _repeat: Int = 1) {
+    func postKeys(_ keys: [Int32], modifiers: [NSEvent.ModifierFlags] = [], _repeat: Int = 1) {
         func doKey(_ key: Int32, down: Bool) {
             guard let eventSource = CGEventSource(stateID: .hidSystemState) else {
                 print("Failed to create event source")

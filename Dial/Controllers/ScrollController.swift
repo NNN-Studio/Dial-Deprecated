@@ -9,15 +9,15 @@ class ScrollController: Controller {
     }
     
     func onMouseDown(last: TimeInterval?, isDoubleClick: Bool) {
-        postMouse(button: .pressed)
+        postMouse(.left, buttonState: .pressed)
     }
     
     func onMouseUp(last: TimeInterval?, isClick: Bool) {
-        postMouse(button: .released)
+        postMouse(.left, buttonState: .released)
     }
     
     func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?, buttonState: Dial.ButtonState) {
-        postMouse(button: .released)
+        postMouse(.left, buttonState: .released)
         
         var steps = 0
         
@@ -43,6 +43,10 @@ class ScrollController: Controller {
         )
         
         event?.post(tap: .cghidEventTap)
+    }
+    
+    func onHandle() {
+        postMouse(.left, buttonState: .released)
     }
     
 }

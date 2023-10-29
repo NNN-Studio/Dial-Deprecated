@@ -304,26 +304,31 @@ class StatusBarController: NSObject, NSMenuDelegate {
             switch state {
             case .pressed:
                 controller.onMouseDown(last: last.down, isDoubleClick: isDoubleClick)
+                dial.device.updateSensitivity()
                 
                 // Click and hold long to switch mode
                 controllerHandlingDispatch = DispatchWorkItem { [self] in
-                    controller.onMouseUp(last: last.up, isClick: false)
+                    controller.onHandle()
                     mainController.handled = true
                     dial.device.updateSensitivity()
+                    
                     controller.onMouseDown(last: last.down, isDoubleClick: false)
+                    dial.device.updateSensitivity()
                 }
                 
                 if let controllerHandlingDispatch {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: controllerHandlingDispatch)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval * 2, execute: controllerHandlingDispatch)
                 }
                 
                 lastActions.mouseDown = .now
                 break
             case .released:
                 controller.onMouseUp(last: last.up, isClick: isClick)
+                dial.device.updateSensitivity()
                 
                 mainController.handled = false
                 dial.device.updateSensitivity()
+                
                 controllerHandlingDispatch?.cancel()
                 
                 lastActions.mouseUp = .now

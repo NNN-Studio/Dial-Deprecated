@@ -1,5 +1,3 @@
-
-
 import Foundation
 import AppKit
 
@@ -9,21 +7,18 @@ class PlaybackController: Controller {
         .buzz
     }
     
-    func onMouseDown(last: TimeInterval?, isDoubleClick: Bool) {
-    }
-    
     func onMouseUp(last: TimeInterval?, isClick: Bool) {
         if isClick {
             if let last, last.magnitude < NSEvent.doubleClickInterval {
                 // Mute on double click
                 
                 // Undo pause sent on first click
-                postAuxKey(keys: [NX_KEYTYPE_PLAY], modifiers: [], _repeat: 1)
-                postAuxKey(keys: [NX_KEYTYPE_MUTE], modifiers: [])
+                postAuxKeys([Keyboard.keyPlay], modifiers: [], _repeat: 1)
+                postAuxKeys([Keyboard.keyMute], modifiers: [])
             } else {
                 // Play / Pause on single click
                 
-                postAuxKey(keys: [NX_KEYTYPE_PLAY], modifiers: [], _repeat: 1)
+                postAuxKeys([Keyboard.keyPlay], modifiers: [], _repeat: 1)
             }
         }
     }
@@ -35,16 +30,16 @@ class PlaybackController: Controller {
         switch buttonState {
         case .pressed:
             modifiers = [NSEvent.ModifierFlags.shift, NSEvent.ModifierFlags.option]
-            action[.pressed] = [.clockwise: (aux: [NX_KEYTYPE_SOUND_UP], normal: []), .counterclockwise: (aux: [NX_KEYTYPE_SOUND_DOWN], normal: [])]
+            action[.pressed] = [.clockwise: (aux: [Keyboard.keyVolumeUp], normal: []), .counterclockwise: (aux: [Keyboard.keyVolumeDown], normal: [])]
             break
         case .released:
             modifiers = []
-            action[.released] = [.clockwise: (aux: [], normal: [0x7c /* → */]), .counterclockwise: (aux: [], normal: [0x7b /* ← */])]
+            action[.released] = [.clockwise: (aux: [], normal: [Keyboard.keyRightArrow]), .counterclockwise: (aux: [], normal: [Keyboard.keyLeftArrow])]
             break
         }
         
-        postAuxKey(keys: action[buttonState]![direction.withRotation(rotation)]!.aux, modifiers: modifiers)
-        postKey(keys: action[buttonState]![direction.withRotation(rotation)]!.normal, modifiers: modifiers)
+        postAuxKeys(action[buttonState]![direction.withRotation(rotation)]!.aux, modifiers: modifiers)
+        postKeys(action[buttonState]![direction.withRotation(rotation)]!.normal, modifiers: modifiers)
     }
     
 }
