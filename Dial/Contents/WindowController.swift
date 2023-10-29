@@ -108,7 +108,7 @@ class DialWindow: NSWindow {
         
         let enabledSubview = stackView.subviews[Data.dialMode.rawValue]
         
-        let cursorPosition = NSEvent.mouseLocation
+        let mouseLocation = NSEvent.mouseLocation
         let frameSize = frame.size
         let frameOrigin = frame.origin
         let offset = enabledSubview.frame.origin.applying(CGAffineTransform(
@@ -116,7 +116,7 @@ class DialWindow: NSWindow {
             y: stackView.frame.origin.y + enabledSubview.frame.height / 2
         ))
         
-        let translatedFrameOrigin = cursorPosition
+        let translatedFrameOrigin = mouseLocation
             .applying(CGAffineTransform(translationX: -screenOrigin.x, y: -screenOrigin.y))
             .applying(CGAffineTransform(translationX: -offset.x, y: -offset.y))
         let clampedFrameOrigin = CGPoint(

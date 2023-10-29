@@ -38,10 +38,10 @@ extension Controller {
     // MARK: - Extension Methods
     
     func postMouse(_ button: CGMouseButton, buttonState action: Dial.ButtonState) {
-        let mousePos = NSEvent.mouseLocation
+        let mouseLocation = NSEvent.mouseLocation
         let screenHeight = NSScreen.main?.frame.height ?? 0
         
-        let translatedMousePos = NSPoint(x: mousePos.x, y: screenHeight - mousePos.y)
+        let translatedMouseLocation = NSPoint(x: mouseLocation.x, y: screenHeight - mouseLocation.y)
         var mouseType: CGEventType?
         
         switch button {
@@ -62,7 +62,7 @@ extension Controller {
             let event = CGEvent(
                 mouseEventSource: nil,
                 mouseType: mouseType,
-                mouseCursorPosition: translatedMousePos,
+                mouseCursorPosition: translatedMouseLocation,
                 mouseButton: button
             )
             
