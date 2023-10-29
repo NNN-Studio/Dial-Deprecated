@@ -4,11 +4,18 @@ import AppKit
 
 class ScrollController: Controller {
     
+    private var currentStep = 0
+    
+    private var deaccelerationDispatch: DispatchWorkItem?
+    
+    private var continuousScrolling = (directionSignum: 1.signum(), time: Date.distantPast, count: 0, enabled: false)
+    
     func hapticsMode() -> Dial.HapticsMode {
         .continuous
     }
     
     func onMouseDown(last: TimeInterval?, isDoubleClick: Bool) {
+        deaccelerationDispatch?.cancel()
         postMouse(.left, buttonState: .pressed)
     }
     
@@ -17,6 +24,22 @@ class ScrollController: Controller {
     }
     
     func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?, buttonState: Dial.ButtonState) {
+        let directionSignum = direction.withRotation(rotation).rawValue
+        
+        if continuousScrolling.directionSignum != directionSignum {
+            continuousScrolling.directionSignum = directionSignum
+            continuousScrolling.time = .now
+            continuousScrolling.count = 0
+        } else if Date.now.timeIntervalSince(continuousScrolling.time).magnitude <= NSEvent.doubleClickInterval * 1.5 {
+            continuousScrolling.count += 1
+        } else {
+            continuousScrolling.time = .now
+            continuousScrolling.count = 0
+        }
+        
+        continuousScrolling.enabled = continuousScrolling.count > 12
+        
+        deaccelerationDispatch?.cancel()
         postMouse(.left, buttonState: .released)
         
         var steps = 0
@@ -30,19 +53,31 @@ class ScrollController: Controller {
         
         steps *= direction.rawValue
         
-        let diff = last ?? 0 * 1000
-        let multiplier = Int(1 + ((150 - min(diff, 150)) / 40))
+        let last = last?.magnitude ?? 0
+        let diff = last <= NSEvent.doubleClickInterval ? last : 0
+        let multiplier = Int(1 + ((150 - min(diff, 150)) / 40)) * (continuousScrolling.enabled ? 5 : 1)
         
-        let event = CGEvent(
-            scrollWheelEvent2Source: nil,
-            units: .line,
-            wheelCount: 1,
-            wheel1: Int32(steps * multiplier),
-            wheel2: 0,
-            wheel3: 0
-        )
+        currentStep = steps * multiplier
         
-        event?.post(tap: .cghidEventTap)
+        deaccelerationDispatch = DispatchWorkItem { [self] in
+            let event = CGEvent(
+                scrollWheelEvent2Source: nil,
+                units: .line,
+                wheelCount: 1,
+                wheel1: Int32(currentStep),
+                wheel2: 0,
+                wheel3: 0
+            )
+            event?.post(tap: .cghidEventTap)
+            
+            currentStep /= 2
+            if currentStep.magnitude > 2, let deaccelerationDispatch {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: deaccelerationDispatch)
+            } else {
+                deaccelerationDispatch = nil
+            }
+        }
+        deaccelerationDispatch?.perform()
     }
     
     func onHandle() {

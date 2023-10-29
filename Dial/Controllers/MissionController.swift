@@ -12,18 +12,22 @@ class MissionController: Controller {
     
     private var inMission = false
     
+    private var escapeDispatch: DispatchWorkItem?
+    
     func hapticsMode() -> Dial.HapticsMode {
         .none
     }
     
     func onMouseUp(last: TimeInterval?, isClick: Bool) {
         if inMission && isClick {
-            postKeys([Keyboard.keyReturn])
             inMission = false
+            escapeDispatch?.cancel()
+            postKeys([Keyboard.keyReturn])
         }
     }
     
     func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?, buttonState: Dial.ButtonState) {
+        escapeDispatch?.cancel()
         inMission = true
         
         var modifiers: [NSEvent.ModifierFlags]
@@ -45,7 +49,16 @@ class MissionController: Controller {
         }
         
         postKeys(action[buttonState]![direction.withRotation(rotation)]!, modifiers: modifiers)
-        AppDelegate.instance?.dial.device.buzz()
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            AppDelegate.instance?.dial.device.buzz()
+        }
+        
+        escapeDispatch = DispatchWorkItem {
+            self.postKeys([Keyboard.keyEscape])
+        }
+        if let escapeDispatch {
+            DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval * 3, execute: escapeDispatch)
+        }
     }
     
 }

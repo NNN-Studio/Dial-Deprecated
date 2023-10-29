@@ -20,15 +20,15 @@ enum DialMode: Int, CaseIterable {
 
 enum Sensitivity: Int {
     
-    case low = 16
+    case low = 9
     
-    case natural = 32
+    case medium = 18
     
-    case high = 64
+    case natural = 36
     
-    case superHigh = 128
+    case high = 72
     
-    case extreme = 360
+    case extreme = 180
     
 }
 
@@ -126,17 +126,16 @@ struct Data {
         }
     }
     
-    static func cycleDialMode(_ signum: Int, wrap: Bool = true) -> Bool {
+    static func getCycledDialMode(_ signum: Int, wrap: Bool = true) -> DialMode? {
         let value = dialMode.rawValue + signum.signum()
         let maxRawValue = DialMode.allCases.count
         let inRange = NSRange(location: 0, length: maxRawValue).contains(value)
         
         if wrap || inRange {
-            dialMode = DialMode(rawValue: value % maxRawValue) ?? .scroll
-            return true
+            return DialMode(rawValue: value % maxRawValue) ?? .scroll
         }
         
-        return false
+        return nil
     }
     
     static var haptics: Bool {

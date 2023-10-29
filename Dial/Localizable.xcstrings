@@ -26,25 +26,49 @@
       }
     },
     "Menu/ConnectionStatus/Off" : {
-      "comment" : "if (!connected)",
+      "comment" : "[macOS >=14.0] if (!connected)\n   if (!connected)",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Surface Dial disconnected"
+            "value" : "Surface Dial"
+          }
+        }
+      }
+    },
+    "Menu/ConnectionStatus/Off/Badge" : {
+      "comment" : "[macOS >=14.0] if (!connected) badge",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "disconnected"
           }
         }
       }
     },
     "Menu/ConnectionStatus/On" : {
-      "comment" : "if (connected)",
+      "comment" : "[macOS >=14.0] if (connected)",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Surface Dial: %@"
+            "value" : "Surface Dial"
+          }
+        }
+      }
+    },
+    "Menu/ConnectionStatus/On/Alt" : {
+      "comment" : "[macOS <14.0] if (connected)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Surface Dial: "
           }
         }
       }
@@ -93,6 +117,30 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Direction"
+          }
+        }
+      }
+    },
+    "Menu/Direction/Badge/Clockwise" : {
+      "comment" : "direction badge clockwise",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "clockwise"
+          }
+        }
+      }
+    },
+    "Menu/Direction/Badge/Counterclockwise" : {
+      "comment" : "direction badge counterclockwise",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "counterclockwise"
           }
         }
       }
@@ -157,6 +205,66 @@
         }
       }
     },
+    "Menu/Sensitivity/Badge/Extreme" : {
+      "comment" : "sensitivity badge extreme",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "extreme"
+          }
+        }
+      }
+    },
+    "Menu/Sensitivity/Badge/High" : {
+      "comment" : "sensitivity badge high",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "high"
+          }
+        }
+      }
+    },
+    "Menu/Sensitivity/Badge/Low" : {
+      "comment" : "sensitivity badge low",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "low"
+          }
+        }
+      }
+    },
+    "Menu/Sensitivity/Badge/Medium" : {
+      "comment" : "sensitivity badge medium",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "medium"
+          }
+        }
+      }
+    },
+    "Menu/Sensitivity/Badge/Natural" : {
+      "comment" : "sensitivity badge natural",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "natural"
+          }
+        }
+      }
+    },
     "Menu/Sensitivity/Extreme" : {
       "comment" : "extreme",
       "extractionState" : "extracted_with_value",
@@ -193,6 +301,18 @@
         }
       }
     },
+    "Menu/Sensitivity/Medium" : {
+      "comment" : "medium",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Medium"
+          }
+        }
+      }
+    },
     "Menu/Sensitivity/Natural" : {
       "comment" : "natural",
       "extractionState" : "extracted_with_value",
@@ -205,18 +325,6 @@
         }
       }
     },
-    "Menu/Sensitivity/SuperHigh" : {
-      "comment" : "super high",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Super High"
-          }
-        }
-      }
-    },
     "Menu/Sep0Title" : {
       "comment" : "dial mode",
       "extractionState" : "extracted_with_value",
@@ -225,6 +333,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Dial Mode"
+          }
+        }
+      }
+    },
+    "Menu/Sep0Title/Badge" : {
+      "comment" : "dial mode badge",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "hold dial to cycle"
           }
         }
       }

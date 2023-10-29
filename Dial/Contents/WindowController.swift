@@ -99,6 +99,7 @@ class DialWindow: NSWindow {
     func updatePosition(_ animate: Bool = false) {
         guard
             let screenSize = NSScreen.main?.frame.size,
+            let screenOrigin = NSScreen.main?.frame.origin,
             let stackView = (contentViewController as? WindowController)?.stackView
         else {
             center()
@@ -108,16 +109,25 @@ class DialWindow: NSWindow {
         let enabledSubview = stackView.subviews[Data.dialMode.rawValue]
         
         let cursorPosition = NSEvent.mouseLocation
-        let framePosition = frame.origin
+        let frameSize = frame.size
+        let frameOrigin = frame.origin
         let offset = enabledSubview.frame.origin.applying(CGAffineTransform(
             translationX: stackView.frame.origin.x + enabledSubview.frame.width / 2,
             y: stackView.frame.origin.y + enabledSubview.frame.height / 2
         ))
         
+        let translatedFrameOrigin = cursorPosition
+            .applying(CGAffineTransform(translationX: -screenOrigin.x, y: -screenOrigin.y))
+            .applying(CGAffineTransform(translationX: -offset.x, y: -offset.y))
+        let clampedFrameOrigin = CGPoint(
+            x: screenOrigin.x + max(0, min(screenSize.width - frameSize.width, translatedFrameOrigin.x)),
+            y: screenOrigin.y + max(0, min(screenSize.height - frameSize.height, translatedFrameOrigin.y))
+        )
+        
         NSAnimationContext.runAnimationGroup { context in
             context.allowsImplicitAnimation = animate
             
-            setFrameOrigin(cursorPosition.applying(CGAffineTransform(translationX: -offset.x, y: -offset.y)))
+            setFrameOrigin(clampedFrameOrigin)
         }
     }
     
