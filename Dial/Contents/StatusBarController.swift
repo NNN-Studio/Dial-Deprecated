@@ -2,115 +2,209 @@
 import Foundation
 import AppKit
 
-extension NSMenuItem {
+private struct MenuItems {
     
-    convenience init(title: String) {
-        self.init()
-        self.title = title
+    let connectionStatus = NSMenuItem()
+    
+    let modes = [
+        ControllerOptionItem(
+            NSLocalizedString("Menu/DialMode/Scroll", value: "Scroll", comment: "dial mode scroll"),
+            mode: .scroll,
+            controller: ScrollController()
+        ),
+        ControllerOptionItem(
+            NSLocalizedString("Menu/DialMode/Playback", value: "Playback", comment: "dial mode playback"),
+            mode: .playback,
+            controller: PlaybackController()
+        ),
+        ControllerOptionItem(
+            NSLocalizedString("Menu/DialMode/Mission", value: "Mission", comment: "dial mode mission"),
+            mode: .mission,
+            controller: MissionController()
+        )
+    ]
+    
+    let sensitivity = NSMenuItem(title: NSLocalizedString("Menu/Sensitivity", value: "Sensitivity", comment: "sensitivity"))
+    
+    let sensitivityOptions = [
+        MenuOptionItem<Sensitivity>(NSLocalizedString("Menu/Sensitivity/Low", value: "Low", comment: "low"), option: .low),
+        MenuOptionItem<Sensitivity>(NSLocalizedString("Menu/Sensitivity/Medium", value: "Medium", comment: "medium"), option: .medium),
+        MenuOptionItem<Sensitivity>(NSLocalizedString("Menu/Sensitivity/Natural", value: "Natural", comment: "natural"), option: .natural),
+        MenuOptionItem<Sensitivity>(NSLocalizedString("Menu/Sensitivity/High", value: "High", comment: "high"), option: .high),
+        MenuOptionItem<Sensitivity>(NSLocalizedString("Menu/Sensitivity/Extreme", value: "Extreme", comment: "extreme"), option: .extreme)
+    ]
+    
+    let direction = NSMenuItem(title: NSLocalizedString("Menu/Direction", value: "Direction", comment: "direction"))
+    
+    let directionOptions = [
+        MenuOptionItem<Direction>(NSLocalizedString("Menu/Direction/Clockwise", value: "Clockwise", comment: "clockwise"), option: .clockwise),
+        MenuOptionItem<Direction>(NSLocalizedString("Menu/Direction/Counterclockwise", value: "Counterclockwise", comment: "counterclockwise"), option: .counterclockwise)
+    ]
+    
+    let haptics = StateOptionItem(NSLocalizedString("Menu/Haptics", value: "Haptics", comment: "haptics"))
+    
+    let startsWithMacOS = StateOptionItem(NSLocalizedString("Menu/StartsWithMacOS", value: "Starts with macOS", comment: "starts with macos"))
+    
+    let quit = NSMenuItem(title: NSLocalizedString("Menu/Quit", value: "Quit", comment: "quit"))
+    
+    
+    
+    init(_ controller: StatusBarController) {
+        initActions(controller)
+        
+        sensitivity.submenu = NSMenu()
+        sensitivityOptions.forEach(sensitivity.submenu!.addItem(_:))
+        
+        direction.submenu = NSMenu()
+        directionOptions.forEach(direction.submenu!.addItem(_:))
+        
+        updateDialMode()
+        updateSensitivity()
+        updateDirection()
+        updateConnectionStatus()
     }
     
-}
-
-class MenuOptionItem<Type>: NSMenuItem {
-    
-    init(_ title: String, option: Type) {
-        super.init(title: title, action: nil, keyEquivalent: "")
-        self.representedObject = option
-    }
-    
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    var option : Type {
-        self.representedObject as! Type
-    }
-    
-}
-
-class ControllerOptionItem: MenuOptionItem<DialMode> {
-    
-    let controller: Controller
-    
-    init(_ title: String, mode: DialMode, controller: Controller) {
-        self.controller = controller
-        super.init(title, option: mode)
-    }
-    
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
-
-class StateOptionItem: MenuOptionItem<NSControl.StateValue> {
-    
-    init(_ title: String) {
-        super.init(title, option: .mixed)
-    }
-    
-    required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
-
-extension NSMenuItem {
-    
-    var flag: Bool {
-        get {
-            state == .on
+    private func initActions(_ controller: StatusBarController) {
+        connectionStatus.target = controller
+        connectionStatus.action = #selector(controller.reconnect(_:))
+        connectionStatus.offStateImage = NSImage(
+            systemSymbolName: "arrow.triangle.2.circlepath",
+            accessibilityDescription: nil
+        )!
+        
+        modes.forEach {
+            $0.target = controller
+            $0.action = #selector(controller.setDialMode(_:))
         }
         
-        set(flag) {
-            state = flag ? .on : .off
+        for option in sensitivityOptions {
+            option.target = controller
+            option.action = #selector(controller.setSensitivity(_:))
+        }
+        
+        for option in directionOptions {
+            option.target = controller
+            option.action = #selector(controller.setDirection(_:))
+        }
+        
+        haptics.target = controller
+        haptics.action = #selector(controller.setHaptics(_:))
+        haptics.flag = Data.haptics
+        
+        startsWithMacOS.target = controller
+        startsWithMacOS.action = #selector(controller.setStartsWithMacOS(_:))
+        startsWithMacOS.flag = Data.startsWithMacOS
+        
+        quit.target = controller
+        quit.action = #selector(controller.quitApp(_:))
+    }
+    
+    func updateDialMode(
+        _ dialMode: DialMode = Data.dialMode
+    ) {
+        modes.forEach {
+            $0.flag = dialMode == $0.option
         }
     }
     
-}
-
-extension NSMenu {
+    func updateSensitivity(
+        _ sensitivity: Sensitivity = Data.sensitivity
+    ) {
+        sensitivityOptions
+            .forEach { $0.flag = $0.option == sensitivity }
+        
+        if #available(macOS 14.0, *) {
+            let badge = switch sensitivity {
+            case .low:
+                NSLocalizedString("Menu/Sensitivity/Badge/Low", value: "low", comment: "sensitivity badge low")
+            case .medium:
+                NSLocalizedString("Menu/Sensitivity/Badge/Medium", value: "medium", comment: "sensitivity badge medium")
+            case .natural:
+                NSLocalizedString("Menu/Sensitivity/Badge/Natural", value: "natural", comment: "sensitivity badge natural")
+            case .high:
+                NSLocalizedString("Menu/Sensitivity/Badge/High", value: "high", comment: "sensitivity badge high")
+            case .extreme:
+                NSLocalizedString("Menu/Sensitivity/Badge/Extreme", value: "extreme", comment: "sensitivity badge extreme")
+            }
+            self.sensitivity.badge = NSMenuItemBadge(string: badge)
+        }
+    }
     
-    func addMenuItems(_ items: StatusBarController.MenuItems) {
-        addItem(items.connectionStatus)
+    func updateDirection(
+        _ direction: Direction = Data.direction
+    ) {
+        directionOptions
+            .forEach { $0.flag = $0.option == direction }
         
-        addItem(items.sep0)
-        
-        addItem(items.sep0Title)
-        
-        
-        
-        items.modes.forEach { addItem($0) }
-        
-        addItem(items.sep1)
-        
-        
-        
-        items.sensitivity.submenu = NSMenu()
-        for sensitivityOption in items.sensitivityOptions {
-            items.sensitivity.submenu?.addItem(sensitivityOption)
+        if #available(macOS 14.0, *) {
+            let badge = switch direction {
+            case .clockwise:
+                NSLocalizedString("Menu/Direction/Badge/Clockwise", value: "clockwise", comment: "direction badge clockwise")
+            case .counterclockwise:
+                NSLocalizedString("Menu/Direction/Badge/Counterclockwise", value: "counterclockwise", comment: "direction badge counterclockwise")
+            }
+            self.direction.badge = NSMenuItemBadge(string: badge)
         }
-        addItem(items.sensitivity)
-        
-        items.direction.submenu = NSMenu()
-        for scrollDirectionOption in items.directionOptions {
-            items.direction.submenu?.addItem(scrollDirectionOption)
+    }
+    
+    func updateHaptics(
+        _ flag: Bool = Data.haptics
+    ) {
+        haptics.flag = flag
+    }
+    
+    func updateStartsWithMacOS(
+        _ flag: Bool = Data.startsWithMacOS
+    ) {
+        startsWithMacOS.flag = flag
+    }
+    
+    func updateConnectionStatus(
+        _ isConnected: Bool = AppDelegate.dial.device.isConnected,
+        _ serialNumber: String = AppDelegate.dial.device.serialNumber
+    ) {
+        if isConnected {
+            let serialNumber = AppDelegate.dial.device.serialNumber
+            
+            if #available(macOS 14.0, *) {
+                connectionStatus.title = NSLocalizedString(
+                    "Menu/ConnectionStatus/On",
+                    value: "Surface Dial",
+                    comment: "[macOS >=14.0] if (connected)"
+                )
+                connectionStatus.badge = NSMenuItemBadge(string: serialNumber)
+            } else {
+                connectionStatus.title = String(
+                    format: NSLocalizedString("Menu/ConnectionStatus/On/Alt", value: "Surface Dial: ", comment: "[macOS <14.0] if (connected)"),
+                    serialNumber
+                )
+            }
+            connectionStatus.flag = true
+            connectionStatus.isEnabled = false
         }
-        addItem(items.direction)
         
-        addItem(items.sep2)
-        
-        
-        
-        addItem(items.haptics)
-        
-        addItem(items.sep3)
-        
-        
-        
-        addItem(items.startsWithMacOS)
-        
-        addItem(items.quit)
+        else {
+            if #available(macOS 14.0, *) {
+                connectionStatus.title = NSLocalizedString(
+                    "Menu/ConnectionStatus/Off",
+                    value: "Surface Dial",
+                    comment: "[macOS >=14.0] if (!connected)"
+                )
+                connectionStatus.badge = NSMenuItemBadge(string: NSLocalizedString(
+                    "Menu/ConnectionStatus/Off/Badge",
+                    value: "disconnected",
+                    comment: "[macOS >=14.0] if (!connected) badge"
+                ))
+            } else {
+                connectionStatus.title = NSLocalizedString(
+                    "Menu/ConnectionStatus/Off",
+                    value: "Surface Dial disconnected",
+                    comment: "if (!connected)"
+                )
+            }
+            connectionStatus.flag = false
+            connectionStatus.isEnabled = true
+        }
     }
     
 }
@@ -118,127 +212,20 @@ extension NSMenu {
 class StatusBarController: NSObject, NSMenuDelegate {
     
     private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-    private let menu = NSMenu()
-    private let menuItems = MenuItems()
     
-    private let dial: Dial
+    private var menuItems: MenuItems?
     
-    private var mainController = (instance: MainController(), handled: false)
-    private var controllerHandlingDispatch: DispatchWorkItem?
+    private var menuManager: MenuManager?
+    
+    private var mainController = (instance: MainController(), handled: false, dispatch: DispatchWorkItem {})
     
     private var lastActions: (
         mouseDown: Date?,
         mouseUp: Date?,
         rotation: Date?
     )
-    private var buttonState = Dial.ButtonState.released
     
-    struct MenuItems {
-        
-        let connectionStatus = NSMenuItem()
-        
-        let sep0 = NSMenuItem.separator()
-        
-        let sep0Title = NSMenuItem(title: NSLocalizedString("Menu/Sep0Title", value: "Dial Mode", comment: "dial mode"))
-        
-        
-        
-        let modes = [
-            ControllerOptionItem(
-                NSLocalizedString("Menu/DialMode/Scroll", value: "Scroll", comment: "dial mode scroll"),
-                mode: .scroll,
-                controller: ScrollController()
-            ),
-            ControllerOptionItem(
-                NSLocalizedString("Menu/DialMode/Playback", value: "Playback", comment: "dial mode playback"),
-                mode: .playback,
-                controller: PlaybackController()
-            ),
-            ControllerOptionItem(
-                NSLocalizedString("Menu/DialMode/Mission", value: "Mission", comment: "dial mode mission"),
-                mode: .mission,
-                controller: MissionController()
-            )
-        ]
-        
-        let sep1 = NSMenuItem.separator()
-        
-        
-        
-        let sensitivity = NSMenuItem(title: NSLocalizedString("Menu/Sensitivity", value: "Sensitivity", comment: "sensitivity"))
-        let sensitivityOptions = [
-            MenuOptionItem<Sensitivity>(NSLocalizedString("Menu/Sensitivity/Low", value: "Low", comment: "low"), option: .low),
-            MenuOptionItem<Sensitivity>(NSLocalizedString("Menu/Sensitivity/Medium", value: "Medium", comment: "medium"), option: .medium),
-            MenuOptionItem<Sensitivity>(NSLocalizedString("Menu/Sensitivity/Natural", value: "Natural", comment: "natural"), option: .natural),
-            MenuOptionItem<Sensitivity>(NSLocalizedString("Menu/Sensitivity/High", value: "High", comment: "high"), option: .high),
-            MenuOptionItem<Sensitivity>(NSLocalizedString("Menu/Sensitivity/Extreme", value: "Extreme", comment: "extreme"), option: .extreme)
-        ]
-        
-        let direction = NSMenuItem(title: NSLocalizedString("Menu/Direction", value: "Direction", comment: "direction"))
-        let directionOptions = [
-            MenuOptionItem<Direction>(NSLocalizedString("Menu/Direction/Clockwise", value: "Clockwise", comment: "clockwise"), option: .clockwise),
-            MenuOptionItem<Direction>(NSLocalizedString("Menu/Direction/Counterclockwise", value: "Counterclockwise", comment: "counterclockwise"), option: .counterclockwise)
-        ]
-        
-        let sep2 = NSMenuItem.separator()
-        
-        
-        
-        let haptics = StateOptionItem(NSLocalizedString("Menu/Haptics", value: "Haptics", comment: "haptics"))
-        
-        let sep3 = NSMenuItem.separator()
-        
-        
-        
-        let startsWithMacOS = StateOptionItem(NSLocalizedString("Menu/StartsWithMacOS", value: "Starts with macOS", comment: "starts with macos"))
-        
-        let quit = NSMenuItem(title: NSLocalizedString("Menu/Quit", value: "Quit", comment: "quit"))
-        
-        
-        
-        func setDialMode(_ dialMode: DialMode) {
-            modes.forEach {
-                $0.flag = dialMode == $0.option
-            }
-        }
-        
-        func setSensitivity(_ sensitivity: Sensitivity) {
-            sensitivityOptions
-                .forEach { $0.flag = $0.option == sensitivity }
-            
-            if #available(macOS 14.0, *) {
-                let badge = switch sensitivity {
-                case .low:
-                    NSLocalizedString("Menu/Sensitivity/Badge/Low", value: "low", comment: "sensitivity badge low")
-                case .medium:
-                    NSLocalizedString("Menu/Sensitivity/Badge/Medium", value: "medium", comment: "sensitivity badge medium")
-                case .natural:
-                    NSLocalizedString("Menu/Sensitivity/Badge/Natural", value: "natural", comment: "sensitivity badge natural")
-                case .high:
-                    NSLocalizedString("Menu/Sensitivity/Badge/High", value: "high", comment: "sensitivity badge high")
-                case .extreme:
-                    NSLocalizedString("Menu/Sensitivity/Badge/Extreme", value: "extreme", comment: "sensitivity badge extreme")
-                }
-                self.sensitivity.badge = NSMenuItemBadge(string: badge)
-            }
-        }
-        
-        func setDirection(_ direction: Direction) {
-            directionOptions
-                .forEach { $0.flag = $0.option == direction }
-            
-            if #available(macOS 14.0, *) {
-                let badge = switch direction {
-                case .clockwise:
-                    NSLocalizedString("Menu/Direction/Badge/Clockwise", value: "clockwise", comment: "direction badge clockwise")
-                case .counterclockwise:
-                    NSLocalizedString("Menu/Direction/Badge/Counterclockwise", value: "counterclockwise", comment: "direction badge counterclockwise")
-                }
-                self.direction.badge = NSMenuItemBadge(string: badge)
-            }
-        }
-        
-    }
+    private var buttonState = Dial.ButtonState.released
     
     var controller: Controller {
         get {
@@ -246,7 +233,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
                 return mainController.instance
             } else {
                 let item = (
-                    menuItems.modes
+                    menuItems?.modes
                         .filter { $0.option == Data.dialMode }
                         .first
                 )
@@ -256,56 +243,39 @@ class StatusBarController: NSObject, NSMenuDelegate {
         }
     }
     
-    init( _ dial: Dial) {
-        self.dial = dial
+    override init() {
         super.init()
         
+        self.menuItems = MenuItems(self)
+        self.menuManager = MenuManager(delegate: self) {
+            var items: [MenuManager.MenuItemGroup] = []
+            
+            items.append(MenuManager.groupItems(menuItems!.connectionStatus))
+            
+            items.append(MenuManager.groupItems(
+                title: NSLocalizedString("Menu/Title/DialMode", value: "Dial Mode", comment: "title dial mode"),
+                badge: NSLocalizedString("Menu/Title/DialMode/Badge", value: "press and hold dial", comment: "title dial mode badge"),
+                menuItems!.modes
+            ))
+            
+            items.append(MenuManager.groupItems(
+                menuItems!.direction,
+                menuItems!.sensitivity
+            ))
+            
+            items.append(MenuManager.groupItems(
+                menuItems!.haptics
+            ))
+            
+            items.append(MenuManager.groupItems(
+                menuItems!.startsWithMacOS,
+                menuItems!.quit
+            ))
+            
+            return items
+        }
+        
         statusItem.button?.appearsDisabled = true
-        menu.autoenablesItems = false
-        
-        menuItems.connectionStatus.target = self
-        menuItems.connectionStatus.action = #selector(reconnect(_:))
-        menuItems.connectionStatus.offStateImage = NSImage(systemSymbolName: "arrow.triangle.2.circlepath", accessibilityDescription: nil)!
-        
-        menuItems.sep0Title.isEnabled = false
-        if #available(macOS 14.0, *) {
-            menuItems.sep0Title.badge = NSMenuItemBadge(string: NSLocalizedString("Menu/Sep0Title/Badge", value: "hold dial to cycle", comment: "dial mode badge"))
-        }
-        
-        
-        menuItems.modes.forEach {
-            $0.target = self
-            $0.action = #selector(setDialMode(_:))
-        }
-        menuItems.setDialMode(Data.dialMode)
-        
-        for option in menuItems.sensitivityOptions {
-            option.target = self
-            option.action = #selector(setSensitivity(_:))
-        }
-        menuItems.setSensitivity(Data.sensitivity)
-        
-        for option in menuItems.directionOptions {
-            option.target = self
-            option.action = #selector(setDirection(_:))
-        }
-        menuItems.setDirection(Data.direction)
-        
-        menuItems.haptics.target = self
-        menuItems.haptics.action = #selector(setHaptics(_:))
-        menuItems.haptics.flag = Data.haptics
-        
-        menuItems.startsWithMacOS.target = self
-        menuItems.startsWithMacOS.action = #selector(setStartsWithMacOS(_:))
-        menuItems.startsWithMacOS.flag = Data.startsWithMacOS
-        
-        menuItems.quit.target = self
-        menuItems.quit.action = #selector(quitApp(_:))
-        
-        
-        
-        menu.addMenuItems(menuItems)
-        menu.delegate = self
         
         if let button = statusItem.button {
             button.target = self
@@ -314,13 +284,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
             updateIcon()
         }
         
-        Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-            self?.updateConnectionStatus()
-        }
-        
-        dial.device.hapticsMode = { self.controller.hapticsMode() }
-        
-        dial.onButtonStateChanged = { [unowned self] state in
+        AppDelegate.dial.onButtonStateChanged = { [unowned self] state in
             buttonState = state
             let last = (
                 down: lastActions.mouseDown == nil ? nil : Date.now.timeIntervalSince(lastActions.mouseDown!),
@@ -331,104 +295,67 @@ class StatusBarController: NSObject, NSMenuDelegate {
             
             switch state {
             case .pressed:
-                controller.onMouseDown(last: last.down, isDoubleClick: isDoubleClick)
-                dial.device.updateSensitivity()
+                controller.onMouseDown(
+                    last: last.down,
+                    isDoubleClick: isDoubleClick
+                )
+                AppDelegate.dial.device.updateSensitivity()
                 
                 // Click and hold long to switch mode
-                controllerHandlingDispatch = DispatchWorkItem { [self] in
+                mainController.dispatch = DispatchWorkItem { [self] in
                     controller.onHandle()
                     mainController.handled = true
-                    dial.device.updateSensitivity()
+                    AppDelegate.dial.device.updateSensitivity()
                     
-                    controller.onMouseDown(last: last.down, isDoubleClick: false)
-                    dial.device.updateSensitivity()
+                    controller.onMouseDown(
+                        last: last.down,
+                        isDoubleClick: false
+                    )
+                    AppDelegate.dial.device.updateSensitivity()
                 }
-                
-                if let controllerHandlingDispatch {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval * 2, execute: controllerHandlingDispatch)
-                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval * 2, execute: mainController.dispatch)
                 
                 lastActions.mouseDown = .now
                 break
             case .released:
-                controller.onMouseUp(last: last.up, isClick: isClick)
-                dial.device.updateSensitivity()
+                controller.onMouseUp(
+                    last: last.up,
+                    isClick: isClick
+                )
+                AppDelegate.dial.device.updateSensitivity()
                 
                 mainController.handled = false
-                dial.device.updateSensitivity()
+                AppDelegate.dial.device.updateSensitivity()
                 
-                controllerHandlingDispatch?.cancel()
+                mainController.dispatch.cancel()
                 
                 lastActions.mouseUp = .now
                 break
             }
         }
         
-        dial.onRotation = { [unowned self] rotation, direction in
-            controllerHandlingDispatch?.cancel()
-            controller.onRotation(rotation, direction, last: lastActions.rotation?.timeIntervalSince(.now), buttonState: buttonState)
+        AppDelegate.dial.onRotation = { [unowned self] rotation in
+            mainController.dispatch.cancel()
+            controller.onRotation(
+                rotation,
+                last: lastActions.rotation?.timeIntervalSince(.now),
+                buttonState: buttonState
+            )
             lastActions.rotation = .now
         }
+    }
+    
+    func updateConnectionStatus() {
+        menuItems?.updateConnectionStatus()
     }
     
     func menuDidClose(_ menu: NSMenu) {
         statusItem.menu = nil
     }
     
-    private func updateConnectionStatus() {
-        if dial.device.isConnected {
-            let serialNumber = dial.device.serialNumber
-            
-            if #available(macOS 14.0, *) {
-                menuItems.connectionStatus.title = NSLocalizedString(
-                    "Menu/ConnectionStatus/On",
-                    value: "Surface Dial",
-                    comment: "[macOS >=14.0] if (connected)"
-                )
-                menuItems.connectionStatus.badge = NSMenuItemBadge(string: serialNumber)
-            } else {
-                menuItems.connectionStatus.title = String(
-                    format: NSLocalizedString("Menu/ConnectionStatus/On/Alt", value: "Surface Dial: ", comment: "[macOS <14.0] if (connected)"),
-                    serialNumber
-                )
-            }
-            menuItems.connectionStatus.flag = true
-            menuItems.connectionStatus.isEnabled = false
-            
-            statusItem.button?.appearsDisabled = false
-        }
-        
-        else {
-            if #available(macOS 14.0, *) {
-                menuItems.connectionStatus.title = NSLocalizedString(
-                    "Menu/ConnectionStatus/Off",
-                    value: "Surface Dial",
-                    comment: "[macOS >=14.0] if (!connected)"
-                )
-                menuItems.connectionStatus.badge = NSMenuItemBadge(string: NSLocalizedString(
-                    "Menu/ConnectionStatus/Off/Badge",
-                    value: "disconnected",
-                    comment: "[macOS >=14.0] if (!connected) badge"
-                ))
-            } else {
-                menuItems.connectionStatus.title = NSLocalizedString(
-                    "Menu/ConnectionStatus/Off",
-                    value: "Surface Dial disconnected",
-                    comment: "if (!connected)"
-                )
-            }
-            menuItems.connectionStatus.flag = false
-            menuItems.connectionStatus.isEnabled = true
-            
-            statusItem.button?.appearsDisabled = true
-        }
-        
-        updateIcon()
-    }
-    
     private func updateIcon() {
         if let button = statusItem.button {
-            if !dial.device.isConnected {
+            if !AppDelegate.dial.device.isConnected {
                 button.image = NSImage(named: NSImage.Name("Dial"))!
             }
             
@@ -455,10 +382,10 @@ extension StatusBarController {
     func setDialModeAndUpdate(_ mode: DialMode?) {
         if let mode {
             Data.dialMode = mode
-            menuItems.setDialMode(mode)
+            menuItems?.updateDialMode()
             updateIcon()
             
-            dial.device.updateSensitivity()
+            AppDelegate.dial.device.updateSensitivity()
             DispatchQueue.main.asyncAfter(deadline: .now()) {
                 AppDelegate.instance?.buzz()
             }
@@ -469,13 +396,13 @@ extension StatusBarController {
         _ sender: Any?
     ) {
         if let event = NSApp.currentEvent, event.type == .leftMouseUp {
-            if dial.device.isConnected {
+            if AppDelegate.dial.device.isConnected {
                 setDialModeAndUpdate(Data.getCycledDialMode(1))
             } else {
                 reconnect(nil)
             }
         } else {
-            statusItem.menu = menu
+            statusItem.menu = menuManager?.menu
             statusItem.button?.performClick(nil)
         }
     }
@@ -483,8 +410,8 @@ extension StatusBarController {
     @objc func reconnect(
         _ sender: Any?
     ) {
-        dial.stop()
-        dial.start()
+        AppDelegate.dial.stop()
+        AppDelegate.dial.start()
         updateConnectionStatus()
     }
     
@@ -506,8 +433,8 @@ extension StatusBarController {
         else { return }
         
         Data.sensitivity = sensitivity
-        menuItems.setSensitivity(sensitivity)
-        dial.device.updateSensitivity()
+        menuItems?.updateSensitivity()
+        AppDelegate.dial.device.updateSensitivity()
     }
     
     @objc func setDirection(
@@ -519,7 +446,7 @@ extension StatusBarController {
         else { return }
         
         Data.direction = direction
-        menuItems.setDirection(direction)
+        menuItems?.updateDirection()
     }
     
     @objc func setHaptics(
@@ -528,8 +455,8 @@ extension StatusBarController {
         let flag = !Data.haptics
         
         Data.haptics = flag
-        menuItems.haptics.flag = flag
-        dial.device.updateSensitivity()
+        menuItems?.updateHaptics()
+        AppDelegate.dial.device.updateSensitivity()
     }
     
     @objc func setStartsWithMacOS(
@@ -538,7 +465,7 @@ extension StatusBarController {
         let flag = !Data.startsWithMacOS
         
         Data.startsWithMacOS = flag
-        menuItems.startsWithMacOS.flag = flag
+        menuItems?.updateStartsWithMacOS()
     }
     
     @objc func quitApp(

@@ -10,11 +10,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.shared.delegate as? AppDelegate
     }
 
-    var statusBarController: StatusBarController?
+    static let statusBarController = StatusBarController()
     
-    var dialWindow: DialWindow?
+    static let dial = Dial()
     
-    let dial = Dial()
+    static let dialWindow = DialWindow(
+        contentRect: NSRect.zero,
+        styleMask: [.borderless],
+        backing: .buffered,
+        defer: true
+    )
     
     func requestPermissions() {
         // More information on this behaviour: https://stackoverflow.com/questions/29006379/accessibility-permissions-reset-after-application-update
@@ -37,21 +42,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         Data.registerDefaults()
         requestPermissions()
-        dial.start()
+        AppDelegate.dial.start()
         
-        statusBarController = StatusBarController(dial)
-        dialWindow = DialWindow(
-            contentRect: NSRect.zero,
-            styleMask: [.borderless],
-            backing: .buffered,
-            defer: true
-        )
-        dialWindow?.isReleasedWhenClosed = false
-        dialWindow?.animationBehavior = .utilityWindow
+        AppDelegate.dialWindow.isReleasedWhenClosed = false
+        AppDelegate.dialWindow.animationBehavior = .utilityWindow
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
-        dial.stop()
+        AppDelegate.dial.stop()
     }
     
 }
@@ -60,26 +58,26 @@ extension AppDelegate {
     
     func buzz(_ repeatCount: UInt8 = 1) {
         DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.dial.device.buzz(repeatCount)
+            AppDelegate.dial.device.buzz(repeatCount)
         }
     }
     
     func showDialWindow() {
         DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.dialWindow?.show()
+            AppDelegate.dialWindow.show()
         }
     }
     
     func hideDialWindow() {
         DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.dialWindow?.hide()
+            AppDelegate.dialWindow.hide()
         }
     }
     
     func updateDialWindow() {
         DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.dialWindow?.updatePosition(true)
-            (self.dialWindow?.contentViewController as? WindowController)?.updateColoredWidgets()
+            AppDelegate.dialWindow.updatePosition(true)
+            (AppDelegate.dialWindow.contentViewController as? WindowController)?.updateColoredWidgets()
         }
     }
     

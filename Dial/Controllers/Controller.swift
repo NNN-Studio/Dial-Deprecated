@@ -12,7 +12,7 @@ protocol Controller: AnyObject {
     
     func onMouseUp(last: TimeInterval?, isClick: Bool)
     
-    func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?, buttonState: Dial.ButtonState)
+    func onRotation(_ rotation: Dial.Rotation, last: TimeInterval?, buttonState: Dial.ButtonState)
     
     func onHandle()
     

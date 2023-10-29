@@ -85,7 +85,7 @@ class Dial {
         
     }
     
-    class Device {
+    struct Device {
         
         private struct ReadBuffer {
             let pointer: UnsafeMutablePointer<UInt8>
@@ -96,16 +96,25 @@ class Dial {
             }
         }
         
+        
+        
         // Identifiers for the Surface Dial
+        
         static let VendorId: UInt16 = 0x045E
+        
         static let ProductId: UInt16 = 0x091B
         
+        
+        
         private var dev: OpaquePointer?
+        
         private let readBuffer = ReadBuffer(size: 1024)
         
         
         
-        var hapticsMode = { HapticsMode.buzz }
+        var hapticsMode: HapticsMode {
+            AppDelegate.statusBarController.controller.hapticsMode()
+        }
         
         var isConnected: Bool {
             dev != nil
@@ -139,13 +148,13 @@ class Dial {
         }
         
         @discardableResult
-        func connect() -> Bool {
+        mutating func connect() -> Bool {
             dev = hid_open(Dial.Device.VendorId, Dial.Device.ProductId, nil)
             return isConnected
         }
         
         
-        func disconnect() {
+        mutating func disconnect() {
             if let dev = self.dev {
                 hid_close(dev)
             }
@@ -168,7 +177,7 @@ class Dial {
                 // 0x02: none
                 // 0x03: buzz
                 // 0x04: continuous vibration
-                buf.append(haptics ? hapticsMode().rawValue : 0x02) // Auto trigger
+                buf.append(haptics ? hapticsMode.rawValue : 0x02) // Auto trigger
                 
                 buf.append(0x00) // Waveform cutoff time
                 buf.append(0x00) // Retrigger period (lo)
@@ -217,7 +226,7 @@ class Dial {
             }
         }
         
-        func read() -> InputReport?
+        mutating func read() -> InputReport?
         {
             guard let dev = self.dev else { return nil }
             
@@ -238,16 +247,23 @@ class Dial {
         
     }
     
+    var device = Device()
+    
+    
+    
     private var thread: Thread?
+    
     private var run: Bool = false
     
-    let device = Device()
-    
     private let semaphore = DispatchSemaphore(value: 0)
+    
     private var lastButtonState = ButtonState.released
     
+    
+    
     var onButtonStateChanged: ((ButtonState) -> Void)?
-    var onRotation: ((Rotation, Direction) -> Void)?
+    
+    var onRotation: ((Rotation) -> Void)?
     
     init() {
         hid_init()
@@ -259,7 +275,11 @@ class Dial {
     }
     
     func start() {
-        self.thread = Thread(target: self, selector: #selector(threadProc(arg:)), object: nil);
+        self.thread = Thread(
+            target: self,
+            selector: #selector(threadProc(_:)),
+            object: nil
+        );
         
         run = true;
         thread!.start()
@@ -283,18 +303,20 @@ class Dial {
     }
     
     @objc
-    private func threadProc(arg: NSObject) {
-        
+    private func threadProc(_ arg: NSObject) {
         while run {
             if !device.isConnected {
-                print("Trying to open device...")
+                print("Connecting to device...")
                 
                 if device.connect() {
-                    print("Device \(device.serialNumber) opened.")
+                    print("Connected to device \(device.serialNumber)!")
+                    
                     device.buzz(3)
-                    device.updateSensitivity() // thanks @bernhard-adobe
+                    device.updateSensitivity()
+                    
+                    AppDelegate.statusBarController.updateConnectionStatus()
                 } else {
-                    print("Device couldn't be opened.")
+                    print("Connection failed.")
                 }
             }
             
@@ -310,7 +332,7 @@ class Dial {
                     }
                     
                     if rotation != nil {
-                        onRotation?(rotation!, Data.direction)
+                        onRotation?(rotation!.withDirection(Data.direction))
                     }
                     
                     self.lastButtonState = buttonState
@@ -320,10 +342,12 @@ class Dial {
                     break
                 case nil:
                     print("Device disconnected.")
+                    AppDelegate.statusBarController.updateConnectionStatus()
                     break
                 }
             }
             
+            print("Waiting for 60 seconds before retry.")
             let _ = semaphore.wait(timeout: .now().advanced(by: .seconds(60)))
         }
     }
