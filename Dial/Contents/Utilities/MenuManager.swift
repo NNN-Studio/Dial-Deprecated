@@ -27,52 +27,6 @@ extension NSMenuItem {
     
 }
 
-extension NSMenu {
-    
-    func addMenuItems(_ items: StatusBarController.MenuItems) {
-        addItem(items.connectionStatus)
-        
-        addItem(items.sep0)
-        
-        addItem(items.sep0Title)
-        
-        
-        
-        items.modes.forEach { addItem($0) }
-        
-        addItem(items.sep1)
-        
-        
-        
-        items.sensitivity.submenu = NSMenu()
-        for sensitivityOption in items.sensitivityOptions {
-            items.sensitivity.submenu?.addItem(sensitivityOption)
-        }
-        addItem(items.sensitivity)
-        
-        items.direction.submenu = NSMenu()
-        for scrollDirectionOption in items.directionOptions {
-            items.direction.submenu?.addItem(scrollDirectionOption)
-        }
-        addItem(items.direction)
-        
-        addItem(items.sep2)
-        
-        
-        
-        addItem(items.haptics)
-        
-        addItem(items.sep3)
-        
-        
-        
-        addItem(items.startsWithMacOS)
-        
-        addItem(items.quit)
-    }
-    
-}
-
 
 class MenuOptionItem<Type>: NSMenuItem {
     

@@ -10,10 +10,6 @@ class ScrollController: Controller {
     
     private var continuousScrolling = (directionSignum: 1.signum(), time: Date.distantPast, count: 0, enabled: false)
     
-    func hapticsMode() -> Dial.HapticsMode {
-        .continuous
-    }
-    
     func onMouseDown(last: TimeInterval?, isDoubleClick: Bool) {
         deaccelerationDispatch?.cancel()
         postMouse(.left, buttonState: .pressed)
@@ -23,8 +19,8 @@ class ScrollController: Controller {
         postMouse(.left, buttonState: .released)
     }
     
-    func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?, buttonState: Dial.ButtonState) {
-        let directionSignum = direction.withRotation(rotation).rawValue
+    func onRotation(_ rotation: Device.Rotation, last: TimeInterval?, buttonState: Device.ButtonState) {
+        let directionSignum = rotation.direction.rawValue
         
         if continuousScrolling.directionSignum != directionSignum {
             continuousScrolling.directionSignum = directionSignum
@@ -50,8 +46,6 @@ class ScrollController: Controller {
         case .counterclockwise(let d):
             steps = -d
         }
-        
-        steps *= direction.rawValue
         
         let last = last?.magnitude ?? 0
         let diff = last <= NSEvent.doubleClickInterval ? last : 0

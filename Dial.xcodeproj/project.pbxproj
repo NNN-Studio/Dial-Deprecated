@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		2801CAB52AEDF18000E95B5F /* MissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2801CAB42AEDF18000E95B5F /* MissionController.swift */; };
-		2830055A2AEE7F9500D18F65 /* UndoRedoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283005592AEE7F9500D18F65 /* UndoRedoController.swift */; };
 		2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2830055B2AEE7FF800D18F65 /* MenuManager.swift */; };
-		2867F1832AEC8D3B0029C937 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F1822AEC8D3B0029C937 /* WindowController.swift */; };
+		2867F1832AEC8D3B0029C937 /* DialWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F1822AEC8D3B0029C937 /* DialWindowController.swift */; };
 		2867F18C2AECACC80029C937 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F18B2AECACC80029C937 /* MainController.swift */; };
 		2867F18F2AECC6E90029C937 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 2867F18E2AECC6E90029C937 /* LaunchAtLogin */; };
 		28B685282AEBFB80008EBE98 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 28B685272AEBFB80008EBE98 /* Localizable.xcstrings */; };
 		28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B6852A2AEC01D6008EBE98 /* Data.swift */; };
 		28C7A0A22AEE06E8003113D5 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C7A0A12AEE06E8003113D5 /* Keyboard.swift */; };
+		28D278EB2AEFC35D00844ADE /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D278EA2AEFC35D00844ADE /* Device.swift */; };
 		C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882FA1926F1430C00595EE1 /* AppDelegate.swift */; };
 		C882FA1E26F1430D00595EE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C882FA1D26F1430D00595EE1 /* Assets.xcassets */; };
 		C882FA2426F1430D00595EE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C882FA2226F1430D00595EE1 /* Main.storyboard */; };
@@ -31,15 +31,15 @@
 
 /* Begin PBXFileReference section */
 		2801CAB42AEDF18000E95B5F /* MissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionController.swift; sourceTree = "<group>"; };
-		283005592AEE7F9500D18F65 /* UndoRedoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UndoRedoController.swift; sourceTree = "<group>"; };
 		2830055B2AEE7FF800D18F65 /* MenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
-		2867F1822AEC8D3B0029C937 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		2867F1822AEC8D3B0029C937 /* DialWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialWindowController.swift; sourceTree = "<group>"; };
 		2867F18A2AEC94D50029C937 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Main.xcstrings; sourceTree = "<group>"; };
 		2867F18B2AECACC80029C937 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		28B685242AEBFAAD008EBE98 /* Dial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28B685272AEBFB80008EBE98 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		28B6852A2AEC01D6008EBE98 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		28C7A0A12AEE06E8003113D5 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		28D278EA2AEFC35D00844ADE /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		C882FA1926F1430C00595EE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C882FA1D26F1430D00595EE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C882FA2326F1430D00595EE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,12 +74,10 @@
 		28B685262AEBFB5A008EBE98 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C89D24282703BA5E00B1A458 /* Controller.swift */,
 				C89D242A2703CF4500B1A458 /* ScrollController.swift */,
 				C89D242C2704870C00B1A458 /* PlaybackController.swift */,
 				2867F18B2AECACC80029C937 /* MainController.swift */,
 				2801CAB42AEDF18000E95B5F /* MissionController.swift */,
-				283005592AEE7F9500D18F65 /* UndoRedoController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -87,9 +85,10 @@
 		28B685292AEC01BC008EBE98 /* Contents */ = {
 			isa = PBXGroup;
 			children = (
+				28D278E92AEFC25100844ADE /* Utilities */,
+				28D278E82AEFC23E00844ADE /* Core */,
 				C882FA2C26F143E300595EE1 /* StatusBarController.swift */,
-				2830055B2AEE7FF800D18F65 /* MenuManager.swift */,
-				2867F1822AEC8D3B0029C937 /* WindowController.swift */,
+				2867F1822AEC8D3B0029C937 /* DialWindowController.swift */,
 				C89F31582701090400A8B365 /* Dial.swift */,
 			);
 			path = Contents;
@@ -102,6 +101,23 @@
 				28C7A0A12AEE06E8003113D5 /* Keyboard.swift */,
 			);
 			path = Infrastructures;
+			sourceTree = "<group>";
+		};
+		28D278E82AEFC23E00844ADE /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				C89D24282703BA5E00B1A458 /* Controller.swift */,
+				28D278EA2AEFC35D00844ADE /* Device.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		28D278E92AEFC25100844ADE /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2830055B2AEE7FF800D18F65 /* MenuManager.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		C882FA0D26F1430C00595EE1 = {
@@ -218,17 +234,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28D278EB2AEFC35D00844ADE /* Device.swift in Sources */,
 				28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */,
 				C882FA2D26F143E300595EE1 /* StatusBarController.swift in Sources */,
 				2801CAB52AEDF18000E95B5F /* MissionController.swift in Sources */,
-				2830055A2AEE7F9500D18F65 /* UndoRedoController.swift in Sources */,
 				28C7A0A22AEE06E8003113D5 /* Keyboard.swift in Sources */,
 				2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */,
 				C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */,
 				C89D24292703BA5E00B1A458 /* Controller.swift in Sources */,
 				2867F18C2AECACC80029C937 /* MainController.swift in Sources */,
 				C89D242D2704870C00B1A458 /* PlaybackController.swift in Sources */,
-				2867F1832AEC8D3B0029C937 /* WindowController.swift in Sources */,
+				2867F1832AEC8D3B0029C937 /* DialWindowController.swift in Sources */,
 				C89F31592701090400A8B365 /* Dial.swift in Sources */,
 				C89D242B2703CF4500B1A458 /* ScrollController.swift in Sources */,
 			);

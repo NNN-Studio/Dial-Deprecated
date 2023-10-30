@@ -6,13 +6,11 @@ protocol Controller: AnyObject {
     
     // MARK: - Protocol
     
-    func hapticsMode() -> Dial.HapticsMode
-    
     func onMouseDown(last: TimeInterval?, isDoubleClick: Bool)
     
     func onMouseUp(last: TimeInterval?, isClick: Bool)
     
-    func onRotation(_ rotation: Dial.Rotation, last: TimeInterval?, buttonState: Dial.ButtonState)
+    func onRotation(_ rotation: Device.Rotation, last: TimeInterval?, buttonState: Device.ButtonState)
     
     func onHandle()
     
@@ -37,7 +35,7 @@ extension Controller {
     
     // MARK: - Extension Methods
     
-    func postMouse(_ button: CGMouseButton, buttonState action: Dial.ButtonState) {
+    func postMouse(_ button: CGMouseButton, buttonState action: Device.ButtonState) {
         let mouseLocation = NSEvent.mouseLocation
         let screenHeight = NSScreen.main?.frame.height ?? 0
         

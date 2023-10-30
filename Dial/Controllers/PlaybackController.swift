@@ -3,10 +3,6 @@ import AppKit
 
 class PlaybackController: Controller {
     
-    func hapticsMode() -> Dial.HapticsMode {
-        .buzz
-    }
-    
     func onMouseUp(last: TimeInterval?, isClick: Bool) {
         if isClick {
             if let last, last.magnitude < NSEvent.doubleClickInterval {
@@ -23,9 +19,9 @@ class PlaybackController: Controller {
         }
     }
     
-    func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?, buttonState: Dial.ButtonState) {
+    func onRotation(_ rotation: Device.Rotation, last: TimeInterval?, buttonState: Device.ButtonState) {
         var modifiers: [NSEvent.ModifierFlags]
-        var action: [Dial.ButtonState: [Direction: (aux: [Int32], normal: [Int32])]] = [:]
+        var action: [Device.ButtonState: [Direction: (aux: [Int32], normal: [Int32])]] = [:]
         
         switch buttonState {
         case .pressed:
@@ -38,8 +34,10 @@ class PlaybackController: Controller {
             break
         }
         
+        /*
         postAuxKeys(action[buttonState]![direction.withRotation(rotation)]!.aux, modifiers: modifiers)
         postKeys(action[buttonState]![direction.withRotation(rotation)]!.normal, modifiers: modifiers)
+         */
     }
     
 }

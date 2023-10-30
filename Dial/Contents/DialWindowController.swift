@@ -27,6 +27,10 @@ extension NSImage {
 
 class DialWindow: NSWindow {
     
+    var dialWindowController: DialWindowController? {
+        return contentViewController as? DialWindowController
+    }
+    
     private static var menuAppearanceObservation: NSKeyValueObservation?
     
     override var canBecomeKey: Bool {
@@ -57,17 +61,17 @@ class DialWindow: NSWindow {
         
         guard let controller = storyboard.instantiateController(
             withIdentifier: identifier
-        ) as? WindowController else {
+        ) as? DialWindowController else {
             fatalError("Can not find WindowController")
         }
         
         // Observe appearance change
         DialWindow.menuAppearanceObservation = NSApp.observe(\.effectiveAppearance) { (app, _) in
             app.effectiveAppearance.performAsCurrentDrawingAppearance {
-                let windowController = ((app.delegate as? AppDelegate)?.dialWindow?.contentViewController as? WindowController)
+                let dialWindowController = AppDelegate.instance?.dialWindow.dialWindowController
                 
-                if windowController?.isViewLoaded ?? false {
-                    windowController?.updateColoredWidgets()
+                if dialWindowController?.isViewLoaded ?? false {
+                    dialWindowController?.updateColoredWidgets()
                 }
             }
         }
@@ -87,7 +91,7 @@ class DialWindow: NSWindow {
     }
     
     func show() {
-        (contentViewController as? WindowController)?.updateColoredWidgets()
+        dialWindowController?.updateColoredWidgets()
         makeKeyAndOrderFront(nil)
         updatePosition()
     }
@@ -100,7 +104,7 @@ class DialWindow: NSWindow {
         guard
             let screenSize = NSScreen.main?.frame.size,
             let screenOrigin = NSScreen.main?.frame.origin,
-            let stackView = (contentViewController as? WindowController)?.stackView
+            let stackView = dialWindowController?.stackView
         else {
             center()
             return
@@ -110,7 +114,6 @@ class DialWindow: NSWindow {
         
         let mouseLocation = NSEvent.mouseLocation
         let frameSize = frame.size
-        let frameOrigin = frame.origin
         let offset = enabledSubview.frame.origin.applying(CGAffineTransform(
             translationX: stackView.frame.origin.x + enabledSubview.frame.width / 2,
             y: stackView.frame.origin.y + enabledSubview.frame.height / 2
@@ -133,7 +136,7 @@ class DialWindow: NSWindow {
     
 }
 
-class WindowController: NSViewController {
+class DialWindowController: NSViewController {
     
     @IBOutlet weak var stackView: NSStackView!
     

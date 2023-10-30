@@ -61,7 +61,7 @@ private struct MenuItems {
         updateDialMode()
         updateSensitivity()
         updateDirection()
-        updateConnectionStatus()
+        updateConnectionStatus(false)
     }
     
     private func initActions(_ controller: StatusBarController) {
@@ -160,12 +160,10 @@ private struct MenuItems {
     }
     
     func updateConnectionStatus(
-        _ isConnected: Bool = AppDelegate.dial.device.isConnected,
-        _ serialNumber: String = AppDelegate.dial.device.serialNumber
+        _ isConnected: Bool,
+        _ serialNumber: String? = nil
     ) {
-        if isConnected {
-            let serialNumber = AppDelegate.dial.device.serialNumber
-            
+        if isConnected, let serialNumber {
             if #available(macOS 14.0, *) {
                 connectionStatus.title = NSLocalizedString(
                     "Menu/ConnectionStatus/On",
@@ -217,32 +215,6 @@ class StatusBarController: NSObject, NSMenuDelegate {
     
     private var menuManager: MenuManager?
     
-    private var mainController = (instance: MainController(), handled: false, dispatch: DispatchWorkItem {})
-    
-    private var lastActions: (
-        mouseDown: Date?,
-        mouseUp: Date?,
-        rotation: Date?
-    )
-    
-    private var buttonState = Dial.ButtonState.released
-    
-    var controller: Controller {
-        get {
-            if mainController.handled {
-                return mainController.instance
-            } else {
-                let item = (
-                    menuItems?.modes
-                        .filter { $0.option == Data.dialMode }
-                        .first
-                )
-                
-                return item?.controller ?? mainController.instance
-            }
-        }
-    }
-    
     override init() {
         super.init()
         
@@ -275,102 +247,40 @@ class StatusBarController: NSObject, NSMenuDelegate {
             return items
         }
         
-        statusItem.button?.appearsDisabled = true
-        
         if let button = statusItem.button {
             button.target = self
             button.action = #selector(toggle(_:))
             button.sendAction(on: [.leftMouseUp, .rightMouseUp])
-            updateIcon()
+            updateIcon(false)
         }
-        
-        AppDelegate.dial.onButtonStateChanged = { [unowned self] state in
-            buttonState = state
-            let last = (
-                down: lastActions.mouseDown == nil ? nil : Date.now.timeIntervalSince(lastActions.mouseDown!),
-                up: lastActions.mouseUp == nil ? nil : Date.now.timeIntervalSince(lastActions.mouseUp!)
-            )
-            let isDoubleClick = last.down?.magnitude ?? 1 <= NSEvent.doubleClickInterval
-            let isClick = last.down?.magnitude ?? 1 <= NSEvent.doubleClickInterval * 0.6
-            
-            switch state {
-            case .pressed:
-                controller.onMouseDown(
-                    last: last.down,
-                    isDoubleClick: isDoubleClick
-                )
-                AppDelegate.dial.device.updateSensitivity()
-                
-                // Click and hold long to switch mode
-                mainController.dispatch = DispatchWorkItem { [self] in
-                    controller.onHandle()
-                    mainController.handled = true
-                    AppDelegate.dial.device.updateSensitivity()
-                    
-                    controller.onMouseDown(
-                        last: last.down,
-                        isDoubleClick: false
-                    )
-                    AppDelegate.dial.device.updateSensitivity()
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval * 2, execute: mainController.dispatch)
-                
-                lastActions.mouseDown = .now
-                break
-            case .released:
-                controller.onMouseUp(
-                    last: last.up,
-                    isClick: isClick
-                )
-                AppDelegate.dial.device.updateSensitivity()
-                
-                mainController.handled = false
-                AppDelegate.dial.device.updateSensitivity()
-                
-                mainController.dispatch.cancel()
-                
-                lastActions.mouseUp = .now
-                break
-            }
-        }
-        
-        AppDelegate.dial.onRotation = { [unowned self] rotation in
-            mainController.dispatch.cancel()
-            controller.onRotation(
-                rotation,
-                last: lastActions.rotation?.timeIntervalSince(.now),
-                buttonState: buttonState
-            )
-            lastActions.rotation = .now
-        }
-    }
-    
-    func updateConnectionStatus() {
-        menuItems?.updateConnectionStatus()
     }
     
     func menuDidClose(_ menu: NSMenu) {
         statusItem.menu = nil
     }
     
-    private func updateIcon() {
-        if let button = statusItem.button {
-            if !AppDelegate.dial.device.isConnected {
-                button.image = NSImage(named: NSImage.Name("Dial"))!
-            }
-            
-            else {
-                switch Data.dialMode {
-                case .scroll:
-                    button.image = NSImage(named: NSImage.Name("DialScroll"))!
-                    break
-                case .playback:
-                    button.image = NSImage(named: NSImage.Name("DialPlayback"))!
-                    break
-                case .mission:
-                    button.image = NSImage(named: NSImage.Name("DialMission"))!
-                    break
+    private func updateIcon(_ isConnected: Bool) {
+        DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
+            if let button = statusItem.button {
+                if !isConnected {
+                    button.image = NSImage(named: NSImage.Name("Dial"))!
                 }
+                
+                else {
+                    switch Data.dialMode {
+                    case .scroll:
+                        button.image = NSImage(named: NSImage.Name("DialScroll"))!
+                        break
+                    case .playback:
+                        button.image = NSImage(named: NSImage.Name("DialPlayback"))!
+                        break
+                    case .mission:
+                        button.image = NSImage(named: NSImage.Name("DialMission"))!
+                        break
+                    }
+                }
+                
+                button.appearsDisabled = !isConnected
             }
         }
     }
@@ -383,20 +293,28 @@ extension StatusBarController {
         if let mode {
             Data.dialMode = mode
             menuItems?.updateDialMode()
-            updateIcon()
+            updateIcon(AppDelegate.instance?.dial.device.isConnected ?? false)
             
-            AppDelegate.dial.device.updateSensitivity()
             DispatchQueue.main.asyncAfter(deadline: .now()) {
                 AppDelegate.instance?.buzz()
             }
         }
     }
     
+    func onConnectionStatusChanged(_ isConnected: Bool, _ serialNumber: String?) {
+        updateIcon(isConnected)
+        menuItems?.updateConnectionStatus(isConnected, serialNumber)
+    }
+    
+}
+
+extension StatusBarController {
+    
     @objc func toggle(
         _ sender: Any?
     ) {
         if let event = NSApp.currentEvent, event.type == .leftMouseUp {
-            if AppDelegate.dial.device.isConnected {
+            if AppDelegate.instance?.dial.device.isConnected ?? false {
                 setDialModeAndUpdate(Data.getCycledDialMode(1))
             } else {
                 reconnect(nil)
@@ -410,9 +328,7 @@ extension StatusBarController {
     @objc func reconnect(
         _ sender: Any?
     ) {
-        AppDelegate.dial.stop()
-        AppDelegate.dial.start()
-        updateConnectionStatus()
+        AppDelegate.instance?.dial.reconnect()
     }
     
     @objc func setDialMode(
@@ -434,7 +350,6 @@ extension StatusBarController {
         
         Data.sensitivity = sensitivity
         menuItems?.updateSensitivity()
-        AppDelegate.dial.device.updateSensitivity()
     }
     
     @objc func setDirection(
@@ -456,7 +371,6 @@ extension StatusBarController {
         
         Data.haptics = flag
         menuItems?.updateHaptics()
-        AppDelegate.dial.device.updateSensitivity()
     }
     
     @objc func setStartsWithMacOS(

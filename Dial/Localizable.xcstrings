@@ -487,8 +487,26 @@
         }
       }
     },
-    "Menu/Sep0Title" : {
-      "comment" : "dial mode",
+    "Menu/StartsWithMacOS" : {
+      "comment" : "starts with macos",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Starts with macOS"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "随macOS启动"
+          }
+        }
+      }
+    },
+    "Menu/Title/DialMode" : {
+      "comment" : "title dial mode",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
@@ -505,38 +523,20 @@
         }
       }
     },
-    "Menu/Sep0Title/Badge" : {
-      "comment" : "dial mode badge",
+    "Menu/Title/DialMode/Badge" : {
+      "comment" : "title dial mode badge",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "hold dial to cycle"
+            "value" : "press and hold dial"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "按住旋钮调节"
-          }
-        }
-      }
-    },
-    "Menu/StartsWithMacOS" : {
-      "comment" : "starts with macos",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Starts with macOS"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "随macOS启动"
           }
         }
       }

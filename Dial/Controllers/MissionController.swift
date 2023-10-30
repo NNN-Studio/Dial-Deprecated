@@ -14,10 +14,6 @@ class MissionController: Controller {
     
     private var escapeDispatch: DispatchWorkItem?
     
-    func hapticsMode() -> Dial.HapticsMode {
-        .none
-    }
-    
     func onMouseUp(last: TimeInterval?, isClick: Bool) {
         if inMission && isClick {
             inMission = false
@@ -26,7 +22,8 @@ class MissionController: Controller {
         }
     }
     
-    func onRotation(_ rotation: Dial.Rotation, _ direction: Direction, last: TimeInterval?, buttonState: Dial.ButtonState) {
+    func onRotation(_ rotation: Device.Rotation, last: TimeInterval?, buttonState: Device.ButtonState) {
+        /*
         escapeDispatch?.cancel()
         inMission = true
         
@@ -59,6 +56,7 @@ class MissionController: Controller {
         if let escapeDispatch {
             DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval * 3, execute: escapeDispatch)
         }
+         */
     }
     
 }

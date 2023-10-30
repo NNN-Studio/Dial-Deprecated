@@ -54,7 +54,7 @@ enum Direction: Int {
         return reversed ? negate : self
     }
     
-    func withRotation(_ rotation: Dial.Rotation) -> Direction {
+    func withRotation(_ rotation: Device.Rotation) -> Direction {
         switch rotation {
         case .clockwise(_):
             self
