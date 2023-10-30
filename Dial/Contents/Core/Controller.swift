@@ -20,7 +20,7 @@ protocol Controller: AnyObject {
     
     // MARK: - Protocol
     
-    func onClick(interval: TimeInterval?, isDoubleClick: Bool)
+    func onClick(isDoubleClick: Bool, interval: TimeInterval?)
     
     func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState, interval: TimeInterval?)
     

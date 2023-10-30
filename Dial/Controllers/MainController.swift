@@ -9,10 +9,12 @@ import Foundation
 
 class MainController: Controller {
     
-    func onClick(last: TimeInterval?, isDoubleClick: Bool) {
+    func onClick(isDoubleClick: Bool, interval: TimeInterval?) {
+        print("main click, double: \(isDoubleClick)")
     }
     
-    func onRotation(_ rotation: Device.Rotation, last: TimeInterval?, _ buttonState: Device.ButtonState) {
+    func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState, interval: TimeInterval?) {
+        print("main rotation")
     }
     
 }

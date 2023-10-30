@@ -11,7 +11,7 @@ class Dial {
     var statusBarController = StatusBarController()
     
     var controller: Controller {
-        if mainController.handled {
+        if mainController.isAgent {
             return mainController.instance
         } else {
             let item = (
@@ -24,7 +24,7 @@ class Dial {
         }
     }
     
-    private var mainController = (instance: MainController(), handled: false, dispatch: DispatchWorkItem {})
+    private var mainController = (instance: MainController(), isAgent: false, dispatch: DispatchWorkItem {})
     
     private var lastActions: (
         buttonPressed: Date?,
@@ -68,26 +68,29 @@ extension Dial: DeviceEventHandler {
         
         switch buttonState {
         case .pressed:
-            if let pressInterval, pressInterval > NSEvent.doubleClickInterval {
-                // Press and hold
-                mainController.dispatch = DispatchWorkItem {
-                    self.mainController.handled = true
-                }
+            // Trigger press and hold
+            mainController.dispatch = DispatchWorkItem {
+                self.mainController.isAgent = true
+                print("Main controller is now the agent.")
             }
+            DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval, execute: mainController.dispatch)
+            
             lastActions.buttonPressed = .now
         case .released:
-            mainController.handled = false
+            mainController.dispatch.cancel()
+            if mainController.isAgent { print("Main controller is no longer the agent.") }
+            mainController.isAgent = false
             
-            let clickInterval = lastActions.buttonReleased?.timeIntervalSince(lastActions.buttonPressed)
+            let clickInterval = Date.now.timeIntervalSince(lastActions.buttonPressed)
             guard let clickInterval, clickInterval <= NSEvent.doubleClickInterval else { break }
             
             if let releaseInterval, releaseInterval <= NSEvent.doubleClickInterval {
                 // Double click
-                controller.onClick(interval: releaseInterval, isDoubleClick: true)
+                controller.onClick(isDoubleClick: true, interval: releaseInterval)
                 lastActions.buttonReleased = nil
             } else {
                 // Click
-                controller.onClick(interval: releaseInterval, isDoubleClick: false)
+                controller.onClick(isDoubleClick: false, interval: releaseInterval)
                 lastActions.buttonReleased = .now
             }
         }

@@ -74,9 +74,9 @@
 		28B685262AEBFB5A008EBE98 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2867F18B2AECACC80029C937 /* MainController.swift */,
 				C89D242A2703CF4500B1A458 /* ScrollController.swift */,
 				C89D242C2704870C00B1A458 /* PlaybackController.swift */,
-				2867F18B2AECACC80029C937 /* MainController.swift */,
 				2801CAB42AEDF18000E95B5F /* MissionController.swift */,
 			);
 			path = Controllers;

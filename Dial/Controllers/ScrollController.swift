@@ -10,10 +10,13 @@ class ScrollController: Controller {
     
     private var continuousScrolling = (directionSignum: 1.signum(), time: Date.distantPast, count: 0, enabled: false)
     
-    func onClick(last: TimeInterval?, isDoubleClick: Bool) {
+    func onClick(isDoubleClick: Bool, interval: TimeInterval?) {
+        print("scroll click, double: \(isDoubleClick)")
     }
     
     func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState, interval: TimeInterval?) {
+        print("scroll rotation")
+        /*
         let directionSignum = rotation.direction.rawValue
         
         if continuousScrolling.directionSignum != directionSignum {
@@ -66,6 +69,7 @@ class ScrollController: Controller {
             }
         }
         deaccelerationDispatch?.perform()
+         */
     }
     
 }

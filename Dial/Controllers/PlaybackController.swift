@@ -3,7 +3,9 @@ import AppKit
 
 class PlaybackController: Controller {
     
-    func onClick(last: TimeInterval?, isDoubleClick: Bool) {
+    func onClick(isDoubleClick: Bool, interval: TimeInterval?) {
+        print("playback click, double: \(isDoubleClick)")
+        /*
         if isDoubleClick {
             // Undo pause sent on first click
             postAuxKeys([Keyboard.keyPlay], modifiers: [], _repeat: 1)
@@ -14,9 +16,12 @@ class PlaybackController: Controller {
             // Play / Pause on single click
             postAuxKeys([Keyboard.keyPlay], modifiers: [], _repeat: 1)
         }
+         */
     }
     
     func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState, interval: TimeInterval?) {
+        print("playback rotation")
+        /*
         var modifiers: [NSEvent.ModifierFlags]
         var action: [Device.ButtonState: [Direction: (aux: [Int32], normal: [Int32])]] = [:]
         
@@ -31,7 +36,6 @@ class PlaybackController: Controller {
             break
         }
         
-        /*
         postAuxKeys(action[buttonState]![direction.withRotation(rotation)]!.aux, modifiers: modifiers)
         postKeys(action[buttonState]![direction.withRotation(rotation)]!.normal, modifiers: modifiers)
          */
