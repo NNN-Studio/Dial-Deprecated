@@ -3,23 +3,20 @@ import AppKit
 
 class PlaybackController: Controller {
     
-    func onMouseUp(last: TimeInterval?, isClick: Bool) {
-        if isClick {
-            if let last, last.magnitude < NSEvent.doubleClickInterval {
-                // Mute on double click
-                
-                // Undo pause sent on first click
-                postAuxKeys([Keyboard.keyPlay], modifiers: [], _repeat: 1)
-                postAuxKeys([Keyboard.keyMute], modifiers: [])
-            } else {
-                // Play / Pause on single click
-                
-                postAuxKeys([Keyboard.keyPlay], modifiers: [], _repeat: 1)
-            }
+    func onClick(last: TimeInterval?, isDoubleClick: Bool) {
+        if isDoubleClick {
+            // Undo pause sent on first click
+            postAuxKeys([Keyboard.keyPlay], modifiers: [], _repeat: 1)
+            
+            // Mute on double click
+            postAuxKeys([Keyboard.keyMute], modifiers: [])
+        } else {
+            // Play / Pause on single click
+            postAuxKeys([Keyboard.keyPlay], modifiers: [], _repeat: 1)
         }
     }
     
-    func onRotation(_ rotation: Device.Rotation, last: TimeInterval?, buttonState: Device.ButtonState) {
+    func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState, interval: TimeInterval?) {
         var modifiers: [NSEvent.ModifierFlags]
         var action: [Device.ButtonState: [Direction: (aux: [Int32], normal: [Int32])]] = [:]
         

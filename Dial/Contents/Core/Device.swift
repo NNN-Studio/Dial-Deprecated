@@ -25,7 +25,7 @@ protocol DeviceEventHandler {
     
     func onButtonStateChanged(_ buttonState: Device.ButtonState)
     
-    func onRotation(_ rotation: Device.Rotation)
+    func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState)
     
 }
 
@@ -341,7 +341,7 @@ extension Device {
                     }
                     
                     if let rotation {
-                        eventHandler?.onRotation(rotation.byDirection(Data.direction))
+                        eventHandler?.onRotation(rotation.byDirection(Data.direction), buttonState)
                     }
                     
                     self.lastButtonState = buttonState

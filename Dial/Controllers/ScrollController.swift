@@ -10,16 +10,10 @@ class ScrollController: Controller {
     
     private var continuousScrolling = (directionSignum: 1.signum(), time: Date.distantPast, count: 0, enabled: false)
     
-    func onMouseDown(last: TimeInterval?, isDoubleClick: Bool) {
-        deaccelerationDispatch?.cancel()
-        postMouse(.left, buttonState: .pressed)
+    func onClick(last: TimeInterval?, isDoubleClick: Bool) {
     }
     
-    func onMouseUp(last: TimeInterval?, isClick: Bool) {
-        postMouse(.left, buttonState: .released)
-    }
-    
-    func onRotation(_ rotation: Device.Rotation, last: TimeInterval?, buttonState: Device.ButtonState) {
+    func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState, interval: TimeInterval?) {
         let directionSignum = rotation.direction.rawValue
         
         if continuousScrolling.directionSignum != directionSignum {
@@ -72,10 +66,6 @@ class ScrollController: Controller {
             }
         }
         deaccelerationDispatch?.perform()
-    }
-    
-    func onHandle() {
-        postMouse(.left, buttonState: .released)
     }
     
 }

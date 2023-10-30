@@ -2,32 +2,27 @@
 import Foundation
 import AppKit
 
+extension Date {
+    
+    func timeIntervalSince(
+        _ date: Date?
+    ) -> TimeInterval? {
+        if let date {
+            return timeIntervalSince(date)
+        } else {
+            return nil
+        }
+    }
+    
+}
+
 protocol Controller: AnyObject {
     
     // MARK: - Protocol
     
-    func onMouseDown(last: TimeInterval?, isDoubleClick: Bool)
+    func onClick(interval: TimeInterval?, isDoubleClick: Bool)
     
-    func onMouseUp(last: TimeInterval?, isClick: Bool)
-    
-    func onRotation(_ rotation: Device.Rotation, last: TimeInterval?, buttonState: Device.ButtonState)
-    
-    func onHandle()
-    
-}
-
-extension Controller {
-    
-    // MARK: - Default Implementations
-    
-    func onMouseDown(last: TimeInterval?, isDoubleClick: Bool) {
-    }
-    
-    func onMouseUp(last: TimeInterval?, isClick: Bool) {
-    }
-    
-    func onHandle() {
-    }
+    func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState, interval: TimeInterval?)
     
 }
 

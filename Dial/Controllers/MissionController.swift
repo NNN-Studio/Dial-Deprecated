@@ -14,15 +14,15 @@ class MissionController: Controller {
     
     private var escapeDispatch: DispatchWorkItem?
     
-    func onMouseUp(last: TimeInterval?, isClick: Bool) {
-        if inMission && isClick {
+    func onClick(last: TimeInterval?, isDoubleClick: Bool) {
+        if inMission {
             inMission = false
             escapeDispatch?.cancel()
             postKeys([Keyboard.keyReturn])
         }
     }
     
-    func onRotation(_ rotation: Device.Rotation, last: TimeInterval?, buttonState: Device.ButtonState) {
+    func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState, interval: TimeInterval?) {
         /*
         escapeDispatch?.cancel()
         inMission = true

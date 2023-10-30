@@ -2,7 +2,7 @@
 import Foundation
 import AppKit
 
-private struct MenuItems {
+struct MenuItems {
     
     let connectionStatus = NSMenuItem()
     
@@ -209,11 +209,11 @@ private struct MenuItems {
 
 class StatusBarController: NSObject, NSMenuDelegate {
     
-    private let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
-    private var menuItems: MenuItems?
+    var menuItems: MenuItems?
     
-    private var menuManager: MenuManager?
+    var menuManager: MenuManager?
     
     override init() {
         super.init()
