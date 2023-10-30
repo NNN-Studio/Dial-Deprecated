@@ -352,7 +352,7 @@ extension Device {
                 }
             }
             
-            print("Waiting for 60 seconds before retry.")
+            print("Waiting for 60 seconds before next try.")
             let _ = semaphore.wait(timeout: .now().advanced(by: .seconds(60)))
         }
     }
