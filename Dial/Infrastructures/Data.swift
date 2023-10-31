@@ -18,26 +18,26 @@ enum DialMode: Int, CaseIterable {
     
 }
 
-enum Sensitivity: Int {
+/// Decides how much steps per circle the dial is divided into.
+enum Sensitivity: CGFloat {
     
-    case low = 9
+    case low = 6
     
-    case medium = 18
+    case medium = 10
     
-    case natural = 36
+    case natural = 18
     
-    case high = 72
+    case high = 36
     
-    case extreme = 180
+    case extreme = 90
     
 }
 
 enum Direction: Int {
     
-    /// Clockwise to scroll down.
     case clockwise = 1
     
-    /// Counterclockwise to scroll down.
+    /// Basically, the rotation of dial is inverted.
     case counterclockwise = -1
     
     var negate: Direction {
@@ -49,18 +49,8 @@ enum Direction: Int {
         }
     }
     
-    func withSignum(_ signum: Int) -> Direction {
-        let reversed = signum.signum() < 0
-        return reversed ? negate : self
-    }
-    
-    func withRotation(_ rotation: Device.Rotation) -> Direction {
-        switch rotation {
-        case .clockwise(_):
-            self
-        case .counterclockwise(_):
-            self.negate
-        }
+    static func *(lhs: Direction, rhs: Direction) -> Direction {
+        lhs == rhs ? lhs : lhs.negate
     }
     
 }
@@ -97,6 +87,10 @@ struct Data {
             UserDefaults.standard.integer(forKey: rawValue)
         }
         
+        func float() -> Float {
+            UserDefaults.standard.float(forKey: rawValue)
+        }
+        
     }
     
     static func registerDefaults() {
@@ -104,6 +98,12 @@ struct Data {
         Key.haptics.register(true)
         Key.sensitivity.register(Sensitivity.natural.rawValue)
         Key.direction.register(Direction.clockwise.rawValue)
+    }
+    
+    static let rotationThresholdDegrees: UInt = 10
+    
+    static var rotationGap: Int {
+        Int(360 / sensitivity.rawValue)
     }
     
     static var startsWithMacOS: Bool {
@@ -150,7 +150,7 @@ struct Data {
     
     static var sensitivity: Sensitivity {
         get {
-            Sensitivity(rawValue: Key.sensitivity.integer()) ?? .natural
+            Sensitivity(rawValue: CGFloat(Key.sensitivity.float())) ?? .natural
         }
         
         set(sensitivity) {

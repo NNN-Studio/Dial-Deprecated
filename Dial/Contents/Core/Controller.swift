@@ -21,9 +21,9 @@ protocol Controller: AnyObject {
     /// Whether to enable haptic feedback on stepping. The default value is `false`.
     var haptics: Bool { get }
     
-    func onClick(isDoubleClick: Bool, interval: TimeInterval?)
+    func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ deviceCallback: Device.Callback)
     
-    func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState, interval: TimeInterval?)
+    func onRotation(rotation: Dial.Rotation, totalDegrees: Int, buttonState: Device.ButtonState, interval: TimeInterval?, _ deviceCallback: Device.Callback)
     
 }
 
@@ -37,15 +37,20 @@ extension Controller {
 
 class DefaultController: Controller {
     
+    
     var haptics: Bool {
         true
     }
     
-    func onClick(isDoubleClick: Bool, interval: TimeInterval?) {
+    func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ deviceCallback: Device.Callback) {
         print("main click, double: \(isDoubleClick)")
     }
     
-    func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState, interval: TimeInterval?) {
+    func onRotation(
+        rotation: Dial.Rotation, totalDegrees: Int,
+        buttonState: Device.ButtonState, interval: TimeInterval?,
+        _ deviceCallback: Device.Callback
+    ) {
         print("main rotation")
     }
     

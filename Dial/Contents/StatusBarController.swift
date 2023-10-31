@@ -296,7 +296,7 @@ extension StatusBarController {
             updateIcon(AppDelegate.instance?.dial.device.isConnected ?? false)
             
             DispatchQueue.main.asyncAfter(deadline: .now()) {
-                AppDelegate.instance?.buzz()
+                AppDelegate.instance?.dial.device.buzz()
             }
         }
     }

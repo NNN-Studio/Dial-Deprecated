@@ -13,7 +13,7 @@ protocol InputHandler {
     
     func onButtonStateChanged(_ buttonState: Device.ButtonState)
     
-    func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState)
+    func onRotation(_ direction: Direction, _ buttonState: Device.ButtonState)
     
 }
 
@@ -94,7 +94,7 @@ extension Device {
     
     enum InputReport {
         
-        case dial(ButtonState, Rotation?)
+        case dial(ButtonState, Direction?)
         
         case unknown
         
@@ -105,45 +105,6 @@ extension Device {
         case pressed
         
         case released
-        
-    }
-    
-    enum Rotation {
-        
-        case clockwise(Int)
-        
-        case counterclockwise(Int)
-        
-        
-        
-        var magnitude: Int {
-            switch self {
-            case .clockwise(let r), .counterclockwise(let r):
-                abs(r)
-            }
-        }
-        
-        var negate: Rotation {
-            switch self {
-            case .clockwise(let r):
-                    .counterclockwise(r)
-            case .counterclockwise(let r):
-                    .clockwise(r)
-            }
-        }
-        
-        var direction: Direction {
-            switch self {
-            case .clockwise(_):
-                    .clockwise
-            case .counterclockwise(_):
-                    .counterclockwise
-            }
-        }
-        
-        func byDirection(_ direction: Direction) -> Rotation {
-            return direction == .counterclockwise ? negate : self
-        }
         
     }
     
@@ -188,6 +149,7 @@ extension Device {
         
         if isConnected {
             print("Connected to device \(serialNumber)!")
+            initBehavior()
             inputHandler?.onConnectionStatusChanged(true, serialNumber)
             buzz(3)
         }
@@ -207,15 +169,15 @@ extension Device {
     }
     
     // https://github.com/daniel5151/surface-dial-linux/blob/main/src/dial_device/haptics.rs
-    func initHaptics() {
+    private func initBehavior() {
         if isConnected {
-            let steps_lo = 3600 & 0xff
-            let steps_hi = (3600 >> 8) & 0xff
+            let steps_lo = 360 & 0xff
+            let steps_hi = (360 >> 8) & 0xff
             var buf: Array<UInt8> = []
             
             buf.append(0x01) // Report ID
-            buf.append(UInt8(steps_lo)) // Steps
-            buf.append(UInt8(steps_hi)) // Steps
+            buf.append(UInt8(steps_lo))
+            buf.append(UInt8(steps_hi))
             buf.append(0x00) // Repeat count
             
             buf.append(0x02) // Do not auto trigger haptics
@@ -253,19 +215,18 @@ extension Device {
     ) -> InputReport {
         switch bytes[0] {
         case 1 where bytes.count >= 4:
-            let buttonState = bytes[1]&1 == 1 ? ButtonState.pressed : .released
+            let buttonState = bytes[1] & 1 == 1 ? ButtonState.pressed : .released
             
-            let rotation = { () -> Rotation? in
-                switch bytes[2] {
-                case 1:
-                    return .clockwise(1)
-                case 0xff:
-                    return .counterclockwise(1)
-                default:
-                    return nil
-                }}()
+            let direction: Direction? = switch bytes[3] {
+            case 0x00:
+                .clockwise * Data.direction
+            case 0xff:
+                .counterclockwise * Data.direction
+            default:
+                nil
+            }
             
-            return .dial(buttonState, rotation)
+            return .dial(buttonState, direction)
         default:
             return .unknown
         }
@@ -329,17 +290,18 @@ extension Device {
             
             while isConnected {
                 switch read() {
-                case .dial(let buttonState, let rotation):
+                case .dial(let buttonState, let direction):
                     switch buttonState {
                     case .pressed where lastButtonState == .released:
                         inputHandler?.onButtonStateChanged(.pressed)
                     case .released where lastButtonState == .pressed:
                         inputHandler?.onButtonStateChanged(.released)
-                    default: break
+                    default:
+                        break
                     }
                     
-                    if let rotation {
-                        inputHandler?.onRotation(rotation.byDirection(Data.direction), buttonState)
+                    if let direction {
+                        inputHandler?.onRotation(direction, buttonState)
                     }
                     
                     self.lastButtonState = buttonState
@@ -353,6 +315,30 @@ extension Device {
             print("Waiting for 60 seconds before next try.")
             let _ = semaphore.wait(timeout: .now().advanced(by: .seconds(60)))
         }
+    }
+    
+}
+
+extension Device {
+    
+    var callback: Callback {
+        Callback(self)
+    }
+    
+    struct Callback {
+        
+        private var device: Device
+        
+        init(
+            _ device: Device
+        ) {
+            self.device = device
+        }
+        
+        func buzz(_ repeatCount: UInt8 = 1) {
+            device.buzz(repeatCount)
+        }
+        
     }
     
 }

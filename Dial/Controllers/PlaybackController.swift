@@ -3,7 +3,7 @@ import AppKit
 
 class PlaybackController: Controller {
     
-    func onClick(isDoubleClick: Bool, interval: TimeInterval?) {
+    func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ deviceCallback: Device.Callback) {
         print("playback click, double: \(isDoubleClick)")
         /*
         if isDoubleClick {
@@ -19,7 +19,11 @@ class PlaybackController: Controller {
          */
     }
     
-    func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState, interval: TimeInterval?) {
+    func onRotation(
+        rotation: Dial.Rotation, totalDegrees: Int,
+        buttonState: Device.ButtonState, interval: TimeInterval?,
+        _ deviceCallback: Device.Callback
+    ) {
         print("playback rotation")
         /*
         var modifiers: [NSEvent.ModifierFlags]

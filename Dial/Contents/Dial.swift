@@ -24,7 +24,11 @@ class Dial {
         }
     }
     
-    private var defaultController = (instance: DefaultController(), isAgent: false, dispatch: DispatchWorkItem {})
+    private var defaultController = (
+        instance: DefaultController(),
+        isAgent: false,
+        dispatch: DispatchWorkItem {}
+    )
     
     private var lastActions: (
         buttonPressed: Date?,
@@ -32,9 +36,26 @@ class Dial {
         rotation: Date?
     )
     
+    private var rotationBehavior = (
+        started: false,
+        degrees /* 360 per circle, positive values represent clockwise rotation */ : Int.zero
+    )
+    
     init() {
         device.inputHandler = self
         connect()
+    }
+    
+}
+
+extension Dial {
+    
+    enum Rotation {
+        
+        case continuous(Direction)
+        
+        case stepping(Direction)
+        
     }
     
 }
@@ -86,18 +107,55 @@ extension Dial: InputHandler {
             
             if let releaseInterval, releaseInterval <= NSEvent.doubleClickInterval {
                 // Double click
-                controller.onClick(isDoubleClick: true, interval: releaseInterval)
+                controller.onClick(isDoubleClick: true, interval: releaseInterval, device.callback)
                 lastActions.buttonReleased = nil
             } else {
                 // Click
-                controller.onClick(isDoubleClick: false, interval: releaseInterval)
+                controller.onClick(isDoubleClick: false, interval: releaseInterval, device.callback)
                 lastActions.buttonReleased = .now
             }
         }
     }
     
-    func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState) {
-        controller.onRotation(rotation, buttonState, interval: Date.now.timeIntervalSince(lastActions.rotation))
+    func onRotation(_ direction: Direction, _ buttonState: Device.ButtonState) {
+        let interval = Date.now.timeIntervalSince(lastActions.rotation)
+        if let interval, interval > NSEvent.keyRepeatDelay {
+            // Rotation ended
+            rotationBehavior.started = false
+            rotationBehavior.degrees = 0
+            print("Rotation ended.")
+        }
+        
+        let lastStep = rotationBehavior.degrees / Data.rotationGap
+        rotationBehavior.degrees += direction.rawValue
+        let currentStep = rotationBehavior.degrees / Data.rotationGap
+        
+        if !rotationBehavior.started {
+            // Check threshold
+            rotationBehavior.started = rotationBehavior.degrees.magnitude > Data.rotationThresholdDegrees
+            if rotationBehavior.started {
+                print("Rotation started.")
+            }
+        }
+        
+        if rotationBehavior.started {
+            // Continuous rotation
+            controller.onRotation(
+                rotation: .continuous(direction), totalDegrees: rotationBehavior.degrees,
+                buttonState: buttonState, interval: interval,
+                device.callback
+            )
+            
+            if lastStep != currentStep {
+                // Stepping rotation
+                controller.onRotation(
+                    rotation: .stepping(direction), totalDegrees: rotationBehavior.degrees,
+                    buttonState: buttonState, interval: interval,
+                    device.callback
+                )
+            }
+        }
+        
         lastActions.rotation = .now
     }
     

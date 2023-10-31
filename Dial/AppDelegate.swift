@@ -52,32 +52,3 @@ extension AppDelegate {
     
 }
 
-extension AppDelegate {
-    
-    func buzz(_ repeatCount: UInt8 = 1) {
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.dial.device.buzz(repeatCount)
-        }
-    }
-    
-    func showDialWindow() {
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.dialWindow.show()
-        }
-    }
-    
-    func hideDialWindow() {
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.dialWindow.hide()
-        }
-    }
-    
-    func updateDialWindow() {
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.dialWindow.updatePosition(true)
-            self.dialWindow.dialWindowController?.updateColoredWidgets()
-        }
-    }
-    
-}
-
