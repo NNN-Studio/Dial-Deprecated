@@ -250,12 +250,7 @@ extension Device {
         let dataStr = array.map({ String(format:"%02X", $0)}).joined(separator: " ")
         
         let result = parse(array)
-        switch result {
-        case .unknown:
-            print("Reading data from device: \(dataStr) (unknown)")
-        default:
-            print("Reading data from device: \(dataStr)")
-        }
+        print("Reading data from device: \(dataStr)" + result == .unknown ? "(unknown)" : "")
         return result
     }
     
