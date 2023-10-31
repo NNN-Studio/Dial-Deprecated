@@ -4,7 +4,6 @@ import AppKit
 class PlaybackController: Controller {
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ deviceCallback: Device.Callback) {
-        print("playback click, double: \(isDoubleClick)")
         /*
         if isDoubleClick {
             // Undo pause sent on first click
@@ -24,7 +23,6 @@ class PlaybackController: Controller {
         buttonState: Device.ButtonState, interval: TimeInterval?,
         _ deviceCallback: Device.Callback
     ) {
-        print("playback rotation")
         /*
         var modifiers: [NSEvent.ModifierFlags]
         var action: [Device.ButtonState: [Direction: (aux: [Int32], normal: [Int32])]] = [:]

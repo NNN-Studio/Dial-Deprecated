@@ -19,7 +19,6 @@ class MissionController: Controller {
     }
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ deviceCallback: Device.Callback) {
-        print("mission click, double: \(isDoubleClick)")
         /*
         if inMission {
             inMission = false
@@ -34,13 +33,6 @@ class MissionController: Controller {
         buttonState: Device.ButtonState, interval: TimeInterval?,
         _ deviceCallback: Device.Callback
     ) {
-        print("mission rotation")
-        switch rotation {
-        case .continuous(let direction):
-            break
-        case .stepping(let direction):
-            deviceCallback.buzz()
-        }
         /*
         escapeDispatch?.cancel()
         inMission = true

@@ -11,7 +11,6 @@ class ScrollController: Controller {
     private var continuousScrolling = (directionSignum: 1.signum(), time: Date.distantPast, count: 0, enabled: false)
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ deviceCallback: Device.Callback) {
-        print("scroll click, double: \(isDoubleClick)")
     }
     
     func onRotation(
@@ -19,7 +18,6 @@ class ScrollController: Controller {
         buttonState: Device.ButtonState, interval: TimeInterval?,
         _ deviceCallback: Device.Callback
     ) {
-        print("scroll rotation")
         /*
         let directionSignum = rotation.direction.rawValue
         

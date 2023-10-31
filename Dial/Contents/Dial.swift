@@ -153,6 +153,10 @@ extension Dial: InputHandler {
                     buttonState: buttonState, interval: interval,
                     device.callback
                 )
+                
+                if controller.haptics {
+                    device.buzz()
+                }
             }
         }
         
