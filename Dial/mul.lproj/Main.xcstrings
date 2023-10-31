@@ -12,42 +12,6 @@
           }
         }
       }
-    },
-    "kaA-Cc-i5G.title" : {
-      "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"kaA-Cc-i5G\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Box"
-          }
-        }
-      }
-    },
-    "R80-Je-A1R.title" : {
-      "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"R80-Je-A1R\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Box"
-          }
-        }
-      }
-    },
-    "XJm-hg-WZa.title" : {
-      "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"XJm-hg-WZa\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Box"
-          }
-        }
-      }
     }
   },
   "version" : "1.0"

@@ -10,6 +10,12 @@ class Dial {
     
     var statusBarController = StatusBarController()
     
+    var window = DialWindow(
+        styleMask: [.borderless],
+        backing: .buffered,
+        defer: true
+    )
+    
     var controller: Controller {
         if defaultController.isAgent {
             return defaultController.instance
@@ -95,6 +101,7 @@ extension Dial: InputHandler {
             // Trigger press and hold
             defaultController.dispatch = DispatchWorkItem {
                 self.defaultController.isAgent = true
+                self.window.show()
                 print("Default controller is now the agent.")
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval, execute: defaultController.dispatch)
@@ -102,8 +109,11 @@ extension Dial: InputHandler {
             lastActions.buttonPressed = .now
         case .released:
             defaultController.dispatch.cancel()
-            if defaultController.isAgent { print("Default controller is no longer the agent.") }
-            defaultController.isAgent = false
+            if defaultController.isAgent {
+                defaultController.isAgent = false
+                window.hide()
+                print("Default controller is no longer the agent.")
+            }
             
             let clickInterval = Date.now.timeIntervalSince(lastActions.buttonPressed)
             guard let clickInterval, clickInterval <= NSEvent.doubleClickInterval else { break }

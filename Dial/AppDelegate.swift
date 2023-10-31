@@ -8,13 +8,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var dial = Dial()
     
-    let dialWindow = DialWindow(
-        contentRect: NSRect.zero,
-        styleMask: [.borderless],
-        backing: .buffered,
-        defer: true
-    )
-    
     func requestPermissions() {
         // More information on this behaviour: https://stackoverflow.com/questions/29006379/accessibility-permissions-reset-after-application-update
         if !AXIsProcessTrusted() {
@@ -37,9 +30,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         Data.registerDefaults()
         requestPermissions()
-        
-        dialWindow.isReleasedWhenClosed = false
-        dialWindow.animationBehavior = .utilityWindow
     }
     
 }
