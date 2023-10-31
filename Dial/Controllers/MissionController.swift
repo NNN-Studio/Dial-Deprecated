@@ -14,6 +14,10 @@ class MissionController: Controller {
     
     private var escapeDispatch: DispatchWorkItem?
     
+    var haptics: Bool {
+        true
+    }
+    
     func onClick(isDoubleClick: Bool, interval: TimeInterval?) {
         print("mission click, double: \(isDoubleClick)")
         /*

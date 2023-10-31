@@ -7,6 +7,16 @@
 
 import Foundation
 
+protocol InputHandler {
+    
+    func onConnectionStatusChanged(_ isConnected: Bool, _ serialNumber: String?)
+    
+    func onButtonStateChanged(_ buttonState: Device.ButtonState)
+    
+    func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState)
+    
+}
+
 extension NSString {
     
     convenience init(wcharArray: UnsafeMutablePointer<wchar_t>) {
@@ -16,16 +26,6 @@ extension NSString {
             encoding: String.Encoding.utf32LittleEndian.rawValue
         )!
     }
-    
-}
-
-protocol DeviceEventHandler {
-    
-    func onConnectionStatusChanged(_ isConnected: Bool, _ serialNumber: String?)
-    
-    func onButtonStateChanged(_ buttonState: Device.ButtonState)
-    
-    func onRotation(_ rotation: Device.Rotation, _ buttonState: Device.ButtonState)
     
 }
 
@@ -50,6 +50,8 @@ class Device {
     
     
     
+    var inputHandler: InputHandler?
+    
     private var dev: OpaquePointer?
     
     private let readBuffer = ReadBuffer(size: 1024)
@@ -64,12 +66,10 @@ class Device {
     
     
     
-    var eventHandler: DeviceEventHandler?
-    
     init(
-        eventHandler: DeviceEventHandler? = nil
+        inputHandler: InputHandler? = nil
     ) {
-        self.eventHandler = eventHandler
+        self.inputHandler = inputHandler
         hid_init()
     }
     
@@ -188,7 +188,7 @@ extension Device {
         
         if isConnected {
             print("Connected to device \(serialNumber)!")
-            eventHandler?.onConnectionStatusChanged(true, serialNumber)
+            inputHandler?.onConnectionStatusChanged(true, serialNumber)
             buzz(3)
         }
         
@@ -201,15 +201,13 @@ extension Device {
             hid_close(dev)
             
             self.dev = nil
-            eventHandler?.onConnectionStatusChanged(false, nil)
+            inputHandler?.onConnectionStatusChanged(false, nil)
             print("Device disconnected.")
         }
     }
     
     // https://github.com/daniel5151/surface-dial-linux/blob/main/src/dial_device/haptics.rs
-    func updateHaptics(
-        _ flag: Bool = Data.haptics
-    ) {
+    func initHaptics() {
         if isConnected {
             let steps_lo = 3600 & 0xff
             let steps_hi = (3600 >> 8) & 0xff
@@ -220,7 +218,7 @@ extension Device {
             buf.append(UInt8(steps_hi)) // Steps
             buf.append(0x00) // Repeat count
             
-            buf.append(flag ? HapticsMode.continuous.rawValue : 0x02) // Auto trigger every 1/3600 turn
+            buf.append(0x02) // Do not auto trigger haptics
             
             buf.append(0x00) // Waveform cutoff time
             buf.append(0x00) // Retrigger period (lo)
@@ -334,14 +332,14 @@ extension Device {
                 case .dial(let buttonState, let rotation):
                     switch buttonState {
                     case .pressed where lastButtonState == .released:
-                        eventHandler?.onButtonStateChanged(.pressed)
+                        inputHandler?.onButtonStateChanged(.pressed)
                     case .released where lastButtonState == .pressed:
-                        eventHandler?.onButtonStateChanged(.released)
+                        inputHandler?.onButtonStateChanged(.released)
                     default: break
                     }
                     
                     if let rotation {
-                        eventHandler?.onRotation(rotation.byDirection(Data.direction), buttonState)
+                        inputHandler?.onRotation(rotation.byDirection(Data.direction), buttonState)
                     }
                     
                     self.lastButtonState = buttonState

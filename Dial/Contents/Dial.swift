@@ -11,8 +11,8 @@ class Dial {
     var statusBarController = StatusBarController()
     
     var controller: Controller {
-        if mainController.isAgent {
-            return mainController.instance
+        if defaultController.isAgent {
+            return defaultController.instance
         } else {
             let item = (
                 statusBarController.menuItems?.modes
@@ -20,11 +20,11 @@ class Dial {
                     .first
             )
             
-            return item?.controller ?? mainController.instance
+            return item?.controller ?? defaultController.instance
         }
     }
     
-    private var mainController = (instance: MainController(), isAgent: false, dispatch: DispatchWorkItem {})
+    private var defaultController = (instance: DefaultController(), isAgent: false, dispatch: DispatchWorkItem {})
     
     private var lastActions: (
         buttonPressed: Date?,
@@ -33,7 +33,7 @@ class Dial {
     )
     
     init() {
-        device.eventHandler = self
+        device.inputHandler = self
         connect()
     }
     
@@ -56,7 +56,7 @@ extension Dial {
     
 }
 
-extension Dial: DeviceEventHandler {
+extension Dial: InputHandler {
     
     func onConnectionStatusChanged(_ isConnected: Bool, _ serialNumber: String?) {
         statusBarController.onConnectionStatusChanged(isConnected, serialNumber)
@@ -69,17 +69,17 @@ extension Dial: DeviceEventHandler {
         switch buttonState {
         case .pressed:
             // Trigger press and hold
-            mainController.dispatch = DispatchWorkItem {
-                self.mainController.isAgent = true
+            defaultController.dispatch = DispatchWorkItem {
+                self.defaultController.isAgent = true
                 print("Main controller is now the agent.")
             }
-            DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval, execute: mainController.dispatch)
+            DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval, execute: defaultController.dispatch)
             
             lastActions.buttonPressed = .now
         case .released:
-            mainController.dispatch.cancel()
-            if mainController.isAgent { print("Main controller is no longer the agent.") }
-            mainController.isAgent = false
+            defaultController.dispatch.cancel()
+            if defaultController.isAgent { print("Main controller is no longer the agent.") }
+            defaultController.isAgent = false
             
             let clickInterval = Date.now.timeIntervalSince(lastActions.buttonPressed)
             guard let clickInterval, clickInterval <= NSEvent.doubleClickInterval else { break }
