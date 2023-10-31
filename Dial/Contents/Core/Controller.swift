@@ -43,7 +43,6 @@ class DefaultController: Controller {
     }
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ deviceCallback: Device.Callback) {
-        print("main click, double: \(isDoubleClick)")
     }
     
     func onRotation(
@@ -51,7 +50,6 @@ class DefaultController: Controller {
         buttonState: Device.ButtonState, interval: TimeInterval?,
         _ deviceCallback: Device.Callback
     ) {
-        print("main rotation")
     }
     
 }

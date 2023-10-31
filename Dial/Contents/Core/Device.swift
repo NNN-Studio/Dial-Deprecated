@@ -211,19 +211,23 @@ extension Device {
     }
     
     private func parse(
-        bytes: UnsafeMutableBufferPointer<UInt8>
+        _ bytes: UnsafeMutableBufferPointer<UInt8>
     ) -> InputReport {
         switch bytes[0] {
-        case 1 where bytes.count >= 4:
-            let buttonState = bytes[1] & 1 == 1 ? ButtonState.pressed : .released
+        case 0x01 where bytes.count >= 4:
+            let buttonState = bytes[1] & 0x01 == 0x01 ? ButtonState.pressed : .released
+            let hasRotation = bytes[2] != 0x00
+            var direction: Direction?
             
-            let direction: Direction? = switch bytes[3] {
-            case 0x00:
-                .clockwise * Data.direction
-            case 0xff:
-                .counterclockwise * Data.direction
-            default:
-                nil
+            if hasRotation {
+                direction = switch bytes[3] {
+                case 0x00:
+                        .clockwise * Data.direction
+                case 0xff:
+                        .counterclockwise * Data.direction
+                default:
+                    nil
+                }
             }
             
             return .dial(buttonState, direction)
@@ -243,11 +247,16 @@ extension Device {
         }
         
         let array = UnsafeMutableBufferPointer(start: readBuffer.pointer, count: Int(readBytes))
-        
         let dataStr = array.map({ String(format:"%02X", $0)}).joined(separator: " ")
-        print("Reading data from device: \(dataStr)")
         
-        return parse(bytes: array)
+        let result = parse(array)
+        switch result {
+        case .unknown:
+            print("Reading data from device: \(dataStr) (unknown)")
+        default:
+            print("Reading data from device: \(dataStr)")
+        }
+        return result
     }
     
 }
@@ -305,8 +314,6 @@ extension Device {
                     }
                     
                     self.lastButtonState = buttonState
-                case .unknown:
-                    print("Unknown input report.")
                 default:
                     break
                 }

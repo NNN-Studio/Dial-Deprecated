@@ -87,19 +87,22 @@ extension Dial: InputHandler {
         let pressInterval = Date.now.timeIntervalSince(lastActions.buttonPressed)
         let releaseInterval = Date.now.timeIntervalSince(lastActions.buttonReleased)
         
+        rotationBehavior.started = false
+        rotationBehavior.degrees = 0
+        
         switch buttonState {
         case .pressed:
             // Trigger press and hold
             defaultController.dispatch = DispatchWorkItem {
                 self.defaultController.isAgent = true
-                print("Main controller is now the agent.")
+                print("Default controller is now the agent.")
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval, execute: defaultController.dispatch)
             
             lastActions.buttonPressed = .now
         case .released:
             defaultController.dispatch.cancel()
-            if defaultController.isAgent { print("Main controller is no longer the agent.") }
+            if defaultController.isAgent { print("Default controller is no longer the agent.") }
             defaultController.isAgent = false
             
             let clickInterval = Date.now.timeIntervalSince(lastActions.buttonPressed)
