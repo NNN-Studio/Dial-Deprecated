@@ -14,7 +14,9 @@ class DialWindow: NSWindow {
     
     
     
-    let dialView = DialView()
+    var dialViewController: DialViewController? {
+        contentViewController as? DialViewController
+    }
     
     private static var menuAppearanceObservation: NSKeyValueObservation?
     
@@ -28,7 +30,7 @@ class DialWindow: NSWindow {
         defer flag: Bool
     ) {
         super.init(contentRect: .zero, styleMask: style, backing: backingStoreType, defer: flag)
-        self.contentView = dialView
+        self.contentViewController = DialViewController()
         
         hasShadow = true
         isReleasedWhenClosed = false
@@ -43,73 +45,16 @@ class DialWindow: NSWindow {
         // Observe appearance change
         DialWindow.menuAppearanceObservation = NSApp.observe(\.effectiveAppearance) { (app, _) in
             app.effectiveAppearance.performAsCurrentDrawingAppearance {
-                self.dialView.updateColoredWidgets()
+                if let dialViewController = self.dialViewController, dialViewController.isViewLoaded {
+                    dialViewController.updateColoredWidgets()
+                }
             }
         }
-    }
-    
-    func show() {
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.makeKeyAndOrderFront(nil)
-            self.dialView.updateColoredWidgets()
-            self.updatePosition()
-        }
-    }
-    
-    func hide() {
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            self.close()
-        }
-    }
-    
-    func updatePosition(_ animate: Bool = false) {
-        /*
-        guard
-            let screenSize = NSScreen.main?.frame.size,
-            let screenOrigin = NSScreen.main?.frame.origin,
-            let stackView = dialViewController?.stackView
-        else {
-            center()
-            return
-        }
         
-        let enabledSubview = stackView.subviews[Data.dialMode.rawValue]
         
-        let mouseLocation = NSEvent.mouseLocation
-        let frameSize = frame.size
-        let offset = enabledSubview.frame.origin.applying(CGAffineTransform(
-            translationX: stackView.frame.origin.x + enabledSubview.frame.width / 2,
-            y: stackView.frame.origin.y + enabledSubview.frame.height / 2
-        ))
         
-        let translatedFrameOrigin = mouseLocation
-            .applying(CGAffineTransform(translationX: -screenOrigin.x, y: -screenOrigin.y))
-            .applying(CGAffineTransform(translationX: -offset.x, y: -offset.y))
-        let clampedFrameOrigin = CGPoint(
-            x: screenOrigin.x + max(0, min(screenSize.width - frameSize.width, translatedFrameOrigin.x)),
-            y: screenOrigin.y + max(0, min(screenSize.height - frameSize.height, translatedFrameOrigin.y))
-        )
-        
-        NSAnimationContext.runAnimationGroup { context in
-            context.allowsImplicitAnimation = animate
-            
-            setFrameOrigin(clampedFrameOrigin)
-        }
-         */
-    }
-    
-}
-
-class DialView: NSView {
-    
-    var backgrounds: (outer: NSVisualEffectView?, inner: NSVisualEffectView?)
-    
-    override func viewDidUnhide() {
-        backgrounds.outer = createVisualEffectView(size: DialWindow.size.outer, material: .fullScreenUI)
-        addSubview(backgrounds.outer!, positioned: .above, relativeTo: nil)
-        
-        backgrounds.inner = createVisualEffectView(size: DialWindow.size.inner, material: .sheet)
-        addSubview(backgrounds.inner!, positioned: .above, relativeTo: nil)
+        self.contentView?.addSubview(createVisualEffectView(size: DialWindow.size.inner, material: .sheet), positioned: .below, relativeTo: nil)
+        self.contentView?.addSubview(createVisualEffectView(size: DialWindow.size.outer, material: .fullScreenUI), positioned: .below, relativeTo: nil)
     }
     
     private func createVisualEffectView(
@@ -117,7 +62,7 @@ class DialView: NSView {
         blendMode: NSVisualEffectView.BlendingMode = .behindWindow,
         material: NSVisualEffectView.Material
     ) -> NSVisualEffectView {
-        let frameRect = bounds
+        let frameRect = contentView!.bounds
         let sizeRect = NSRect(origin: .zero, size: NSSize(width: size, height: size))
         let view = NSVisualEffectView(frame: sizeRect.applying(CGAffineTransform(
             translationX: frameRect.minX + (frameRect.width - size) / 2,
@@ -134,7 +79,69 @@ class DialView: NSView {
         return view
     }
     
+    func show() {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.makeKeyAndOrderFront(nil)
+            self.dialViewController?.updateColoredWidgets()
+            self.updatePosition()
+        }
+    }
+    
+    func hide() {
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.close()
+        }
+    }
+    
+    func updatePosition() {
+        guard
+            let screenSize = NSScreen.main?.frame.size,
+            let screenOrigin = NSScreen.main?.frame.origin
+        else {
+            center()
+            return
+        }
+        
+        let mouseLocation = NSEvent.mouseLocation
+        let frameSize = frame.size
+        
+        let translatedFrameOrigin = mouseLocation
+            .applying(CGAffineTransform(translationX: -screenOrigin.x, y: -screenOrigin.y))
+            .applying(CGAffineTransform(translationX: -frameSize.width / 2, y: -frameSize.height / 2))
+        let clampedFrameOrigin = CGPoint(
+            x: screenOrigin.x + max(0, min(screenSize.width - frameSize.width, translatedFrameOrigin.x)),
+            y: screenOrigin.y + max(0, min(screenSize.height - frameSize.height, translatedFrameOrigin.y))
+        )
+        
+        setFrameOrigin(clampedFrameOrigin)
+    }
+    
+}
+
+class DialViewController: NSViewController {
+    
     func updateColoredWidgets() {
+    }
+    
+    func updateSubview(_ subview: NSView) {
+        /*
+        let index = stackView.subviews.firstIndex(of: subview)
+        let enabled = Data.dialMode.rawValue == index
+        
+        if let box = subview as? NSBox {
+            box.animator().borderColor = .clear
+            box.animator().fillColor = .controlAccentColor.withAlphaComponent(0.2)
+            box.animator().isTransparent = !enabled
+            
+            box.subviews.forEach {
+                $0.subviews.forEach {
+                    if let imageView = $0 as? NSImageView {
+                        imageView.animator().contentTintColor = enabled ? .controlAccentColor : .secondaryLabelColor
+                    }
+                }
+            }
+        }
+         */
     }
     
 }
