@@ -209,7 +209,7 @@ struct MenuItems {
 
 class StatusBarController: NSObject, NSMenuDelegate {
     
-    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    let statusItem = NSStatusBar.system.statusItem(withLength: 32)
     
     var menuItems: MenuItems?
     
@@ -263,7 +263,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
             if let button = statusItem.button {
                 if !isConnected {
-                    button.image = NSImage(named: NSImage.Name("Dial"))!
+                    button.image = NSImage(named: NSImage.Name("DialDisabled"))!
                 }
                 
                 else {
@@ -280,6 +280,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
                     }
                 }
                 
+                button.image?.size = NSSize(width: 30, height: 20)
                 button.appearsDisabled = !isConnected
             }
         }
