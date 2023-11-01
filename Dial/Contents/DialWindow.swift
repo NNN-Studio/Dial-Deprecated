@@ -8,6 +8,31 @@
 import Foundation
 import AppKit
 
+extension NSView {
+    
+    func setRotation(
+        _ radians: CGFloat,
+        animate: Bool = false
+    ) {
+        if let layer, let animatorLayer = animator().layer {
+            layer.position = CGPoint(x: frame.midX, y: frame.midY)
+            layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            
+            let transform = CATransform3DMakeRotation(radians, 0, 0, 1)
+            
+            if animate {
+                NSAnimationContext.runAnimationGroup { context in
+                    context.allowsImplicitAnimation = true
+                    animatorLayer.transform = transform
+                }
+            } else {
+                layer.transform = transform
+            }
+        }
+    }
+    
+}
+
 class DialWindow: NSWindow {
     
     static let size = (outer: 225.0, inner: 135.0)
@@ -50,33 +75,6 @@ class DialWindow: NSWindow {
                 }
             }
         }
-        
-        
-        
-        self.contentView?.addSubview(createVisualEffectView(size: DialWindow.size.inner, material: .sheet), positioned: .below, relativeTo: nil)
-        self.contentView?.addSubview(createVisualEffectView(size: DialWindow.size.outer, material: .fullScreenUI), positioned: .below, relativeTo: nil)
-    }
-    
-    private func createVisualEffectView(
-        size: CGFloat,
-        blendMode: NSVisualEffectView.BlendingMode = .behindWindow,
-        material: NSVisualEffectView.Material
-    ) -> NSVisualEffectView {
-        let frameRect = contentView!.bounds
-        let sizeRect = NSRect(origin: .zero, size: NSSize(width: size, height: size))
-        let view = NSVisualEffectView(frame: sizeRect.applying(CGAffineTransform(
-            translationX: frameRect.minX + (frameRect.width - size) / 2,
-            y: frameRect.minY + (frameRect.height - size) / 2
-        )))
-        
-        view.blendingMode = blendMode
-        view.material = material
-        
-        view.wantsLayer = true
-        view.layer?.cornerRadius = size / 2
-        view.state = .active
-        
-        return view
     }
     
     func show() {
@@ -84,6 +82,7 @@ class DialWindow: NSWindow {
             self.makeKeyAndOrderFront(nil)
             self.dialViewController?.updateColoredWidgets()
             self.updatePosition()
+            self.dialViewController?.update()
         }
     }
     
@@ -108,10 +107,48 @@ class DialWindow: NSWindow {
         let translatedFrameOrigin = mouseLocation
             .applying(CGAffineTransform(translationX: -screenOrigin.x, y: -screenOrigin.y))
             .applying(CGAffineTransform(translationX: -frameSize.width / 2, y: -frameSize.height / 2))
-        let clampedFrameOrigin = CGPoint(
+        let translatedScreenOrigin = screenOrigin.applying(CGAffineTransform(translationX: -frameSize.width / 2, y: -frameSize.height / 2))
+        var clampedFrameOrigin = CGPoint(
             x: screenOrigin.x + max(0, min(screenSize.width - frameSize.width, translatedFrameOrigin.x)),
             y: screenOrigin.y + max(0, min(screenSize.height - frameSize.height, translatedFrameOrigin.y))
         )
+        
+        let reached = (
+            minX: translatedFrameOrigin.x <= screenOrigin.x,
+            minY: translatedFrameOrigin.y <= screenOrigin.y,
+            maxX: translatedFrameOrigin.x + frameSize.width >= screenOrigin.x + screenSize.width
+        )
+        let offset: CGFloat = (DialWindow.size.inner / 2) / sqrt(2)
+        dialViewController?.radiansOffset = 0
+        
+        if reached.minX {
+            if reached.minY {
+                // Left bottom corner
+                clampedFrameOrigin = translatedScreenOrigin
+                    .applying(CGAffineTransform(translationX: offset, y: offset))
+                dialViewController?.radiansOffset = -Double.pi / 4
+            } else {
+                // Left edge
+                clampedFrameOrigin.x = translatedScreenOrigin.x
+                dialViewController?.radiansOffset = -Double.pi / 2
+            }
+        } else if reached.maxX {
+            if reached.minY {
+                // Right bottom corner
+                clampedFrameOrigin = translatedScreenOrigin
+                    .applying(CGAffineTransform(translationX: -offset, y: offset))
+                    .applying(CGAffineTransform(translationX: screenSize.width, y: 0))
+                dialViewController?.radiansOffset = Double.pi / 4
+            } else {
+                // Right edge
+                clampedFrameOrigin.x = translatedScreenOrigin
+                    .applying(CGAffineTransform(translationX: screenSize.width, y: 0)).x
+                dialViewController?.radiansOffset = Double.pi / 2
+            }
+        } else if reached.minY {
+            // Bottom edge
+            clampedFrameOrigin.y = translatedScreenOrigin.y
+        }
         
         setFrameOrigin(clampedFrameOrigin)
     }
@@ -120,28 +157,161 @@ class DialWindow: NSWindow {
 
 class DialViewController: NSViewController {
     
-    func updateColoredWidgets() {
+    var radiansOffset = CGFloat.zero
+    
+    var visualEffectViews: (background: NSVisualEffectView?, foreground: NSVisualEffectView?)
+    
+    var iconsView: NSView?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view = NSView(frame: NSRect(origin: .zero, size: .init(width: DialWindow.size.outer, height: DialWindow.size.outer)))
+        
+        let foregroundMultiplier = DialWindow.size.inner / DialWindow.size.outer
+        visualEffectViews = (
+            background: createVisualEffectView(material: .contentBackground),
+            foreground: createVisualEffectView(multiplier: foregroundMultiplier, material: .windowBackground)
+        )
+        view.addSubview(fillView(visualEffectViews.background!), positioned: .above, relativeTo: nil)
+        view.addSubview(fillView(visualEffectViews.foreground!, multiplier: foregroundMultiplier), positioned: .above, relativeTo: nil)
+        
+        iconsView = NSView()
+        iconsView?.wantsLayer = true
+        view.addSubview(fillView(iconsView!))
+        
+        DialMode.allCases
+            .enumerated()
+            .forEach { self.iconsView?.addSubview(createIconView($0.element.icon, $0.offset)) }
     }
     
-    func updateSubview(_ subview: NSView) {
-        /*
-        let index = stackView.subviews.firstIndex(of: subview)
-        let enabled = Data.dialMode.rawValue == index
+    override func viewWillAppear() {
+        super.viewWillAppear()
         
-        if let box = subview as? NSBox {
-            box.animator().borderColor = .clear
-            box.animator().fillColor = .controlAccentColor.withAlphaComponent(0.2)
-            box.animator().isTransparent = !enabled
-            
-            box.subviews.forEach {
-                $0.subviews.forEach {
-                    if let imageView = $0 as? NSImageView {
-                        imageView.animator().contentTintColor = enabled ? .controlAccentColor : .secondaryLabelColor
+        updateColoredWidgets()
+        update()
+    }
+    
+    override func viewWillDisappear() {
+        super.viewWillDisappear()
+    }
+    
+    private func createVisualEffectView(
+        multiplier: CGFloat = 1,
+        blendMode: NSVisualEffectView.BlendingMode = .behindWindow,
+        material: NSVisualEffectView.Material
+    ) -> NSVisualEffectView {
+        let size = DialWindow.size.outer * multiplier
+        let view = NSVisualEffectView()
+        
+        view.blendingMode = blendMode
+        view.material = material
+        
+        view.wantsLayer = true
+        view.layer?.cornerRadius = size / 2
+        view.state = .active
+        
+        return view
+    }
+    
+    private func createIconView(
+        _ icon: NSImage,
+        _ index: Int
+    ) -> NSImageView {
+        let radians = getRadians(ofIndex: index)
+        let radius = CGFloat(DialWindow.size.inner + DialWindow.size.outer) / 4
+        let pos = NSPoint(x: radius * sin(-radians - Double.pi), y: radius * cos(radians - Double.pi))
+        
+        let view = NSImageView(image: icon)
+        
+        view.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addConstraints([
+            NSLayoutConstraint(item: view, attribute: .centerX, relatedBy: .equal, toItem: self.iconsView, attribute: .centerX, multiplier: 1, constant: pos.x),
+            NSLayoutConstraint(item: view, attribute: .centerY, relatedBy: .equal, toItem: self.iconsView, attribute: .centerY, multiplier: 1, constant: pos.y)
+        ])
+        view.rotate(byDegrees: -radians * 180 / Double.pi)
+        
+        return view
+    }
+    
+    private func fillView(
+        _ view: NSView,
+        multiplier: CGFloat = 1
+    ) -> NSView {
+        view.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addConstraints([
+            NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: self.view, attribute: .width, multiplier: multiplier, constant: 0),
+            NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: self.view, attribute: .height, multiplier: multiplier, constant: 0),
+            NSLayoutConstraint(item: view, attribute: .centerX, relatedBy: .equal, toItem: self.view, attribute: .centerX, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: view, attribute: .centerY, relatedBy: .equal, toItem: self.view, attribute: .centerY, multiplier: 1, constant: 0)
+        ])
+        
+        return view
+    }
+    
+    private func getRadians(
+        ofIndex index: Int = Data.dialMode.rawValue
+    ) -> CGFloat {
+        CGFloat(index % Data.maxIconCount) / CGFloat(Data.maxIconCount) * 2 * Double.pi + radiansOffset
+    }
+    
+    func updateColoredWidgets() {
+        if let iconsView {
+            for (index, iconView) in iconsView.subviews.enumerated() {
+                if let iconView = iconView as? NSImageView {
+                    if index == Data.dialMode.rawValue {
+                        iconView.contentTintColor = .controlAccentColor
+                        let shadow = NSShadow()
+                        
+                        shadow.shadowColor = .controlAccentColor
+                        shadow.shadowBlurRadius = 7.5
+                        
+                        iconView.wantsLayer = true
+                        iconView.shadow = shadow
+                    } else {
+                        iconView.contentTintColor = .tertiaryLabelColor
+                        iconView.shadow = nil
                     }
                 }
             }
         }
-         */
+    }
+    
+    func update(
+        animate: Bool = false
+    ) {
+        iconsView?.setRotation(getRadians(), animate: animate)
+    }
+    
+}
+
+extension DialWindow {
+    
+    var callback: Callback {
+        Callback(self)
+    }
+    
+    struct Callback {
+        
+        private var window: DialWindow
+        
+        init(
+            _ window: DialWindow
+        ) {
+            self.window = window
+        }
+        
+        func update(
+            animate: Bool = false
+        ) {
+            DispatchQueue.main.async {
+                if let viewController = window.dialViewController {
+                    viewController.updateColoredWidgets()
+                    viewController.update(animate: animate)
+                }
+            }
+        }
+        
     }
     
 }

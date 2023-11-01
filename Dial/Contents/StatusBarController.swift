@@ -293,9 +293,9 @@ extension StatusBarController {
         if let mode {
             Data.dialMode = mode
             menuItems?.updateDialMode()
-            updateIcon(AppDelegate.instance?.dial.device.isConnected ?? false)
             
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
+            DispatchQueue.main.async {
+                self.updateIcon(AppDelegate.instance?.dial.device.isConnected ?? false)
                 AppDelegate.instance?.dial.device.buzz()
             }
         }

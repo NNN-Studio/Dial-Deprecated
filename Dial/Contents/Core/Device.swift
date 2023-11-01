@@ -195,7 +195,7 @@ extension Device {
     ) {
         guard repeatCount > 0 else { return }
         
-        if isConnected {
+        if Data.haptics && isConnected {
             var buf: Array<UInt8> = []
             
             buf.append(0x01) // Report ID
@@ -222,15 +222,15 @@ extension Device {
             if hasRotation {
                 direction = switch bytes[3] {
                 case 0x00:
-                        .clockwise * Data.direction
+                    .clockwise
                 case 0xff:
-                        .counterclockwise * Data.direction
+                    .counterclockwise
                 default:
                     nil
                 }
             }
             
-            return .dial(buttonState, direction)
+            return .dial(buttonState, direction?.multiply(Data.direction))
         default:
             return .unknown
         }
@@ -248,9 +248,15 @@ extension Device {
         
         let array = UnsafeMutableBufferPointer(start: readBuffer.pointer, count: Int(readBytes))
         let dataStr = array.map({ String(format:"%02X", $0)}).joined(separator: " ")
+        print("Reading data from device: \(dataStr)", terminator: "")
         
         let result = parse(array)
-        print("Reading data from device: \(dataStr)" + result == .unknown ? "(unknown)" : "")
+        switch result {
+        case .unknown:
+            print(" (unknown)")
+        default:
+            print()
+        }
         return result
     }
     

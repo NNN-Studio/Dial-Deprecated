@@ -7,6 +7,7 @@
 
 import Foundation
 import LaunchAtLogin
+import AppKit
 
 enum DialMode: Int, CaseIterable {
     
@@ -16,20 +17,36 @@ enum DialMode: Int, CaseIterable {
     
     case mission = 2
     
+    var icon: NSImage {
+        switch self {
+        case .scroll:
+            DialMode.createIcon("chevron.up.chevron.down")!
+        case .playback:
+            DialMode.createIcon("play")!
+        case .mission:
+            DialMode.createIcon("command")!
+        }
+    }
+    
+    private static func createIcon(_ systemName: String) -> NSImage? {
+        NSImage(systemSymbolName: systemName, accessibilityDescription: nil)?
+            .withSymbolConfiguration(.init(pointSize: 20, weight: .medium))
+    }
+    
 }
 
 /// Decides how much steps per circle the dial is divided into.
 enum Sensitivity: CGFloat {
     
-    case low = 6
+    case low = 5
     
-    case medium = 10
+    case medium = 7
     
-    case natural = 18
+    case natural = 10
     
-    case high = 36
+    case high = 30
     
-    case extreme = 90
+    case extreme = 45
     
 }
 
@@ -49,8 +66,13 @@ enum Direction: Int {
         }
     }
     
-    static func *(lhs: Direction, rhs: Direction) -> Direction {
-        lhs == rhs ? lhs : lhs.negate
+    func multiply(_ another: Direction) -> Direction {
+        switch another {
+        case .clockwise:
+            self
+        case .counterclockwise:
+            self.negate
+        }
     }
     
 }
@@ -100,6 +122,8 @@ struct Data {
         Key.direction.register(Direction.clockwise.rawValue)
     }
     
+    static let maxIconCount = 10
+    
     static let rotationThresholdDegrees: UInt = 10
     
     static var rotationGap: Int {
@@ -132,7 +156,7 @@ struct Data {
         let inRange = NSRange(location: 0, length: maxRawValue).contains(value)
         
         if wrap || inRange {
-            return DialMode(rawValue: value % maxRawValue) ?? .scroll
+            return DialMode(rawValue: value % maxRawValue)
         }
         
         return nil

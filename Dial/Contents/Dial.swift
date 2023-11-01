@@ -101,6 +101,7 @@ extension Dial: InputHandler {
             defaultController.dispatch = DispatchWorkItem {
                 self.defaultController.isAgent = true
                 self.window.show()
+                self.device.buzz()
                 print("Default controller is now the agent.")
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval, execute: defaultController.dispatch)
@@ -119,11 +120,11 @@ extension Dial: InputHandler {
             
             if let releaseInterval, releaseInterval <= NSEvent.doubleClickInterval {
                 // Double click
-                controller.onClick(isDoubleClick: true, interval: releaseInterval, device.callback)
+                controller.onClick(isDoubleClick: true, interval: releaseInterval, callback)
                 lastActions.buttonReleased = nil
             } else {
                 // Click
-                controller.onClick(isDoubleClick: false, interval: releaseInterval, device.callback)
+                controller.onClick(isDoubleClick: false, interval: releaseInterval, callback)
                 lastActions.buttonReleased = .now
             }
         }
@@ -155,7 +156,7 @@ extension Dial: InputHandler {
             controller.onRotation(
                 rotation: .continuous(direction), totalDegrees: rotationBehavior.degrees,
                 buttonState: buttonState, interval: interval,
-                device.callback
+                callback
             )
             
             if lastStep != currentStep {
@@ -163,7 +164,7 @@ extension Dial: InputHandler {
                 controller.onRotation(
                     rotation: .stepping(direction), totalDegrees: rotationBehavior.degrees,
                     buttonState: buttonState, interval: interval,
-                    device.callback
+                    callback
                 )
                 
                 if controller.haptics {
@@ -173,6 +174,42 @@ extension Dial: InputHandler {
         }
         
         lastActions.rotation = .now
+    }
+    
+}
+
+extension Dial {
+    
+    var callback: Callback {
+        Callback(self)
+    }
+    
+    struct Callback {
+        
+        private var dial: Dial
+        
+        var device: Device.Callback {
+            dial.device.callback
+        }
+        
+        var window: DialWindow.Callback {
+            dial.window.callback
+        }
+        
+        init(
+            _ dial: Dial
+        ) {
+            self.dial = dial
+        }
+        
+        func setDialModeAndUpdate(
+            _ mode: DialMode,
+            animate: Bool = false
+        ) {
+            dial.statusBarController.setDialModeAndUpdate(mode)
+            window.update(animate: animate)
+        }
+        
     }
     
 }

@@ -18,7 +18,7 @@ class MissionController: Controller {
         true
     }
     
-    func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ deviceCallback: Device.Callback) {
+    func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
         /*
         if inMission {
             inMission = false
@@ -31,7 +31,7 @@ class MissionController: Controller {
     func onRotation(
         rotation: Dial.Rotation, totalDegrees: Int,
         buttonState: Device.ButtonState, interval: TimeInterval?,
-        _ deviceCallback: Device.Callback
+        _ callback: Dial.Callback
     ) {
         /*
         escapeDispatch?.cancel()
