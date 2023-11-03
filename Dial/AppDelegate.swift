@@ -42,3 +42,16 @@ extension AppDelegate {
     
 }
 
+func setCursorVisibility(
+    _ visible: Bool
+) {
+    let propertyString = CFStringCreateWithCString(kCFAllocatorDefault, "SetsCursorInBackground", 0)
+    CGSSetConnectionProperty(_CGSDefaultConnection(), _CGSDefaultConnection(), propertyString, kCFBooleanTrue)
+    
+    if visible {
+        NSCursor.unhide()
+    } else {
+        NSCursor.hide()
+    }
+}
+

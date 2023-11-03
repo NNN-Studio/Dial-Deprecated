@@ -190,10 +190,13 @@ class DialViewController: NSViewController {
         
         updateColoredWidgets()
         update()
+        setCursorVisibility(false)
     }
     
     override func viewWillDisappear() {
         super.viewWillDisappear()
+        
+        setCursorVisibility(true)
     }
     
     private func createVisualEffectView(
