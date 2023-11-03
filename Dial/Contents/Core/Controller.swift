@@ -23,7 +23,9 @@ protocol Controller: AnyObject {
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback)
     
-    func onRotation(rotation: Dial.Rotation, totalDegrees: Int, buttonState: Device.ButtonState, interval: TimeInterval?, _ callback: Dial.Callback)
+    func onRotation(rotation: Dial.Rotation, totalDegrees: Int, buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval, _ callback: Dial.Callback)
+    
+    func onRelease(_ callback: Dial.Callback)
     
 }
 
@@ -32,6 +34,8 @@ extension Controller {
     var haptics: Bool {
         false
     }
+    
+    func onRelease(_ callback: Dial.Callback) {}
     
 }
 
@@ -42,12 +46,11 @@ class DefaultController: Controller {
         false
     }
     
-    func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
-    }
+    func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {}
     
     func onRotation(
         rotation: Dial.Rotation, totalDegrees: Int,
-        buttonState: Device.ButtonState, interval: TimeInterval?,
+        buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval,
         _ callback: Dial.Callback
     ) {
         switch rotation {

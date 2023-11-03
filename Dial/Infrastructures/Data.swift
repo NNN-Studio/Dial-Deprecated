@@ -48,6 +48,26 @@ enum Sensitivity: CGFloat {
     
     case extreme = 45
     
+    /// Decides how much steps per circle the dial is divided into in continuous rotation.
+    var continuous: CGFloat {
+        switch self {
+        case .low:
+            60
+        case .medium:
+            90
+        case .natural:
+            120
+        case .high:
+            240
+        case .extreme:
+            360
+        }
+    }
+    
+    var gap: (stepping: CGFloat, continuous: CGFloat) {
+        (stepping: 360 / rawValue, continuous: 360 / self.continuous)
+    }
+    
 }
 
 enum Direction: Int {
@@ -64,6 +84,10 @@ enum Direction: Int {
         case .counterclockwise:
             .clockwise
         }
+    }
+    
+    func negateIf(_ flag: Bool) -> Direction {
+        flag ? negate : self
     }
     
     func multiply(_ another: Direction) -> Direction {
@@ -125,10 +149,6 @@ struct Data {
     static let maxIconCount = 10
     
     static let rotationThresholdDegrees: UInt = 10
-    
-    static var rotationGap: Int {
-        Int(360 / sensitivity.rawValue)
-    }
     
     static var startsWithMacOS: Bool {
         get {

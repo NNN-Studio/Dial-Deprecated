@@ -19,54 +19,43 @@ class MissionController: Controller {
     }
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
-        /*
-        if inMission {
-            inMission = false
-            escapeDispatch?.cancel()
-            postKeys([Keyboard.keyReturn])
+        if !isDoubleClick {
+            onRelease(callback)
         }
-         */
     }
     
     func onRotation(
         rotation: Dial.Rotation, totalDegrees: Int,
-        buttonState: Device.ButtonState, interval: TimeInterval?,
+        buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval,
         _ callback: Dial.Callback
     ) {
-        /*
-        escapeDispatch?.cancel()
-        inMission = true
-        
-        var modifiers: [NSEvent.ModifierFlags]
-        var action: [Dial.ButtonState: [Direction: [Int32]]] = [:]
-        
-        switch buttonState {
-        case .pressed:
-            modifiers = []
-            action[.pressed] = [.clockwise: [], .counterclockwise: []]
-            break
-        case .released:
-            modifiers = [NSEvent.ModifierFlags.command]
-            if direction.withRotation(rotation) == .counterclockwise {
-                modifiers.append(NSEvent.ModifierFlags.shift)
-            }
+        switch rotation {
+        case .stepping(let direction):
+            escapeDispatch?.cancel()
+            inMission = true
             
-            action[.released] = [.clockwise: [Keyboard.keyTab], .counterclockwise: [Keyboard.keyTab]]
+            let modifiers: [NSEvent.ModifierFlags] = [NSEvent.ModifierFlags.command]
+            let action: [Direction: [Int32]] = [.clockwise: [Input.keyTab], .counterclockwise: [Input.keyTab]]
+            
+            Input.postKeys(action[direction]!, modifiers: modifiers)
+            
+            escapeDispatch = DispatchWorkItem {
+                Input.postKeys([Input.keyEscape])
+            }
+            if let escapeDispatch {
+                DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval * 3, execute: escapeDispatch)
+            }
+        default:
             break
         }
-        
-        postKeys(action[buttonState]![direction.withRotation(rotation)]!, modifiers: modifiers)
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
-            AppDelegate.instance?.dial.device.buzz()
+    }
+    
+    func onRelease(_ callback: Dial.Callback) {
+        if inMission {
+            inMission = false
+            escapeDispatch?.cancel()
+            Input.postKeys([Input.keyReturn])
         }
-        
-        escapeDispatch = DispatchWorkItem {
-            self.postKeys([Keyboard.keyEscape])
-        }
-        if let escapeDispatch {
-            DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval * 3, execute: escapeDispatch)
-        }
-         */
     }
     
 }

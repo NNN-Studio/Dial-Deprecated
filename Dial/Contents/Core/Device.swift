@@ -149,7 +149,7 @@ extension Device {
         
         if isConnected {
             print("Connected to device \(serialNumber)!")
-            initBehavior()
+            initSensitivity()
             inputHandler?.onConnectionStatusChanged(true, serialNumber)
             buzz(3)
         }
@@ -169,7 +169,7 @@ extension Device {
     }
     
     // https://github.com/daniel5151/surface-dial-linux/blob/main/src/dial_device/haptics.rs
-    private func initBehavior() {
+    private func initSensitivity() {
         if isConnected {
             let steps_lo = 360 & 0xff
             let steps_hi = (360 >> 8) & 0xff

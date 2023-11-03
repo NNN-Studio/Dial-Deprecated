@@ -4,74 +4,45 @@ import AppKit
 
 class ScrollController: Controller {
     
-    private var currentStep = 0
-    
-    private var deaccelerationDispatch: DispatchWorkItem?
-    
-    private var continuousScrolling = (directionSignum: 1.signum(), time: Date.distantPast, count: 0, enabled: false)
+    private var accumulated = 0
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
+        Input.postMouse(.center, buttonState: .pressed)
+        Input.postMouse(.center, buttonState: .released)
     }
     
     func onRotation(
         rotation: Dial.Rotation, totalDegrees: Int,
-        buttonState: Device.ButtonState, interval: TimeInterval?,
+        buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval,
         _ callback: Dial.Callback
     ) {
-        /*
-        let directionSignum = rotation.direction.rawValue
+        var accelerated = false
         
-        if continuousScrolling.directionSignum != directionSignum {
-            continuousScrolling.directionSignum = directionSignum
-            continuousScrolling.time = .now
-            continuousScrolling.count = 0
-        } else if Date.now.timeIntervalSince(continuousScrolling.time).magnitude <= NSEvent.doubleClickInterval * 1.5 {
-            continuousScrolling.count += 1
+        if let interval, interval <= 0.01 {
+            if accumulated < 12 {
+                accumulated += 1
+            } else if duration > NSEvent.keyRepeatDelay {
+                accelerated = true
+            }
         } else {
-            continuousScrolling.time = .now
-            continuousScrolling.count = 0
+            accumulated = 0
         }
-        
-        continuousScrolling.enabled = continuousScrolling.count > 12
-        
-        deaccelerationDispatch?.cancel()
-        postMouse(.left, buttonState: .released)
-        
-        var steps = 0
         
         switch rotation {
-        case .clockwise(let d):
-            steps = d
-        case .counterclockwise(let d):
-            steps = -d
-        }
-        
-        let last = last?.magnitude ?? 0
-        let diff = last <= NSEvent.doubleClickInterval ? last : 0
-        let multiplier = Int(1 + ((150 - min(diff, 150)) / 40)) * (continuousScrolling.enabled ? 5 : 1)
-        
-        currentStep = steps * multiplier
-        
-        deaccelerationDispatch = DispatchWorkItem { [self] in
+        case .continuous(let direction):
+            let steps = accelerated ? 45 : 5
             let event = CGEvent(
                 scrollWheelEvent2Source: nil,
-                units: .line,
+                units: .pixel,
                 wheelCount: 1,
-                wheel1: Int32(currentStep),
+                wheel1: Int32(steps * direction.negateIf(buttonState == .pressed).rawValue),
                 wheel2: 0,
                 wheel3: 0
             )
             event?.post(tap: .cghidEventTap)
-            
-            currentStep /= 2
-            if currentStep.magnitude > 2, let deaccelerationDispatch {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05, execute: deaccelerationDispatch)
-            } else {
-                deaccelerationDispatch = nil
-            }
+        default:
+            break
         }
-        deaccelerationDispatch?.perform()
-         */
     }
     
 }

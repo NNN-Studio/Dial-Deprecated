@@ -35,16 +35,17 @@ class Dial {
         dispatch: DispatchWorkItem {}
     )
     
-    private var lastActions: (
+    private var timestamps: (
         buttonPressed: Date?,
         buttonReleased: Date?,
         rotation: Date?
     )
     
-    private var rotationBehavior = (
-        started: false,
-        degrees /* 360 per circle, positive values represent clockwise rotation */ : Int.zero
-    )
+    private var rotationBehavior: (
+        started: Date?,
+        direction: Direction,
+        degrees /* 360 per circle, positive values represent clockwise rotation */ : Int
+    ) = (started: nil, direction: .clockwise, degrees: 0)
     
     init() {
         device.inputHandler = self
@@ -60,6 +61,13 @@ extension Dial {
         case continuous(Direction)
         
         case stepping(Direction)
+        
+        var direction: Direction {
+            switch self {
+            case .continuous(let direction), .stepping(let direction):
+                direction
+            }
+        }
         
     }
     
@@ -89,81 +97,77 @@ extension Dial: InputHandler {
     }
     
     func onButtonStateChanged(_ buttonState: Device.ButtonState) {
-        let pressInterval = Date.now.timeIntervalSince(lastActions.buttonPressed)
-        let releaseInterval = Date.now.timeIntervalSince(lastActions.buttonReleased)
+        let pressInterval = Date.now.timeIntervalSince(timestamps.buttonPressed)
+        let releaseInterval = Date.now.timeIntervalSince(timestamps.buttonReleased)
         
-        rotationBehavior.started = false
+        rotationBehavior.started = nil
         rotationBehavior.degrees = 0
         
         switch buttonState {
         case .pressed:
             // Trigger press and hold
-            defaultController.dispatch = DispatchWorkItem {
-                self.defaultController.isAgent = true
-                self.window.show()
-                self.device.buzz()
-                print("Default controller is now the agent.")
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval, execute: defaultController.dispatch)
+            self.setDefaultControllerState(isAgent: true, deadline: .now() + NSEvent.doubleClickInterval)
             
-            lastActions.buttonPressed = .now
+            timestamps.buttonPressed = .now
         case .released:
-            defaultController.dispatch.cancel()
-            if defaultController.isAgent {
-                defaultController.isAgent = false
-                window.hide()
-                print("Default controller is no longer the agent.")
-            }
+            setDefaultControllerState(isAgent: false)
             
-            let clickInterval = Date.now.timeIntervalSince(lastActions.buttonPressed)
-            guard let clickInterval, clickInterval <= NSEvent.doubleClickInterval else { break }
+            let clickInterval = Date.now.timeIntervalSince(timestamps.buttonPressed)
+            guard let clickInterval, clickInterval <= NSEvent.doubleClickInterval else {
+                controller.onRelease(callback)
+                break
+            }
             
             if let releaseInterval, releaseInterval <= NSEvent.doubleClickInterval {
                 // Double click
                 controller.onClick(isDoubleClick: true, interval: releaseInterval, callback)
-                lastActions.buttonReleased = nil
+                timestamps.buttonReleased = nil
             } else {
                 // Click
                 controller.onClick(isDoubleClick: false, interval: releaseInterval, callback)
-                lastActions.buttonReleased = .now
+                timestamps.buttonReleased = .now
             }
         }
     }
     
     func onRotation(_ direction: Direction, _ buttonState: Device.ButtonState) {
-        let interval = Date.now.timeIntervalSince(lastActions.rotation)
+        let interval = Date.now.timeIntervalSince(timestamps.rotation)
         if let interval, interval > NSEvent.keyRepeatDelay {
             // Rotation ended
-            rotationBehavior.started = false
+            rotationBehavior.started = nil
             rotationBehavior.degrees = 0
             print("Rotation ended.")
         }
         
-        let lastStep = rotationBehavior.degrees / Data.rotationGap
+        let lastStage = (
+            stepping: Int(CGFloat(rotationBehavior.degrees) / Data.sensitivity.gap.stepping),
+            continuous: Int(CGFloat(rotationBehavior.degrees) / Data.sensitivity.gap.continuous)
+        )
         rotationBehavior.degrees += direction.rawValue
-        let currentStep = rotationBehavior.degrees / Data.rotationGap
+        let currentStage = (
+            stepping: Int(CGFloat(rotationBehavior.degrees) / Data.sensitivity.gap.stepping),
+            continuous: Int(CGFloat(rotationBehavior.degrees) / Data.sensitivity.gap.continuous)
+        )
         
-        if !rotationBehavior.started {
-            // Check threshold
-            rotationBehavior.started = rotationBehavior.degrees.magnitude > Data.rotationThresholdDegrees
-            if rotationBehavior.started {
-                print("Rotation started.")
+        if let duration = Date.now.timeIntervalSince(rotationBehavior.started) {
+            if !defaultController.isAgent {
+                setDefaultControllerState(isAgent: false)
             }
-        }
-        
-        if rotationBehavior.started {
-            // Continuous rotation
-            controller.onRotation(
-                rotation: .continuous(direction), totalDegrees: rotationBehavior.degrees,
-                buttonState: buttonState, interval: interval,
-                callback
-            )
             
-            if lastStep != currentStep {
+            if lastStage.continuous != currentStage.continuous {
+                // Continuous rotation
+                controller.onRotation(
+                    rotation: .continuous(direction), totalDegrees: rotationBehavior.degrees,
+                    buttonState: buttonState, interval: interval, duration: duration,
+                    callback
+                )
+            }
+            
+            if lastStage.stepping != currentStage.stepping {
                 // Stepping rotation
                 controller.onRotation(
                     rotation: .stepping(direction), totalDegrees: rotationBehavior.degrees,
-                    buttonState: buttonState, interval: interval,
+                    buttonState: buttonState, interval: interval, duration: duration,
                     callback
                 )
                 
@@ -171,9 +175,45 @@ extension Dial: InputHandler {
                     device.buzz()
                 }
             }
+            
+            if rotationBehavior.direction != direction {
+                rotationBehavior.direction = direction
+                rotationBehavior.started = .now
+            }
+        } else {
+            // Check threshold
+            let started = rotationBehavior.degrees.magnitude > Data.rotationThresholdDegrees
+            if started {
+                print("Rotation started.")
+                rotationBehavior.started = .now
+            }
         }
         
-        lastActions.rotation = .now
+        timestamps.rotation = .now
+    }
+    
+    func setDefaultControllerState(
+        isAgent: Bool,
+        deadline: DispatchTime = .now()
+    ) {
+        if isAgent {
+            defaultController.dispatch = DispatchWorkItem {
+                self.defaultController.isAgent = true
+                self.window.show()
+                self.device.buzz()
+                print("Default controller is now the agent.")
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: deadline, execute: defaultController.dispatch)
+        } else {
+            defaultController.dispatch.cancel()
+            
+            if defaultController.isAgent {
+                defaultController.isAgent = false
+                window.hide()
+                print("Default controller is no longer the agent.")
+            }
+        }
     }
     
 }
