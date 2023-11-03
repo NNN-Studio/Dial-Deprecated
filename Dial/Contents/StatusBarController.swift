@@ -207,9 +207,65 @@ struct MenuItems {
     
 }
 
+extension NSImage {
+    
+    func withVerticalPadding(_ padding: CGFloat) -> NSImage {
+        let scalar = 1 - min(1, padding / size.width)
+        let innerSize = size.applying(CGAffineTransform(scaleX: scalar, y: scalar))
+        let image = NSImage(size: NSSize(width: innerSize.width, height: size.height))
+        
+        image.lockFocus()
+        
+        draw(in: NSRect(
+            origin: NSPoint(x: 0, y: padding / 2),
+            size: innerSize
+        ))
+        
+        image.unlockFocus()
+        
+        return image
+    }
+    
+    func horizontallyCombine(with image: NSImage?, padding: CGFloat = 4) -> NSImage {
+        if let image {
+            let newSize = NSSize(width: size.width + padding + image.size.width, height: max(size.height, image.size.height))
+            let combinedImage = NSImage(size: newSize)
+            
+            combinedImage.lockFocus()
+            
+            draw(at: NSZeroPoint, from: NSZeroRect, operation: .copy, fraction: 1.0)
+            image.draw(
+                at: NSPoint(
+                    x: size.width + padding,
+                    y: (newSize.height - image.size.height) / 2
+                ),
+                from: NSZeroRect,
+                operation: .copy,
+                fraction: 1.0
+            )
+            
+            combinedImage.unlockFocus()
+            
+            return combinedImage
+        } else {
+            return self
+        }
+    }
+    
+    func fitIntoStatusBar() -> NSImage {
+        let scalar = NSStatusBar.system.thickness / size.height
+        let image = self
+        
+        image.size = size.applying(CGAffineTransform(scaleX: scalar, y: scalar))
+        
+        return image
+    }
+    
+}
+
 class StatusBarController: NSObject, NSMenuDelegate {
     
-    let statusItem = NSStatusBar.system.statusItem(withLength: 32)
+    let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
     
     var menuItems: MenuItems?
     
@@ -251,6 +307,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
             button.target = self
             button.action = #selector(toggle(_:))
             button.sendAction(on: [.leftMouseUp, .rightMouseUp])
+            
             updateIcon(false)
         }
     }
@@ -262,25 +319,27 @@ class StatusBarController: NSObject, NSMenuDelegate {
     private func updateIcon(_ isConnected: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
             if let button = statusItem.button {
-                if !isConnected {
-                    button.image = NSImage(named: NSImage.Name("DialDisabled"))!
-                }
+                let dialIcon = (isConnected ? NSImage(named: NSImage.Name("Dial")) : NSImage(named: NSImage.Name("DialDisabled")))
                 
-                else {
+                var modeIconName = "ellipsis.circle.fill"
+                if isConnected {
                     switch Data.dialMode {
                     case .scroll:
-                        button.image = NSImage(named: NSImage.Name("DialScroll"))!
-                        break
+                        modeIconName = "arrow.up.and.down.circle.fill"
                     case .playback:
-                        button.image = NSImage(named: NSImage.Name("DialPlayback"))!
-                        break
+                        modeIconName = "play.circle.fill"
                     case .mission:
-                        button.image = NSImage(named: NSImage.Name("DialMission"))!
-                        break
+                        modeIconName = "command.circle.fill"
                     }
                 }
                 
-                button.image?.size = NSSize(width: 30, height: 20)
+                let modeIcon = NSImage(systemSymbolName: modeIconName, accessibilityDescription: nil)?
+                    .withSymbolConfiguration(NSImage.SymbolConfiguration(pointSize: 24, weight: .bold))
+                
+                let combinedIcon = dialIcon?.horizontallyCombine(with: modeIcon?.withVerticalPadding(2)).withVerticalPadding(2)
+                combinedIcon?.isTemplate = true
+                
+                button.image = combinedIcon?.fitIntoStatusBar()
                 button.appearsDisabled = !isConnected
             }
         }
