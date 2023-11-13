@@ -1,6 +1,6 @@
 # Dial
 
-###### Surface Dial on macOS.
+###### Your Surface Dial on macOS.
 
-> ![NOTE]
+> [!NOTE]
 > This project is currently working in progress.
