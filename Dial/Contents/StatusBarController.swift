@@ -167,13 +167,13 @@ struct MenuItems {
             if #available(macOS 14.0, *) {
                 connectionStatus.title = NSLocalizedString(
                     "Menu/ConnectionStatus/On",
-                    value: "Surface Dial",
+                    value: "Dial",
                     comment: "[macOS >=14.0] if (connected)"
                 )
                 connectionStatus.badge = NSMenuItemBadge(string: serialNumber)
             } else {
                 connectionStatus.title = String(
-                    format: NSLocalizedString("Menu/ConnectionStatus/On/Alt", value: "Surface Dial: ", comment: "[macOS <14.0] if (connected)"),
+                    format: NSLocalizedString("Menu/ConnectionStatus/On/Alt", value: "Dial: ", comment: "[macOS <14.0] if (connected)"),
                     serialNumber
                 )
             }

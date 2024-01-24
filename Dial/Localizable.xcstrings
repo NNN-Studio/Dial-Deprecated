@@ -86,7 +86,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Surface智能旋钮"
+            "value" : "智能旋钮"
           }
         }
       }
@@ -104,7 +104,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Surface智能旋钮："
+            "value" : "智能旋钮："
           }
         }
       }

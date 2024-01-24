@@ -114,7 +114,8 @@ extension Dial: InputHandler {
             
             let clickInterval = Date.now.timeIntervalSince(timestamps.buttonPressed)
             guard let clickInterval, clickInterval <= NSEvent.doubleClickInterval else {
-                controller.onRelease(callback)
+                controller.onRelease(callback
+                )
                 break
             }
             
