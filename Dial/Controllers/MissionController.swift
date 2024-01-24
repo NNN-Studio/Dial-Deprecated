@@ -34,10 +34,10 @@ class MissionController: Controller {
             escapeDispatch?.cancel()
             inMission = true
             
-            let modifiers: [NSEvent.ModifierFlags] = [NSEvent.ModifierFlags.command]
+            let modifiers: [Direction: [NSEvent.ModifierFlags]] = [.clockwise: [NSEvent.ModifierFlags.command], .counterclockwise: [NSEvent.ModifierFlags.shift, NSEvent.ModifierFlags.command]]
             let action: [Direction: [Int32]] = [.clockwise: [Input.keyTab], .counterclockwise: [Input.keyTab]]
             
-            Input.postKeys(action[direction]!, modifiers: modifiers)
+            Input.postKeys(action[direction]!, modifiers: modifiers[direction]!)
             
             escapeDispatch = DispatchWorkItem {
                 Input.postKeys([Input.keyEscape])
