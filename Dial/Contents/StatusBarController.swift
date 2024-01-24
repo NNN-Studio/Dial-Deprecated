@@ -321,17 +321,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
             if let button = statusItem.button {
                 let dialIcon = (isConnected ? NSImage(named: NSImage.Name("Dial")) : NSImage(named: NSImage.Name("DialDisabled")))
                 
-                var modeIconName = "ellipsis.circle.fill"
-                if isConnected {
-                    switch Data.dialMode {
-                    case .scroll:
-                        modeIconName = "arrow.up.and.down.circle.fill"
-                    case .playback:
-                        modeIconName = "play.circle.fill"
-                    case .mission:
-                        modeIconName = "command.circle.fill"
-                    }
-                }
+                var modeIconName = isConnected ? Data.dialMode.modeIconName : "ellipsis.circle.fill"
                 
                 let modeIcon = NSImage(systemSymbolName: modeIconName, accessibilityDescription: nil)?
                     .withSymbolConfiguration(NSImage.SymbolConfiguration(pointSize: 24, weight: .bold))

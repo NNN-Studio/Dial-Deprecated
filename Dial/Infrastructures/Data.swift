@@ -11,11 +11,19 @@ import AppKit
 
 enum DialMode: Int, CaseIterable {
     
-    case scroll = 0
+    case scroll = 0x0
+    case playback = 0x1
+    case mission = 0x2
+    case luminance = 0x3
     
-    case playback = 1
-    
-    case mission = 2
+    case custom1 = 0xF1
+    case custom2 = 0xF2
+    case custom3 = 0xF3
+    case custom4 = 0xF4
+    case custom5 = 0xF5
+    case custom6 = 0xF6
+    case custom7 = 0xF7
+    case custom8 = 0xF8
     
     var icon: NSImage {
         switch self {
@@ -25,6 +33,55 @@ enum DialMode: Int, CaseIterable {
             DialMode.createIcon("play")!
         case .mission:
             DialMode.createIcon("command")!
+        case .luminance:
+            DialMode.createIcon("sun.max")!
+            
+        case .custom1:
+            DialMode.createIcon("1.lane")!
+        case .custom2:
+            DialMode.createIcon("2.lane")!
+        case .custom3:
+            DialMode.createIcon("3.lane")!
+        case .custom4:
+            DialMode.createIcon("4.lane")!
+        case .custom5:
+            DialMode.createIcon("5.lane")!
+        case .custom6:
+            DialMode.createIcon("6.lane")!
+        case .custom7:
+            DialMode.createIcon("7.lane")!
+        case .custom8:
+            DialMode.createIcon("8.lane")!
+        }
+    }
+    
+    var modeIconName: String {
+        switch self {
+        case .scroll:
+            "arrow.up.and.down.circle.fill"
+        case .playback:
+            "play.circle.fill"
+        case .mission:
+            "command.circle.fill"
+        case .luminance:
+            "sun.max.circle.fill"
+            
+        case .custom1:
+            "1.circle.fill"
+        case .custom2:
+            "2.circle.fill"
+        case .custom3:
+            "3.circle.fill"
+        case .custom4:
+            "4.circle.fill"
+        case .custom5:
+            "5.circle.fill"
+        case .custom6:
+            "6.circle.fill"
+        case .custom7:
+            "7.circle.fill"
+        case .custom8:
+            "8.circle.fill"
         }
     }
     
