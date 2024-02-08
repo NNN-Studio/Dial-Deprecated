@@ -45,11 +45,11 @@ class MenuOptionItem<Type>: NSMenuItem {
     
 }
 
-class ControllerOptionItem: MenuOptionItem<DialMode> {
+class ControllerOptionItem: MenuOptionItem<DefaultDialMode> {
     
     let controller: Controller
     
-    init(_ title: String, mode: DialMode, controller: Controller) {
+    init(_ title: String, mode: DefaultDialMode, controller: Controller) {
         self.controller = controller
         super.init(title, option: mode)
     }

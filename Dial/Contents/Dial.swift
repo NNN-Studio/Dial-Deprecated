@@ -244,7 +244,7 @@ extension Dial {
         }
         
         func setDialModeAndUpdate(
-            _ mode: DialMode,
+            _ mode: DefaultDialMode,
             animate: Bool = false
         ) {
             dial.statusBarController.setDialModeAndUpdate(mode)

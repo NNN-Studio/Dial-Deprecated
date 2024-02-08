@@ -180,7 +180,7 @@ class DialViewController: NSViewController {
         iconsView?.wantsLayer = true
         view.addSubview(fillView(iconsView!))
         
-        DialMode.allCases
+        DefaultDialMode.allCases
             .enumerated()
             .forEach { self.iconsView?.addSubview(createIconView($0.element.icon, $0.offset)) }
     }

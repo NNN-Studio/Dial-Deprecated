@@ -100,7 +100,7 @@ struct MenuItems {
     }
     
     func updateDialMode(
-        _ dialMode: DialMode = Data.dialMode
+        _ dialMode: DefaultDialMode = Data.dialMode
     ) {
         modes.forEach {
             $0.flag = dialMode == $0.option
@@ -339,7 +339,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
 
 extension StatusBarController {
     
-    func setDialModeAndUpdate(_ mode: DialMode?) {
+    func setDialModeAndUpdate(_ mode: DefaultDialMode?) {
         if let mode {
             Data.dialMode = mode
             menuItems?.updateDialMode()

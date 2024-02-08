@@ -9,49 +9,26 @@ import Foundation
 import LaunchAtLogin
 import AppKit
 
-enum DialMode: Int, CaseIterable {
+enum DefaultDialMode: Int, CaseIterable {
     
     case scroll = 0x0
-    case playback = 0x1
-    case mission = 0x2
-    case luminance = 0x3
     
-    case custom1 = 0xF1
-    case custom2 = 0xF2
-    case custom3 = 0xF3
-    case custom4 = 0xF4
-    case custom5 = 0xF5
-    case custom6 = 0xF6
-    case custom7 = 0xF7
-    case custom8 = 0xF8
+    case playback = 0x1
+    
+    case mission = 0x2
+    
+    case luminance = 0x3
     
     var icon: NSImage {
         switch self {
         case .scroll:
-            DialMode.createIcon("chevron.up.chevron.down")!
+            DefaultDialMode.createIcon("chevron.up.chevron.down")!
         case .playback:
-            DialMode.createIcon("play")!
+            DefaultDialMode.createIcon("play")!
         case .mission:
-            DialMode.createIcon("command")!
+            DefaultDialMode.createIcon("command")!
         case .luminance:
-            DialMode.createIcon("sun.max")!
-            
-        case .custom1:
-            DialMode.createIcon("1.lane")!
-        case .custom2:
-            DialMode.createIcon("2.lane")!
-        case .custom3:
-            DialMode.createIcon("3.lane")!
-        case .custom4:
-            DialMode.createIcon("4.lane")!
-        case .custom5:
-            DialMode.createIcon("5.lane")!
-        case .custom6:
-            DialMode.createIcon("6.lane")!
-        case .custom7:
-            DialMode.createIcon("7.lane")!
-        case .custom8:
-            DialMode.createIcon("8.lane")!
+            DefaultDialMode.createIcon("sun.max")!
         }
     }
     
@@ -65,23 +42,6 @@ enum DialMode: Int, CaseIterable {
             "command.circle.fill"
         case .luminance:
             "sun.max.circle.fill"
-            
-        case .custom1:
-            "1.circle.fill"
-        case .custom2:
-            "2.circle.fill"
-        case .custom3:
-            "3.circle.fill"
-        case .custom4:
-            "4.circle.fill"
-        case .custom5:
-            "5.circle.fill"
-        case .custom6:
-            "6.circle.fill"
-        case .custom7:
-            "7.circle.fill"
-        case .custom8:
-            "8.circle.fill"
         }
     }
     
@@ -199,11 +159,11 @@ struct Data {
     }
     
     static func registerDefaults() {
-        Key.dialMode.register(DialMode.scroll.rawValue)
+        Key.dialMode.register(DefaultDialMode.scroll.rawValue)
         Key.haptics.register(true)
         Key.sensitivity.register(Sensitivity.natural.rawValue)
         Key.direction.register(Direction.clockwise.rawValue)
-        Key.modeList.register([DialMode.scroll, DialMode.mission, DialMode.playback, DialMode.luminance])
+        Key.modeList.register([DefaultDialMode.scroll, DefaultDialMode.mission, DefaultDialMode.playback, DefaultDialMode.luminance])
     }
     
     static let maxIconCount = 10
@@ -220,9 +180,9 @@ struct Data {
         }
     }
     
-    static var dialMode: DialMode {
+    static var dialMode: DefaultDialMode {
         get {
-            DialMode(rawValue: Key.dialMode.integer()) ?? .scroll
+            DefaultDialMode(rawValue: Key.dialMode.integer()) ?? .scroll
         }
         
         set(dialMode) {
@@ -230,13 +190,13 @@ struct Data {
         }
     }
     
-    static func getCycledDialMode(_ signum: Int, wrap: Bool = true) -> DialMode? {
+    static func getCycledDialMode(_ signum: Int, wrap: Bool = true) -> DefaultDialMode? {
         let value = dialMode.rawValue + signum.signum()
-        let maxRawValue = DialMode.allCases.count
+        let maxRawValue = DefaultDialMode.allCases.count
         let inRange = NSRange(location: 0, length: maxRawValue).contains(value)
         
         if wrap || inRange {
-            return DialMode(rawValue: value % maxRawValue)
+            return DefaultDialMode(rawValue: value % maxRawValue)
         }
         
         return nil
