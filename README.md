@@ -10,5 +10,31 @@
 
 ## Development Goals
 
-### ~Base Logic~
+### ~~Base Logic~~
+
 - [X] Dial connection
+- [X] Device events
+  - [X] Configurable dialing direction
+  - [X] Configurable dialing sensitivity
+- [X] Controller interfaces
+
+### UI
+
+- [X] Status bar button with menu
+- [X] Circular dialing plane
+  - [X] Edge / corner auto absorb
+  - [ ] A better look with custom icons
+- [ ] Single preference window
+
+### Functions
+
+- [X] Default controllers
+  - [X] Scroll
+  - [X] Playback
+  - [X] Mission
+  - [X] Luminance
+- [ ] Custom shortcut controllers
+  - [ ] Data storage
+  - [ ] Preference UI
+    - [ ] Named label
+    - [ ] SF icon chooser

@@ -170,6 +170,8 @@ struct Data {
         
         case direction = "Direction"
         
+        case modeList = "ModeList"
+        
         func register(
             _ value: Any
         ) {
@@ -201,6 +203,7 @@ struct Data {
         Key.haptics.register(true)
         Key.sensitivity.register(Sensitivity.natural.rawValue)
         Key.direction.register(Direction.clockwise.rawValue)
+        Key.modeList.register([DialMode.scroll, DialMode.mission, DialMode.playback, DialMode.luminance])
     }
     
     static let maxIconCount = 10
@@ -268,5 +271,4 @@ struct Data {
             Key.direction.set(direction.rawValue)
         }
     }
-    
 }
