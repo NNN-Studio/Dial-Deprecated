@@ -7,3 +7,8 @@
 
 > [!NOTE]
 > This project is based on [MacDial,](https://github.com/andreasjhkarlsson/mac-dial) with a modern UI and many useful features implemented.
+
+## Development Goals
+
+### ~Base Logic~
+- [X] Dial connection
