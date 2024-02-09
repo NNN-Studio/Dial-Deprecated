@@ -22,6 +22,12 @@
             "state" : "new",
             "value" : "Dial"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "智能旋钮"
+          }
         }
       }
     }

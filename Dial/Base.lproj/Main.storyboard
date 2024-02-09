@@ -26,14 +26,14 @@
                 <hostingController id="cUD-Bz-v8X" sceneMemberID="viewController"/>
                 <customObject id="bi2-ru-eOr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="240" y="35"/>
+            <point key="canvasLocation" x="-410" y="249"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="9T6-rN-Vy8">
             <objects>
                 <windowController storyboardIdentifier="Main" id="6JV-kM-PK9" customClass="PreferencesWindowController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Dial" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="rtr-u2-S55">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" fullSizeContentView="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="270" y="342" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1800" height="1125"/>
@@ -52,19 +52,6 @@
                 <customObject id="eKu-PF-cOl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-410" y="-283"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="teF-dD-uhj">
-            <objects>
-                <viewController id="WMg-g6-b5K" sceneMemberID="viewController">
-                    <view key="view" id="Fyg-O5-YIj">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="7pe-w5-2ek" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-410" y="186"/>
         </scene>
     </scenes>
 </document>
