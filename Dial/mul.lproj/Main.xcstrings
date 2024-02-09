@@ -13,14 +13,26 @@
         }
       }
     },
-    "HpD-dj-ND5.label" : {
-      "comment" : "Class = \"NSTabViewItem\"; label = \"Controllers\"; ObjectID = \"HpD-dj-ND5\";",
+    "bON-Lu-XIU.label" : {
+      "comment" : "Class = \"NSTabViewItem\"; label = \"Controllers\"; ObjectID = \"bON-Lu-XIU\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Controllers"
+          }
+        }
+      }
+    },
+    "d1y-Jd-eua.label" : {
+      "comment" : "Class = \"NSTabViewItem\"; label = \"Dial\"; ObjectID = \"d1y-Jd-eua\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Dial"
           }
         }
       }
@@ -39,18 +51,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "智能旋钮"
-          }
-        }
-      }
-    },
-    "TkN-XZ-XGi.label" : {
-      "comment" : "Class = \"NSTabViewItem\"; label = \"Dial\"; ObjectID = \"TkN-XZ-XGi\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Dial"
           }
         }
       }

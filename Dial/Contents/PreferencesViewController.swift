@@ -6,30 +6,28 @@
 //
 
 import Cocoa
+import SwiftUI
 
-class PreferencesViewController: NSViewController {
-    
-    @IBOutlet var viewMain: NSView!
-    
-    @IBOutlet weak var tabViewMain: NSTabView!
-    
-    @IBOutlet weak var tabViewItemControllers: NSTabViewItem!
-    
-    @IBOutlet weak var tabViewitemDial: NSTabViewItem!
+class PreferencesViewController: NSTabViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
     }
     
 }
 
-extension PreferencesViewController {
+class PreferencesControllersViewController: NSViewController {
     
-    @IBAction func select(
-        _ sender: Any?
-    ) {
-        
+    override func viewDidLoad() {
+        view = NSHostingView(rootView: ControllersView())
+    }
+    
+}
+
+class PreferencesDialViewController: NSViewController {
+    
+    override func viewDidLoad() {
+        view = NSHostingView(rootView: DialView())
     }
     
 }

@@ -18,58 +18,65 @@
                     </connections>
                 </application>
             </objects>
-            <point key="canvasLocation" x="-6" y="-237"/>
+            <point key="canvasLocation" x="-410" y="-594"/>
         </scene>
         <!--Preferences View Controller-->
-        <scene sceneID="QW3-KA-Maz">
+        <scene sceneID="QdP-KO-qTu">
             <objects>
-                <viewController id="JnN-ZN-Q3m" customClass="PreferencesViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="J0X-Li-5k9">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="308"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <tabView initialItem="HpD-dj-ND5" translatesAutoresizingMaskIntoConstraints="NO" id="8Nj-p1-nCL">
-                                <rect key="frame" x="-7" y="-10" width="464" height="324"/>
-                                <font key="font" metaFont="system"/>
-                                <tabViewItems>
-                                    <tabViewItem label="Controllers" identifier="" id="HpD-dj-ND5">
-                                        <view key="view" id="2Iz-TD-tP1">
-                                            <rect key="frame" x="10" y="33" width="444" height="278"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                    </tabViewItem>
-                                    <tabViewItem label="Dial" identifier="" id="TkN-XZ-XGi">
-                                        <view key="view" id="VnH-WQ-Vpp">
-                                            <rect key="frame" x="10" y="33" width="444" height="278"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        </view>
-                                    </tabViewItem>
-                                </tabViewItems>
-                            </tabView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="8Nj-p1-nCL" secondAttribute="trailing" id="KqP-G2-PIn"/>
-                            <constraint firstAttribute="bottom" secondItem="8Nj-p1-nCL" secondAttribute="bottom" id="d5n-VT-u2P"/>
-                            <constraint firstItem="8Nj-p1-nCL" firstAttribute="leading" secondItem="J0X-Li-5k9" secondAttribute="leading" id="vIP-wp-Ucr"/>
-                            <constraint firstItem="8Nj-p1-nCL" firstAttribute="top" secondItem="J0X-Li-5k9" secondAttribute="top" id="xlb-Be-lei"/>
-                        </constraints>
-                    </view>
+                <tabViewController selectedTabViewItemIndex="0" id="Fb1-cw-jZm" customClass="PreferencesViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem label="Controllers" identifier="" id="bON-Lu-XIU"/>
+                        <tabViewItem label="Dial" identifier="" id="d1y-Jd-eua"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="Odc-ZP-QnD">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <font key="font" metaFont="system"/>
+                        <connections>
+                            <outlet property="delegate" destination="Fb1-cw-jZm" id="yBT-Zc-9yX"/>
+                        </connections>
+                    </tabView>
                     <connections>
-                        <outlet property="tabViewItemControllers" destination="HpD-dj-ND5" id="aZr-8I-1ac"/>
-                        <outlet property="tabViewMain" destination="8Nj-p1-nCL" id="AOj-BU-QrX"/>
-                        <outlet property="tabViewitemDial" destination="TkN-XZ-XGi" id="OKb-Ml-tmL"/>
-                        <outlet property="viewMain" destination="J0X-Li-5k9" id="pqW-gQ-gyd"/>
+                        <outlet property="tabView" destination="Odc-ZP-QnD" id="3TN-ys-q7i"/>
+                        <segue destination="dFq-H7-Dyy" kind="relationship" relationship="tabItems" id="43e-hc-DB3"/>
+                        <segue destination="JiX-Od-FKw" kind="relationship" relationship="tabItems" id="SBr-U1-4kF"/>
                     </connections>
-                </viewController>
-                <customObject id="ZhN-l8-klO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                </tabViewController>
+                <customObject id="Is8-Rn-loY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-410" y="157"/>
+            <point key="canvasLocation" x="-410" y="140"/>
+        </scene>
+        <!--Preferences Controllers View Controller-->
+        <scene sceneID="rkb-WG-gZk">
+            <objects>
+                <viewController id="dFq-H7-Dyy" customClass="PreferencesControllersViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="ArY-KB-AJ4">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="ZKM-lG-hmz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-684" y="761"/>
+        </scene>
+        <!--Preferences Dial View Controller-->
+        <scene sceneID="e9I-U9-jfk">
+            <objects>
+                <viewController id="JiX-Od-FKw" customClass="PreferencesDialViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="LlD-5o-3pt">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="hv5-QB-DQL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-135" y="761"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="9T6-rN-Vy8">
             <objects>
                 <windowController storyboardIdentifier="Main" id="6JV-kM-PK9" customClass="PreferencesWindowController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Dial" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="rtr-u2-S55">
+                    <window key="window" title="Dial" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" toolbarStyle="preference" id="rtr-u2-S55">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="270" y="342" width="480" height="270"/>
@@ -83,7 +90,7 @@
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="JnN-ZN-Q3m" kind="relationship" relationship="window.shadowedContentViewController" id="Ef5-7A-LfL"/>
+                        <segue destination="Fb1-cw-jZm" kind="relationship" relationship="window.shadowedContentViewController" id="7p7-iC-T43"/>
                     </connections>
                 </windowController>
                 <customObject id="eKu-PF-cOl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

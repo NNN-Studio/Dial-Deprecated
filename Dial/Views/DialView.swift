@@ -14,6 +14,7 @@ struct DialView: View {
                 minWidth: 300, maxWidth: 300,
                 minHeight: 300, maxHeight: 300
             )
+            .fixedSize()
     }
 }
 
