@@ -20,20 +20,59 @@
             </objects>
             <point key="canvasLocation" x="-6" y="-237"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="QW3-KA-Maz">
+            <objects>
+                <viewController id="JnN-ZN-Q3m" sceneMemberID="viewController">
+                    <view key="view" id="J0X-Li-5k9">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="308"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <tabView initialItem="HpD-dj-ND5" translatesAutoresizingMaskIntoConstraints="NO" id="8Nj-p1-nCL">
+                                <rect key="frame" x="-7" y="-10" width="464" height="324"/>
+                                <font key="font" metaFont="system"/>
+                                <tabViewItems>
+                                    <tabViewItem label="Controllers" identifier="" id="HpD-dj-ND5">
+                                        <view key="view" id="2Iz-TD-tP1">
+                                            <rect key="frame" x="10" y="33" width="444" height="278"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                    </tabViewItem>
+                                    <tabViewItem label="Dial" identifier="" id="TkN-XZ-XGi">
+                                        <view key="view" id="VnH-WQ-Vpp">
+                                            <rect key="frame" x="10" y="33" width="444" height="278"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        </view>
+                                    </tabViewItem>
+                                </tabViewItems>
+                            </tabView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="8Nj-p1-nCL" secondAttribute="trailing" id="KqP-G2-PIn"/>
+                            <constraint firstAttribute="bottom" secondItem="8Nj-p1-nCL" secondAttribute="bottom" id="d5n-VT-u2P"/>
+                            <constraint firstItem="8Nj-p1-nCL" firstAttribute="leading" secondItem="J0X-Li-5k9" secondAttribute="leading" id="vIP-wp-Ucr"/>
+                            <constraint firstItem="8Nj-p1-nCL" firstAttribute="top" secondItem="J0X-Li-5k9" secondAttribute="top" id="xlb-Be-lei"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="ZhN-l8-klO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-410" y="157"/>
+        </scene>
         <!--Hosting Controller-->
         <scene sceneID="rOB-Qa-eaQ">
             <objects>
                 <hostingController id="cUD-Bz-v8X" sceneMemberID="viewController"/>
                 <customObject id="bi2-ru-eOr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-410" y="249"/>
+            <point key="canvasLocation" x="-410" y="635"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="9T6-rN-Vy8">
             <objects>
                 <windowController storyboardIdentifier="Main" id="6JV-kM-PK9" customClass="PreferencesWindowController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Dial" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="rtr-u2-S55">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="270" y="342" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1800" height="1125"/>
@@ -46,7 +85,7 @@
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="cUD-Bz-v8X" kind="relationship" relationship="window.shadowedContentViewController" id="yqE-AD-maa"/>
+                        <segue destination="JnN-ZN-Q3m" kind="relationship" relationship="window.shadowedContentViewController" id="Ef5-7A-LfL"/>
                     </connections>
                 </windowController>
                 <customObject id="eKu-PF-cOl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

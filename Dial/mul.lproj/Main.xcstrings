@@ -13,6 +13,18 @@
         }
       }
     },
+    "HpD-dj-ND5.label" : {
+      "comment" : "Class = \"NSTabViewItem\"; label = \"Controllers\"; ObjectID = \"HpD-dj-ND5\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Controllers"
+          }
+        }
+      }
+    },
     "rtr-u2-S55.title" : {
       "comment" : "Class = \"NSWindow\"; title = \"Dial\"; ObjectID = \"rtr-u2-S55\";",
       "extractionState" : "extracted_with_value",
@@ -27,6 +39,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "智能旋钮"
+          }
+        }
+      }
+    },
+    "TkN-XZ-XGi.label" : {
+      "comment" : "Class = \"NSTabViewItem\"; label = \"Dial\"; ObjectID = \"TkN-XZ-XGi\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Dial"
           }
         }
       }

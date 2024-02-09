@@ -19,8 +19,6 @@ class PreferencesWindowController: NSWindowController {
 
     override func windowDidLoad() {
         super.windowDidLoad()
-        
-        window?.contentView = NSHostingView(rootView: PreferencesView())
     }
 
 }
