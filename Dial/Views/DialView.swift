@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DialView: View {
     var body: some View {
-        Text("Dial")
+        Color.blue
             .frame(
                 minWidth: 300, maxWidth: 300,
                 minHeight: 300, maxHeight: 300
