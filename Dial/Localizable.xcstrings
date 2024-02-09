@@ -37,6 +37,9 @@
         }
       }
     },
+    "Hello, World!" : {
+
+    },
     "Menu/ConnectionStatus/Off" : {
       "comment" : "[macOS >=14.0] if (!connected)\n   if (!connected)",
       "extractionState" : "extracted_with_value",
@@ -49,7 +52,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "智能旋钮"
           }
         }
@@ -267,6 +270,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "震动反馈"
+          }
+        }
+      }
+    },
+    "Menu/OpenPreferences" : {
+      "comment" : "open preferences",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Open Preferences"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "打开配置菜单"
           }
         }
       }

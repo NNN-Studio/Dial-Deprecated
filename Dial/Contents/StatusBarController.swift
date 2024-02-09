@@ -46,6 +46,8 @@ struct MenuItems {
     
     let startsWithMacOS = StateOptionItem(NSLocalizedString("Menu/StartsWithMacOS", value: "Starts with macOS", comment: "starts with macos"))
     
+    let openPreferences = NSMenuItem(title: NSLocalizedString("Menu/OpenPreferences", value:"Open Preferences", comment: "open preferences"))
+    
     let quit = NSMenuItem(title: NSLocalizedString("Menu/Quit", value: "Quit", comment: "quit"))
     
     
@@ -95,6 +97,9 @@ struct MenuItems {
         startsWithMacOS.target = controller
         startsWithMacOS.action = #selector(controller.setStartsWithMacOS(_:))
         startsWithMacOS.flag = Defaults.launchAtLogin
+        
+        openPreferences.target = controller
+        openPreferences.action = #selector(controller.openPreferences(_:))
         
         quit.target = controller
         quit.action = #selector(controller.quitApp(_:))
@@ -298,6 +303,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
             
             items.append(MenuManager.groupItems(
                 menuItems!.startsWithMacOS,
+                menuItems!.openPreferences,
                 menuItems!.quit
             ))
             
@@ -431,6 +437,12 @@ extension StatusBarController {
         
         Defaults.launchAtLogin = flag
         menuItems?.updateStartsWithMacOS()
+    }
+    
+    @objc func openPreferences(
+        _ sender: Any?
+    ) {
+        PreferencesWindowController.shared.showWindow(nil)
     }
     
     @objc func quitApp(
