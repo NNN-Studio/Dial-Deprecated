@@ -420,7 +420,7 @@ extension StatusBarController {
     ) {
         let flag = !Defaults[.hapticsEnabled]
         
-        Data.haptics = flag
+        Defaults[.hapticsEnabled] = flag
         menuItems?.updateHaptics()
     }
     

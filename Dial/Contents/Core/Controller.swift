@@ -42,7 +42,6 @@ extension Controller {
 
 class DefaultController: Controller {
     
-    
     var haptics: Bool {
         false
     }

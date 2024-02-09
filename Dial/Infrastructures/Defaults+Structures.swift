@@ -73,3 +73,33 @@ enum Direction: Int, CaseIterable, Defaults.Serializable {
     }
     
 }
+
+struct Bag<Element: Defaults.Serializable>: Collection {
+    
+    var items: [Element]
+    
+    var startIndex: Int { items.startIndex }
+    
+    var endIndex: Int { items.endIndex }
+    
+    mutating func insert(element: Element, at: Int) {
+        items.insert(element, at: at)
+    }
+    
+    func index(after index: Int) -> Int {
+        items.index(after: index)
+    }
+    
+    subscript(position: Int) -> Element {
+        items[position]
+    }
+    
+}
+
+extension Bag: Defaults.CollectionSerializable {
+    
+    init(_ elements: [Element]) {
+        self.items = elements
+    }
+    
+}
