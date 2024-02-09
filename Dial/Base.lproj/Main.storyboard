@@ -20,10 +20,10 @@
             </objects>
             <point key="canvasLocation" x="-6" y="-237"/>
         </scene>
-        <!--View Controller-->
+        <!--Preferences View Controller-->
         <scene sceneID="QW3-KA-Maz">
             <objects>
-                <viewController id="JnN-ZN-Q3m" sceneMemberID="viewController">
+                <viewController id="JnN-ZN-Q3m" customClass="PreferencesViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="J0X-Li-5k9">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="308"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -54,18 +54,16 @@
                             <constraint firstItem="8Nj-p1-nCL" firstAttribute="top" secondItem="J0X-Li-5k9" secondAttribute="top" id="xlb-Be-lei"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tabViewItemControllers" destination="HpD-dj-ND5" id="aZr-8I-1ac"/>
+                        <outlet property="tabViewMain" destination="8Nj-p1-nCL" id="AOj-BU-QrX"/>
+                        <outlet property="tabViewitemDial" destination="TkN-XZ-XGi" id="OKb-Ml-tmL"/>
+                        <outlet property="viewMain" destination="J0X-Li-5k9" id="pqW-gQ-gyd"/>
+                    </connections>
                 </viewController>
                 <customObject id="ZhN-l8-klO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-410" y="157"/>
-        </scene>
-        <!--Hosting Controller-->
-        <scene sceneID="rOB-Qa-eaQ">
-            <objects>
-                <hostingController id="cUD-Bz-v8X" sceneMemberID="viewController"/>
-                <customObject id="bi2-ru-eOr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-410" y="635"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="9T6-rN-Vy8">
