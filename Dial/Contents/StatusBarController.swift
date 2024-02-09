@@ -1,6 +1,7 @@
 
 import Foundation
 import AppKit
+import Defaults
 
 struct MenuItems {
     
@@ -89,11 +90,11 @@ struct MenuItems {
         
         haptics.target = controller
         haptics.action = #selector(controller.setHaptics(_:))
-        haptics.flag = Data.haptics
+        haptics.flag = Defaults[.hapticsEnabled]
         
         startsWithMacOS.target = controller
         startsWithMacOS.action = #selector(controller.setStartsWithMacOS(_:))
-        startsWithMacOS.flag = Data.startsWithMacOS
+        startsWithMacOS.flag = Defaults.launchAtLogin
         
         quit.target = controller
         quit.action = #selector(controller.quitApp(_:))
@@ -108,7 +109,7 @@ struct MenuItems {
     }
     
     func updateSensitivity(
-        _ sensitivity: Sensitivity = Data.sensitivity
+        _ sensitivity: Sensitivity = Defaults[.senstivity]
     ) {
         sensitivityOptions
             .forEach { $0.flag = $0.option == sensitivity }
@@ -131,7 +132,7 @@ struct MenuItems {
     }
     
     func updateDirection(
-        _ direction: Direction = Data.direction
+        _ direction: Direction = Defaults[.direction]
     ) {
         directionOptions
             .forEach { $0.flag = $0.option == direction }
@@ -148,13 +149,13 @@ struct MenuItems {
     }
     
     func updateHaptics(
-        _ flag: Bool = Data.haptics
+        _ flag: Bool = Defaults[.hapticsEnabled]
     ) {
         haptics.flag = flag
     }
     
     func updateStartsWithMacOS(
-        _ flag: Bool = Data.startsWithMacOS
+        _ flag: Bool = Defaults.launchAtLogin
     ) {
         startsWithMacOS.flag = flag
     }
@@ -398,7 +399,7 @@ extension StatusBarController {
             let sensitivity = item.representedObject as? Sensitivity
         else { return }
         
-        Data.sensitivity = sensitivity
+        Defaults[.senstivity] = sensitivity
         menuItems?.updateSensitivity()
     }
     
@@ -410,14 +411,14 @@ extension StatusBarController {
             let direction = item.representedObject as? Direction
         else { return }
         
-        Data.direction = direction
+        Defaults[.direction] = direction
         menuItems?.updateDirection()
     }
     
     @objc func setHaptics(
         _ sender: Any?
     ) {
-        let flag = !Data.haptics
+        let flag = !Defaults[.hapticsEnabled]
         
         Data.haptics = flag
         menuItems?.updateHaptics()
@@ -426,9 +427,9 @@ extension StatusBarController {
     @objc func setStartsWithMacOS(
         _ sender: Any?
     ) {
-        let flag = !Data.startsWithMacOS
+        let flag = !Defaults.launchAtLogin
         
-        Data.startsWithMacOS = flag
+        Defaults.launchAtLogin = flag
         menuItems?.updateStartsWithMacOS()
     }
     

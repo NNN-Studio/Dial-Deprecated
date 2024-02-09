@@ -1,6 +1,7 @@
 
 import Foundation
 import AppKit
+import Defaults
 
 extension Date {
     
@@ -58,7 +59,7 @@ class DefaultController: Controller {
             break
         case .stepping(let direction):
             if let dialMode = Data.getCycledDialMode(
-                direction.multiply(Data.direction) /* Recover to the natural direction */ .negate.rawValue,
+                direction.multiply(Defaults[.direction]) /* Recover to the natural direction */ .negate.rawValue,
                 wrap: false
             ) {
                 callback.setDialModeAndUpdate(dialMode, animate: true)

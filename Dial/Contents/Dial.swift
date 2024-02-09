@@ -1,4 +1,5 @@
 import Foundation
+import Defaults
 import AppKit
 import Cocoa
 import SwiftUI
@@ -141,13 +142,13 @@ extension Dial: InputHandler {
         }
         
         let lastStage = (
-            stepping: Int(CGFloat(rotationBehavior.degrees) / Data.sensitivity.gap.stepping),
-            continuous: Int(CGFloat(rotationBehavior.degrees) / Data.sensitivity.gap.continuous)
+            stepping: Int(CGFloat(rotationBehavior.degrees) / Defaults[.senstivity].gap.stepping),
+            continuous: Int(CGFloat(rotationBehavior.degrees) / Defaults[.senstivity].gap.continuous)
         )
         rotationBehavior.degrees += direction.rawValue
         let currentStage = (
-            stepping: Int(CGFloat(rotationBehavior.degrees) / Data.sensitivity.gap.stepping),
-            continuous: Int(CGFloat(rotationBehavior.degrees) / Data.sensitivity.gap.continuous)
+            stepping: Int(CGFloat(rotationBehavior.degrees) / Defaults[.senstivity].gap.stepping),
+            continuous: Int(CGFloat(rotationBehavior.degrees) / Defaults[.senstivity].gap.continuous)
         )
         
         if let duration = Date.now.timeIntervalSince(rotationBehavior.started) {

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2801CAB52AEDF18000E95B5F /* MissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2801CAB42AEDF18000E95B5F /* MissionController.swift */; };
+		2822C3D42B75C42D000D5C58 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 2822C3D32B75C42D000D5C58 /* Defaults */; };
+		2822C3D62B75C443000D5C58 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D52B75C443000D5C58 /* Defaults.swift */; };
+		2822C3D82B75C44B000D5C58 /* Defaults+Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */; };
 		2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2830055B2AEE7FF800D18F65 /* MenuManager.swift */; };
 		2867F1832AEC8D3B0029C937 /* DialWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F1822AEC8D3B0029C937 /* DialWindow.swift */; };
 		2867F18F2AECC6E90029C937 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 2867F18E2AECC6E90029C937 /* LaunchAtLogin */; };
@@ -30,6 +33,8 @@
 
 /* Begin PBXFileReference section */
 		2801CAB42AEDF18000E95B5F /* MissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionController.swift; sourceTree = "<group>"; };
+		2822C3D52B75C443000D5C58 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Defaults+Structures.swift"; sourceTree = "<group>"; };
 		2830055B2AEE7FF800D18F65 /* MenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
 		2867F1822AEC8D3B0029C937 /* DialWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialWindow.swift; sourceTree = "<group>"; };
 		2867F18A2AEC94D50029C937 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Main.xcstrings; sourceTree = "<group>"; };
@@ -63,6 +68,7 @@
 				C89F315B2701266400A8B365 /* CoreFoundation.framework in Frameworks */,
 				2867F18F2AECC6E90029C937 /* LaunchAtLogin in Frameworks */,
 				C89F315D2701266A00A8B365 /* IOKit.framework in Frameworks */,
+				2822C3D42B75C42D000D5C58 /* Defaults in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,6 +102,8 @@
 			children = (
 				28B6852A2AEC01D6008EBE98 /* Data.swift */,
 				28C7A0A12AEE06E8003113D5 /* Input.swift */,
+				2822C3D52B75C443000D5C58 /* Defaults.swift */,
+				2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */,
 			);
 			path = Infrastructures;
 			sourceTree = "<group>";
@@ -171,6 +179,7 @@
 			name = Dial;
 			packageProductDependencies = (
 				2867F18E2AECC6E90029C937 /* LaunchAtLogin */,
+				2822C3D32B75C42D000D5C58 /* Defaults */,
 			);
 			productName = MacDial;
 			productReference = 28B685242AEBFAAD008EBE98 /* Dial.app */;
@@ -203,6 +212,7 @@
 			mainGroup = C882FA0D26F1430C00595EE1;
 			packageReferences = (
 				2867F18D2AECC6E90029C937 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
+				2822C3D22B75C42D000D5C58 /* XCRemoteSwiftPackageReference "Defaults" */,
 			);
 			productRefGroup = C882FA0D26F1430C00595EE1;
 			projectDirPath = "";
@@ -232,11 +242,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				28D278EB2AEFC35D00844ADE /* Device.swift in Sources */,
+				2822C3D62B75C443000D5C58 /* Defaults.swift in Sources */,
 				28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */,
 				C882FA2D26F143E300595EE1 /* StatusBarController.swift in Sources */,
 				2801CAB52AEDF18000E95B5F /* MissionController.swift in Sources */,
 				28C7A0A22AEE06E8003113D5 /* Input.swift in Sources */,
 				2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */,
+				2822C3D82B75C44B000D5C58 /* Defaults+Structures.swift in Sources */,
 				C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */,
 				C89D24292703BA5E00B1A458 /* Controller.swift in Sources */,
 				C89D242D2704870C00B1A458 /* PlaybackController.swift in Sources */,
@@ -471,6 +483,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		2822C3D22B75C42D000D5C58 /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		2867F18D2AECC6E90029C937 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
@@ -482,6 +502,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		2822C3D32B75C42D000D5C58 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2822C3D22B75C42D000D5C58 /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
 		2867F18E2AECC6E90029C937 /* LaunchAtLogin */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 2867F18D2AECC6E90029C937 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;

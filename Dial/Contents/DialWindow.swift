@@ -7,6 +7,7 @@
 
 import Foundation
 import AppKit
+import Defaults
 
 extension NSView {
     
@@ -255,7 +256,7 @@ class DialViewController: NSViewController {
     private func getRadians(
         ofIndex index: Int = Data.dialMode.rawValue
     ) -> CGFloat {
-        CGFloat(index % Data.maxIconCount) / CGFloat(Data.maxIconCount) * 2 * Double.pi + radiansOffset
+        CGFloat(index % Defaults[.maxIconCount]) / CGFloat(Defaults[.maxIconCount]) * 2 * Double.pi + radiansOffset
     }
     
     func updateColoredWidgets() {

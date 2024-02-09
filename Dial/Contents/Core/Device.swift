@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Defaults
 
 protocol InputHandler {
     
@@ -195,7 +196,7 @@ extension Device {
     ) {
         guard repeatCount > 0 else { return }
         
-        if Data.haptics && isConnected {
+        if Defaults[.hapticsEnabled] && isConnected {
             var buf: Array<UInt8> = []
             
             buf.append(0x01) // Report ID
@@ -230,7 +231,7 @@ extension Device {
                 }
             }
             
-            return .dial(buttonState, direction?.multiply(Data.direction))
+            return .dial(buttonState, direction?.multiply(Defaults[.direction]))
         default:
             return .unknown
         }
