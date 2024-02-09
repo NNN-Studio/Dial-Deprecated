@@ -184,7 +184,7 @@ extension Dial: InputHandler {
             }
         } else {
             // Check threshold
-            let started = rotationBehavior.degrees.magnitude > Data.rotationThresholdDegrees
+            let started = rotationBehavior.degrees.magnitude > Defaults[.rotationThresholdDegrees]
             if started {
                 print("Rotation started.")
                 rotationBehavior.started = .now

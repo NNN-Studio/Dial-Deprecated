@@ -19,6 +19,10 @@ extension Defaults.Keys {
     
     
     
+    static let activatedControllerIndexes = Key<[Int]>("activatedControllerIndexes", default: [-1, -2, -3, -4])
+    
+    
+    
     static let rotationThresholdDegrees = Key<UInt>("rotationThresholdDegrees", default: 10)
     
     static let maxIconCount = Key<Int>("maxIconCount", default: 10)

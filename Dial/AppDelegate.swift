@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         AXIsProcessTrustedWithOptions(options)
     }
-
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         requestPermissions()
     }
