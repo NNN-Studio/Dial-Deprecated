@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,7 +26,7 @@
             <objects>
                 <windowController storyboardIdentifier="Main" id="6JV-kM-PK9" customClass="PreferencesWindowController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Dial" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" toolbarStyle="preference" id="rtr-u2-S55">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="270" y="342" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1800" height="1125"/>
@@ -38,20 +39,235 @@
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="fMw-gq-Aqy" kind="relationship" relationship="window.shadowedContentViewController" id="Wc7-1r-Gbb"/>
+                        <segue destination="lje-FX-ceK" kind="relationship" relationship="window.shadowedContentViewController" id="EEY-wd-4LF"/>
                     </connections>
                 </windowController>
                 <customObject id="eKu-PF-cOl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-410" y="-283"/>
         </scene>
-        <!--Hosting Controller-->
-        <scene sceneID="gH7-Dh-aVZ">
+        <!--Tab View Controller-->
+        <scene sceneID="nfw-CA-Zq4">
             <objects>
-                <hostingController id="fMw-gq-Aqy" sceneMemberID="viewController"/>
-                <customObject id="TEf-ng-t18" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <tabViewController selectedTabViewItemIndex="0" id="lje-FX-ceK" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem label="Dial" identifier="" id="81u-uF-qA7"/>
+                        <tabViewItem label="Controllers" identifier="" id="YoE-he-Lw4"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="qIt-gh-jVM">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <connections>
+                            <outlet property="delegate" destination="lje-FX-ceK" id="12x-nd-iEf"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="qIt-gh-jVM" id="GzH-Ek-nQP"/>
+                        <segue destination="fkX-le-ubk" kind="relationship" relationship="tabItems" id="nVz-Ay-V3Y"/>
+                        <segue destination="24w-Ra-sQb" kind="relationship" relationship="tabItems" id="T5E-QF-W92"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="0mN-4O-pfS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-410" y="189"/>
+            <point key="canvasLocation" x="-410" y="227"/>
+        </scene>
+        <!--Dial-->
+        <scene sceneID="ODy-dO-YdE">
+            <objects>
+                <viewController title="Dial" id="fkX-le-ubk" customClass="PreferencesDialViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="iSE-c1-LdQ">
+                        <rect key="frame" x="0.0" y="0.0" width="365" height="300"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="wRG-8f-0vL">
+                                <rect key="frame" x="0.0" y="0.0" width="365" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="365" id="UTU-1r-uOx"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="PCH-by-aPs"/>
+                                <viewLayoutGuide key="layoutMargins" id="eOj-so-6iU"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="wRG-8f-0vL" secondAttribute="bottom" id="JUK-DW-w9E"/>
+                            <constraint firstItem="wRG-8f-0vL" firstAttribute="top" secondItem="iSE-c1-LdQ" secondAttribute="top" id="LGp-Xy-PbK"/>
+                            <constraint firstItem="wRG-8f-0vL" firstAttribute="leading" secondItem="iSE-c1-LdQ" secondAttribute="leading" id="Phe-Ta-PZu"/>
+                            <constraint firstAttribute="trailing" secondItem="wRG-8f-0vL" secondAttribute="trailing" id="S02-H8-DX3"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="C2O-P9-dEl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="236.5" y="41"/>
+        </scene>
+        <!--Controllers-->
+        <scene sceneID="vNc-dk-VCg">
+            <objects>
+                <viewController title="Controllers" id="24w-Ra-sQb" customClass="PreferencesControllersViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="sk0-lI-faL">
+                        <rect key="frame" x="0.0" y="0.0" width="365" height="404"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="Yal-mS-KHu">
+                                <rect key="frame" x="0.0" y="0.0" width="365" height="404"/>
+                                <subviews>
+                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aLB-wS-hvn">
+                                        <rect key="frame" x="20" y="20" width="325" height="364"/>
+                                        <subviews>
+                                            <box boxType="custom" borderWidth="0.0" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="PSc-dA-OV4">
+                                                <rect key="frame" x="0.0" y="39" width="325" height="325"/>
+                                                <view key="contentView" id="aEe-AC-GC9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="325" height="325"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </view>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="PSc-dA-OV4" secondAttribute="height" multiplier="1:1" id="Ufr-lr-YfZ"/>
+                                                </constraints>
+                                                <color key="fillColor" name="quinaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                            </box>
+                                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="giR-0i-KAj">
+                                                <rect key="frame" x="0.0" y="28" width="325" height="5"/>
+                                            </box>
+                                            <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pcm-ma-PkP">
+                                                <rect key="frame" x="0.0" y="0.0" width="325" height="22"/>
+                                                <subviews>
+                                                    <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x1w-zq-rCl">
+                                                        <rect key="frame" x="0.0" y="0.0" width="325" height="22"/>
+                                                        <subviews>
+                                                            <popUpButton horizontalHuggingPriority="249" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="5AJ-Sl-KwA">
+                                                                <rect key="frame" x="-5" y="0.0" width="232" height="22"/>
+                                                                <popUpButtonCell key="cell" type="bevel" title="Item 1" bezelStyle="regularSquare" imagePosition="leading" alignment="left" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" selectedItem="jm7-HC-vpt" id="jXu-e8-daU">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="systemBold"/>
+                                                                    <menu key="menu" id="oOf-CY-zNa">
+                                                                        <items>
+                                                                            <menuItem title="Item 1" state="on" image="command" catalog="system" id="jm7-HC-vpt"/>
+                                                                            <menuItem title="Item 2" image="option" catalog="system" id="qyo-xw-212"/>
+                                                                            <menuItem title="Item 3" image="control" catalog="system" id="cTz-Sb-5dU"/>
+                                                                        </items>
+                                                                    </menu>
+                                                                </popUpButtonCell>
+                                                            </popUpButton>
+                                                            <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="kAx-09-8P6">
+                                                                <rect key="frame" x="237" y="-2" width="42" height="25"/>
+                                                            </switch>
+                                                            <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gm1-Qp-f9m">
+                                                                <rect key="frame" x="289" y="0.0" width="36" height="22"/>
+                                                                <subviews>
+                                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="aPj-uL-Isd">
+                                                                        <rect key="frame" x="0.0" y="2.5" width="14.5" height="17.5"/>
+                                                                        <buttonCell key="cell" type="recessed" title="Button" bezelStyle="recessed" image="minus" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="fF1-GP-ANo">
+                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                            <font key="font" metaFont="systemBold" size="12"/>
+                                                                        </buttonCell>
+                                                                    </button>
+                                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="JMh-Fr-Pv9">
+                                                                        <rect key="frame" x="22" y="-2" width="14.5" height="26.5"/>
+                                                                        <buttonCell key="cell" type="recessed" title="Button" bezelStyle="recessed" image="plus" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="Lj2-F3-cLN">
+                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                            <font key="font" metaFont="systemBold" size="12"/>
+                                                                        </buttonCell>
+                                                                    </button>
+                                                                </subviews>
+                                                                <constraints>
+                                                                    <constraint firstItem="JMh-Fr-Pv9" firstAttribute="top" secondItem="Gm1-Qp-f9m" secondAttribute="top" id="Hqv-jF-wHF"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="JMh-Fr-Pv9" secondAttribute="bottom" id="Jyz-Ln-zev"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="aPj-uL-Isd" secondAttribute="bottom" id="Swz-Ca-1Rq"/>
+                                                                    <constraint firstItem="aPj-uL-Isd" firstAttribute="top" secondItem="Gm1-Qp-f9m" secondAttribute="top" id="UWf-3p-sti"/>
+                                                                </constraints>
+                                                                <visibilityPriorities>
+                                                                    <integer value="1000"/>
+                                                                    <integer value="1000"/>
+                                                                </visibilityPriorities>
+                                                                <customSpacing>
+                                                                    <real value="3.4028234663852886e+38"/>
+                                                                    <real value="3.4028234663852886e+38"/>
+                                                                </customSpacing>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="kAx-09-8P6" secondAttribute="bottom" id="13Q-Li-kwT"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Gm1-Qp-f9m" secondAttribute="bottom" id="6Dd-gm-7yF"/>
+                                                            <constraint firstItem="Gm1-Qp-f9m" firstAttribute="top" secondItem="x1w-zq-rCl" secondAttribute="top" id="TQU-Wz-6AZ"/>
+                                                            <constraint firstItem="5AJ-Sl-KwA" firstAttribute="top" secondItem="x1w-zq-rCl" secondAttribute="top" id="ccE-vb-UxE"/>
+                                                            <constraint firstItem="kAx-09-8P6" firstAttribute="top" secondItem="x1w-zq-rCl" secondAttribute="top" id="u7J-Qb-NtU"/>
+                                                            <constraint firstAttribute="bottom" secondItem="5AJ-Sl-KwA" secondAttribute="bottom" id="y3V-yd-z7Z"/>
+                                                        </constraints>
+                                                        <visibilityPriorities>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                            <integer value="1000"/>
+                                                        </visibilityPriorities>
+                                                        <customSpacing>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                            <real value="3.4028234663852886e+38"/>
+                                                        </customSpacing>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="x1w-zq-rCl" firstAttribute="leading" secondItem="Pcm-ma-PkP" secondAttribute="leading" id="FJI-gC-7m9"/>
+                                                    <constraint firstAttribute="trailing" secondItem="x1w-zq-rCl" secondAttribute="trailing" id="WUH-ao-L6c"/>
+                                                </constraints>
+                                                <visibilityPriorities>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="PSc-dA-OV4" firstAttribute="trailing" secondItem="aLB-wS-hvn" secondAttribute="trailing" id="2mV-JM-Ght"/>
+                                            <constraint firstItem="PSc-dA-OV4" firstAttribute="leading" secondItem="aLB-wS-hvn" secondAttribute="leading" id="8n2-9c-gVY"/>
+                                            <constraint firstItem="Pcm-ma-PkP" firstAttribute="leading" secondItem="aLB-wS-hvn" secondAttribute="leading" id="CrC-QX-XKx"/>
+                                            <constraint firstAttribute="trailing" secondItem="giR-0i-KAj" secondAttribute="trailing" id="Gmx-o9-6VJ"/>
+                                            <constraint firstItem="Pcm-ma-PkP" firstAttribute="bottom" secondItem="aLB-wS-hvn" secondAttribute="bottom" id="WMd-AC-YRn"/>
+                                            <constraint firstAttribute="trailing" secondItem="Pcm-ma-PkP" secondAttribute="trailing" id="h7C-X7-spH"/>
+                                            <constraint firstItem="PSc-dA-OV4" firstAttribute="top" secondItem="aLB-wS-hvn" secondAttribute="top" id="kSc-fE-PhD"/>
+                                            <constraint firstAttribute="width" constant="325" id="ujR-cU-fXo"/>
+                                            <constraint firstItem="giR-0i-KAj" firstAttribute="leading" secondItem="aLB-wS-hvn" secondAttribute="leading" id="vAD-ZA-qQ6"/>
+                                        </constraints>
+                                        <visibilityPriorities>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                            <integer value="1000"/>
+                                        </visibilityPriorities>
+                                        <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                            <real value="3.4028234663852886e+38"/>
+                                        </customSpacing>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="aLB-wS-hvn" firstAttribute="top" secondItem="dfr-p4-bpL" secondAttribute="top" id="5y0-fj-rK8"/>
+                                    <constraint firstAttribute="width" constant="365" id="DFV-Jf-K5e"/>
+                                    <constraint firstItem="aLB-wS-hvn" firstAttribute="leading" secondItem="dfr-p4-bpL" secondAttribute="leading" id="TJm-qd-V0F"/>
+                                    <constraint firstItem="aLB-wS-hvn" firstAttribute="trailing" secondItem="dfr-p4-bpL" secondAttribute="trailing" id="hhO-nR-Wdl"/>
+                                    <constraint firstItem="aLB-wS-hvn" firstAttribute="bottom" secondItem="dfr-p4-bpL" secondAttribute="bottom" id="wDv-Mq-jSo"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="4zF-Hi-xBv"/>
+                                <viewLayoutGuide key="layoutMargins" id="dfr-p4-bpL"/>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Yal-mS-KHu" secondAttribute="trailing" id="8Db-Mp-xoM"/>
+                            <constraint firstItem="Yal-mS-KHu" firstAttribute="leading" secondItem="sk0-lI-faL" secondAttribute="leading" id="FRh-Hc-h5x"/>
+                            <constraint firstItem="Yal-mS-KHu" firstAttribute="top" secondItem="sk0-lI-faL" secondAttribute="top" id="fPY-Fl-bHS"/>
+                            <constraint firstAttribute="bottom" secondItem="Yal-mS-KHu" secondAttribute="bottom" id="iC4-k7-V2Y"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="by5-ab-QSV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-29" y="838"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="command" catalog="system" width="15" height="14"/>
+        <image name="control" catalog="system" width="15" height="9"/>
+        <image name="minus" catalog="system" width="14" height="4"/>
+        <image name="option" catalog="system" width="16" height="14"/>
+        <image name="plus" catalog="system" width="14" height="13"/>
+    </resources>
 </document>

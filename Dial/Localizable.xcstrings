@@ -37,21 +37,6 @@
         }
       }
     },
-    "Controllers" : {
-
-    },
-    "Dial" : {
-
-    },
-    "List 1" : {
-
-    },
-    "List 2" : {
-
-    },
-    "List 3" : {
-
-    },
     "Menu/ConnectionStatus/Off" : {
       "comment" : "[macOS >=14.0] if (!connected)\n   if (!connected)",
       "extractionState" : "extracted_with_value",

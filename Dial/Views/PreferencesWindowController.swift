@@ -20,8 +20,6 @@ class PreferencesWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
         
-        window?.contentView = NSHostingView(rootView: PreferencesView()) // Hand it to SwiftUI
-        
         window?.level = .mainMenu
         window?.center()
     }

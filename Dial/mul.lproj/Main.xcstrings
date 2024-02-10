@@ -1,6 +1,30 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "24w-Ra-sQb.title" : {
+      "comment" : "Class = \"NSViewController\"; title = \"Controllers\"; ObjectID = \"24w-Ra-sQb\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Controllers"
+          }
+        }
+      }
+    },
+    "81u-uF-qA7.label" : {
+      "comment" : "Class = \"NSTabViewItem\"; label = \"Dial\"; ObjectID = \"81u-uF-qA7\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Dial"
+          }
+        }
+      }
+    },
     "AYu-sK-qS6.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"Main Menu\"; ObjectID = \"AYu-sK-qS6\";",
       "extractionState" : "extracted_with_value",
@@ -9,6 +33,90 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Main Menu"
+          }
+        }
+      }
+    },
+    "cTz-Sb-5dU.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Item 3\"; ObjectID = \"cTz-Sb-5dU\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Item 3"
+          }
+        }
+      }
+    },
+    "fF1-GP-ANo.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Button\"; ObjectID = \"fF1-GP-ANo\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Button"
+          }
+        }
+      }
+    },
+    "fkX-le-ubk.title" : {
+      "comment" : "Class = \"NSViewController\"; title = \"Dial\"; ObjectID = \"fkX-le-ubk\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Dial"
+          }
+        }
+      }
+    },
+    "jm7-HC-vpt.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Item 1\"; ObjectID = \"jm7-HC-vpt\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Item 1"
+          }
+        }
+      }
+    },
+    "Lj2-F3-cLN.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Button\"; ObjectID = \"Lj2-F3-cLN\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Button"
+          }
+        }
+      }
+    },
+    "PSc-dA-OV4.title" : {
+      "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"PSc-dA-OV4\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Box"
+          }
+        }
+      }
+    },
+    "qyo-xw-212.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Item 2\"; ObjectID = \"qyo-xw-212\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Item 2"
           }
         }
       }
@@ -27,6 +135,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "智能旋钮"
+          }
+        }
+      }
+    },
+    "YoE-he-Lw4.label" : {
+      "comment" : "Class = \"NSTabViewItem\"; label = \"Controllers\"; ObjectID = \"YoE-he-Lw4\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Controllers"
           }
         }
       }
