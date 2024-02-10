@@ -61,6 +61,18 @@
         }
       }
     },
+    "9RS-B7-IJS.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Continuous\"; ObjectID = \"9RS-B7-IJS\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Continuous"
+          }
+        }
+      }
+    },
     "24w-Ra-sQb.title" : {
       "comment" : "Class = \"NSViewController\"; title = \"Controllers\"; ObjectID = \"24w-Ra-sQb\";",
       "extractionState" : "extracted_with_value",
@@ -74,19 +86,19 @@
       }
     },
     "81u-uF-qA7.label" : {
-      "comment" : "Class = \"NSTabViewItem\"; label = \"Settings\"; ObjectID = \"81u-uF-qA7\";",
+      "comment" : "Class = \"NSTabViewItem\"; label = \"General\"; ObjectID = \"81u-uF-qA7\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Settings"
+            "value" : "General"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "设置"
+            "value" : "通用"
           }
         }
       }
@@ -361,6 +373,18 @@
         }
       }
     },
+    "mkm-oa-wZm.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Stepping\"; ObjectID = \"mkm-oa-wZm\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Stepping"
+          }
+        }
+      }
+    },
     "njj-4D-dJK.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Dial Circle\"; ObjectID = \"njj-4D-dJK\";",
       "extractionState" : "extracted_with_value",
@@ -543,6 +567,30 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "􀆕"
+          }
+        }
+      }
+    },
+    "V9u-1p-2aV.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Haptic Feedback\"; ObjectID = \"V9u-1p-2aV\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Haptic Feedback"
+          }
+        }
+      }
+    },
+    "xIW-n1-4Tj.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Rotation Style\"; ObjectID = \"xIW-n1-4Tj\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Rotation Style"
           }
         }
       }

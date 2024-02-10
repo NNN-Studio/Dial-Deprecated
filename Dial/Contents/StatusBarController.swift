@@ -46,7 +46,7 @@ struct MenuItems {
     
     let startsWithMacOS = StateOptionItem(NSLocalizedString("Menu/StartsWithMacOS", value: "Starts with macOS", comment: "starts with macos"))
     
-    let openPreferences = NSMenuItem(title: NSLocalizedString("Menu/OpenPreferences", value:"Open Preferences", comment: "open preferences"))
+    let openSettings = NSMenuItem(title: NSLocalizedString("Menu/OpenSettings", value:"Open Settings", comment: "open settings"))
     
     let quit = NSMenuItem(title: NSLocalizedString("Menu/Quit", value: "Quit", comment: "quit"))
     
@@ -98,8 +98,8 @@ struct MenuItems {
         startsWithMacOS.action = #selector(controller.setStartsWithMacOS(_:))
         startsWithMacOS.flag = Defaults.launchAtLogin
         
-        openPreferences.target = controller
-        openPreferences.action = #selector(controller.openPreferences(_:))
+        openSettings.target = controller
+        openSettings.action = #selector(controller.openSettings(_:))
         
         quit.target = controller
         quit.action = #selector(controller.quitApp(_:))
@@ -303,7 +303,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
             
             items.append(MenuManager.groupItems(
                 menuItems!.startsWithMacOS,
-                menuItems!.openPreferences,
+                menuItems!.openSettings,
                 menuItems!.quit
             ))
             
@@ -326,7 +326,8 @@ class StatusBarController: NSObject, NSMenuDelegate {
     private func updateIcon(_ isConnected: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
             if let button = statusItem.button {
-                let dialIcon = (isConnected ? NSImage(named: NSImage.Name("Dial")) : NSImage(named: NSImage.Name("DialDisabled")))
+                let dialIcon = NSImage(systemSymbolName: "hockey.puck.fill", accessibilityDescription: nil)?
+                    .withSymbolConfiguration(NSImage.SymbolConfiguration(pointSize: 26, weight: .bold))
                 
                 var modeIconName = isConnected ? Data.dialMode.modeIconName : "ellipsis.circle.fill"
                 
@@ -439,10 +440,10 @@ extension StatusBarController {
         menuItems?.updateStartsWithMacOS()
     }
     
-    @objc func openPreferences(
+    @objc func openSettings(
         _ sender: Any?
     ) {
-        PreferencesWindowController.shared.showWindow(nil)
+        SettingsWindowController.shared.showWindow(nil)
     }
     
     @objc func quitApp(

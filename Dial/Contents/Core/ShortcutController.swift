@@ -16,6 +16,8 @@ class ShortcutController: Controller {
         
         var plysicalDirection: Bool
         
+        var reverseDirection: Bool
+        
         var rotationMapper: (Dial.Rotation) -> Direction?
         
         var shortcuts: (rotation: [Direction: ShortcutArray], single: ShortcutArray, double: ShortcutArray)
@@ -47,7 +49,8 @@ class ShortcutController: Controller {
     ) {
         guard let mapped = settings.rotationMapper(rotation) else { return }
         
-        let direction = settings.plysicalDirection ? mapped.physical : mapped
+        var direction = settings.plysicalDirection ? mapped.physical : mapped
+        if (settings.reverseDirection) { direction = direction.negate }
         
         settings.shortcuts.rotation[direction]?.post()
     }

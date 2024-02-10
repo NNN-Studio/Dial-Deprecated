@@ -1,5 +1,5 @@
 //
-//  PreferencesWindow.swift
+//  SettingsWindow.swift
 //  Dial
 //
 //  Created by KrLite on 2024/2/9.
@@ -8,13 +8,13 @@
 import Cocoa
 import SwiftUI
 
-class PreferencesWindowController: NSWindowController {
+class SettingsWindowController: NSWindowController {
     
-    static let shared: PreferencesWindowController = {
+    static let shared: SettingsWindowController = {
         return NSStoryboard(
             name: "Main",
             bundle: nil
-        ).instantiateController(withIdentifier: "PreferencesWindowController") as! PreferencesWindowController
+        ).instantiateController(withIdentifier: "SettingsWindowController") as! SettingsWindowController
     }()
     
     override func windowDidLoad() {

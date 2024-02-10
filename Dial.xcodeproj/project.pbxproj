@@ -13,7 +13,7 @@
 		2822C3D82B75C44B000D5C58 /* Defaults+Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */; };
 		2822C3DA2B75DB8C000D5C58 /* LuminanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D92B75DB8C000D5C58 /* LuminanceController.swift */; };
 		2822C3DC2B75DE82000D5C58 /* IconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3DB2B75DE82000D5C58 /* IconManager.swift */; };
-		2822C3F22B75F909000D5C58 /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3F12B75F909000D5C58 /* PreferencesWindow.swift */; };
+		2822C3F22B75F909000D5C58 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3F12B75F909000D5C58 /* SettingsWindow.swift */; };
 		2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2830055B2AEE7FF800D18F65 /* MenuManager.swift */; };
 		2867F1832AEC8D3B0029C937 /* DialWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F1822AEC8D3B0029C937 /* DialWindow.swift */; };
 		2867F18F2AECC6E90029C937 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 2867F18E2AECC6E90029C937 /* LaunchAtLogin */; };
@@ -21,8 +21,8 @@
 		28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B6852A2AEC01D6008EBE98 /* Data.swift */; };
 		28B833BC2B7747D200D96825 /* ShortcutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833BB2B7747D200D96825 /* ShortcutController.swift */; };
 		28B833C02B77582C00D96825 /* ShortcutArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833BF2B77582C00D96825 /* ShortcutArray.swift */; };
-		28B833C32B77615500D96825 /* PreferencesControllersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833C22B77615500D96825 /* PreferencesControllersViewController.swift */; };
-		28B833C52B77617500D96825 /* PreferencesSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833C42B77617500D96825 /* PreferencesSettingsViewController.swift */; };
+		28B833C32B77615500D96825 /* SettingsControllersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833C22B77615500D96825 /* SettingsControllersViewController.swift */; };
+		28B833C52B77617500D96825 /* SettingsGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833C42B77617500D96825 /* SettingsGeneralViewController.swift */; };
 		28C7A0A22AEE06E8003113D5 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C7A0A12AEE06E8003113D5 /* Input.swift */; };
 		28D278EB2AEFC35D00844ADE /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D278EA2AEFC35D00844ADE /* Device.swift */; };
 		C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882FA1926F1430C00595EE1 /* AppDelegate.swift */; };
@@ -44,7 +44,7 @@
 		2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Defaults+Structures.swift"; sourceTree = "<group>"; };
 		2822C3D92B75DB8C000D5C58 /* LuminanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuminanceController.swift; sourceTree = "<group>"; };
 		2822C3DB2B75DE82000D5C58 /* IconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconManager.swift; sourceTree = "<group>"; };
-		2822C3F12B75F909000D5C58 /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
+		2822C3F12B75F909000D5C58 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
 		2830055B2AEE7FF800D18F65 /* MenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
 		2867F1822AEC8D3B0029C937 /* DialWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialWindow.swift; sourceTree = "<group>"; };
 		2867F18A2AEC94D50029C937 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Main.xcstrings; sourceTree = "<group>"; };
@@ -53,8 +53,8 @@
 		28B6852A2AEC01D6008EBE98 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		28B833BB2B7747D200D96825 /* ShortcutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutController.swift; sourceTree = "<group>"; };
 		28B833BF2B77582C00D96825 /* ShortcutArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutArray.swift; sourceTree = "<group>"; };
-		28B833C22B77615500D96825 /* PreferencesControllersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesControllersViewController.swift; sourceTree = "<group>"; };
-		28B833C42B77617500D96825 /* PreferencesSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesSettingsViewController.swift; sourceTree = "<group>"; };
+		28B833C22B77615500D96825 /* SettingsControllersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsControllersViewController.swift; sourceTree = "<group>"; };
+		28B833C42B77617500D96825 /* SettingsGeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsGeneralViewController.swift; sourceTree = "<group>"; };
 		28C7A0A12AEE06E8003113D5 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		28D278EA2AEFC35D00844ADE /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		C882FA1926F1430C00595EE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -106,7 +106,7 @@
 				28D278E92AEFC25100844ADE /* Utilities */,
 				28D278E82AEFC23E00844ADE /* Core */,
 				C882FA2C26F143E300595EE1 /* StatusBarController.swift */,
-				2822C3F12B75F909000D5C58 /* PreferencesWindow.swift */,
+				2822C3F12B75F909000D5C58 /* SettingsWindow.swift */,
 				2867F1822AEC8D3B0029C937 /* DialWindow.swift */,
 				C89F31582701090400A8B365 /* Dial.swift */,
 			);
@@ -127,8 +127,8 @@
 		28B833C12B77613700D96825 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				28B833C42B77617500D96825 /* PreferencesSettingsViewController.swift */,
-				28B833C22B77615500D96825 /* PreferencesControllersViewController.swift */,
+				28B833C42B77617500D96825 /* SettingsGeneralViewController.swift */,
+				28B833C22B77615500D96825 /* SettingsControllersViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -276,19 +276,19 @@
 				28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */,
 				2822C3DA2B75DB8C000D5C58 /* LuminanceController.swift in Sources */,
 				C882FA2D26F143E300595EE1 /* StatusBarController.swift in Sources */,
-				2822C3F22B75F909000D5C58 /* PreferencesWindow.swift in Sources */,
+				2822C3F22B75F909000D5C58 /* SettingsWindow.swift in Sources */,
 				2801CAB52AEDF18000E95B5F /* MissionController.swift in Sources */,
 				28C7A0A22AEE06E8003113D5 /* Input.swift in Sources */,
 				2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */,
 				2822C3D82B75C44B000D5C58 /* Defaults+Structures.swift in Sources */,
 				C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */,
 				C89D24292703BA5E00B1A458 /* Controller.swift in Sources */,
-				28B833C32B77615500D96825 /* PreferencesControllersViewController.swift in Sources */,
+				28B833C32B77615500D96825 /* SettingsControllersViewController.swift in Sources */,
 				28B833C02B77582C00D96825 /* ShortcutArray.swift in Sources */,
 				C89D242D2704870C00B1A458 /* PlaybackController.swift in Sources */,
 				2867F1832AEC8D3B0029C937 /* DialWindow.swift in Sources */,
 				C89F31592701090400A8B365 /* Dial.swift in Sources */,
-				28B833C52B77617500D96825 /* PreferencesSettingsViewController.swift in Sources */,
+				28B833C52B77617500D96825 /* SettingsGeneralViewController.swift in Sources */,
 				28B833BC2B7747D200D96825 /* ShortcutController.swift in Sources */,
 				C89D242B2703CF4500B1A458 /* ScrollController.swift in Sources */,
 			);

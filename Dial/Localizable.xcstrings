@@ -271,20 +271,20 @@
         }
       }
     },
-    "Menu/OpenPreferences" : {
-      "comment" : "open preferences",
+    "Menu/OpenSettings" : {
+      "comment" : "open settings",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open Preferences"
+            "value" : "Open Settings"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打开配置菜单"
+            "value" : "打开设置"
           }
         }
       }
