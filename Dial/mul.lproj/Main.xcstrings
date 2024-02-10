@@ -37,6 +37,24 @@
         }
       }
     },
+    "1dr-VS-b8B.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Alternative Direction\"; ObjectID = \"1dr-VS-b8B\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Alternative Direction"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "反转方向"
+          }
+        }
+      }
+    },
     "3Hx-vE-vpf.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"􀆔\"; ObjectID = \"3Hx-vE-vpf\";",
       "extractionState" : "extracted_with_value",
@@ -69,6 +87,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Continuous"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "连续"
           }
         }
       }
@@ -207,6 +231,24 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "􀆝"
+          }
+        }
+      }
+    },
+    "FbH-4u-TW3.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Follows Physical Direction\"; ObjectID = \"FbH-4u-TW3\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Follows Physical Direction"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跟随物理设备旋转方向"
           }
         }
       }
@@ -381,6 +423,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Stepping"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "步进"
           }
         }
       }
@@ -580,6 +628,12 @@
             "state" : "new",
             "value" : "Haptic Feedback"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "震感反馈"
+          }
         }
       }
     },
@@ -591,6 +645,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Rotation Style"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "旋转方式"
           }
         }
       }
