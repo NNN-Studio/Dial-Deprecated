@@ -1,6 +1,42 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "0jK-35-qvP.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆝\"; ObjectID = \"0jK-35-qvP\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆝"
+          }
+        }
+      }
+    },
+    "0pi-ct-53u.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆕\"; ObjectID = \"0pi-ct-53u\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆕"
+          }
+        }
+      }
+    },
+    "0rW-Ft-w3M.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆔\"; ObjectID = \"0rW-Ft-w3M\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆔"
+          }
+        }
+      }
+    },
     "3Hx-vE-vpf.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"􀆔\"; ObjectID = \"3Hx-vE-vpf\";",
       "extractionState" : "extracted_with_value",
@@ -51,6 +87,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "设置"
+          }
+        }
+      }
+    },
+    "AgB-MD-mGH.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆝\"; ObjectID = \"AgB-MD-mGH\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆝"
           }
         }
       }
@@ -109,6 +157,48 @@
         }
       }
     },
+    "dv6-c3-eG4.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when double clicked.\"; ObjectID = \"dv6-c3-eG4\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Triggers when double clicked."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "连续点按时触发。"
+          }
+        }
+      }
+    },
+    "E2B-7q-vBm.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆍\"; ObjectID = \"E2B-7q-vBm\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆍"
+          }
+        }
+      }
+    },
+    "f0e-Tp-HrT.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆝\"; ObjectID = \"f0e-Tp-HrT\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆝"
+          }
+        }
+      }
+    },
     "FC3-8N-ZCU.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"􀆔􀆕\"; ObjectID = \"FC3-8N-ZCU\";",
       "extractionState" : "extracted_with_value",
@@ -157,6 +247,36 @@
         }
       }
     },
+    "fuT-JO-fCL.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆔\"; ObjectID = \"fuT-JO-fCL\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆔"
+          }
+        }
+      }
+    },
+    "gBE-6V-Yir.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when dialed counterclockwisely.\"; ObjectID = \"gBE-6V-Yir\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Triggers when dialed counterclockwisely."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "逆时针旋转旋钮时触发。"
+          }
+        }
+      }
+    },
     "Gis-5W-cwI.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"􀆍\"; ObjectID = \"Gis-5W-cwI\";",
       "extractionState" : "extracted_with_value",
@@ -169,6 +289,18 @@
         }
       }
     },
+    "iVc-Sp-ced.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"V\"; ObjectID = \"iVc-Sp-ced\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "V"
+          }
+        }
+      }
+    },
     "jm7-HC-vpt.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Controller 1\"; ObjectID = \"jm7-HC-vpt\";",
       "extractionState" : "extracted_with_value",
@@ -177,6 +309,42 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Controller 1"
+          }
+        }
+      }
+    },
+    "Kj1-rH-HvU.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆍\"; ObjectID = \"Kj1-rH-HvU\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆍"
+          }
+        }
+      }
+    },
+    "kkf-hf-7Pl.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆔\"; ObjectID = \"kkf-hf-7Pl\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆔"
+          }
+        }
+      }
+    },
+    "kwv-p8-WGN.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆕\"; ObjectID = \"kwv-p8-WGN\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆕"
           }
         }
       }
@@ -207,6 +375,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "旋钮圆盘"
+          }
+        }
+      }
+    },
+    "NWB-rz-4jC.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"=\"; ObjectID = \"NWB-rz-4jC\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "="
+          }
+        }
+      }
+    },
+    "p10-Qy-vIW.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆝\"; ObjectID = \"p10-Qy-vIW\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆝"
           }
         }
       }
@@ -265,6 +457,24 @@
         }
       }
     },
+    "Sr0-RK-qfg.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when clicked.\"; ObjectID = \"Sr0-RK-qfg\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Triggers when clicked."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点按时触发。"
+          }
+        }
+      }
+    },
     "sWd-pl-JFW.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"This is a warning.\"; ObjectID = \"sWd-pl-JFW\";",
       "extractionState" : "extracted_with_value",
@@ -277,6 +487,30 @@
         }
       }
     },
+    "Tin-MA-QwJ.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆍\"; ObjectID = \"Tin-MA-QwJ\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆍"
+          }
+        }
+      }
+    },
+    "tmI-TD-AWS.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆔\"; ObjectID = \"tmI-TD-AWS\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆔"
+          }
+        }
+      }
+    },
     "UQz-6a-HTn.placeholderString" : {
       "comment" : "Class = \"NSTextFieldCell\"; placeholderString = \"Controller Name\"; ObjectID = \"UQz-6a-HTn\";",
       "extractionState" : "extracted_with_value",
@@ -285,6 +519,48 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Controller Name"
+          }
+        }
+      }
+    },
+    "UVV-yt-bnP.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"=\"; ObjectID = \"UVV-yt-bnP\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "="
+          }
+        }
+      }
+    },
+    "UyY-gj-5im.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆕\"; ObjectID = \"UyY-gj-5im\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆕"
+          }
+        }
+      }
+    },
+    "y0i-NO-bh0.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when dialed clockwisely.\"; ObjectID = \"y0i-NO-bh0\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Triggers when dialed clockwisely."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顺时针旋转旋钮时触发。"
           }
         }
       }
