@@ -31,6 +31,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         requestPermissions()
     }
     
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        if (!flag) {
+            SettingsWindowController.shared.showWindow(nil)
+        }
+        
+        return false
+    }
+    
 }
 
 extension AppDelegate {

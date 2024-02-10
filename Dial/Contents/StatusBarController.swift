@@ -327,14 +327,17 @@ class StatusBarController: NSObject, NSMenuDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
             if let button = statusItem.button {
                 let dialIcon = NSImage(systemSymbolName: "hockey.puck.fill", accessibilityDescription: nil)?
-                    .withSymbolConfiguration(NSImage.SymbolConfiguration(pointSize: 26, weight: .bold))
+                    .withSymbolConfiguration(NSImage.SymbolConfiguration(pointSize: 24, weight: .bold))?
+                    .withVerticalPadding(4)
                 
                 var modeIconName = isConnected ? Data.dialMode.modeIconName : "ellipsis.circle.fill"
                 
                 let modeIcon = NSImage(systemSymbolName: modeIconName, accessibilityDescription: nil)?
-                    .withSymbolConfiguration(NSImage.SymbolConfiguration(pointSize: 24, weight: .bold))
+                    .withSymbolConfiguration(NSImage.SymbolConfiguration(pointSize: 24, weight: .bold))?
+                    .withVerticalPadding(4)
                 
-                let combinedIcon = dialIcon?.horizontallyCombine(with: modeIcon?.withVerticalPadding(2)).withVerticalPadding(2)
+                let combinedIcon = (isConnected ? dialIcon?.horizontallyCombine(with: modeIcon) : dialIcon)?
+                    .withVerticalPadding(2)
                 combinedIcon?.isTemplate = true
                 
                 button.image = combinedIcon?.fitIntoStatusBar()
