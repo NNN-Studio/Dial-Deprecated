@@ -290,13 +290,13 @@
       }
     },
     "fkX-le-ubk.title" : {
-      "comment" : "Class = \"NSViewController\"; title = \"Settings\"; ObjectID = \"fkX-le-ubk\";",
+      "comment" : "Class = \"NSViewController\"; title = \"General\"; ObjectID = \"fkX-le-ubk\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Settings"
+            "value" : "General"
           }
         }
       }
@@ -415,6 +415,30 @@
         }
       }
     },
+    "lLH-aX-8pM.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Extreme\"; ObjectID = \"lLH-aX-8pM\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Extreme"
+          }
+        }
+      }
+    },
+    "m2Z-n2-opU.ibExternalAccessibilityDescription" : {
+      "comment" : "Class = \"NSButton\"; ibExternalAccessibilityDescription = \"Dial connects your Surface Dial through Bluetooth. Pair your Surface Dial in System Settings before clicking this button to search for it.\"; ObjectID = \"m2Z-n2-opU\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Dial connects your Surface Dial through Bluetooth. Pair your Surface Dial in System Settings before clicking this button to search for it."
+          }
+        }
+      }
+    },
     "mkm-oa-wZm.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Stepping\"; ObjectID = \"mkm-oa-wZm\";",
       "extractionState" : "extracted_with_value",
@@ -463,6 +487,24 @@
         }
       }
     },
+    "ovW-UH-JOv.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Low\"; ObjectID = \"ovW-UH-JOv\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Low"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "低"
+          }
+        }
+      }
+    },
     "p10-Qy-vIW.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"􀆝\"; ObjectID = \"p10-Qy-vIW\";",
       "extractionState" : "extracted_with_value",
@@ -471,6 +513,60 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "􀆝"
+          }
+        }
+      }
+    },
+    "pcH-qw-fE6.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Clockwise\"; ObjectID = \"pcH-qw-fE6\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Clockwise"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顺时针"
+          }
+        }
+      }
+    },
+    "pFU-zn-zRx.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Sensitivity\"; ObjectID = \"pFU-zn-zRx\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sensitivity"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "敏感度"
+          }
+        }
+      }
+    },
+    "PGP-hX-8hu.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"High\"; ObjectID = \"PGP-hX-8hu\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "High"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高"
           }
         }
       }
@@ -559,6 +655,24 @@
         }
       }
     },
+    "tFE-WG-7Qv.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Medium\"; ObjectID = \"tFE-WG-7Qv\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Medium"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中"
+          }
+        }
+      }
+    },
     "Tin-MA-QwJ.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"􀆍\"; ObjectID = \"Tin-MA-QwJ\";",
       "extractionState" : "extracted_with_value",
@@ -637,6 +751,36 @@
         }
       }
     },
+    "wFe-uU-akt.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"SURFACE DIAL SERIAL\"; ObjectID = \"wFe-uU-akt\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "SURFACE DIAL SERIAL"
+          }
+        }
+      }
+    },
+    "X6a-G3-jJX.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Natural\"; ObjectID = \"X6a-G3-jJX\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Natural"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自然"
+          }
+        }
+      }
+    },
     "xIW-n1-4Tj.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Rotation Style\"; ObjectID = \"xIW-n1-4Tj\";",
       "extractionState" : "extracted_with_value",
@@ -651,6 +795,24 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "旋转方式"
+          }
+        }
+      }
+    },
+    "Xwq-Hp-JXa.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Rotation Direction\"; ObjectID = \"Xwq-Hp-JXa\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Rotation Direction"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "旋转方向"
           }
         }
       }
@@ -691,8 +853,56 @@
         }
       }
     },
+    "Ysz-5u-xi7.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Counterclockwise\"; ObjectID = \"Ysz-5u-xi7\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Counterclockwise"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "逆时针"
+          }
+        }
+      }
+    },
+    "YW6-kc-CrJ.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Global Haptic Feedback\"; ObjectID = \"YW6-kc-CrJ\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Global Haptic Feedback"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全局震感反馈"
+          }
+        }
+      }
+    },
     "zMI-se-f4g.title" : {
       "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"zMI-se-f4g\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Box"
+          }
+        }
+      }
+    },
+    "zrA-v7-7DM.title" : {
+      "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"zrA-v7-7DM\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
