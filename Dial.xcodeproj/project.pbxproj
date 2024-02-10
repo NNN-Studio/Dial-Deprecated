@@ -13,7 +13,7 @@
 		2822C3D82B75C44B000D5C58 /* Defaults+Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */; };
 		2822C3DA2B75DB8C000D5C58 /* LuminanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D92B75DB8C000D5C58 /* LuminanceController.swift */; };
 		2822C3DC2B75DE82000D5C58 /* IconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3DB2B75DE82000D5C58 /* IconManager.swift */; };
-		2822C3F22B75F909000D5C58 /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3F12B75F909000D5C58 /* PreferencesWindowController.swift */; };
+		2822C3F22B75F909000D5C58 /* PreferencesWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3F12B75F909000D5C58 /* PreferencesWindow.swift */; };
 		2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2830055B2AEE7FF800D18F65 /* MenuManager.swift */; };
 		2867F1832AEC8D3B0029C937 /* DialWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F1822AEC8D3B0029C937 /* DialWindow.swift */; };
 		2867F18F2AECC6E90029C937 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 2867F18E2AECC6E90029C937 /* LaunchAtLogin */; };
@@ -44,7 +44,7 @@
 		2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Defaults+Structures.swift"; sourceTree = "<group>"; };
 		2822C3D92B75DB8C000D5C58 /* LuminanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuminanceController.swift; sourceTree = "<group>"; };
 		2822C3DB2B75DE82000D5C58 /* IconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconManager.swift; sourceTree = "<group>"; };
-		2822C3F12B75F909000D5C58 /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		2822C3F12B75F909000D5C58 /* PreferencesWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindow.swift; sourceTree = "<group>"; };
 		2830055B2AEE7FF800D18F65 /* MenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
 		2867F1822AEC8D3B0029C937 /* DialWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialWindow.swift; sourceTree = "<group>"; };
 		2867F18A2AEC94D50029C937 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Main.xcstrings; sourceTree = "<group>"; };
@@ -106,6 +106,7 @@
 				28D278E92AEFC25100844ADE /* Utilities */,
 				28D278E82AEFC23E00844ADE /* Core */,
 				C882FA2C26F143E300595EE1 /* StatusBarController.swift */,
+				2822C3F12B75F909000D5C58 /* PreferencesWindow.swift */,
 				2867F1822AEC8D3B0029C937 /* DialWindow.swift */,
 				C89F31582701090400A8B365 /* Dial.swift */,
 			);
@@ -126,7 +127,6 @@
 		28B833C12B77613700D96825 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				2822C3F12B75F909000D5C58 /* PreferencesWindowController.swift */,
 				28B833C42B77617500D96825 /* PreferencesSettingsViewController.swift */,
 				28B833C22B77615500D96825 /* PreferencesControllersViewController.swift */,
 			);
@@ -276,7 +276,7 @@
 				28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */,
 				2822C3DA2B75DB8C000D5C58 /* LuminanceController.swift in Sources */,
 				C882FA2D26F143E300595EE1 /* StatusBarController.swift in Sources */,
-				2822C3F22B75F909000D5C58 /* PreferencesWindowController.swift in Sources */,
+				2822C3F22B75F909000D5C58 /* PreferencesWindow.swift in Sources */,
 				2801CAB52AEDF18000E95B5F /* MissionController.swift in Sources */,
 				28C7A0A22AEE06E8003113D5 /* Input.swift in Sources */,
 				2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */,
@@ -439,6 +439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Dial/Dial.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -448,6 +449,7 @@
 				ENABLE_PREVIEWS = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/lib/hidapi/hidapi";
 				INFOPLIST_FILE = Dial/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
@@ -469,6 +471,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = Dial/Dial.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
@@ -478,6 +481,7 @@
 				ENABLE_PREVIEWS = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/lib/hidapi/hidapi";
 				INFOPLIST_FILE = Dial/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",

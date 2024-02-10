@@ -24,8 +24,8 @@
         <!--Window Controller-->
         <scene sceneID="9T6-rN-Vy8">
             <objects>
-                <windowController storyboardIdentifier="Main" id="6JV-kM-PK9" customClass="PreferencesWindowController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Dial" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" toolbarStyle="preference" id="rtr-u2-S55">
+                <windowController storyboardIdentifier="PreferencesWindowController" id="6JV-kM-PK9" customClass="PreferencesWindowController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Dial" allowsToolTipsWhenApplicationIsInactive="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" toolbarStyle="preference" id="rtr-u2-S55">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="270" y="342" width="480" height="270"/>
@@ -279,7 +279,7 @@
                                                                             <subviews>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="30T-cR-RcB">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="247" height="30"/>
-                                                                                    <textFieldCell key="cell" controlSize="large" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Controller Name" usesSingleLineMode="YES" bezelStyle="round" id="UQz-6a-HTn">
+                                                                                    <textFieldCell key="cell" controlSize="large" selectable="YES" editable="YES" continuous="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Controller Name" usesSingleLineMode="YES" bezelStyle="round" id="UQz-6a-HTn">
                                                                                         <font key="font" metaFont="system"/>
                                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -484,7 +484,7 @@
                                                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
                                                                                             <popUpButtonCell key="cell" type="inline" bezelStyle="inline" alignment="center" controlSize="large" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="310-M3-lKm" id="QPy-R9-xrT">
                                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                                <font key="font" size="11" name=".SFNS-Semibold"/>
+                                                                                                <font key="font" metaFont="smallSystem"/>
                                                                                                 <menu key="menu" id="GST-a0-rVm">
                                                                                                     <items>
                                                                                                         <menuItem state="on" hidden="YES" id="310-M3-lKm">
@@ -556,7 +556,7 @@
                                                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
                                                                                             <popUpButtonCell key="cell" type="inline" title="􀆝" bezelStyle="inline" alignment="center" controlSize="large" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="p10-Qy-vIW" id="XbQ-PG-Aff">
                                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                                <font key="font" size="11" name=".SFNS-Semibold"/>
+                                                                                                <font key="font" metaFont="smallSystem"/>
                                                                                                 <menu key="menu" id="SeC-yw-iVI">
                                                                                                     <items>
                                                                                                         <menuItem title="􀆝" state="on" hidden="YES" id="p10-Qy-vIW">
@@ -734,7 +734,7 @@
                 </viewController>
                 <customObject id="by5-ab-QSV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-27" y="1119"/>
+            <point key="canvasLocation" x="-27.5" y="1119"/>
         </scene>
     </scenes>
     <resources>

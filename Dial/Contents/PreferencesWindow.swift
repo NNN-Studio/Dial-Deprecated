@@ -1,5 +1,5 @@
 //
-//  PreferencesWindowController.swift
+//  PreferencesWindow.swift
 //  Dial
 //
 //  Created by KrLite on 2024/2/9.
@@ -14,14 +14,13 @@ class PreferencesWindowController: NSWindowController {
         return NSStoryboard(
             name: "Main",
             bundle: nil
-        ).instantiateController(withIdentifier: "Main") as! PreferencesWindowController
+        ).instantiateController(withIdentifier: "PreferencesWindowController") as! PreferencesWindowController
     }()
-
+    
     override func windowDidLoad() {
-        super.windowDidLoad()
-        
-        window?.level = .mainMenu
-        window?.center()
+        self.window?.level = .mainMenu
+        self.window?.center()
+        self.window?.makeKeyAndOrderFront(nil)
     }
     
     override func keyDown(with event: NSEvent) {
