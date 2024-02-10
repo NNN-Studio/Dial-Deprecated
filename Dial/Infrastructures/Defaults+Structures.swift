@@ -59,6 +59,10 @@ enum Direction: Int, CaseIterable, Defaults.Serializable {
         }
     }
     
+    var physical: Direction {
+        self.multiply(Defaults[.direction])
+    }
+    
     func negateIf(_ flag: Bool) -> Direction {
         flag ? negate : self
     }

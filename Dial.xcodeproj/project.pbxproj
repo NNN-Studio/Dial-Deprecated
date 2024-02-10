@@ -22,6 +22,8 @@
 		28B685282AEBFB80008EBE98 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 28B685272AEBFB80008EBE98 /* Localizable.xcstrings */; };
 		28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B6852A2AEC01D6008EBE98 /* Data.swift */; };
 		28B833B92B770AF800D96825 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833B82B770AF800D96825 /* PreferencesView.swift */; };
+		28B833BC2B7747D200D96825 /* ShortcutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833BB2B7747D200D96825 /* ShortcutController.swift */; };
+		28B833C02B77582C00D96825 /* ShortcutArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833BF2B77582C00D96825 /* ShortcutArray.swift */; };
 		28C7A0A22AEE06E8003113D5 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C7A0A12AEE06E8003113D5 /* Input.swift */; };
 		28D278EB2AEFC35D00844ADE /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D278EA2AEFC35D00844ADE /* Device.swift */; };
 		C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882FA1926F1430C00595EE1 /* AppDelegate.swift */; };
@@ -53,6 +55,8 @@
 		28B685272AEBFB80008EBE98 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		28B6852A2AEC01D6008EBE98 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		28B833B82B770AF800D96825 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
+		28B833BB2B7747D200D96825 /* ShortcutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutController.swift; sourceTree = "<group>"; };
+		28B833BF2B77582C00D96825 /* ShortcutArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutArray.swift; sourceTree = "<group>"; };
 		28C7A0A12AEE06E8003113D5 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		28D278EA2AEFC35D00844ADE /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		C882FA1926F1430C00595EE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +94,7 @@
 		2822C3EE2B75F5B0000D5C58 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				28B833BA2B77436D00D96825 /* Components */,
 				28B833B82B770AF800D96825 /* PreferencesView.swift */,
 				2822C3EF2B75F5BF000D5C58 /* ControllersView.swift */,
 				2822C3F32B7604EB000D5C58 /* DialView.swift */,
@@ -132,11 +137,19 @@
 			path = Infrastructures;
 			sourceTree = "<group>";
 		};
+		28B833BA2B77436D00D96825 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		28D278E82AEFC23E00844ADE /* Core */ = {
 			isa = PBXGroup;
 			children = (
 				C89D24282703BA5E00B1A458 /* Controller.swift */,
 				28D278EA2AEFC35D00844ADE /* Device.swift */,
+				28B833BB2B7747D200D96825 /* ShortcutController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -146,6 +159,7 @@
 			children = (
 				2830055B2AEE7FF800D18F65 /* MenuManager.swift */,
 				2822C3DB2B75DE82000D5C58 /* IconManager.swift */,
+				28B833BF2B77582C00D96825 /* ShortcutArray.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -282,10 +296,12 @@
 				C89D24292703BA5E00B1A458 /* Controller.swift in Sources */,
 				28B833B92B770AF800D96825 /* PreferencesView.swift in Sources */,
 				2822C3F02B75F5BF000D5C58 /* ControllersView.swift in Sources */,
+				28B833C02B77582C00D96825 /* ShortcutArray.swift in Sources */,
 				C89D242D2704870C00B1A458 /* PlaybackController.swift in Sources */,
 				2822C3F42B7604EB000D5C58 /* DialView.swift in Sources */,
 				2867F1832AEC8D3B0029C937 /* DialWindow.swift in Sources */,
 				C89F31592701090400A8B365 /* Dial.swift in Sources */,
+				28B833BC2B7747D200D96825 /* ShortcutController.swift in Sources */,
 				C89D242B2703CF4500B1A458 /* ScrollController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

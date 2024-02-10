@@ -58,7 +58,7 @@ class DefaultController: Controller {
             break
         case .stepping(let direction):
             if let dialMode = Data.getCycledDialMode(
-                direction.multiply(Defaults[.direction]) /* Recover to the natural direction */ .negate.rawValue,
+                direction.physical.negate.rawValue,
                 wrap: false
             ) {
                 callback.setDialModeAndUpdate(dialMode, animate: true)
