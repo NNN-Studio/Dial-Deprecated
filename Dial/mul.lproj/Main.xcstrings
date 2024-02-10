@@ -1,6 +1,30 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "3Hx-vE-vpf.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆔\"; ObjectID = \"3Hx-vE-vpf\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆔"
+          }
+        }
+      }
+    },
+    "7WN-fj-Far.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆕\"; ObjectID = \"7WN-fj-Far\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆕"
+          }
+        }
+      }
+    },
     "24w-Ra-sQb.title" : {
       "comment" : "Class = \"NSViewController\"; title = \"Controllers\"; ObjectID = \"24w-Ra-sQb\";",
       "extractionState" : "extracted_with_value",
@@ -14,13 +38,37 @@
       }
     },
     "81u-uF-qA7.label" : {
-      "comment" : "Class = \"NSTabViewItem\"; label = \"Dial\"; ObjectID = \"81u-uF-qA7\";",
+      "comment" : "Class = \"NSTabViewItem\"; label = \"Settings\"; ObjectID = \"81u-uF-qA7\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Dial"
+            "value" : "Settings"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "设置"
+          }
+        }
+      }
+    },
+    "aUW-Uf-Zb3.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Current Controller\"; ObjectID = \"aUW-Uf-Zb3\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Current Controller"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当前控制器"
           }
         }
       }
@@ -37,14 +85,50 @@
         }
       }
     },
-    "cTz-Sb-5dU.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Item 3\"; ObjectID = \"cTz-Sb-5dU\";",
+    "CrU-wG-6eJ.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆝\"; ObjectID = \"CrU-wG-6eJ\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Item 3"
+            "value" : "􀆝"
+          }
+        }
+      }
+    },
+    "cTz-Sb-5dU.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Controller 3\"; ObjectID = \"cTz-Sb-5dU\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Controller 3"
+          }
+        }
+      }
+    },
+    "FC3-8N-ZCU.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆔􀆕\"; ObjectID = \"FC3-8N-ZCU\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆔􀆕"
+          }
+        }
+      }
+    },
+    "Fc7-Ji-ZDY.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"This is the description of a default controller. It is intended to be multiline.\"; ObjectID = \"Fc7-Ji-ZDY\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This is the description of a default controller. It is intended to be multiline."
           }
         }
       }
@@ -62,25 +146,37 @@
       }
     },
     "fkX-le-ubk.title" : {
-      "comment" : "Class = \"NSViewController\"; title = \"Dial\"; ObjectID = \"fkX-le-ubk\";",
+      "comment" : "Class = \"NSViewController\"; title = \"Settings\"; ObjectID = \"fkX-le-ubk\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Dial"
+            "value" : "Settings"
+          }
+        }
+      }
+    },
+    "Gis-5W-cwI.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆍\"; ObjectID = \"Gis-5W-cwI\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "􀆍"
           }
         }
       }
     },
     "jm7-HC-vpt.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Item 1\"; ObjectID = \"jm7-HC-vpt\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Controller 1\"; ObjectID = \"jm7-HC-vpt\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Item 1"
+            "value" : "Controller 1"
           }
         }
       }
@@ -97,6 +193,24 @@
         }
       }
     },
+    "njj-4D-dJK.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Dial Circle\"; ObjectID = \"njj-4D-dJK\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Dial Circle"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "旋钮圆盘"
+          }
+        }
+      }
+    },
     "PSc-dA-OV4.title" : {
       "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"PSc-dA-OV4\";",
       "extractionState" : "extracted_with_value",
@@ -109,14 +223,26 @@
         }
       }
     },
-    "qyo-xw-212.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Item 2\"; ObjectID = \"qyo-xw-212\";",
+    "PTc-Qk-Wzd.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"M 􀥌1\"; ObjectID = \"PTc-Qk-Wzd\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Item 2"
+            "value" : "M 􀥌1"
+          }
+        }
+      }
+    },
+    "qyo-xw-212.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Controller 2\"; ObjectID = \"qyo-xw-212\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Controller 2"
           }
         }
       }
@@ -139,6 +265,30 @@
         }
       }
     },
+    "sWd-pl-JFW.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"This is a warning.\"; ObjectID = \"sWd-pl-JFW\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "This is a warning."
+          }
+        }
+      }
+    },
+    "UQz-6a-HTn.placeholderString" : {
+      "comment" : "Class = \"NSTextFieldCell\"; placeholderString = \"Controller Name\"; ObjectID = \"UQz-6a-HTn\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Controller Name"
+          }
+        }
+      }
+    },
     "YoE-he-Lw4.label" : {
       "comment" : "Class = \"NSTabViewItem\"; label = \"Controllers\"; ObjectID = \"YoE-he-Lw4\";",
       "extractionState" : "extracted_with_value",
@@ -147,6 +297,24 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Controllers"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "控制器"
+          }
+        }
+      }
+    },
+    "zMI-se-f4g.title" : {
+      "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"zMI-se-f4g\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Box"
           }
         }
       }

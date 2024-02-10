@@ -18,7 +18,7 @@ class ShortcutController: Controller {
         
         var rotationMapper: (Dial.Rotation) -> Direction?
         
-        var shortcuts: (directional: [Direction: ShortcutArray], single: ShortcutArray, double: ShortcutArray)
+        var shortcuts: (rotation: [Direction: ShortcutArray], single: ShortcutArray, double: ShortcutArray)
         
     }
     
@@ -49,7 +49,7 @@ class ShortcutController: Controller {
         
         let direction = settings.plysicalDirection ? mapped.physical : mapped
         
-        settings.shortcuts.directional[direction]?.post()
+        settings.shortcuts.rotation[direction]?.post()
     }
     
 }
