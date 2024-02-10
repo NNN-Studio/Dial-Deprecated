@@ -35,7 +35,7 @@ class MissionController: Controller {
             inMission = true
             
             let modifiers: [Direction: [NSEvent.ModifierFlags]] = [.clockwise: [NSEvent.ModifierFlags.command], .counterclockwise: [NSEvent.ModifierFlags.shift, NSEvent.ModifierFlags.command]]
-            let action: [Direction: [Int32]] = [.clockwise: [Input.keyTab], .counterclockwise: [Input.keyTab]]
+            let action: [Direction: [Input]] = [.clockwise: [Input.keyTab], .counterclockwise: [Input.keyTab]]
             
             Input.postKeys(action[direction]!, modifiers: modifiers[direction]!)
             

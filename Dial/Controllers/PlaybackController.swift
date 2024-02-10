@@ -22,7 +22,7 @@ class PlaybackController: Controller {
         _ callback: Dial.Callback
     ) {
         var modifiers: [NSEvent.ModifierFlags]
-        var action: [Device.ButtonState: [Direction: (aux: [Int32], normal: [Int32])]] = [:]
+        var action: [Device.ButtonState: [Direction: (aux: [Int32], normal: [Input])]] = [:]
         
         switch buttonState {
         case .pressed:

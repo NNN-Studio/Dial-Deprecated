@@ -274,6 +274,10 @@ enum Input: Int32, CaseIterable, Defaults.Serializable {
         self = Input.allCases.filter { $0.rawValue >= 0 && $0.rawValue == rawValue }.first ?? .unknown
     }
     
+    func conforms(_ keyCode: Int32) -> Bool {
+        keyCode == rawValue
+    }
+    
     func post(modifiers: [NSEvent.ModifierFlags] = []) {
         Input.postKeys([self], modifiers: modifiers)
     }

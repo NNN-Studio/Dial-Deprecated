@@ -25,5 +25,15 @@ class PreferencesWindowController: NSWindowController {
         window?.level = .mainMenu
         window?.center()
     }
+    
+    override func keyDown(with event: NSEvent) {
+        print(event.keyCode, event.modifierFlags)
+        let keyCode = Int32(event.keyCode)
+        
+        if (event.modifierFlags.contains(.command) && (Input.keyQ.conforms(keyCode) || Input.keyW.conforms(keyCode))) {
+            // Closes with Command+W / Command+W
+            close()
+        }
+    }
 
 }
