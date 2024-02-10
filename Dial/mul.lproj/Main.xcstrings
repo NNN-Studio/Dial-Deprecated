@@ -13,30 +13,6 @@
         }
       }
     },
-    "bON-Lu-XIU.label" : {
-      "comment" : "Class = \"NSTabViewItem\"; label = \"Controllers\"; ObjectID = \"bON-Lu-XIU\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Controllers"
-          }
-        }
-      }
-    },
-    "d1y-Jd-eua.label" : {
-      "comment" : "Class = \"NSTabViewItem\"; label = \"Dial\"; ObjectID = \"d1y-Jd-eua\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Dial"
-          }
-        }
-      }
-    },
     "rtr-u2-S55.title" : {
       "comment" : "Class = \"NSWindow\"; title = \"Dial\"; ObjectID = \"rtr-u2-S55\";",
       "extractionState" : "extracted_with_value",

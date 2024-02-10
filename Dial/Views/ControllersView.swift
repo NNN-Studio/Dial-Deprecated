@@ -8,16 +8,27 @@
 import SwiftUI
 
 struct ControllersView: View {
+    
+    @State private var pick = 0
+    
     var body: some View {
-        Color.red
-            .frame(
-                minWidth: 300, maxWidth: 300,
-                minHeight: 600, maxHeight: 600
-            )
-            .fixedSize()
+        ZStack {
+            Color.green
+            
+            VStack {
+                Text("List 1")
+                
+                Text("List 2")
+                
+                Text("List 3")
+            }
+        }
     }
+    
 }
 
 #Preview {
+    
     ControllersView()
+    
 }

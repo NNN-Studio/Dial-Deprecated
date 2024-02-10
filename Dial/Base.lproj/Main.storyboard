@@ -20,58 +20,6 @@
             </objects>
             <point key="canvasLocation" x="-410" y="-594"/>
         </scene>
-        <!--Preferences View Controller-->
-        <scene sceneID="QdP-KO-qTu">
-            <objects>
-                <tabViewController selectedTabViewItemIndex="0" id="Fb1-cw-jZm" customClass="PreferencesViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabViewItems>
-                        <tabViewItem label="Controllers" identifier="" id="bON-Lu-XIU"/>
-                        <tabViewItem label="Dial" identifier="" id="d1y-Jd-eua"/>
-                    </tabViewItems>
-                    <tabView key="tabView" type="noTabsNoBorder" id="Odc-ZP-QnD">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <font key="font" metaFont="system"/>
-                        <connections>
-                            <outlet property="delegate" destination="Fb1-cw-jZm" id="yBT-Zc-9yX"/>
-                        </connections>
-                    </tabView>
-                    <connections>
-                        <outlet property="tabView" destination="Odc-ZP-QnD" id="3TN-ys-q7i"/>
-                        <segue destination="dFq-H7-Dyy" kind="relationship" relationship="tabItems" id="43e-hc-DB3"/>
-                        <segue destination="JiX-Od-FKw" kind="relationship" relationship="tabItems" id="SBr-U1-4kF"/>
-                    </connections>
-                </tabViewController>
-                <customObject id="Is8-Rn-loY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-410" y="140"/>
-        </scene>
-        <!--Preferences Controllers View Controller-->
-        <scene sceneID="rkb-WG-gZk">
-            <objects>
-                <viewController id="dFq-H7-Dyy" customClass="PreferencesControllersViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="ArY-KB-AJ4">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="ZKM-lG-hmz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-684" y="761"/>
-        </scene>
-        <!--Preferences Dial View Controller-->
-        <scene sceneID="e9I-U9-jfk">
-            <objects>
-                <viewController id="JiX-Od-FKw" customClass="PreferencesDialViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="LlD-5o-3pt">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="hv5-QB-DQL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-135" y="761"/>
-        </scene>
         <!--Window Controller-->
         <scene sceneID="9T6-rN-Vy8">
             <objects>
@@ -90,12 +38,20 @@
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="Fb1-cw-jZm" kind="relationship" relationship="window.shadowedContentViewController" id="7p7-iC-T43"/>
+                        <segue destination="fMw-gq-Aqy" kind="relationship" relationship="window.shadowedContentViewController" id="Wc7-1r-Gbb"/>
                     </connections>
                 </windowController>
                 <customObject id="eKu-PF-cOl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-410" y="-283"/>
+        </scene>
+        <!--Hosting Controller-->
+        <scene sceneID="gH7-Dh-aVZ">
+            <objects>
+                <hostingController id="fMw-gq-Aqy" sceneMemberID="viewController"/>
+                <customObject id="TEf-ng-t18" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-410" y="189"/>
         </scene>
     </scenes>
 </document>
