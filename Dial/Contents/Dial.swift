@@ -1,4 +1,5 @@
 import Foundation
+import SFSafeSymbols
 import Defaults
 import AppKit
 import Cocoa
@@ -61,6 +62,15 @@ extension Dial {
         
         case stepping(Direction)
         
+        var type: `Type` {
+            switch self {
+            case .continuous(_):
+                .continuous
+            case .stepping(_):
+                .stepping
+            }
+        }
+        
         var direction: Direction {
             switch self {
             case .continuous(let direction), .stepping(let direction):
@@ -69,12 +79,7 @@ extension Dial {
         }
         
         func conformsTo(_ type: `Type`) -> Bool {
-            switch self {
-            case .continuous(_):
-                type == .continuous
-            case .stepping(_):
-                type == .stepping
-            }
+            self.type == type
         }
         
         enum `Type`: Codable {
@@ -85,6 +90,41 @@ extension Dial {
             
         }
         
+    }
+    
+}
+
+extension Dial.Rotation.`Type`: Localizable {
+    
+    var localizedName: String {
+        switch self {
+        case .continuous:
+            NSLocalizedString("Dial/Rotation/Type/Continuous.Name", value: "Continuous", comment: "continuous rotation type")
+        case .stepping:
+            NSLocalizedString("Dial/Rotation/Type/Stepping.Name", value: "Stepping", comment: "stepping rotation type")
+        }
+    }
+    
+    var localizedBadge: String {
+        switch self {
+        case .continuous:
+            NSLocalizedString("Dial/Rotation/Type/Continuous.Badge", value: "continuous", comment: "continuous rotation type")
+        case .stepping:
+            NSLocalizedString("Dial/Rotation/Type/Stepping.Badge", value: "stepping", comment: "stepping rotation type")
+        }
+    }
+    
+}
+
+extension Dial.Rotation.`Type`: SymbolRepresentable {
+    
+    var representingSymbol: SFSymbol {
+        switch self {
+        case .continuous:
+            .alternatingcurrent
+        case .stepping:
+            .directcurrent
+        }
     }
     
 }
@@ -157,13 +197,13 @@ extension Dial: InputHandler {
         }
         
         let lastStage = (
-            stepping: Int(CGFloat(rotationBehavior.degrees) / Defaults[.sensitivity].gap.stepping),
-            continuous: Int(CGFloat(rotationBehavior.degrees) / Defaults[.sensitivity].gap.continuous)
+            stepping: Int(CGFloat(rotationBehavior.degrees) / Defaults[.sensitivity].gap),
+            continuous: Int(CGFloat(rotationBehavior.degrees) / Defaults[.sensitivity].flow)
         )
         rotationBehavior.degrees += direction.rawValue
         let currentStage = (
-            stepping: Int(CGFloat(rotationBehavior.degrees) / Defaults[.sensitivity].gap.stepping),
-            continuous: Int(CGFloat(rotationBehavior.degrees) / Defaults[.sensitivity].gap.continuous)
+            stepping: Int(CGFloat(rotationBehavior.degrees) / Defaults[.sensitivity].gap),
+            continuous: Int(CGFloat(rotationBehavior.degrees) / Defaults[.sensitivity].flow)
         )
         
         if let duration = Date.now.timeIntervalSince(rotationBehavior.started) {

@@ -7,10 +7,11 @@
 
 import Foundation
 import Defaults
+import SFSafeSymbols
 
 class ShortcutsController: Controller {
     
-    struct Settings: Codable, Defaults.Serializable {
+    struct Settings: SymbolRepresentable, Codable, Defaults.Serializable {
         
         var id: UUID
         
@@ -22,7 +23,7 @@ class ShortcutsController: Controller {
         
         var name: String?
         
-        var icon: Icon
+        var representingSymbol: SFSymbol
         
         
         
@@ -60,7 +61,7 @@ class ShortcutsController: Controller {
         
         init(
             name: String? = nil,
-            icon: Icon = Icons.fallbackIcon,
+            representingSymbol: SFSymbol = .fallback,
             haptics: Bool = true,
             physicalDirection: Bool = false, alternativeDirection: Bool = false,
             rotationType: Dial.Rotation.`Type` = .continuous, shortcuts: Shortcuts = Shortcuts()
@@ -68,7 +69,7 @@ class ShortcutsController: Controller {
             self.id = UUID()
             
             self.name = name
-            self.icon = icon
+            self.representingSymbol = representingSymbol
             
             self.haptics = haptics
             self.physicalDirection = physicalDirection
@@ -94,8 +95,8 @@ class ShortcutsController: Controller {
         )
     }
     
-    var icon: Icon {
-        settings.icon
+    var representingSymbol: SFSymbol {
+        settings.representingSymbol
     }
     
     init(settings: Settings) {

@@ -183,7 +183,7 @@ class DialViewController: NSViewController {
         
         Controllers.activatedControllers
             .enumerated()
-            .forEach { self.iconsView?.addSubview(createIconView($0.element.icon.outline, $0.offset)) }
+            .forEach { self.iconsView?.addSubview(createIconView($0.element.representingSymbol.raw, $0.offset)) }
     }
     
     override func viewWillAppear() {

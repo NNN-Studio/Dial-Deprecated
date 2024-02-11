@@ -2,6 +2,7 @@
 import Foundation
 import AppKit
 import Defaults
+import SFSafeSymbols
 
 extension Date {
     
@@ -43,13 +44,11 @@ enum ControllerID: Codable, Equatable, Defaults.Serializable {
     
 }
 
-protocol Controller: AnyObject {
+protocol Controller: AnyObject, SymbolRepresentable {
     
     var id: ControllerID { get }
     
     var name: String { get }
-    
-    var icon: Icon { get }
     
     /// Whether to enable haptic feedback on stepping. The default value is `false`.
     var haptics: Bool { get }
@@ -64,39 +63,16 @@ protocol Controller: AnyObject {
 
 extension Controller {
     
+    var representingSymbol: SFSymbol {
+        .fallback
+    }
+    
     var haptics: Bool {
         false
     }
     
-    func onRelease(_ callback: Dial.Callback) {}
-    
-}
-
-class MainController: Controller {
-    
-    var id: ControllerID = .default(.main)
-    
-    var name: String = NSLocalizedString("Controllers/Default/Main", value: "Main", comment: "main controller")
-    
-    var icon: Icon = Icon(.hockeyPuck)!
-    
-    var haptics: Bool = false
-    
-    func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {}
-    
-    func onRotation(
-        rotation: Dial.Rotation, totalDegrees: Int,
-        buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval,
-        _ callback: Dial.Callback
-    ) {
-        switch rotation {
-        case .continuous(_):
-            break
-        case .stepping(let direction):
-            Controllers.cycleThroughControllers(direction.physical.negate.rawValue)
-            callback.setControllerAndUpdate(Controllers.currentController, animate: true)
-            callback.device.buzz()
-        }
+    func onRelease(_ callback: Dial.Callback) {
+        
     }
     
 }

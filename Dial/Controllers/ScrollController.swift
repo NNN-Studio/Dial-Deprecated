@@ -1,6 +1,6 @@
-
 import Foundation
 import AppKit
+import SFSafeSymbols
 
 class ScrollController: Controller {
     
@@ -8,7 +8,9 @@ class ScrollController: Controller {
     
     var name: String = NSLocalizedString("Controllers/Default/Scroll", value: "Scroll", comment: "scroll controller")
     
-    var icon: Icon = Icon(.arrowUpArrowDown)!
+    var representingSymbol: SFSymbol {
+        .arrowUpArrowDown
+    }
     
     private var accumulated = 0
     

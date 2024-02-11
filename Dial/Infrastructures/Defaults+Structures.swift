@@ -7,6 +7,7 @@
 
 import Foundation
 import Defaults
+import SFSafeSymbols
 
 /// Decides how much steps per circle the dial is divided into.
 enum Sensitivity: CGFloat, CaseIterable, Defaults.Serializable {
@@ -22,7 +23,7 @@ enum Sensitivity: CGFloat, CaseIterable, Defaults.Serializable {
     case extreme = 45
     
     /// Decides how much steps per circle the dial is divided into in continuous rotation.
-    var continuous: CGFloat {
+    var density: CGFloat {
         switch self {
         case .low:
             60
@@ -37,8 +38,46 @@ enum Sensitivity: CGFloat, CaseIterable, Defaults.Serializable {
         }
     }
     
-    var gap: (stepping: CGFloat, continuous: CGFloat) {
-        (stepping: 360 / rawValue, continuous: 360 / self.continuous)
+    var gap: CGFloat {
+        360 / rawValue
+    }
+    
+    var flow: CGFloat {
+        360 / density
+    }
+    
+}
+
+extension Sensitivity: Localizable {
+    
+    var localizedName: String {
+        switch self {
+        case .low:
+            NSLocalizedString("Sensitivity/Low.Name", value: "Low", comment: "low sensitivity")
+        case .medium:
+            NSLocalizedString("Sensitivity/Medium.Name", value: "Medium", comment: "medium sensitivity")
+        case .natural:
+            NSLocalizedString("Sensitivity/Natural.Name", value: "Natural", comment: "natural sensitivity")
+        case .high:
+            NSLocalizedString("Sensitivity/High.Name", value: "High", comment: "high sensitivity")
+        case .extreme:
+            NSLocalizedString("Sensitivity/Extreme.Name", value: "Extreme", comment: "extreme sensitivity")
+        }
+    }
+    
+    var localizedBadge: String {
+        switch self {
+        case .low:
+            NSLocalizedString("Sensitivity/Low.Badge", value: "low", comment: "low sensitivity")
+        case .medium:
+            NSLocalizedString("Sensitivity/Medium.Badge", value: "medium", comment: "medium sensitivity")
+        case .natural:
+            NSLocalizedString("Sensitivity/Natural.Badge", value: "natural", comment: "natural sensitivity")
+        case .high:
+            NSLocalizedString("Sensitivity/High.Badge", value: "high", comment: "high sensitivity")
+        case .extreme:
+            NSLocalizedString("Sensitivity/Extreme.Badge", value: "extreme", comment: "extreme sensitivity")
+        }
     }
     
 }
@@ -78,6 +117,41 @@ enum Direction: Int, CaseIterable, Codable, Defaults.Serializable {
     
 }
 
+extension Direction: Localizable {
+    
+    var localizedName: String {
+        switch self {
+        case .clockwise:
+            NSLocalizedString("Direction/Clockwise.Name", value: "Clockwise", comment: "clockwise direction")
+        case .counterclockwise:
+            NSLocalizedString("Direction/Counterclockwise.Name", value: "Counterclockwise", comment: "counterclockwise direction")
+        }
+    }
+    
+    var localizedBadge: String {
+        switch self {
+        case .clockwise:
+            NSLocalizedString("Direction/Clockwise.Badge", value: "clockwise", comment: "clockwise direction")
+        case .counterclockwise:
+            NSLocalizedString("Direction/Counterclockwise.Badge", value: "counterclockwise", comment: "counterclockwise direction")
+        }
+    }
+    
+}
+
+extension Direction: SymbolRepresentable {
+    
+    var representingSymbol: SFSymbol {
+        switch self {
+        case .clockwise:
+            .digitalcrownHorizontalArrowClockwiseFill
+        case .counterclockwise:
+            .digitalcrownHorizontalArrowCounterclockwiseFill
+        }
+    }
+    
+}
+
 struct Bag<Element: Defaults.Serializable>: Collection {
     
     var items: [Element]
@@ -105,11 +179,5 @@ extension Bag: Defaults.CollectionSerializable {
     init(_ elements: [Element]) {
         self.items = elements
     }
-    
-}
-
-enum Wrapper {
-    
-    
     
 }

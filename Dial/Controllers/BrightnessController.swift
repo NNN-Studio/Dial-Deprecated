@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SFSafeSymbols
 
 class BrightnessController: Controller {
     
@@ -13,7 +14,9 @@ class BrightnessController: Controller {
     
     var name: String = NSLocalizedString("Controllers/Default/Brigshtnes", value: "Brightness", comment: "brightness controller")
     
-    var icon: Icon = Icon(.sunMax)!
+    var representingSymbol: SFSymbol {
+        .sunMax
+    }
     
     var haptics: Bool {
         true

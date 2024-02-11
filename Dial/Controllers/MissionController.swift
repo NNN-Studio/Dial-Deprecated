@@ -7,6 +7,7 @@
 
 import Foundation
 import AppKit
+import SFSafeSymbols
 
 class MissionController: Controller {
     
@@ -14,7 +15,9 @@ class MissionController: Controller {
     
     var name: String = NSLocalizedString("Controllers/Default/Mission", value: "Mission", comment: "mission controller")
     
-    var icon: Icon = Icon(.command)!
+    var representingSymbol: SFSymbol {
+        .command
+    }
     
     private var inMission = false
     
