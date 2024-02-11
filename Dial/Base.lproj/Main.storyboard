@@ -108,13 +108,11 @@
                                                 <endViews>
                                                     <button allowsExpansionToolTips="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m2Z-n2-opU">
                                                         <rect key="frame" x="312" y="0.0" width="13.5" height="16"/>
+                                                        <string key="toolTip">Dial connects your Surface Dial through Bluetooth. Pair your Surface Dial in System Settings before clicking this button to search for it.</string>
                                                         <buttonCell key="cell" type="help" bezelStyle="helpButton" image="NSBluetoothTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="UOy-IZ-YnS">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
-                                                        <accessibility>
-                                                            <string key="description">Dial connects your Surface Dial through Bluetooth. Pair your Surface Dial in System Settings before clicking this button to search for it.</string>
-                                                        </accessibility>
                                                     </button>
                                                 </endViews>
                                                 <constraints>
@@ -685,7 +683,7 @@
                                                                             <rect key="frame" x="255" y="0.0" width="30" height="30"/>
                                                                             <buttonCell key="cell" type="inline" bezelStyle="inline" image="doc.fill" catalog="system" imagePosition="only" borderStyle="border" inset="2" id="BD5-Us-Os8">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                                                                                <font key="font" size="11" name=".SFNS-Semibold"/>
+                                                                                <font key="font" metaFont="smallSystem"/>
                                                                             </buttonCell>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="xl0-8n-ldy" secondAttribute="height" multiplier="1:1" id="0PM-nZ-dTc"/>
@@ -717,7 +715,7 @@
                                                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
                                                                                     <popUpButtonCell key="cell" type="inline" title="􀆔􀆕" bezelStyle="inline" alignment="center" controlSize="large" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="J8i-Y8-TIO" id="JII-Xi-p5K">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                        <font key="font" size="11" name=".SFNS-Semibold"/>
+                                                                                        <font key="font" metaFont="smallSystem"/>
                                                                                         <menu key="menu" id="NoU-OT-gkE">
                                                                                             <items>
                                                                                                 <menuItem title="􀆔􀆕" state="on" hidden="YES" id="J8i-Y8-TIO">
@@ -789,7 +787,7 @@
                                                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
                                                                                     <popUpButtonCell key="cell" type="inline" title="􀆔" bezelStyle="inline" alignment="center" controlSize="large" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="YlH-ZZ-D2u" id="eDA-w1-wRB">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                        <font key="font" size="11" name=".SFNS-Semibold"/>
+                                                                                        <font key="font" metaFont="smallSystem"/>
                                                                                         <menu key="menu" id="wL4-Nm-LXo">
                                                                                             <items>
                                                                                                 <menuItem title="􀆔" state="on" hidden="YES" id="YlH-ZZ-D2u">
@@ -880,7 +878,7 @@
                                                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
                                                                                     <popUpButtonCell key="cell" type="inline" bezelStyle="inline" alignment="center" controlSize="large" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="eVY-2U-1VX" id="dUL-vv-AiY">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                        <font key="font" size="11" name=".SFNS-Semibold"/>
+                                                                                        <font key="font" metaFont="smallSystem"/>
                                                                                         <menu key="menu" id="1Tw-e5-4rB">
                                                                                             <items>
                                                                                                 <menuItem state="on" hidden="YES" id="eVY-2U-1VX">
@@ -952,7 +950,7 @@
                                                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="32"/>
                                                                                     <popUpButtonCell key="cell" type="inline" title="􀆝" bezelStyle="inline" alignment="center" controlSize="large" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="7Ex-hz-Lmr" id="LFL-HC-yH6">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                        <font key="font" size="11" name=".SFNS-Semibold"/>
+                                                                                        <font key="font" metaFont="smallSystem"/>
                                                                                         <menu key="menu" id="5gX-v8-8bF">
                                                                                             <items>
                                                                                                 <menuItem title="􀆝" state="on" hidden="YES" id="7Ex-hz-Lmr">

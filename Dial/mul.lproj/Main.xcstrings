@@ -457,8 +457,8 @@
         }
       }
     },
-    "m2Z-n2-opU.ibExternalAccessibilityDescription" : {
-      "comment" : "Class = \"NSButton\"; ibExternalAccessibilityDescription = \"Dial connects your Surface Dial through Bluetooth. Pair your Surface Dial in System Settings before clicking this button to search for it.\"; ObjectID = \"m2Z-n2-opU\";",
+    "m2Z-n2-opU.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Dial connects your Surface Dial through Bluetooth. Pair your Surface Dial in System Settings before clicking this button to search for it.\"; ObjectID = \"m2Z-n2-opU\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
@@ -470,7 +470,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dial 通过蓝牙连接你的 Surface 智能旋钮。你需要在系统设置中配对你的设备，再点按此按钮以连接。"
+            "value" : "Dial通过蓝牙连接你的Surface智能旋钮。你需要在系统设置中配对你的设备，再点按此按钮以连接。"
           }
         }
       }
@@ -518,7 +518,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "随 macOS 启动"
+            "value" : "随macOS启动"
           }
         }
       }
@@ -566,7 +566,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "由 KrLite 用 􀊵 呈现"
+            "value" : "用􀊵呈现，来自KrLite"
           }
         }
       }
