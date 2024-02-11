@@ -4,6 +4,12 @@ import AppKit
 
 class ScrollController: Controller {
     
+    var id: ControllerID = .default(.scroll)
+    
+    var name: String = NSLocalizedString("Controllers/Default/Scroll", value: "Scroll", comment: "scroll controller")
+    
+    var icon: Icon = Icon("arrow.up.arrow.down")!
+    
     private var accumulated = 0
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {

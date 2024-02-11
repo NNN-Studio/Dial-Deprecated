@@ -17,7 +17,39 @@ extension Date {
     
 }
 
+enum ControllerID: Codable, Equatable, Defaults.Serializable {
+    
+    enum Default: CaseIterable, Codable {
+        
+        case main
+        
+        case scroll
+        
+        case playback
+        
+        case mission
+        
+        case brightness
+        
+        static var availableCases: [ControllerID.Default] {
+            allCases.filter { $0 != .main }
+        }
+        
+    }
+    
+    case id(UUID)
+    
+    case `default`(Default)
+    
+}
+
 protocol Controller: AnyObject {
+    
+    var id: ControllerID { get }
+    
+    var name: String { get }
+    
+    var icon: Icon { get }
     
     /// Whether to enable haptic feedback on stepping. The default value is `false`.
     var haptics: Bool { get }
@@ -40,11 +72,15 @@ extension Controller {
     
 }
 
-class DefaultController: Controller {
+class MainController: Controller {
     
-    var haptics: Bool {
-        false
-    }
+    var id: ControllerID = .default(.main)
+    
+    var name: String = NSLocalizedString("Controllers/Default/Main", value: "Main", comment: "main controller")
+    
+    var icon: Icon = Icon("hockey.puck")!
+    
+    var haptics: Bool = false
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {}
     

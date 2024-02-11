@@ -107,3 +107,9 @@ extension Bag: Defaults.CollectionSerializable {
     }
     
 }
+
+enum Wrapper {
+    
+    
+    
+}

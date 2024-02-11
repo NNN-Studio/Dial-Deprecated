@@ -37,6 +37,78 @@
         }
       }
     },
+    "Controllers/Default/Brigshtnes" : {
+      "comment" : "brightness controller",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Brightness"
+          }
+        }
+      }
+    },
+    "Controllers/Default/Main" : {
+      "comment" : "main controller",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Main"
+          }
+        }
+      }
+    },
+    "Controllers/Default/Mission" : {
+      "comment" : "mission controller",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Mission"
+          }
+        }
+      }
+    },
+    "Controllers/Default/Playback" : {
+      "comment" : "playback controller",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Playback"
+          }
+        }
+      }
+    },
+    "Controllers/Default/Scroll" : {
+      "comment" : "scroll controller",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Scroll"
+          }
+        }
+      }
+    },
+    "Controllers/Shortcuts/Fallback" : {
+      "comment" : "shortcuts controller fallback name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Controller (settings.index)"
+          }
+        }
+      }
+    },
     "Menu/ConnectionStatus/Off" : {
       "comment" : "[macOS >=14.0] if (!connected)\n   if (!connected)",
       "extractionState" : "extracted_with_value",

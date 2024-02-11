@@ -31,7 +31,7 @@ class Dial {
     }
     
     private var defaultController = (
-        instance: DefaultController(),
+        instance: MainController(),
         isAgent: false,
         dispatch: DispatchWorkItem {}
     )
@@ -71,7 +71,7 @@ extension Dial {
         }
         
         func conformsTo(_ type: `Type`) -> Bool {
-            return switch self {
+            switch self {
             case .continuous(_):
                 type == .continuous
             case .stepping(_):

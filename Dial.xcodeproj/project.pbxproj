@@ -11,8 +11,8 @@
 		2822C3D42B75C42D000D5C58 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 2822C3D32B75C42D000D5C58 /* Defaults */; };
 		2822C3D62B75C443000D5C58 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D52B75C443000D5C58 /* Defaults.swift */; };
 		2822C3D82B75C44B000D5C58 /* Defaults+Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */; };
-		2822C3DA2B75DB8C000D5C58 /* LuminanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D92B75DB8C000D5C58 /* LuminanceController.swift */; };
-		2822C3DC2B75DE82000D5C58 /* IconManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3DB2B75DE82000D5C58 /* IconManager.swift */; };
+		2822C3DA2B75DB8C000D5C58 /* BrightnessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D92B75DB8C000D5C58 /* BrightnessController.swift */; };
+		2822C3DC2B75DE82000D5C58 /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3DB2B75DE82000D5C58 /* Icons.swift */; };
 		2822C3F22B75F909000D5C58 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3F12B75F909000D5C58 /* SettingsWindow.swift */; };
 		2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2830055B2AEE7FF800D18F65 /* MenuManager.swift */; };
 		2867F1832AEC8D3B0029C937 /* DialWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F1822AEC8D3B0029C937 /* DialWindow.swift */; };
@@ -43,8 +43,8 @@
 		2801CAB42AEDF18000E95B5F /* MissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionController.swift; sourceTree = "<group>"; };
 		2822C3D52B75C443000D5C58 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Defaults+Structures.swift"; sourceTree = "<group>"; };
-		2822C3D92B75DB8C000D5C58 /* LuminanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuminanceController.swift; sourceTree = "<group>"; };
-		2822C3DB2B75DE82000D5C58 /* IconManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconManager.swift; sourceTree = "<group>"; };
+		2822C3D92B75DB8C000D5C58 /* BrightnessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessController.swift; sourceTree = "<group>"; };
+		2822C3DB2B75DE82000D5C58 /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		2822C3F12B75F909000D5C58 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
 		2830055B2AEE7FF800D18F65 /* MenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
 		2867F1822AEC8D3B0029C937 /* DialWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialWindow.swift; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 				C89D242A2703CF4500B1A458 /* ScrollController.swift */,
 				C89D242C2704870C00B1A458 /* PlaybackController.swift */,
 				2801CAB42AEDF18000E95B5F /* MissionController.swift */,
-				2822C3D92B75DB8C000D5C58 /* LuminanceController.swift */,
+				2822C3D92B75DB8C000D5C58 /* BrightnessController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -150,7 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				2830055B2AEE7FF800D18F65 /* MenuManager.swift */,
-				2822C3DB2B75DE82000D5C58 /* IconManager.swift */,
+				2822C3DB2B75DE82000D5C58 /* Icons.swift */,
 				28B833BF2B77582C00D96825 /* ShortcutArray.swift */,
 			);
 			path = Utilities;
@@ -273,11 +273,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2822C3DC2B75DE82000D5C58 /* IconManager.swift in Sources */,
+				2822C3DC2B75DE82000D5C58 /* Icons.swift in Sources */,
 				28D278EB2AEFC35D00844ADE /* Device.swift in Sources */,
 				2822C3D62B75C443000D5C58 /* Defaults.swift in Sources */,
 				28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */,
-				2822C3DA2B75DB8C000D5C58 /* LuminanceController.swift in Sources */,
+				2822C3DA2B75DB8C000D5C58 /* BrightnessController.swift in Sources */,
 				C882FA2D26F143E300595EE1 /* StatusBarController.swift in Sources */,
 				2822C3F22B75F909000D5C58 /* SettingsWindow.swift in Sources */,
 				2801CAB52AEDF18000E95B5F /* MissionController.swift in Sources */,

@@ -10,6 +10,12 @@ import AppKit
 
 class MissionController: Controller {
     
+    var id: ControllerID = .default(.mission)
+    
+    var name: String = NSLocalizedString("Controllers/Default/Mission", value: "Mission", comment: "mission controller")
+    
+    var icon: Icon = Icon("command")!
+    
     private var inMission = false
     
     private var escapeDispatch: DispatchWorkItem?

@@ -12,11 +12,27 @@ class ShortcutsController: Controller {
     
     struct Settings: Codable, Defaults.Serializable {
         
+        var id: UUID
+        
+        var index: Int {
+            Defaults[.shortcutsControllerSettings].firstIndex(where: { $0.id == id })!
+        }
+        
+        
+        
+        var name: String?
+        
+        var icon: Icon
+        
+        
+        
         var haptics: Bool
         
         var physicalDirection: Bool
         
         var alternativeDirection: Bool
+        
+        
         
         var rotationType: Dial.Rotation.`Type`
         
@@ -43,13 +59,21 @@ class ShortcutsController: Controller {
         }
         
         init(
+            name: String? = nil,
+            icon: Icon = Icons.fallbackIcon,
             haptics: Bool = true,
             physicalDirection: Bool = false, alternativeDirection: Bool = false,
             rotationType: Dial.Rotation.`Type` = .continuous, shortcuts: Shortcuts = Shortcuts()
         ) {
+            self.id = UUID()
+            
+            self.name = name
+            self.icon = icon
+            
             self.haptics = haptics
             self.physicalDirection = physicalDirection
             self.alternativeDirection = alternativeDirection
+            
             self.rotationType = rotationType
             self.shortcuts = shortcuts
         }
@@ -57,6 +81,22 @@ class ShortcutsController: Controller {
     }
     
     var settings: Settings
+    
+    var id: ControllerID {
+        .id(settings.id)
+    }
+    
+    var name: String {
+        settings.name ?? NSLocalizedString(
+            "Controllers/Shortcuts/Fallback",
+            value: "Controller \(settings.index)",
+            comment: "shortcuts controller fallback name"
+        )
+    }
+    
+    var icon: Icon {
+        settings.icon
+    }
     
     init(settings: Settings) {
         self.settings = settings

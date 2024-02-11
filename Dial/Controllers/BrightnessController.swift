@@ -1,5 +1,5 @@
 //
-//  LuminanceController.swift
+//  BrightnessController.swift
 //  Dial
 //
 //  Created by KrLite on 2024/2/9.
@@ -7,7 +7,13 @@
 
 import Foundation
 
-class LuminanceController: Controller {
+class BrightnessController: Controller {
+    
+    var id: ControllerID = .default(.brightness)
+    
+    var name: String = NSLocalizedString("Controllers/Default/Brigshtnes", value: "Brightness", comment: "brightness controller")
+    
+    var icon: Icon = Icon("sun.max")!
     
     var haptics: Bool {
         true
