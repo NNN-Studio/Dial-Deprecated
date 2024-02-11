@@ -42,8 +42,18 @@ struct Controllers {
         }
     }
     
-    static func insert(at index: Int) {
-        shortcutsControllers.insert(contentsOf: [ShortcutsController(settings: ShortcutsController.Settings())], at: index)
+    static func fetch(menuIndex index: Int) -> Controller? {
+        guard index >= 0 else { return nil }
+        
+        if (index < defaultControllers.count) {
+            return defaultControllers[index]
+        } else {
+            return shortcutsControllers[index - defaultControllers.count]
+        }
+    }
+    
+    static func append() {
+        shortcutsControllers.append(ShortcutsController(settings: ShortcutsController.Settings()))
     }
     
     static func remove(at index: Int) {
@@ -67,6 +77,12 @@ struct Controllers {
             if let i = Defaults[.activatedControllerIds].firstIndex(of: id) {
                 Defaults[.activatedControllerIds].remove(at: i)
             }
+        }
+    }
+    
+    static func toggle(_ activated: Bool, menuIndex index: Int) {
+        if let id = fetch(menuIndex: index)?.id {
+            toggle(activated, id: id)
         }
     }
     

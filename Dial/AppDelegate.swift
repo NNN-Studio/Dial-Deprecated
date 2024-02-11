@@ -30,8 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         requestPermissions()
-        
-        print(Defaults[.activatedControllerIds])
+        //test()
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -40,6 +39,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         return false
+    }
+    
+}
+
+extension AppDelegate {
+    
+    func test() {
+        Defaults.reset([.activatedControllerIds])
+        Defaults.reset([.shortcutsControllerSettings])
+        
+        print(1)
+        print(Defaults[.activatedControllerIds])
+        print()
+        print(Defaults[.shortcutsControllerSettings])
+        print()
+        
+        Controllers.append()
+        print(2)
+        print(Defaults[.activatedControllerIds])
+        print()
+        print(Defaults[.shortcutsControllerSettings])
+        print()
+        
+        Controllers.toggle(false, menuIndex: 0)
+        Controllers.toggle(true, menuIndex: 4)
+        print(3)
+        print(Defaults[.activatedControllerIds])
+        print()
+        print(Defaults[.shortcutsControllerSettings])
+        print()
     }
     
 }

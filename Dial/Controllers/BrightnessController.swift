@@ -13,7 +13,7 @@ class BrightnessController: Controller {
     
     var name: String = NSLocalizedString("Controllers/Default/Brigshtnes", value: "Brightness", comment: "brightness controller")
     
-    var icon: Icon = Icon("sun.max")!
+    var icon: Icon = Icon(.sunMax)!
     
     var haptics: Bool {
         true

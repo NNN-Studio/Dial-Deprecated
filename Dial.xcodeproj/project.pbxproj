@@ -26,6 +26,7 @@
 		28B833C52B77617500D96825 /* SettingsGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833C42B77617500D96825 /* SettingsGeneralViewController.swift */; };
 		28C7A0A22AEE06E8003113D5 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C7A0A12AEE06E8003113D5 /* Input.swift */; };
 		28D278EB2AEFC35D00844ADE /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D278EA2AEFC35D00844ADE /* Device.swift */; };
+		28FA280C2B78A3310071FB1B /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 28FA280B2B78A3310071FB1B /* SFSafeSymbols */; };
 		C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882FA1926F1430C00595EE1 /* AppDelegate.swift */; };
 		C882FA1E26F1430D00595EE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C882FA1D26F1430D00595EE1 /* Assets.xcassets */; };
 		C882FA2426F1430D00595EE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C882FA2226F1430D00595EE1 /* Main.storyboard */; };
@@ -80,6 +81,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28FA280C2B78A3310071FB1B /* SFSafeSymbols in Frameworks */,
 				C89F315F270126E100A8B365 /* AppKit.framework in Frameworks */,
 				C89F315B2701266400A8B365 /* CoreFoundation.framework in Frameworks */,
 				2867F18F2AECC6E90029C937 /* LaunchAtLogin in Frameworks */,
@@ -212,6 +214,7 @@
 			packageProductDependencies = (
 				2867F18E2AECC6E90029C937 /* LaunchAtLogin */,
 				2822C3D32B75C42D000D5C58 /* Defaults */,
+				28FA280B2B78A3310071FB1B /* SFSafeSymbols */,
 			);
 			productName = MacDial;
 			productReference = 28B685242AEBFAAD008EBE98 /* Dial.app */;
@@ -245,6 +248,7 @@
 			packageReferences = (
 				2867F18D2AECC6E90029C937 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 				2822C3D22B75C42D000D5C58 /* XCRemoteSwiftPackageReference "Defaults" */,
+				28FA280A2B78A3310071FB1B /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
 			);
 			productRefGroup = C882FA0D26F1430C00595EE1;
 			projectDirPath = "";
@@ -543,6 +547,14 @@
 				kind = branch;
 			};
 		};
+		28FA280A2B78A3310071FB1B /* XCRemoteSwiftPackageReference "SFSafeSymbols" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SFSafeSymbols/SFSafeSymbols";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -555,6 +567,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2867F18D2AECC6E90029C937 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
 			productName = LaunchAtLogin;
+		};
+		28FA280B2B78A3310071FB1B /* SFSafeSymbols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 28FA280A2B78A3310071FB1B /* XCRemoteSwiftPackageReference "SFSafeSymbols" */;
+			productName = SFSafeSymbols;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

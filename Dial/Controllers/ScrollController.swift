@@ -8,7 +8,7 @@ class ScrollController: Controller {
     
     var name: String = NSLocalizedString("Controllers/Default/Scroll", value: "Scroll", comment: "scroll controller")
     
-    var icon: Icon = Icon("arrow.up.arrow.down")!
+    var icon: Icon = Icon(.arrowUpArrowDown)!
     
     private var accumulated = 0
     

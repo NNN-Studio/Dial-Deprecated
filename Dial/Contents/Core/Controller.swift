@@ -78,7 +78,7 @@ class MainController: Controller {
     
     var name: String = NSLocalizedString("Controllers/Default/Main", value: "Main", comment: "main controller")
     
-    var icon: Icon = Icon("hockey.puck")!
+    var icon: Icon = Icon(.hockeyPuck)!
     
     var haptics: Bool = false
     

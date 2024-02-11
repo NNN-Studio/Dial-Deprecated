@@ -7,7 +7,7 @@ class PlaybackController: Controller {
     
     var name: String = NSLocalizedString("Controllers/Default/Playback", value: "Playback", comment: "playback controller")
     
-    var icon: Icon = Icon("speaker.wave.2")!
+    var icon: Icon = Icon(.speakerWave2)!
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
         if isDoubleClick {

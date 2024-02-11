@@ -14,7 +14,7 @@ class MissionController: Controller {
     
     var name: String = NSLocalizedString("Controllers/Default/Mission", value: "Mission", comment: "mission controller")
     
-    var icon: Icon = Icon("command")!
+    var icon: Icon = Icon(.command)!
     
     private var inMission = false
     
