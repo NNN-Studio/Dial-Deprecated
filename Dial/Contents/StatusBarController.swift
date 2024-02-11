@@ -367,6 +367,10 @@ extension StatusBarController {
         menuItems?.updateConnectionStatus(isConnected, serialNumber)
     }
     
+    func toggleVisibility(_ isVisible: Bool) {
+        statusItem.isVisible = isVisible
+    }
+    
 }
 
 extension StatusBarController {

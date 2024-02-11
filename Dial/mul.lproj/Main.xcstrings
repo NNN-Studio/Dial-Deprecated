@@ -1,6 +1,18 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "0vZ-5h-psk.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Alternative direction\"; ObjectID = \"0vZ-5h-psk\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Alternative direction"
+          }
+        }
+      }
+    },
     "2zS-dZ-s4J.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"􀆍\"; ObjectID = \"2zS-dZ-s4J\";",
       "extractionState" : "extracted_with_value",
@@ -63,7 +75,7 @@
     },
     "7hl-x2-zSb.title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"Alternative direction\"; ObjectID = \"7hl-x2-zSb\";",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -75,6 +87,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "反转方向"
+          }
+        }
+      }
+    },
+    "8eN-j7-62O.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Follows physical direction\"; ObjectID = \"8eN-j7-62O\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Follows physical direction"
           }
         }
       }
@@ -110,19 +134,19 @@
       }
     },
     "aTT-Ug-cXf.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \" Hide icon when disconnected\"; ObjectID = \"aTT-Ug-cXf\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \" Hide icon while disconnected\"; ObjectID = \"aTT-Ug-cXf\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : " Hide icon when disconnected"
+            "value" : " Hide icon while disconnected"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "失去连接时隐藏图标"
+            "value" : "断开连接时隐藏图标"
           }
         }
       }
@@ -303,6 +327,30 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "This is the description of a default controller. It is intended to be multiline."
+          }
+        }
+      }
+    },
+    "gTg-Y5-LUe.ibShadowedLabels[0]" : {
+      "comment" : "Class = \"NSSegmentedCell\"; gTg-Y5-LUe.ibShadowedLabels[0] = \"Shortcuts\"; ObjectID = \"gTg-Y5-LUe\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Shortcuts"
+          }
+        }
+      }
+    },
+    "gTg-Y5-LUe.ibShadowedLabels[1]" : {
+      "comment" : "Class = \"NSSegmentedCell\"; gTg-Y5-LUe.ibShadowedLabels[1] = \"Advanced\"; ObjectID = \"gTg-Y5-LUe\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Advanced"
           }
         }
       }
@@ -505,6 +553,18 @@
         }
       }
     },
+    "Msy-2r-x1H.title" : {
+      "comment" : "Class = \"NSBox\"; title = \"Constraint Hack\"; ObjectID = \"Msy-2r-x1H\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Constraint Hack"
+          }
+        }
+      }
+    },
     "N6e-7l-BtN.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Starts with macOS\"; ObjectID = \"N6e-7l-BtN\";",
       "extractionState" : "extracted_with_value",
@@ -627,7 +687,7 @@
     },
     "Pee-vh-drg.title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"Haptic feedback\"; ObjectID = \"Pee-vh-drg\";",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -757,6 +817,18 @@
         }
       }
     },
+    "tAY-67-1OO.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"With this option enabled, you can't access this page from the menu bar while disconnected. Instead, please launch this app again to show this page.\"; ObjectID = \"tAY-67-1OO\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "With this option enabled, you can't access this page from the menu bar while disconnected. Instead, please launch this app again to show this page."
+          }
+        }
+      }
+    },
     "tFE-WG-7Qv.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Medium\"; ObjectID = \"tFE-WG-7Qv\";",
       "extractionState" : "extracted_with_value",
@@ -847,9 +919,21 @@
         }
       }
     },
+    "VjK-HS-ILa.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Haptic feedback\"; ObjectID = \"VjK-HS-ILa\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Haptic feedback"
+          }
+        }
+      }
+    },
     "vOq-PO-OFy.title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"Follows physical direction\"; ObjectID = \"vOq-PO-OFy\";",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
