@@ -183,7 +183,7 @@
     },
     "Menu/DialMode/Mission" : {
       "comment" : "dial mode mission",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -201,7 +201,7 @@
     },
     "Menu/DialMode/Playback" : {
       "comment" : "dial mode playback",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -219,7 +219,7 @@
     },
     "Menu/DialMode/Scroll" : {
       "comment" : "dial mode scroll",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -332,12 +332,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Haptics"
+            "value" : "Haptic Feedback"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "震动反馈"
           }
         }
@@ -578,7 +578,7 @@
       }
     },
     "Menu/StartsWithMacOS" : {
-      "comment" : "starts with macos",
+      "comment" : "starts with macOS",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {

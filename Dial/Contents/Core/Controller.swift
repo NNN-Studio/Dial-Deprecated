@@ -93,13 +93,9 @@ class MainController: Controller {
         case .continuous(_):
             break
         case .stepping(let direction):
-            if let dialMode = Data.getCycledDialMode(
-                direction.physical.negate.rawValue,
-                wrap: false
-            ) {
-                callback.setDialModeAndUpdate(dialMode, animate: true)
-                callback.device.buzz()
-            }
+            Controllers.cycleThroughControllers(direction.physical.negate.rawValue)
+            callback.setControllerAndUpdate(Controllers.currentController, animate: true)
+            callback.device.buzz()
         }
     }
     

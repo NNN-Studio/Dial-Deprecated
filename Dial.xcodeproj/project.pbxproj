@@ -19,7 +19,6 @@
 		2867F18F2AECC6E90029C937 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 2867F18E2AECC6E90029C937 /* LaunchAtLogin */; };
 		28864F042B786B58009FB069 /* Controllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28864F032B786B58009FB069 /* Controllers.swift */; };
 		28B685282AEBFB80008EBE98 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 28B685272AEBFB80008EBE98 /* Localizable.xcstrings */; };
-		28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B6852A2AEC01D6008EBE98 /* Data.swift */; };
 		28B833BC2B7747D200D96825 /* ShortcutsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833BB2B7747D200D96825 /* ShortcutsController.swift */; };
 		28B833C02B77582C00D96825 /* ShortcutArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833BF2B77582C00D96825 /* ShortcutArray.swift */; };
 		28B833C32B77615500D96825 /* SettingsControllersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833C22B77615500D96825 /* SettingsControllersViewController.swift */; };
@@ -53,7 +52,6 @@
 		28864F032B786B58009FB069 /* Controllers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Controllers.swift; sourceTree = "<group>"; };
 		28B685242AEBFAAD008EBE98 /* Dial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dial.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28B685272AEBFB80008EBE98 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		28B6852A2AEC01D6008EBE98 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		28B833BB2B7747D200D96825 /* ShortcutsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsController.swift; sourceTree = "<group>"; };
 		28B833BF2B77582C00D96825 /* ShortcutArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutArray.swift; sourceTree = "<group>"; };
 		28B833C22B77615500D96825 /* SettingsControllersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsControllersViewController.swift; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 		28B6852C2AEC01E8008EBE98 /* Infrastructures */ = {
 			isa = PBXGroup;
 			children = (
-				28B6852A2AEC01D6008EBE98 /* Data.swift */,
 				28C7A0A12AEE06E8003113D5 /* Input.swift */,
 				2822C3D52B75C443000D5C58 /* Defaults.swift */,
 				2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */,
@@ -280,7 +277,6 @@
 				2822C3DC2B75DE82000D5C58 /* Icons.swift in Sources */,
 				28D278EB2AEFC35D00844ADE /* Device.swift in Sources */,
 				2822C3D62B75C443000D5C58 /* Defaults.swift in Sources */,
-				28B6852B2AEC01D6008EBE98 /* Data.swift in Sources */,
 				2822C3DA2B75DB8C000D5C58 /* BrightnessController.swift in Sources */,
 				C882FA2D26F143E300595EE1 /* StatusBarController.swift in Sources */,
 				2822C3F22B75F909000D5C58 /* SettingsWindow.swift in Sources */,

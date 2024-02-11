@@ -20,13 +20,11 @@ class Dial {
         if defaultController.isAgent {
             return defaultController.instance
         } else {
-            let item = (
-                statusBarController.menuItems?.modes
-                    .filter { $0.option == Data.dialMode }
-                    .first
-            )
+            let item = statusBarController.menuItems?.controllers
+                .filter { $0.option.id == Controllers.currentController.id }
+                .first
             
-            return item?.controller ?? defaultController.instance
+            return item?.option ?? defaultController.instance
         }
     }
     
@@ -159,13 +157,13 @@ extension Dial: InputHandler {
         }
         
         let lastStage = (
-            stepping: Int(CGFloat(rotationBehavior.degrees) / Defaults[.senstivity].gap.stepping),
-            continuous: Int(CGFloat(rotationBehavior.degrees) / Defaults[.senstivity].gap.continuous)
+            stepping: Int(CGFloat(rotationBehavior.degrees) / Defaults[.sensitivity].gap.stepping),
+            continuous: Int(CGFloat(rotationBehavior.degrees) / Defaults[.sensitivity].gap.continuous)
         )
         rotationBehavior.degrees += direction.rawValue
         let currentStage = (
-            stepping: Int(CGFloat(rotationBehavior.degrees) / Defaults[.senstivity].gap.stepping),
-            continuous: Int(CGFloat(rotationBehavior.degrees) / Defaults[.senstivity].gap.continuous)
+            stepping: Int(CGFloat(rotationBehavior.degrees) / Defaults[.sensitivity].gap.stepping),
+            continuous: Int(CGFloat(rotationBehavior.degrees) / Defaults[.sensitivity].gap.continuous)
         )
         
         if let duration = Date.now.timeIntervalSince(rotationBehavior.started) {
@@ -261,11 +259,11 @@ extension Dial {
             self.dial = dial
         }
         
-        func setDialModeAndUpdate(
-            _ mode: DefaultDialMode,
+        func setControllerAndUpdate(
+            _ controller: Controller,
             animate: Bool = false
         ) {
-            dial.statusBarController.setDialModeAndUpdate(mode)
+            dial.statusBarController.setControllerAndUpdate(controller)
             window.update(animate: animate)
         }
         

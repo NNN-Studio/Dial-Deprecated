@@ -103,13 +103,13 @@ class ShortcutsController: Controller {
     }
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
-        if (isDoubleClick) {
+        if isDoubleClick {
             settings.shortcuts.double.post()
         } else {
             settings.shortcuts.single.post()
         }
         
-        if (settings.haptics) {
+        if settings.haptics {
             callback.device.buzz()
         }
     }
@@ -123,8 +123,8 @@ class ShortcutsController: Controller {
         
         var direction = rotation.direction
         
-        if (settings.alternativeDirection) { direction = direction.negate }
-        if (settings.physicalDirection) { direction = direction.physical }
+        if settings.alternativeDirection { direction = direction.negate }
+        if settings.physicalDirection { direction = direction.physical }
         
         settings.shortcuts.rotation[direction]?.post()
     }

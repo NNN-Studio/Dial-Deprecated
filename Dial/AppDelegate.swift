@@ -34,7 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        if (!flag) {
+        if !flag {
             SettingsWindowController.shared.showWindow(nil)
         }
         
@@ -46,18 +46,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension AppDelegate {
     
     func test() {
-        Defaults.reset([.activatedControllerIds])
+        Defaults.reset([.activatedControllerIDs])
         Defaults.reset([.shortcutsControllerSettings])
         
         print(1)
-        print(Defaults[.activatedControllerIds])
+        print(Defaults[.activatedControllerIDs])
         print()
         print(Defaults[.shortcutsControllerSettings])
         print()
         
         Controllers.append()
         print(2)
-        print(Defaults[.activatedControllerIds])
+        print(Defaults[.activatedControllerIDs])
         print()
         print(Defaults[.shortcutsControllerSettings])
         print()
@@ -65,7 +65,7 @@ extension AppDelegate {
         Controllers.toggle(false, menuIndex: 0)
         Controllers.toggle(true, menuIndex: 4)
         print(3)
-        print(Defaults[.activatedControllerIds])
+        print(Defaults[.activatedControllerIDs])
         print()
         print(Defaults[.shortcutsControllerSettings])
         print()

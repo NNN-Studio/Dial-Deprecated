@@ -181,9 +181,9 @@ class DialViewController: NSViewController {
         iconsView?.wantsLayer = true
         view.addSubview(fillView(iconsView!))
         
-        DefaultDialMode.allCases
+        Controllers.activatedControllers
             .enumerated()
-            .forEach { self.iconsView?.addSubview(createIconView($0.element.icon, $0.offset)) }
+            .forEach { self.iconsView?.addSubview(createIconView($0.element.icon.outline, $0.offset)) }
     }
     
     override func viewWillAppear() {
@@ -254,7 +254,7 @@ class DialViewController: NSViewController {
     }
     
     private func getRadians(
-        ofIndex index: Int = Data.dialMode.rawValue
+        ofIndex index: Int = Controllers.indexOf(Controllers.currentController.id)!
     ) -> CGFloat {
         CGFloat(index % Defaults[.maxIconCount]) / CGFloat(Defaults[.maxIconCount]) * 2 * Double.pi + radiansOffset
     }
@@ -263,7 +263,7 @@ class DialViewController: NSViewController {
         if let iconsView {
             for (index, iconView) in iconsView.subviews.enumerated() {
                 if let iconView = iconView as? NSImageView {
-                    if index == Data.dialMode.rawValue {
+                    if index == Controllers.indexOf(Controllers.currentController.id)! {
                         iconView.contentTintColor = .controlAccentColor
                         let shadow = NSShadow()
                         

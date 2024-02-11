@@ -23,10 +23,12 @@ struct Icon: Codable {
     
     var outline: NSImage {
         NSImage(systemSymbol: symbol)
+            .withSymbolConfiguration(.init(pointSize: 24, weight: .medium))!
     }
     
     var filled: NSImage {
         NSImage(systemSymbol: symbol.withSuffix(Icon.suffix)!)
+            .withSymbolConfiguration(.init(pointSize: 24, weight: .medium))!
     }
     
 }

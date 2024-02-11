@@ -15,7 +15,7 @@ extension Defaults.Keys {
     
     static let direction = Key<Direction>("direction", default: .clockwise)
     
-    static let senstivity = Key<Sensitivity>("sensitivity", default: .natural)
+    static let sensitivity = Key<Sensitivity>("sensitivity", default: .natural)
     
     static let autoHideIconEnabled = Key<Bool>("autoHideIconEnabled", default: false)
     
@@ -23,8 +23,8 @@ extension Defaults.Keys {
     
     static let shortcutsControllerSettings = Key<Bag<ShortcutsController.Settings>>("shortcutsControllerSettings", default: Bag([]))
     
-    static let activatedControllerIds = Key<[ControllerID]>(
-        "activatedControllerIds",
+    static let activatedControllerIDs = Key<[ControllerID]>(
+        "activatedControllerIDs",
         default: [
             .default(.scroll),
             .default(.playback),
@@ -32,6 +32,8 @@ extension Defaults.Keys {
             .default(.brightness)
         ]
     )
+    
+    static let currentControllerID = Key<ControllerID>("currentControllerID", default: .default(.scroll))
     
     
     

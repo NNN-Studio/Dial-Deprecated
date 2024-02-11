@@ -45,13 +45,10 @@ class MenuOptionItem<Type>: NSMenuItem {
     
 }
 
-class ControllerOptionItem: MenuOptionItem<DefaultDialMode> {
+class ControllerOptionItem: MenuOptionItem<Controller> {
     
-    let controller: Controller
-    
-    init(_ title: String, mode: DefaultDialMode, controller: Controller) {
-        self.controller = controller
-        super.init(title, option: mode)
+    init(_ title: String, controller: Controller) {
+        super.init(title, option: controller)
     }
     
     required init(coder: NSCoder) {

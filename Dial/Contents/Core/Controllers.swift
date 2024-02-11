@@ -28,7 +28,27 @@ struct Controllers {
     }
     
     static var activatedControllers: [Controller] {
-        Defaults[.activatedControllerIds].map( { fetch($0)! })
+        Defaults[.activatedControllerIDs].map( { fetch($0)! })
+    }
+    
+    static var currentController: Controller {
+        fetch(Defaults[.currentControllerID])!
+    }
+    
+    static func cycleThroughControllers(_ sign: Int = 1, wrap: Bool = true) {
+        guard sign != 0 else { return }
+        
+        let index = activatedControllers.firstIndex(where: { $0.id == currentController.id })! + sign.signum()
+        let max = activatedControllers.count
+        let inRange = NSRange(location: 0, length: activatedControllers.count).contains(index)
+        
+        if wrap || inRange {
+            Defaults[.currentControllerID] = activatedControllers[index % max].id
+        }
+    }
+    
+    static func indexOf(_ id: ControllerID) -> Int? {
+        return defaultControllers.firstIndex(where: { $0.id == id }) ?? (shortcutsControllers.firstIndex(where: { $0.id == id }).map { $0 + defaultControllers.count })
     }
     
     static func fetch(_ id: ControllerID) -> Controller? {
@@ -45,7 +65,7 @@ struct Controllers {
     static func fetch(menuIndex index: Int) -> Controller? {
         guard index >= 0 else { return nil }
         
-        if (index < defaultControllers.count) {
+        if index < defaultControllers.count {
             return defaultControllers[index]
         } else {
             return shortcutsControllers[index - defaultControllers.count]
@@ -71,11 +91,11 @@ struct Controllers {
     }
     
     static func toggle(_ activated: Bool, id: ControllerID) {
-        if (activated) {
-            Defaults[.activatedControllerIds].append(id)
+        if activated {
+            Defaults[.activatedControllerIDs].append(id)
         } else {
-            if let i = Defaults[.activatedControllerIds].firstIndex(of: id) {
-                Defaults[.activatedControllerIds].remove(at: i)
+            if let i = Defaults[.activatedControllerIDs].firstIndex(of: id) {
+                Defaults[.activatedControllerIDs].remove(at: i)
             }
         }
     }
@@ -90,11 +110,11 @@ struct Controllers {
         guard
             fetchAt != insertAt
                 && fetchAt >= 0 && insertAt >= 0
-                && fetchAt < Defaults[.activatedControllerIds].count && insertAt <= Defaults[.activatedControllerIds].count
+                && fetchAt < Defaults[.activatedControllerIDs].count && insertAt <= Defaults[.activatedControllerIDs].count
         else { return }
         
-        let instance = Defaults[.activatedControllerIds].remove(at: fetchAt)
-        Defaults[.activatedControllerIds].insert(instance, at: insertAt)
+        let instance = Defaults[.activatedControllerIDs].remove(at: fetchAt)
+        Defaults[.activatedControllerIDs].insert(instance, at: insertAt)
     }
     
 }
