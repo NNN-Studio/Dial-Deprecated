@@ -65,7 +65,7 @@ struct Controllers {
     ) {
         guard index >= 0 && index < Defaults[.shortcutsControllerSettings].count else { return }
         
-        var controller = shortcutsControllers[index]
+        let controller = shortcutsControllers[index]
         shortcutsControllers[index] = operation(controller)
     }
     
