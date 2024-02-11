@@ -43,7 +43,7 @@ enum Sensitivity: CGFloat, CaseIterable, Defaults.Serializable {
     
 }
 
-enum Direction: Int, CaseIterable, Defaults.Serializable {
+enum Direction: Int, CaseIterable, Codable, Defaults.Serializable {
     
     case clockwise = 1
     

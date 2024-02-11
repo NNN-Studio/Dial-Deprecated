@@ -21,6 +21,8 @@ extension Defaults.Keys {
     
     
     
+    static let shortcutsControllerSettings = Key<Bag<ShortcutsController.Settings>>("shortcutsControllerSettings", default: Bag([]))
+    
     static let activatedControllerIndexes = Key<[Int]>("activatedControllerIndexes", default: [-1, -2, -3, -4])
     
     

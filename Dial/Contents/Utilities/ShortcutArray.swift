@@ -8,7 +8,13 @@
 import Foundation
 import AppKit
 
-struct ShortcutArray {
+extension NSEvent.ModifierFlags: Codable {
+    
+    // Make it codable
+    
+}
+
+struct ShortcutArray: Codable {
     
     var modifiers: [NSEvent.ModifierFlags]
     
@@ -19,15 +25,15 @@ struct ShortcutArray {
     }
     
     init(
-        modifiers: [NSEvent.ModifierFlags],
+        modifiers: [NSEvent.ModifierFlags] = [],
         keyCodes: [Int32]
     ) {
         self.init(modifiers: modifiers, keys: Input.fromKeyCodes(keyCodes))
     }
     
     init(
-        modifiers: [NSEvent.ModifierFlags],
-        keys: [Input]
+        modifiers: [NSEvent.ModifierFlags] = [],
+        keys: [Input] = []
     ) {
         self.modifiers = modifiers
         self.keys = keys

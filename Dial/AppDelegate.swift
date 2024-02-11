@@ -2,6 +2,7 @@
 import Cocoa
 import ServiceManagement
 import SwiftUI
+import Defaults
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -29,6 +30,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         requestPermissions()
+        print(1, Defaults[.activatedControllerIndexes])
+        Controllers.toggle(true, index: 3)
+        print(2, Defaults[.activatedControllerIndexes])
+        Controllers.toggle(true, index: 4)
+        Controllers.toggle(true, index: 5)
+        Controllers.toggle(false, index: 3)
+        print(3, Defaults[.activatedControllerIndexes])
+        Controllers.toggle(true, index: 10)
+        Controllers.toggle(true, index: 20)
+        print(4, Defaults[.activatedControllerIndexes])
+        Controllers.reorder(fetchAt: 2, insertAt: 5)
+        print("reordered", Defaults[.activatedControllerIndexes])
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {

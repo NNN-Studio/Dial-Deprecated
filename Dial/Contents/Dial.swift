@@ -57,7 +57,7 @@ class Dial {
 
 extension Dial {
     
-    enum Rotation {
+    enum Rotation: Codable {
         
         case continuous(Direction)
         
@@ -68,6 +68,23 @@ extension Dial {
             case .continuous(let direction), .stepping(let direction):
                 direction
             }
+        }
+        
+        func conformsTo(_ type: `Type`) -> Bool {
+            return switch self {
+            case .continuous(_):
+                type == .continuous
+            case .stepping(_):
+                type == .stepping
+            }
+        }
+        
+        enum `Type`: Codable {
+            
+            case continuous
+            
+            case stepping
+            
         }
         
     }

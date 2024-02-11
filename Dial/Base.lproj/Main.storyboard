@@ -291,7 +291,7 @@
                                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     </textFieldCell>
                                                                                 </textField>
-                                                                                <switch horizontalHuggingPriority="750" verticalHuggingPriority="751" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="cgh-eM-T5h">
+                                                                                <switch horizontalHuggingPriority="750" verticalHuggingPriority="751" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="cgh-eM-T5h">
                                                                                     <rect key="frame" x="245" y="-2" width="42" height="25"/>
                                                                                 </switch>
                                                                             </subviews>
@@ -329,7 +329,7 @@
                                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     </textFieldCell>
                                                                                 </textField>
-                                                                                <switch horizontalHuggingPriority="750" verticalHuggingPriority="751" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="M2z-bo-UIi">
+                                                                                <switch horizontalHuggingPriority="750" verticalHuggingPriority="751" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="M2z-bo-UIi">
                                                                                     <rect key="frame" x="245" y="-2" width="42" height="25"/>
                                                                                 </switch>
                                                                             </subviews>

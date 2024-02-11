@@ -27,7 +27,7 @@ class SettingsWindowController: NSWindowController {
         print(event.keyCode, event.modifierFlags)
         let keyCode = Int32(event.keyCode)
         
-        if (event.modifierFlags.contains(.command) && (Input.keyQ.conforms(keyCode) || Input.keyW.conforms(keyCode))) {
+        if (event.modifierFlags.contains(.command) && (Input.keyQ.conformsTo(keyCode) || Input.keyW.conformsTo(keyCode))) {
             // Closes with Command+W / Command+W
             close()
         }
