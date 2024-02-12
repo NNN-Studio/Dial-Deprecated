@@ -53,14 +53,14 @@ class GeneralViewController: NSViewController {
     
     // MARK: - Others
     
-    private var menuItems: MenuItems?
+    private var submenuItems: SubmenuItems?
     
 }
 
 extension GeneralViewController {
     
     override func viewDidLoad() {
-        menuItems = MenuItems(delegate: self)
+        submenuItems = SubmenuItems(delegate: self)
         
         initDescriptives()
         initInteractives()
@@ -76,11 +76,11 @@ extension GeneralViewController {
         buttonQuit.title = Localization.quit.localizedName
         
         let directionMenu = NSMenu()
-        menuItems?.directionOptions.forEach(directionMenu.addItem(_:))
+        submenuItems?.directionOptions.forEach(directionMenu.addItem(_:))
         popUpButtonDirection.menu = directionMenu
         
         let sensitivityMenu = NSMenu()
-        menuItems?.sensitivityOptions.forEach(sensitivityMenu.addItem(_:))
+        submenuItems?.sensitivityOptions.forEach(sensitivityMenu.addItem(_:))
         popUpButtonDirection.menu = sensitivityMenu
     }
     
@@ -100,37 +100,13 @@ extension GeneralViewController {
     
 }
 
-extension GeneralViewController: DialMenuDelegate {
-    
-    func setController(_ sender: Any?) {
-        
-    }
+extension GeneralViewController: DialSubmenuDelegate {
     
     func setSensitivity(_ sender: Any?) {
         
     }
     
     func setDirection(_ sender: Any?) {
-        
-    }
-    
-    func setHaptics(_ sender: Any?) {
-        
-    }
-    
-    func setStartsWithMacOS(_ sender: Any?) {
-        
-    }
-    
-    func openSettings(_ sender: Any?) {
-        
-    }
-    
-    func quitApp(_ sender: Any?) {
-        
-    }
-    
-    func reconnect(_ sender: Any?) {
         
     }
     

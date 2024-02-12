@@ -32,6 +32,7 @@
 		28D9F46E2B79ED2B00494B7E /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D9F46D2B79ED2B00494B7E /* MenuItems.swift */; };
 		28D9F4772B7A12D500494B7E /* ObservationTrackingStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D9F4762B7A12D500494B7E /* ObservationTrackingStream.swift */; };
 		28D9F4792B7A13E100494B7E /* NSString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D9F4782B7A13E100494B7E /* NSString+Extension.swift */; };
+		28D9F47C2B7A301000494B7E /* SubmenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D9F47B2B7A301000494B7E /* SubmenuItems.swift */; };
 		28DBB1612B7903D000743575 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1602B7903D000743575 /* Localization.swift */; };
 		28DBB1642B79046D00743575 /* SymbolRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1632B79046D00743575 /* SymbolRepresentation.swift */; };
 		28DBB1682B7904B200743575 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1672B7904B200743575 /* MainController.swift */; };
@@ -75,6 +76,7 @@
 		28D9F46D2B79ED2B00494B7E /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
 		28D9F4762B7A12D500494B7E /* ObservationTrackingStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationTrackingStream.swift; sourceTree = "<group>"; };
 		28D9F4782B7A13E100494B7E /* NSString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSString+Extension.swift"; sourceTree = "<group>"; };
+		28D9F47B2B7A301000494B7E /* SubmenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubmenuItems.swift; sourceTree = "<group>"; };
 		28DBB1602B7903D000743575 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		28DBB1632B79046D00743575 /* SymbolRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolRepresentation.swift; sourceTree = "<group>"; };
 		28DBB1672B7904B200743575 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -130,7 +132,6 @@
 				28D278E82AEFC23E00844ADE /* Core */,
 				C882FA2C26F143E300595EE1 /* StatusBarController.swift */,
 				C89F31582701090400A8B365 /* Dial.swift */,
-				28D9F46D2B79ED2B00494B7E /* MenuItems.swift */,
 			);
 			path = Contents;
 			sourceTree = "<group>";
@@ -167,7 +168,7 @@
 		28D278E92AEFC25100844ADE /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				2830055B2AEE7FF800D18F65 /* MenuManager.swift */,
+				28D9F47A2B7A2FFE00494B7E /* Menu */,
 				28B833BF2B77582C00D96825 /* ShortcutArray.swift */,
 				28DBB1632B79046D00743575 /* SymbolRepresentation.swift */,
 				28DBB1602B7903D000743575 /* Localization.swift */,
@@ -193,6 +194,16 @@
 				28D9F4782B7A13E100494B7E /* NSString+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		28D9F47A2B7A2FFE00494B7E /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				2830055B2AEE7FF800D18F65 /* MenuManager.swift */,
+				28D9F46D2B79ED2B00494B7E /* MenuItems.swift */,
+				28D9F47B2B7A301000494B7E /* SubmenuItems.swift */,
+			);
+			path = Menu;
 			sourceTree = "<group>";
 		};
 		28DBB1652B79048200743575 /* Windows */ = {
@@ -350,6 +361,7 @@
 				2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */,
 				28D9F46C2B79EC8C00494B7E /* NSImage+Extension.swift in Sources */,
 				2822C3D82B75C44B000D5C58 /* Defaults+Structures.swift in Sources */,
+				28D9F47C2B7A301000494B7E /* SubmenuItems.swift in Sources */,
 				28DBB1612B7903D000743575 /* Localization.swift in Sources */,
 				C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */,
 				28D9F4622B79C29100494B7E /* DefaultController.swift in Sources */,

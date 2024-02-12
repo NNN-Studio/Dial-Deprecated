@@ -9,7 +9,7 @@ import Foundation
 import AppKit
 import Defaults
 
-@objc protocol DialMenuDelegate: AnyObject {
+@objc protocol DialMenuDelegate: AnyObject, DialSubmenuDelegate {
     
     @objc func setController(_ sender: Any?)
     
@@ -32,6 +32,13 @@ import Defaults
 struct MenuItems {
     
     let delegate: DialMenuDelegate
+    
+    let submenuItems: SubmenuItems
+    
+    init(delegate: DialMenuDelegate) {
+        self.delegate = delegate
+        self.submenuItems = SubmenuItems(delegate: delegate)
+    }
     
     var connectionStatus: NSMenuItem {
         let item = NSMenuItem()
@@ -119,7 +126,7 @@ struct MenuItems {
         let item = NSMenuItem(title: Localization.General.sensitivity.localizedTitle)
         
         item.submenu = NSMenu()
-        sensitivityOptions.forEach(item.submenu!.addItem(_:))
+        submenuItems.sensitivityOptions.forEach(item.submenu!.addItem(_:))
         
         Task { @MainActor in
             if #available(macOS 14.0, *) {
@@ -130,36 +137,13 @@ struct MenuItems {
         }
         
         return item
-    }
-    
-    var sensitivityOptions: [MenuOptionItem<Sensitivity>] {
-        let options = [
-            MenuOptionItem<Sensitivity>(Sensitivity.low.localizedName, option: .low),
-            MenuOptionItem<Sensitivity>(Sensitivity.medium.localizedName, option: .medium),
-            MenuOptionItem<Sensitivity>(Sensitivity.natural.localizedName, option: .natural),
-            MenuOptionItem<Sensitivity>(Sensitivity.high.localizedName, option: .high),
-            MenuOptionItem<Sensitivity>(Sensitivity.extreme.localizedName, option: .extreme)
-        ]
-        
-        for option in options {
-            option.target = delegate
-            option.action = #selector(delegate.setSensitivity(_:))
-            
-            Task { @MainActor in
-                for await value in Defaults.updates(.sensitivity) {
-                    option.flag = option.option == value
-                }
-            }
-        }
-        
-        return options
     }
     
     var direction: NSMenuItem {
         let item = NSMenuItem(title: Localization.General.direction.localizedTitle)
         
         item.submenu = NSMenu()
-        directionOptions.forEach(item.submenu!.addItem(_:))
+        submenuItems.directionOptions.forEach(item.submenu!.addItem(_:))
         
         Task { @MainActor in
             if #available(macOS 14.0, *) {
@@ -170,27 +154,6 @@ struct MenuItems {
         }
         
         return item
-    }
-    
-    var directionOptions: [MenuOptionItem<Direction>] {
-        let options = [
-            MenuOptionItem<Direction>(Direction.clockwise.localizedName, option: .clockwise),
-            MenuOptionItem<Direction>(Direction.counterclockwise.localizedName, option: .counterclockwise)
-        ]
-        
-        for option in options {
-            option.target = delegate
-            option.action = #selector(delegate.setDirection(_:))
-            option.image = option.option.representingSymbol.raw
-            
-            Task { @MainActor in
-                for await value in Defaults.updates(.direction) {
-                    option.flag = option.option == value
-                }
-            }
-        }
-        
-        return options
     }
     
     var haptics: StateOptionItem {
@@ -208,7 +171,20 @@ struct MenuItems {
         return item
     }
     
-    let startsWithMacOS = StateOptionItem(Localization.General.startsWithMacOS.localizedTitle)
+    var startsWithMacOS: StateOptionItem {
+        let item = StateOptionItem(Localization.General.startsWithMacOS.localizedTitle)
+        
+        item.target = delegate
+        item.action = #selector(delegate.setStartsWithMacOS(_:))
+        
+        Task { @MainActor in
+            for await value in Defaults.updates(.launchAtLogin) {
+                item.flag = value
+            }
+        }
+        
+        return item
+    }
     
     var openSettings: NSMenuItem {
         let item = NSMenuItem(title: Localization.openSettings.localizedTitle)
@@ -226,15 +202,6 @@ struct MenuItems {
         item.action = #selector(delegate.quitApp(_:))
         
         return item
-    }
-    
-    private func initActions() {
-        startsWithMacOS.target = delegate
-        startsWithMacOS.action = #selector(delegate.setStartsWithMacOS(_:))
-    }
-    
-    func updateStartsWithMacOS() {
-        startsWithMacOS.flag = Defaults.launchAtLogin
     }
     
 }

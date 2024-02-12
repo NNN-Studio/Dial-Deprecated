@@ -7,7 +7,6 @@
 
 import Foundation
 import Defaults
-import LaunchAtLogin
 
 extension Defaults.Keys {
     
@@ -41,18 +40,8 @@ extension Defaults.Keys {
     
     static let maxIconCount = Key<Int>("maxIconCount", default: 10)
     
-}
-
-extension Defaults {
     
-    static var launchAtLogin: Bool {
-        get {
-            LaunchAtLogin.isEnabled
-        }
-        
-        set(flag) {
-            LaunchAtLogin.isEnabled = flag
-        }
-    }
+    
+    static let launchAtLogin = Key<Bool>("launchAtLogin", default: false)
     
 }

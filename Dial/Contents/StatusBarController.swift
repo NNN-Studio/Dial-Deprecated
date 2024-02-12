@@ -164,18 +164,13 @@ extension StatusBarController: DialMenuDelegate {
     @objc func setHaptics(
         _ sender: Any?
     ) {
-        let flag = !Defaults[.hapticsEnabled]
-        
-        Defaults[.hapticsEnabled] = flag
+        Defaults[.hapticsEnabled].toggle()
     }
     
     @objc func setStartsWithMacOS(
         _ sender: Any?
     ) {
-        let flag = !Defaults.launchAtLogin
-        
-        Defaults.launchAtLogin = flag
-        menuItems?.updateStartsWithMacOS()
+        Defaults[.launchAtLogin].toggle()
     }
     
     func openSettings(

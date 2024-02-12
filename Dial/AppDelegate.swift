@@ -1,4 +1,5 @@
 import Cocoa
+import LaunchAtLogin
 import ServiceManagement
 import SwiftUI
 import Defaults
@@ -29,13 +30,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         requestPermissions()
+        runTasks()
         //test()
-        
-        Task { @MainActor in
-            for await value in Defaults.updates(.autoHidesIconEnabled) {
-                AppDelegate.shared?.dial.statusBarController.toggleVisibility(!value || (AppDelegate.shared?.dial.device.isConnected ?? false))
-            }
-        }
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -96,6 +92,20 @@ extension AppDelegate {
         NSApplication.shared.terminate(self)
     }
     
+}
+
+func runTasks() {
+    Task { @MainActor in
+        for await value in Defaults.updates(.autoHidesIconEnabled) {
+            AppDelegate.shared?.dial.statusBarController.toggleVisibility(!value || (AppDelegate.shared?.dial.device.isConnected ?? false))
+        }
+    }
+    
+    Task { @MainActor in
+        for await value in Defaults.updates(.launchAtLogin) {
+            LaunchAtLogin.isEnabled = value
+        }
+    }
 }
 
 func setCursorVisibility(
