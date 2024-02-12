@@ -41,7 +41,6 @@ struct MenuItems {
         item.offStateImage = NSImage(systemSymbol: .arrowTriangle2Circlepath)
         
         @Sendable func apply(_ value: Device.ConnectionStatus) {
-            print(value)
             switch value {
             case .connected(let serialNumber):
                 if #available(macOS 14.0, *) {
@@ -89,16 +88,10 @@ struct MenuItems {
             }
         }
         
-        Task {
+        Task { @MainActor in
             for await value in observationTrackingStream({ AppDelegate.shared?.dial.device.connectionStatus }) {
                 if let value { apply(value) }
             }
-        }
-        
-        print(0)
-        if let value = AppDelegate.shared?.dial.device.connectionStatus {
-            print(1)
-            apply(value)
         }
         
         return item
@@ -112,7 +105,7 @@ struct MenuItems {
                 item.target = delegate
                 item.action = #selector(delegate.setController(_:))
                 
-                Task {
+                Task { @MainActor in
                     for await value in Defaults.updates(.currentControllerID) {
                         item.flag = item.option.id == value
                     }
@@ -128,7 +121,7 @@ struct MenuItems {
         item.submenu = NSMenu()
         sensitivityOptions.forEach(item.submenu!.addItem(_:))
         
-        Task {
+        Task { @MainActor in
             if #available(macOS 14.0, *) {
                 for await value in Defaults.updates(.sensitivity) {
                     item.badge = NSMenuItemBadge(string: value.localizedBadge)
@@ -152,7 +145,7 @@ struct MenuItems {
             option.target = delegate
             option.action = #selector(delegate.setSensitivity(_:))
             
-            Task {
+            Task { @MainActor in
                 for await value in Defaults.updates(.sensitivity) {
                     option.flag = option.option == value
                 }
@@ -168,7 +161,7 @@ struct MenuItems {
         item.submenu = NSMenu()
         directionOptions.forEach(item.submenu!.addItem(_:))
         
-        Task {
+        Task { @MainActor in
             if #available(macOS 14.0, *) {
                 for await value in Defaults.updates(.direction) {
                     item.badge = NSMenuItemBadge(string: value.localizedBadge)
@@ -190,7 +183,7 @@ struct MenuItems {
             option.action = #selector(delegate.setDirection(_:))
             option.image = option.option.representingSymbol.raw
             
-            Task {
+            Task { @MainActor in
                 for await value in Defaults.updates(.direction) {
                     option.flag = option.option == value
                 }
@@ -206,7 +199,7 @@ struct MenuItems {
         item.target = delegate
         item.action = #selector(delegate.setHaptics(_:))
         
-        Task {
+        Task { @MainActor in
             for await value in Defaults.updates(.hapticsEnabled) {
                 item.flag = value
             }

@@ -85,13 +85,13 @@ extension GeneralViewController {
     }
     
     func initInteractives() {
-        Task {
+        Task { @MainActor in
             for await value in Defaults.updates(.hapticsEnabled) {
                 switchHaptics.flag = value
             }
         }
         
-        Task {
+        Task { @MainActor in
             for await value in Defaults.updates(.autoHidesIconEnabled) {
                 switchHaptics.flag = value
             }

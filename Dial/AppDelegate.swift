@@ -30,6 +30,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         requestPermissions()
         //test()
+        
+        Task { @MainActor in
+            for await value in Defaults.updates(.autoHidesIconEnabled) {
+                AppDelegate.shared?.dial.statusBarController.toggleVisibility(!value || (AppDelegate.shared?.dial.device.isConnected ?? false))
+            }
+        }
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -82,15 +88,11 @@ extension AppDelegate {
 
 extension AppDelegate {
     
-    func reconnect() {
-        dial.reconnect()
-    }
-    
-    func openSettings() {
+    static func openSettings() {
         SettingsWindowController.shared.showWindow(nil)
     }
     
-    func quitApp() {
+    static func quitApp() {
         NSApplication.shared.terminate(self)
     }
     
