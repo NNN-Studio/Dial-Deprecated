@@ -729,6 +729,9 @@
                                                         <segment label="Advanced" tag="1"/>
                                                     </segments>
                                                 </segmentedCell>
+                                                <connections>
+                                                    <action selector="switchSegment:" target="24w-Ra-sQb" id="7uP-Sq-d76"/>
+                                                </connections>
                                             </segmentedControl>
                                             <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="m3Z-gW-K7K">
                                                 <rect key="frame" x="0.0" y="39" width="325" height="534"/>

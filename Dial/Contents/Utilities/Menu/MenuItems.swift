@@ -51,43 +51,20 @@ struct MenuItems {
             switch value {
             case .connected(let serialNumber):
                 if #available(macOS 14.0, *) {
-                    item.title = NSLocalizedString(
-                        "ConnectionStatus/On",
-                        value: "Dial",
-                        comment: "[macOS >=14.0] if (connected)"
-                    )
+                    item.title = Localization.ConnectionStatus.on.localizedName
                     item.badge = NSMenuItemBadge(string: serialNumber)
                 } else {
-                    item.title = String(
-                        format: NSLocalizedString(
-                            "ConnectionStatus/On/Alt",
-                            value: "Dial: ",
-                            comment: "[macOS <14.0] if (connected)"
-                        ),
-                        serialNumber
-                    )
+                    item.title = String(format: Localization.ConnectionStatus.onOld.localizedName, serialNumber)
                 }
                 
                 item.flag = true
                 item.isEnabled = false
             case .disconnected:
                 if #available(macOS 14.0, *) {
-                    item.title = NSLocalizedString(
-                        "ConnectionStatus/Off",
-                        value: "Dial",
-                        comment: "[macOS >=14.0] if (!connected)"
-                    )
-                    item.badge = NSMenuItemBadge(string: NSLocalizedString(
-                        "ConnectionStatus/Off/Badge",
-                        value: "disconnected",
-                        comment: "[macOS >=14.0] if (!connected) badge"
-                    ))
+                    item.title = Localization.ConnectionStatus.off.localizedName
+                    item.badge = NSMenuItemBadge(string: Localization.ConnectionStatus.offBadge.localizedName)
                 } else {
-                    item.title = NSLocalizedString(
-                        "ConnectionStatus/Off",
-                        value: "Surface Dial disconnected",
-                        comment: "if (!connected)"
-                    )
+                    item.title = Localization.ConnectionStatus.offOld.localizedName
                 }
                 
                 item.flag = false

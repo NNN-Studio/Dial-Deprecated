@@ -256,7 +256,7 @@ class DialViewController: NSViewController {
     private func getRadians(
         ofIndex index: Int = Controllers.indexOf(Controllers.currentController.id)!
     ) -> CGFloat {
-        CGFloat(index % Defaults[.maxIconCount]) / CGFloat(Defaults[.maxIconCount]) * 2 * Double.pi + radiansOffset
+        CGFloat(index % Defaults[.maxControllerCount]) / CGFloat(Defaults[.maxControllerCount]) * 2 * Double.pi + radiansOffset
     }
     
     func updateColoredWidgets() {

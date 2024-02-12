@@ -37,8 +37,8 @@
         }
       }
     },
-    "ConnectionStatus/Off" : {
-      "comment" : "[macOS >=14.0] if (!connected)\n   if (!connected)",
+    "ConnectionStatus/Off.Name" : {
+      "comment" : "[macOS >=14.0] if (!connected)",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
@@ -49,7 +49,7 @@
         }
       }
     },
-    "ConnectionStatus/Off/Badge" : {
+    "ConnectionStatus/OffBadge.Name" : {
       "comment" : "[macOS >=14.0] if (!connected) badge",
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -61,7 +61,19 @@
         }
       }
     },
-    "ConnectionStatus/On" : {
+    "ConnectionStatus/OffOld.Name" : {
+      "comment" : "if (!connected)",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Surface Dial disconnected"
+          }
+        }
+      }
+    },
+    "ConnectionStatus/On.Name" : {
       "comment" : "[macOS >=14.0] if (connected)",
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -73,7 +85,7 @@
         }
       }
     },
-    "ConnectionStatus/On/Alt" : {
+    "ConnectionStatus/OnOld.Name" : {
       "comment" : "[macOS <14.0] if (connected)",
       "extractionState" : "extracted_with_value",
       "localizations" : {

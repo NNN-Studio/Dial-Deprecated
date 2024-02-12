@@ -77,6 +77,7 @@ extension GeneralViewController {
         
         return controller
     }
+    
 }
 
 extension GeneralViewController {
@@ -105,6 +106,23 @@ extension GeneralViewController {
         let sensitivityMenu = NSMenu()
         submenuItems?.sensitivityOptions.forEach(sensitivityMenu.addItem(_:))
         popUpButtonSensitivity.menu = sensitivityMenu
+        
+        func applyConnectionStatus(_ value: Device.ConnectionStatus) {
+            switch value {
+            case .connected(let serialNumber):
+                labelSerial.stringValue = serialNumber
+                imageDial.isEnabled = true
+            default:
+                labelSerial.stringValue = Localization.ConnectionStatus.offOld.localizedName
+                imageDial.isEnabled = false
+            }
+        }
+        
+        Task { @MainActor in
+            for await value in observationTrackingStream({ AppDelegate.shared?.dial.device.connectionStatus }) {
+                if let value { applyConnectionStatus(value) }
+            }
+        }
     }
     
     func initInteractives() {

@@ -38,7 +38,7 @@ extension Defaults.Keys {
     
     static let rotationThresholdDegrees = Key<UInt>("rotationThresholdDegrees", default: 10)
     
-    static let maxIconCount = Key<Int>("maxIconCount", default: 10)
+    static let maxControllerCount = Key<Int>("maxControllerCount", default: 10)
     
     
     

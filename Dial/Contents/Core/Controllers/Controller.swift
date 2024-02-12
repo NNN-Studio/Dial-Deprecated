@@ -63,6 +63,14 @@ protocol Controller: AnyObject, SymbolRepresentable {
 
 extension Controller {
     
+    var isDefaultController: Bool {
+        self is DefaultController
+    }
+    
+}
+
+extension Controller {
+    
     var representingSymbol: SFSymbol {
         .fallback
     }

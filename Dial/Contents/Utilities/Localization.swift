@@ -38,6 +38,20 @@ enum Localization: Codable {
     
     case quit
     
+    enum ConnectionStatus: Codable {
+        
+        case on
+        
+        case onOld
+        
+        case off
+        
+        case offOld
+        
+        case offBadge
+        
+    }
+    
     enum General: Codable {
         
         case sensitivity
@@ -95,6 +109,45 @@ extension Localization: Localizable {
             NSLocalizedString("OpenSettings.Title", value:"Open Settings", comment: "open settings")
         case .quit:
             NSLocalizedString("Quit.Title", value:"Quit", comment: "quit")
+        }
+    }
+    
+}
+
+extension Localization.ConnectionStatus: Localizable {
+    
+    var localizedName: String {
+        switch self {
+        case .on:
+            NSLocalizedString(
+                "ConnectionStatus/On.Name",
+                value: "Dial",
+                comment: "[macOS >=14.0] if (connected)"
+            )
+        case .onOld:
+            NSLocalizedString(
+                "ConnectionStatus/OnOld.Name",
+                value: "Dial: ",
+                comment: "[macOS <14.0] if (connected)"
+            )
+        case .off:
+            NSLocalizedString(
+                "ConnectionStatus/Off.Name",
+                value: "Dial",
+                comment: "[macOS >=14.0] if (!connected)"
+            )
+        case .offOld:
+            NSLocalizedString(
+                "ConnectionStatus/OffOld.Name",
+                value: "Surface Dial disconnected",
+                comment: "if (!connected)"
+            )
+        case .offBadge:
+            NSLocalizedString(
+                "ConnectionStatus/OffBadge.Name",
+                value: "disconnected",
+                comment: "[macOS >=14.0] if (!connected) badge"
+            )
         }
     }
     

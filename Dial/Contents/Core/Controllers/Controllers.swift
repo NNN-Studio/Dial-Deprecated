@@ -28,11 +28,27 @@ struct Controllers {
     }
     
     static var activatedControllers: [Controller] {
-        Defaults[.activatedControllerIDs].map( { fetch($0)! })
+        get {
+            Defaults[.activatedControllerIDs].map( { fetch($0)! })
+        }
+        
+        set {
+            Defaults[.activatedControllerIDs] = newValue.map { $0.id }
+        }
     }
     
     static var currentController: Controller {
-        fetch(Defaults[.currentControllerID])!
+        get {
+            fetch(Defaults[.currentControllerID])!
+        }
+        
+        set {
+            Defaults[.currentControllerID] = newValue.id
+            
+            if let shortcutsController = newValue as? ShortcutsController {
+                // TODO: Complete this
+            }
+        }
     }
     
     static func cycleThroughControllers(_ sign: Int = 1, wrap: Bool = true) {
