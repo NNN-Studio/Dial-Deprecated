@@ -116,13 +116,13 @@
       }
     },
     "95d-n9-rpw.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Quit\"; ObjectID = \"95d-n9-rpw\";",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Quit app\"; ObjectID = \"95d-n9-rpw\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Quit"
+            "value" : "Quit app"
           }
         }
       }

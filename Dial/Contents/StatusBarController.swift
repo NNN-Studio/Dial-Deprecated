@@ -130,18 +130,14 @@ extension StatusBarController {
 
 extension StatusBarController: DialMenuDelegate {
     
-    @objc func setController(
-        _ sender: Any?
-    ) {
+    @objc func setController(_ sender: Any?) {
         guard let item = sender as? ControllerOptionItem
         else { return }
         
         setControllerAndUpdate(item.option)
     }
     
-    @objc func setSensitivity(
-        _ sender: Any?
-    ) {
+    @objc func setSensitivity(_ sender: Any?) {
         guard
             let item = sender as? NSMenuItem,
             let sensitivity = item.representedObject as? Sensitivity
@@ -150,9 +146,7 @@ extension StatusBarController: DialMenuDelegate {
         Defaults[.sensitivity] = sensitivity
     }
     
-    @objc func setDirection(
-        _ sender: Any?
-    ) {
+    @objc func setDirection(_ sender: Any?) {
         guard
             let item = sender as? NSMenuItem,
             let direction = item.representedObject as? Direction
@@ -161,33 +155,23 @@ extension StatusBarController: DialMenuDelegate {
         Defaults[.direction] = direction
     }
     
-    @objc func setHaptics(
-        _ sender: Any?
-    ) {
+    @objc func toggleHaptics(_ sender: Any?) {
         Defaults[.hapticsEnabled].toggle()
     }
     
-    @objc func setStartsWithMacOS(
-        _ sender: Any?
-    ) {
+    @objc func toggleStartsWithMacOS(_ sender: Any?) {
         Defaults[.launchAtLogin].toggle()
     }
     
-    func openSettings(
-        _ sender: Any?
-    ) {
+    func openSettings(_ sender: Any?) {
         AppDelegate.openSettings()
     }
     
-    func quitApp(
-        _ sender: Any?
-    ) {
+    func quitApp(_ sender: Any?) {
         AppDelegate.quitApp()
     }
     
-    func reconnect(
-        _ sender: Any?
-    ) {
+    func reconnect(_ sender: Any?) {
         AppDelegate.shared?.dial.reconnect()
     }
     

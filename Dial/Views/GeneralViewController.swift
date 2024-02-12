@@ -59,7 +59,30 @@ class GeneralViewController: NSViewController {
 
 extension GeneralViewController {
     
+    // MARK: - Storyboard Instantiation
+    
+    static func freshController() -> GeneralViewController {
+        let storyboard = NSStoryboard(
+            name: NSStoryboard.Name("Main"),
+            bundle: nil
+        )
+        
+        let identifier = NSStoryboard.SceneIdentifier("GeneralController")
+        
+        guard let controller = storyboard.instantiateController(
+            withIdentifier: identifier
+        ) as? GeneralViewController else {
+            fatalError("Can not find GeneralController")
+        }
+        
+        return controller
+    }
+}
+
+extension GeneralViewController {
+    
     override func viewDidLoad() {
+        super.viewDidLoad()
         submenuItems = SubmenuItems(delegate: self)
         
         initDescriptives()
@@ -81,7 +104,7 @@ extension GeneralViewController {
         
         let sensitivityMenu = NSMenu()
         submenuItems?.sensitivityOptions.forEach(sensitivityMenu.addItem(_:))
-        popUpButtonDirection.menu = sensitivityMenu
+        popUpButtonSensitivity.menu = sensitivityMenu
     }
     
     func initInteractives() {
@@ -92,8 +115,29 @@ extension GeneralViewController {
         }
         
         Task { @MainActor in
+            for await value in Defaults.updates(.direction) {
+                let index = popUpButtonDirection.indexOfItem(withRepresentedObject: value)
+                popUpButtonDirection.selectItem(at: index)
+            }
+        }
+        
+        Task { @MainActor in
+            for await value in Defaults.updates(.sensitivity) {
+                let index = popUpButtonSensitivity.indexOfItem(withRepresentedObject: value)
+                popUpButtonSensitivity.selectItem(at: index)
+            }
+        }
+        
+        Task { @MainActor in
             for await value in Defaults.updates(.autoHidesIconEnabled) {
-                switchHaptics.flag = value
+                switchAutoHidesIcon.flag = value
+                labelAutoHidesIconDescription.isHidden = !value
+            }
+        }
+        
+        Task { @MainActor in
+            for await value in Defaults.updates(.launchAtLogin) {
+                switchStartsWithMacOS.flag = value
             }
         }
     }
@@ -102,12 +146,73 @@ extension GeneralViewController {
 
 extension GeneralViewController: DialSubmenuDelegate {
     
-    func setSensitivity(_ sender: Any?) {
+    @objc func setSensitivity(_ sender: Any?) {
+        guard
+            let item = sender as? NSMenuItem,
+            let sensitivity = item.representedObject as? Sensitivity
+        else { return }
         
+        Defaults[.sensitivity] = sensitivity
     }
     
-    func setDirection(_ sender: Any?) {
+    @objc func setDirection(_ sender: Any?) {
+        guard
+            let item = sender as? NSMenuItem,
+            let direction = item.representedObject as? Direction
+        else { return }
         
+        Defaults[.direction] = direction
+    }
+    
+}
+
+extension GeneralViewController {
+    
+    @IBAction func visitSourceCode(_ sender: Any?) {
+        // TODO: Complete this
+        print("Visited source code.")
+    }
+    
+    @IBAction func reconnect(_ sender: Any?) {
+        AppDelegate.shared?.dial.reconnect()
+    }
+    
+}
+
+extension GeneralViewController {
+    
+    @IBAction func toggleHaptics(_ sender: NSSwitch) {
+        Defaults[.hapticsEnabled] = sender.flag
+    }
+    
+    @IBAction func toggleDirection(_ sender: NSPopUpButton) {
+        guard
+            let item = sender.selectedItem,
+            let direction = item.representedObject as? Direction
+        else { return }
+        
+        Defaults[.direction] = direction
+    }
+    
+    @IBAction func toggleSensitivity(_ sender: NSPopUpButton) {
+        guard
+            let item = sender.selectedItem,
+            let sensitivity = item.representedObject as? Sensitivity
+        else { return }
+        
+        Defaults[.sensitivity] = sensitivity
+    }
+    
+    @IBAction func toggleAutoHidesIcon(_ sender: NSSwitch) {
+        Defaults[.autoHidesIconEnabled] = sender.flag
+    }
+    
+    @IBAction func toggleStartsWithMacOS(_ sender: NSSwitch) {
+        Defaults[.launchAtLogin] = sender.flag
+    }
+    
+    @IBAction func quitApp(_ sender: NSButton) {
+        AppDelegate.quitApp()
     }
     
 }

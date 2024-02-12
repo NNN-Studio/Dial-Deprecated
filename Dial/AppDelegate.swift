@@ -18,8 +18,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             alert.alertStyle = NSAlert.Style.informational
             alert.informativeText = NSLocalizedString(
                 "App/PermissionsAlert/Content",
-                value: "Dial needs Accessibility permissions to function properly. In the next dialog, you will be asked to open the Settings in order to grant them.",
+                value: """
+Dial needs Accessibility permissions to function properly. In the next dialog, you will be asked to open the Settings in order to grant them.
+""",
                 comment: "permissions alert content")
+            
             alert.runModal()
         }
         

@@ -17,9 +17,9 @@ import Defaults
     
     @objc func setDirection(_ sender: Any?)
     
-    @objc func setHaptics(_ sender: Any?)
+    @objc func toggleHaptics(_ sender: Any?)
     
-    @objc func setStartsWithMacOS(_ sender: Any?)
+    @objc func toggleStartsWithMacOS(_ sender: Any?)
     
     @objc func openSettings(_ sender: Any?)
     
@@ -160,7 +160,7 @@ struct MenuItems {
         let item = StateOptionItem(Localization.General.haptics.localizedTitle)
         
         item.target = delegate
-        item.action = #selector(delegate.setHaptics(_:))
+        item.action = #selector(delegate.toggleHaptics(_:))
         
         Task { @MainActor in
             for await value in Defaults.updates(.hapticsEnabled) {
@@ -175,7 +175,7 @@ struct MenuItems {
         let item = StateOptionItem(Localization.General.startsWithMacOS.localizedTitle)
         
         item.target = delegate
-        item.action = #selector(delegate.setStartsWithMacOS(_:))
+        item.action = #selector(delegate.toggleStartsWithMacOS(_:))
         
         Task { @MainActor in
             for await value in Defaults.updates(.launchAtLogin) {

@@ -76,7 +76,7 @@
         <!--General-->
         <scene sceneID="ODy-dO-YdE">
             <objects>
-                <viewController title="General" id="fkX-le-ubk" customClass="GeneralViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="General" storyboardIdentifier="GeneralController" id="fkX-le-ubk" customClass="GeneralViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="iSE-c1-LdQ">
                         <rect key="frame" x="0.0" y="0.0" width="365" height="725"/>
                         <subviews>
@@ -113,6 +113,9 @@
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
+                                                        <connections>
+                                                            <action selector="reconnect:" target="fkX-le-ubk" id="fka-eB-0MU"/>
+                                                        </connections>
                                                     </button>
                                                 </endViews>
                                                 <constraints>
@@ -162,6 +165,9 @@
                                                                         </textField>
                                                                         <switch horizontalHuggingPriority="750" verticalHuggingPriority="751" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="Sxt-7A-shq">
                                                                             <rect key="frame" x="245" y="-2" width="42" height="25"/>
+                                                                            <connections>
+                                                                                <action selector="toggleHaptics:" target="fkX-le-ubk" id="PbM-9D-lF5"/>
+                                                                            </connections>
                                                                         </switch>
                                                                     </subviews>
                                                                     <constraints>
@@ -204,6 +210,9 @@
                                                                                             </items>
                                                                                         </menu>
                                                                                     </popUpButtonCell>
+                                                                                    <connections>
+                                                                                        <action selector="toggleDirection:" target="fkX-le-ubk" id="OrT-Rp-QGV"/>
+                                                                                    </connections>
                                                                                 </popUpButton>
                                                                             </subviews>
                                                                             <constraints>
@@ -246,6 +255,9 @@
                                                                                             </items>
                                                                                         </menu>
                                                                                     </popUpButtonCell>
+                                                                                    <connections>
+                                                                                        <action selector="toggleSensitivity:" target="fkX-le-ubk" id="nBo-ah-v21"/>
+                                                                                    </connections>
                                                                                 </popUpButton>
                                                                             </subviews>
                                                                             <constraints>
@@ -294,6 +306,9 @@
                                                                                 </textField>
                                                                                 <switch horizontalHuggingPriority="750" verticalHuggingPriority="751" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="cgh-eM-T5h">
                                                                                     <rect key="frame" x="245" y="-2" width="42" height="25"/>
+                                                                                    <connections>
+                                                                                        <action selector="toggleAutoHidesIcon:" target="fkX-le-ubk" id="BFh-eb-RJd"/>
+                                                                                    </connections>
                                                                                 </switch>
                                                                             </subviews>
                                                                             <constraints>
@@ -331,6 +346,9 @@
                                                                                 </textField>
                                                                                 <switch horizontalHuggingPriority="750" verticalHuggingPriority="751" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="M2z-bo-UIi">
                                                                                     <rect key="frame" x="245" y="-2" width="42" height="25"/>
+                                                                                    <connections>
+                                                                                        <action selector="toggleStartsWithMacOS:" target="fkX-le-ubk" id="cye-vl-Pbq"/>
+                                                                                    </connections>
                                                                                 </switch>
                                                                             </subviews>
                                                                             <constraints>
@@ -369,7 +387,7 @@
                                                                 </stackView>
                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4GP-OR-oft">
                                                                     <rect key="frame" x="-6" y="-6" width="297" height="40"/>
-                                                                    <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="95d-n9-rpw">
+                                                                    <buttonCell key="cell" type="push" title="Quit app" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="95d-n9-rpw">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
@@ -377,6 +395,9 @@
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="28" id="V5j-hQ-pQR"/>
                                                                     </constraints>
+                                                                    <connections>
+                                                                        <action selector="quitApp:" target="fkX-le-ubk" id="zok-gD-7eJ"/>
+                                                                    </connections>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
@@ -428,6 +449,9 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <color key="contentTintColor" name="AccentColor"/>
+                                                        <connections>
+                                                            <action selector="visitSourceCode:" target="fkX-le-ubk" id="2LK-Cw-bTS"/>
+                                                        </connections>
                                                     </button>
                                                     <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R7b-T4-19Q">
                                                         <rect key="frame" x="89" y="0.0" width="238" height="16"/>
@@ -510,9 +534,8 @@
                         <outlet property="labelStartsWithMacOS" destination="KR1-Fp-B7k" id="ym2-8S-I2m"/>
                         <outlet property="popUpButtonDirection" destination="I7B-IA-ECb" id="Q7Z-JQ-siE"/>
                         <outlet property="popUpButtonSensitivity" destination="4ak-Uf-Hww" id="2hK-Cv-sQe"/>
-                        <outlet property="s" destination="Sxt-7A-shq" id="FOo-rZ-TyM"/>
                         <outlet property="switchAutoHidesIcon" destination="cgh-eM-T5h" id="HXL-4V-pTi"/>
-                        <outlet property="switchHaptics" destination="Sxt-7A-shq" id="jD9-lE-coG"/>
+                        <outlet property="switchHaptics" destination="Sxt-7A-shq" id="ZTJ-PA-bCi"/>
                         <outlet property="switchStartsWithMacOS" destination="M2z-bo-UIi" id="uEn-j2-paa"/>
                     </connections>
                 </viewController>
@@ -523,7 +546,7 @@
         <!--Controllers-->
         <scene sceneID="vNc-dk-VCg">
             <objects>
-                <viewController title="Controllers" id="24w-Ra-sQb" customClass="ControllersViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Controllers" storyboardIdentifier="ControllersController" id="24w-Ra-sQb" customClass="ControllersViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sk0-lI-faL">
                         <rect key="frame" x="0.0" y="0.0" width="365" height="1072"/>
                         <subviews>

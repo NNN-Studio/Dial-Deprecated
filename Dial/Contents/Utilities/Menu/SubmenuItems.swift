@@ -18,7 +18,7 @@ import Defaults
 
 struct SubmenuItems {
     
-    let delegate: DialMenuDelegate
+    let delegate: DialSubmenuDelegate
     
     var sensitivityOptions: [MenuOptionItem<Sensitivity>] {
         let options = [
