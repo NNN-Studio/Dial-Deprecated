@@ -46,6 +46,8 @@ enum Localization: Codable {
         
         case haptics
         
+        case autoHideIcon
+        
         case startsWithMacOS
         
     }
@@ -84,6 +86,8 @@ extension Localization.General: Localizable {
             NSLocalizedString("General/Direction.Name", value: "Direction", comment: "direction")
         case .haptics:
             NSLocalizedString("General/Haptics.Name", value: "Haptic feedback", comment: "haptics")
+        case .autoHideIcon:
+            NSLocalizedString("General/AutoHideIcon.Name", value: "Hide icon while disconnected", comment: "auto hide icon")
         case .startsWithMacOS:
             NSLocalizedString("General/StartsWithMacOS.Name", value: "Starts with macOS", comment: "starts with macOS")
         }
@@ -97,6 +101,8 @@ extension Localization.General: Localizable {
             NSLocalizedString("General/Direction.Title", value: "Direction", comment: "direction")
         case .haptics:
             NSLocalizedString("General/Haptics.Title", value: "Haptic Feedback", comment: "haptics")
+        case .autoHideIcon:
+            NSLocalizedString("General/AutoHideIcon.Title", value: "Hide Icon while Disconnected", comment: "auto hide icon")
         case .startsWithMacOS:
             NSLocalizedString("General/StartsWithMacOS.Title", value: "Starts with macOS", comment: "starts with macOS")
         }
