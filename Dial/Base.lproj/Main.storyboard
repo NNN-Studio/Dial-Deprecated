@@ -106,8 +106,8 @@
                                                     </textField>
                                                 </middleViews>
                                                 <endViews>
-                                                    <button allowsExpansionToolTips="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m2Z-n2-opU">
-                                                        <rect key="frame" x="325" y="8" width="0.0" height="0.0"/>
+                                                    <button allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m2Z-n2-opU">
+                                                        <rect key="frame" x="312" y="0.0" width="13.5" height="16"/>
                                                         <string key="toolTip">Dial connects your Surface Dial through Bluetooth. Pair your Surface Dial in System Settings before clicking this button to search for it.</string>
                                                         <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" image="NSBluetoothTemplate" imagePosition="left" inset="2" id="UOy-IZ-YnS">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -286,7 +286,7 @@
                                                                             <subviews>
                                                                                 <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UaL-aq-6WK">
                                                                                     <rect key="frame" x="-2" y="2" width="243" height="16"/>
-                                                                                    <textFieldCell key="cell" lineBreakMode="clipping" title=" Hide icon while disconnected" id="aTT-Ug-cXf">
+                                                                                    <textFieldCell key="cell" lineBreakMode="clipping" title=" Hides icon while disconnected" id="aTT-Ug-cXf">
                                                                                         <font key="font" metaFont="system"/>
                                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -496,6 +496,25 @@
                             <constraint firstAttribute="trailing" secondItem="wRG-8f-0vL" secondAttribute="trailing" id="phZ-Tv-5wZ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buttonBluetooth" destination="m2Z-n2-opU" id="pDY-17-Fab"/>
+                        <outlet property="buttonQuit" destination="4GP-OR-oft" id="NEp-QC-Cko"/>
+                        <outlet property="buttonSourceCode" destination="I3c-Mw-x54" id="qGd-Ya-wKq"/>
+                        <outlet property="imageDial" destination="0N8-kd-NdG" id="NpX-JX-S9F"/>
+                        <outlet property="labelAutoHidesIcon" destination="UaL-aq-6WK" id="CHd-K0-nRF"/>
+                        <outlet property="labelAutoHidesIconDescription" destination="IMx-3Q-XWx" id="eMG-uN-Xlh"/>
+                        <outlet property="labelDirection" destination="i9Y-7E-Bg8" id="GTS-ir-wS8"/>
+                        <outlet property="labelHaptics" destination="bLD-mz-G1L" id="CXY-yY-0ua"/>
+                        <outlet property="labelSensitivity" destination="tro-g9-Tmp" id="lKa-a3-HHg"/>
+                        <outlet property="labelSerial" destination="cDZ-nr-0Y0" id="AUn-9U-PKH"/>
+                        <outlet property="labelStartsWithMacOS" destination="KR1-Fp-B7k" id="ym2-8S-I2m"/>
+                        <outlet property="popUpButtonDirection" destination="I7B-IA-ECb" id="Q7Z-JQ-siE"/>
+                        <outlet property="popUpButtonSensitivity" destination="4ak-Uf-Hww" id="2hK-Cv-sQe"/>
+                        <outlet property="s" destination="Sxt-7A-shq" id="FOo-rZ-TyM"/>
+                        <outlet property="switchAutoHidesIcon" destination="cgh-eM-T5h" id="HXL-4V-pTi"/>
+                        <outlet property="switchHaptics" destination="Sxt-7A-shq" id="jD9-lE-coG"/>
+                        <outlet property="switchStartsWithMacOS" destination="M2z-bo-UIi" id="uEn-j2-paa"/>
+                    </connections>
                 </viewController>
                 <customObject id="C2O-P9-dEl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1362,6 +1381,32 @@
                             <constraint firstItem="Yal-mS-KHu" firstAttribute="top" secondItem="sk0-lI-faL" secondAttribute="top" id="mFF-oq-WPP"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="buttonAddController" destination="L2C-Is-cEu" id="A99-rw-Qyy"/>
+                        <outlet property="buttonDeleteController" destination="rFv-gE-b3s" id="ck2-Sv-ONN"/>
+                        <outlet property="buttonIconChooser" destination="xl0-8n-ldy" id="FgV-wt-ipo"/>
+                        <outlet property="labelDefaultControllerDescription" destination="EJv-n7-vPd" id="vqz-vG-POz"/>
+                        <outlet property="labelSerial" destination="J4v-P7-MhA" id="x2M-15-HXz"/>
+                        <outlet property="popUpButtonControllerSelector" destination="MmK-EL-Ebs" id="TWk-tJ-ugF"/>
+                        <outlet property="popUpButtonShortcuts1Keys1" destination="m9N-8h-kRf" id="7nf-za-btu"/>
+                        <outlet property="popUpButtonShortcuts1Keys2" destination="HcH-r1-2AU" id="qWY-gQ-wbx"/>
+                        <outlet property="popUpButtonShortcuts1Modifiers1" destination="kic-hx-6rq" id="CMi-gI-ixL"/>
+                        <outlet property="popUpButtonShortcuts1Modifiers2" destination="3vu-0s-p8m" id="pOQ-94-7Ob"/>
+                        <outlet property="popUpButtonShortcuts2Keys1" destination="VEM-eW-IqD" id="Bca-Ou-ghS"/>
+                        <outlet property="popUpButtonShortcuts2Keys2" destination="qeC-AC-khf" id="pap-5u-nkY"/>
+                        <outlet property="popUpButtonShortcuts2Modifiers1" destination="8sR-nY-Jr8" id="c5g-D7-DOU"/>
+                        <outlet property="popUpButtonShortcuts2Modifiers2" destination="Opw-jK-MJW" id="88e-tx-cKh"/>
+                        <outlet property="segmentedControlShortcutsAdvanced" destination="ct0-HU-jl1" id="Lje-Rr-NAB"/>
+                        <outlet property="switchControllerActivated" destination="1sj-UZ-Ryn" id="pFb-Cd-DSc"/>
+                        <outlet property="textFieldControllerName" destination="enj-tW-3QN" id="FiN-Wp-rab"/>
+                        <outlet property="viewControllerName" destination="REC-Bn-oGz" id="ONI-JG-W0M"/>
+                        <outlet property="viewDefaultControllerLabels" destination="hND-fo-JUU" id="c0L-rJ-QHE"/>
+                        <outlet property="viewDialCircle" destination="aEe-AC-GC9" id="M8h-t2-mnL"/>
+                        <outlet property="viewOptions1" destination="faa-uB-uLI" id="PTm-S5-paP"/>
+                        <outlet property="viewOptions2" destination="IoK-Ih-Gsm" id="DYN-mR-NFU"/>
+                        <outlet property="viewShortcuts1" destination="SZu-fw-iBP" id="Hfn-av-v9Z"/>
+                        <outlet property="viewShortcuts2" destination="eSR-EO-RFS" id="hMb-xr-m5t"/>
+                    </connections>
                 </viewController>
                 <customObject id="by5-ab-QSV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

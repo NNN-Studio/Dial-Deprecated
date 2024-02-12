@@ -17,7 +17,7 @@ extension Defaults.Keys {
     
     static let sensitivity = Key<Sensitivity>("sensitivity", default: .natural)
     
-    static let autoHideIconEnabled = Key<Bool>("autoHideIconEnabled", default: false)
+    static let autoHidesIconEnabled = Key<Bool>("autoHidesIconEnabled", default: false)
     
     
     
