@@ -85,6 +85,54 @@
         }
       }
     },
+    "Controllers/Advanced/AlternativeDirection.Name" : {
+      "comment" : "alternative direction",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Alternative direction"
+          }
+        }
+      }
+    },
+    "Controllers/Advanced/Haptics.Name" : {
+      "comment" : "haptics",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Haptic feedback"
+          }
+        }
+      }
+    },
+    "Controllers/Advanced/PhysicalDirection.Name" : {
+      "comment" : "physical direction",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Follows physical direction"
+          }
+        }
+      }
+    },
+    "Controllers/Advanced/RotationType.Name" : {
+      "comment" : "rotation type",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Rotation type"
+          }
+        }
+      }
+    },
     "Controllers/Default/Brigshtnes" : {
       "comment" : "brightness controller",
       "extractionState" : "extracted_with_value",
@@ -145,6 +193,18 @@
         }
       }
     },
+    "Controllers/Shortcuts/Cancellable.Name" : {
+      "comment" : "cancellable",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Release to cancel"
+          }
+        }
+      }
+    },
     "Controllers/Shortcuts/Fallback" : {
       "comment" : "shortcuts controller fallback name",
       "extractionState" : "extracted_with_value",
@@ -153,6 +213,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Controller (settings.index)"
+          }
+        }
+      }
+    },
+    "Controllers/Shortcuts/Idle.Name" : {
+      "comment" : "idle",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Press and enter"
           }
         }
       }
@@ -253,6 +325,30 @@
         }
       }
     },
+    "General/AutoHideIcon.Name" : {
+      "comment" : "auto hide icon",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Hide icon while disconnected"
+          }
+        }
+      }
+    },
+    "General/AutoHideIcon.Title" : {
+      "comment" : "auto hide icon",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Hide Icon while Disconnected"
+          }
+        }
+      }
+    },
     "General/Direction.Name" : {
       "comment" : "direction",
       "extractionState" : "extracted_with_value",
@@ -260,7 +356,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Direction"
+            "value" : "Primary direction"
           }
         }
       }
@@ -272,7 +368,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Direction"
+            "value" : "Primary Direction"
           }
         }
       }
@@ -284,7 +380,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Haptic feedback"
+            "value" : "Global haptic feedback"
           }
         }
       }
@@ -296,7 +392,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Haptic Feedback"
+            "value" : "Global Haptic Feedback"
           }
         }
       }

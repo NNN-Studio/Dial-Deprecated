@@ -24,6 +24,7 @@
 		28B833C52B77617500D96825 /* SettingsGeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833C42B77617500D96825 /* SettingsGeneralViewController.swift */; };
 		28C7A0A22AEE06E8003113D5 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C7A0A12AEE06E8003113D5 /* Input.swift */; };
 		28D278EB2AEFC35D00844ADE /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D278EA2AEFC35D00844ADE /* Device.swift */; };
+		28D9F4622B79C29100494B7E /* DefaultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D9F4612B79C29100494B7E /* DefaultController.swift */; };
 		28DBB1612B7903D000743575 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1602B7903D000743575 /* Localization.swift */; };
 		28DBB1642B79046D00743575 /* SymbolRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1632B79046D00743575 /* SymbolRepresentation.swift */; };
 		28DBB1682B7904B200743575 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1672B7904B200743575 /* MainController.swift */; };
@@ -59,6 +60,7 @@
 		28B833C42B77617500D96825 /* SettingsGeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsGeneralViewController.swift; sourceTree = "<group>"; };
 		28C7A0A12AEE06E8003113D5 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		28D278EA2AEFC35D00844ADE /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
+		28D9F4612B79C29100494B7E /* DefaultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultController.swift; sourceTree = "<group>"; };
 		28DBB1602B7903D000743575 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		28DBB1632B79046D00743575 /* SymbolRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolRepresentation.swift; sourceTree = "<group>"; };
 		28DBB1672B7904B200743575 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				28864F032B786B58009FB069 /* Controllers.swift */,
 				C89D24282703BA5E00B1A458 /* Controller.swift */,
 				28DBB1672B7904B200743575 /* MainController.swift */,
+				28D9F4612B79C29100494B7E /* DefaultController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 				2822C3D82B75C44B000D5C58 /* Defaults+Structures.swift in Sources */,
 				28DBB1612B7903D000743575 /* Localization.swift in Sources */,
 				C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */,
+				28D9F4622B79C29100494B7E /* DefaultController.swift in Sources */,
 				C89D24292703BA5E00B1A458 /* Controller.swift in Sources */,
 				28B833C32B77615500D96825 /* SettingsControllersViewController.swift in Sources */,
 				28B833C02B77582C00D96825 /* ShortcutArray.swift in Sources */,

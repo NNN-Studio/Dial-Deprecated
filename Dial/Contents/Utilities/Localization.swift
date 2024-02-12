@@ -52,6 +52,30 @@ enum Localization: Codable {
         
     }
     
+    struct Controllers {
+        
+        enum Shortcuts: Codable {
+            
+            case idle
+            
+            case cancellable
+            
+        }
+        
+        enum Advanced: Codable {
+            
+            case rotationType
+            
+            case haptics
+            
+            case physicalDirection
+            
+            case alternativeDirection
+            
+        }
+        
+    }
+    
 }
 
 extension Localization: Localizable {
@@ -83,9 +107,9 @@ extension Localization.General: Localizable {
         case .sensitivity:
             NSLocalizedString("General/Sensitivity.Name", value: "Sensitivity", comment: "sensitivity")
         case .direction:
-            NSLocalizedString("General/Direction.Name", value: "Direction", comment: "direction")
+            NSLocalizedString("General/Direction.Name", value: "Primary direction", comment: "direction")
         case .haptics:
-            NSLocalizedString("General/Haptics.Name", value: "Haptic feedback", comment: "haptics")
+            NSLocalizedString("General/Haptics.Name", value: "Global haptic feedback", comment: "haptics")
         case .autoHideIcon:
             NSLocalizedString("General/AutoHideIcon.Name", value: "Hide icon while disconnected", comment: "auto hide icon")
         case .startsWithMacOS:
@@ -98,13 +122,43 @@ extension Localization.General: Localizable {
         case .sensitivity:
             NSLocalizedString("General/Sensitivity.Title", value: "Sensitivity", comment: "sensitivity")
         case .direction:
-            NSLocalizedString("General/Direction.Title", value: "Direction", comment: "direction")
+            NSLocalizedString("General/Direction.Title", value: "Primary Direction", comment: "direction")
         case .haptics:
-            NSLocalizedString("General/Haptics.Title", value: "Haptic Feedback", comment: "haptics")
+            NSLocalizedString("General/Haptics.Title", value: "Global Haptic Feedback", comment: "haptics")
         case .autoHideIcon:
             NSLocalizedString("General/AutoHideIcon.Title", value: "Hide Icon while Disconnected", comment: "auto hide icon")
         case .startsWithMacOS:
             NSLocalizedString("General/StartsWithMacOS.Title", value: "Starts with macOS", comment: "starts with macOS")
+        }
+    }
+    
+}
+
+extension Localization.Controllers.Shortcuts: Localizable {
+    
+    var localizedName: String {
+        switch self {
+        case .idle:
+            NSLocalizedString("Controllers/Shortcuts/Idle.Name", value: "Press and enter", comment: "idle")
+        case .cancellable:
+            NSLocalizedString("Controllers/Shortcuts/Cancellable.Name", value: "Release to cancel", comment: "cancellable")
+        }
+    }
+    
+}
+
+extension Localization.Controllers.Advanced: Localizable {
+    
+    var localizedName: String {
+        switch self {
+        case .rotationType:
+            NSLocalizedString("Controllers/Advanced/RotationType.Name", value: "Rotation type", comment: "rotation type")
+        case .haptics:
+            NSLocalizedString("Controllers/Advanced/Haptics.Name", value: "Haptic feedback", comment: "haptics")
+        case .physicalDirection:
+            NSLocalizedString("Controllers/Advanced/PhysicalDirection.Name", value: "Follows physical direction", comment: "physical direction")
+        case .alternativeDirection:
+            NSLocalizedString("Controllers/Advanced/AlternativeDirection.Name", value: "Alternative direction", comment: "alternative direction")
         }
     }
     

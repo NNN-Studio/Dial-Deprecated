@@ -10,7 +10,7 @@ import Defaults
 
 struct Controllers {
     
-    static let defaultControllers: [Controller] = [
+    static let defaultControllers: [DefaultController] = [
         ScrollController(),
         PlaybackController(),
         MissionController(),

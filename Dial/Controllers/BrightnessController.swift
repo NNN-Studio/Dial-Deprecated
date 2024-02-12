@@ -8,7 +8,7 @@
 import Foundation
 import SFSafeSymbols
 
-class BrightnessController: Controller {
+class BrightnessController: DefaultController {
     
     var id: ControllerID = .default(.brightness)
     
@@ -16,6 +16,10 @@ class BrightnessController: Controller {
     
     var representingSymbol: SFSymbol {
         .sunMax
+    }
+    
+    var description: String {
+        ""
     }
     
     var haptics: Bool {

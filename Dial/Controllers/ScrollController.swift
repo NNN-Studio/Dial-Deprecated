@@ -2,7 +2,7 @@ import Foundation
 import AppKit
 import SFSafeSymbols
 
-class ScrollController: Controller {
+class ScrollController: DefaultController {
     
     var id: ControllerID = .default(.scroll)
     
@@ -10,6 +10,10 @@ class ScrollController: Controller {
     
     var representingSymbol: SFSymbol {
         .arrowUpArrowDown
+    }
+    
+    var description: String {
+        ""
     }
     
     private var accumulated = 0

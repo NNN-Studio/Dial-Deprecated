@@ -115,6 +115,18 @@
         }
       }
     },
+    "95d-n9-rpw.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Quit\"; ObjectID = \"95d-n9-rpw\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Quit"
+          }
+        }
+      }
+    },
     "aTT-Ug-cXf.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \" Hide icon while disconnected\"; ObjectID = \"aTT-Ug-cXf\";",
       "extractionState" : "extracted_with_value",
@@ -194,13 +206,13 @@
       }
     },
     "dFk-Hp-yCC.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"=\"; ObjectID = \"dFk-Hp-yCC\";",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Release to cancel\"; ObjectID = \"dFk-Hp-yCC\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "="
+            "value" : "Release to cancel"
           }
         }
       }
@@ -410,13 +422,13 @@
       }
     },
     "J8i-Y8-TIO.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"􀆔􀆕\"; ObjectID = \"J8i-Y8-TIO\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"􀆔􀆕􀆍􀆝\"; ObjectID = \"J8i-Y8-TIO\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "􀆔􀆕"
+            "value" : "􀆔􀆕􀆍􀆝"
           }
         }
       }
@@ -668,13 +680,13 @@
       }
     },
     "RAv-6F-xWz.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"V\"; ObjectID = \"RAv-6F-xWz\";",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Press and enter\"; ObjectID = \"RAv-6F-xWz\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "V"
+            "value" : "Press and enter"
           }
         }
       }
@@ -734,18 +746,18 @@
       }
     },
     "tAY-67-1OO.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"With this option enabled, you can't access this page from the menu bar while disconnected. Instead, please launch this app again to show this page.\"; ObjectID = \"tAY-67-1OO\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"While disconnected to your Surface Dial, it is possible to access this page by launching this app again.\"; ObjectID = \"tAY-67-1OO\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "With this option enabled, you can't access this page from the menu bar while disconnected. Instead, please launch this app again to show this page."
+            "value" : "While disconnected to your Surface Dial, it is possible to access this page by launching this app again."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "在你的智能旋钮失去连接时，你可以通过再次启动此App的方式打开此界面。"
           }
         }

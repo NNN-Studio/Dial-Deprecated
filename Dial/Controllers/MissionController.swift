@@ -9,7 +9,7 @@ import Foundation
 import AppKit
 import SFSafeSymbols
 
-class MissionController: Controller {
+class MissionController: DefaultController {
     
     var id: ControllerID = .default(.mission)
     
@@ -17,6 +17,10 @@ class MissionController: Controller {
     
     var representingSymbol: SFSymbol {
         .command
+    }
+    
+    var description: String {
+        ""
     }
     
     private var inMission = false

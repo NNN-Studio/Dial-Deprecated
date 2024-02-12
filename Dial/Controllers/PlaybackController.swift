@@ -2,7 +2,7 @@ import Foundation
 import AppKit
 import SFSafeSymbols
 
-class PlaybackController: Controller {
+class PlaybackController: DefaultController {
     
     var id: ControllerID = .default(.playback)
     
@@ -10,6 +10,10 @@ class PlaybackController: Controller {
     
     var representingSymbol: SFSymbol {
         .speakerWave2
+    }
+    
+    var description: String {
+        ""
     }
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
