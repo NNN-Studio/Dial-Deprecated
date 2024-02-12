@@ -366,12 +366,13 @@
                                                                         <real value="3.4028234663852886e+38"/>
                                                                     </customSpacing>
                                                                 </stackView>
-                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4GP-OR-oft">
-                                                                    <rect key="frame" x="-6" y="-6" width="297" height="40"/>
-                                                                    <buttonCell key="cell" type="push" title="Quit" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="95d-n9-rpw">
+                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="4GP-OR-oft">
+                                                                    <rect key="frame" x="-3" y="-4" width="291" height="35"/>
+                                                                    <buttonCell key="cell" type="bevel" title="Quit" bezelStyle="regularSquare" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="95d-n9-rpw">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>
+                                                                    <color key="bezelColor" name="systemPinkColor" catalog="System" colorSpace="catalog"/>
                                                                 </button>
                                                             </subviews>
                                                             <constraints>
