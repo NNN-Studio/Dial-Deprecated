@@ -21,13 +21,88 @@ import Defaults
     
     @objc func setStartsWithMacOS(_ sender: Any?)
     
+    @objc func openSettings(_ sender: Any?)
+    
+    @objc func quitApp(_ sender: Any?)
+    
+    @objc func reconnect(_ sender: Any?)
+    
 }
 
 struct MenuItems {
     
-    private let delegate: DialMenuDelegate
+    let delegate: DialMenuDelegate
     
-    let connectionStatus = NSMenuItem()
+    var connectionStatus: NSMenuItem {
+        let item = NSMenuItem()
+        
+        item.target = delegate
+        item.action = #selector(delegate.reconnect(_:))
+        item.offStateImage = NSImage(systemSymbol: .arrowTriangle2Circlepath)
+        
+        @Sendable func apply(_ value: Device.ConnectionStatus) {
+            print(value)
+            switch value {
+            case .connected(let serialNumber):
+                if #available(macOS 14.0, *) {
+                    item.title = NSLocalizedString(
+                        "ConnectionStatus/On",
+                        value: "Dial",
+                        comment: "[macOS >=14.0] if (connected)"
+                    )
+                    item.badge = NSMenuItemBadge(string: serialNumber)
+                } else {
+                    item.title = String(
+                        format: NSLocalizedString(
+                            "ConnectionStatus/On/Alt",
+                            value: "Dial: ",
+                            comment: "[macOS <14.0] if (connected)"
+                        ),
+                        serialNumber
+                    )
+                }
+                
+                item.flag = true
+                item.isEnabled = false
+            case .disconnected:
+                if #available(macOS 14.0, *) {
+                    item.title = NSLocalizedString(
+                        "ConnectionStatus/Off",
+                        value: "Dial",
+                        comment: "[macOS >=14.0] if (!connected)"
+                    )
+                    item.badge = NSMenuItemBadge(string: NSLocalizedString(
+                        "ConnectionStatus/Off/Badge",
+                        value: "disconnected",
+                        comment: "[macOS >=14.0] if (!connected) badge"
+                    ))
+                } else {
+                    item.title = NSLocalizedString(
+                        "ConnectionStatus/Off",
+                        value: "Surface Dial disconnected",
+                        comment: "if (!connected)"
+                    )
+                }
+                
+                item.flag = false
+                item.isEnabled = true
+            }
+        }
+        
+        Task {
+            for await value in observationTrackingStream({ AppDelegate.shared?.dial.device.connectionStatus }) {
+                if let value { apply(value) }
+            }
+        }
+        
+        print(0)
+        if let value = AppDelegate.shared?.dial.device.connectionStatus {
+            print(1)
+            apply(value)
+        }
+        
+        return item
+    }
     
     var controllers: [ControllerOptionItem] {
         Controllers.activatedControllers
@@ -142,89 +217,31 @@ struct MenuItems {
     
     let startsWithMacOS = StateOptionItem(Localization.General.startsWithMacOS.localizedTitle)
     
-    let openSettings = NSMenuItem(title: Localization.openSettings.localizedTitle)
-    
-    let quit = NSMenuItem(title: Localization.quit.localizedTitle)
-    
-    
-    
-    init(delegate: DialMenuDelegate) {
-        self.delegate = delegate
+    var openSettings: NSMenuItem {
+        let item = NSMenuItem(title: Localization.openSettings.localizedTitle)
         
-        initActions()
-        updateConnectionStatus(false)
+        item.target = delegate
+        item.action = #selector(delegate.openSettings(_:))
+        
+        return item
+    }
+    
+    var quit: NSMenuItem {
+        let item = NSMenuItem(title: Localization.quit.localizedTitle)
+        
+        item.target = delegate
+        item.action = #selector(delegate.quitApp(_:))
+        
+        return item
     }
     
     private func initActions() {
-        connectionStatus.target = delegate
-        connectionStatus.action = #selector(AppDelegate.reconnect(_:))
-        connectionStatus.offStateImage = NSImage(
-            systemSymbolName: "arrow.triangle.2.circlepath",
-            accessibilityDescription: nil
-        )!
-        
         startsWithMacOS.target = delegate
         startsWithMacOS.action = #selector(delegate.setStartsWithMacOS(_:))
-        
-        openSettings.target = delegate
-        openSettings.action = #selector(AppDelegate.openSettings(_:))
-        
-        quit.target = delegate
-        quit.action = #selector(AppDelegate.quitApp(_:))
     }
     
     func updateStartsWithMacOS() {
         startsWithMacOS.flag = Defaults.launchAtLogin
-    }
-    
-    func updateConnectionStatus(
-        _ isConnected: Bool,
-        _ serialNumber: String? = nil
-    ) {
-        if isConnected, let serialNumber {
-            if #available(macOS 14.0, *) {
-                connectionStatus.title = NSLocalizedString(
-                    "ConnectionStatus/On",
-                    value: "Dial",
-                    comment: "[macOS >=14.0] if (connected)"
-                )
-                connectionStatus.badge = NSMenuItemBadge(string: serialNumber)
-            } else {
-                connectionStatus.title = String(
-                    format: NSLocalizedString(
-                        "ConnectionStatus/On/Alt",
-                        value: "Dial: ",
-                        comment: "[macOS <14.0] if (connected)"
-                    ),
-                    serialNumber
-                )
-            }
-            connectionStatus.flag = true
-            connectionStatus.isEnabled = false
-        }
-        
-        else {
-            if #available(macOS 14.0, *) {
-                connectionStatus.title = NSLocalizedString(
-                    "ConnectionStatus/Off",
-                    value: "Dial",
-                    comment: "[macOS >=14.0] if (!connected)"
-                )
-                connectionStatus.badge = NSMenuItemBadge(string: NSLocalizedString(
-                    "ConnectionStatus/Off/Badge",
-                    value: "disconnected",
-                    comment: "[macOS >=14.0] if (!connected) badge"
-                ))
-            } else {
-                connectionStatus.title = NSLocalizedString(
-                    "ConnectionStatus/Off",
-                    value: "Surface Dial disconnected",
-                    comment: "if (!connected)"
-                )
-            }
-            connectionStatus.flag = false
-            connectionStatus.isEnabled = true
-        }
     }
     
 }

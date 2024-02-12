@@ -128,13 +128,13 @@
       }
     },
     "aTT-Ug-cXf.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \" Hide icon while disconnected\"; ObjectID = \"aTT-Ug-cXf\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \" Hides icon while disconnected\"; ObjectID = \"aTT-Ug-cXf\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : " Hide icon while disconnected"
+            "value" : " Hides icon while disconnected"
           }
         }
       }

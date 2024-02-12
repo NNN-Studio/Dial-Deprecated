@@ -7,8 +7,6 @@ import SwiftUI
 
 class Dial {
     
-    var cachedConnectionStatus: Bool
-    
     var device = Device()
     
     var statusBarController = StatusBarController()
@@ -149,12 +147,6 @@ extension Dial {
 }
 
 extension Dial: InputHandler {
-    
-    func onConnectionStatusChanged(_ isConnected: Bool, _ serialNumber: String?) {
-        cachedConnectionStatus = isConnected
-        
-        statusBarController.onConnectionStatusChanged(isConnected, serialNumber)
-    }
     
     func onButtonStateChanged(_ buttonState: Device.ButtonState) {
         let pressInterval = Date.now.timeIntervalSince(timestamps.buttonPressed)

@@ -55,7 +55,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
         
         Task {
             for await value in Defaults.updates(.autoHidesIconEnabled) {
-                toggleVisibility(AppDelegate.shared?.dial.cachedConnectionStatus ?? true)
+                toggleVisibility(AppDelegate.shared?.dial.device.isConnected ?? true)
             }
         }
     }
@@ -103,7 +103,6 @@ extension StatusBarController {
     
     func onConnectionStatusChanged(_ isConnected: Bool, _ serialNumber: String?) {
         updateIcon(isConnected)
-        menuItems?.updateConnectionStatus(isConnected, serialNumber)
         
         if (Defaults[.autoHidesIconEnabled]) {
             toggleVisibility(isConnected)
@@ -129,7 +128,7 @@ extension StatusBarController {
                 Controllers.cycleThroughControllers(sign)
                 setControllerAndUpdate(Controllers.currentController)
             } else {
-                AppDelegate.shared?.reconnect(nil)
+                AppDelegate.shared?.reconnect()
             }
         } else {
             statusItem.menu = menuManager?.menu
@@ -187,6 +186,24 @@ extension StatusBarController: DialMenuDelegate {
         
         Defaults.launchAtLogin = flag
         menuItems?.updateStartsWithMacOS()
+    }
+    
+    func openSettings(
+        _ sender: Any?
+    ) {
+        AppDelegate.shared?.openSettings()
+    }
+    
+    func quitApp(
+        _ sender: Any?
+    ) {
+        AppDelegate.shared?.quitApp()
+    }
+    
+    func reconnect(
+        _ sender: Any?
+    ) {
+        AppDelegate.shared?.reconnect()
     }
     
 }

@@ -10,27 +10,13 @@ import Defaults
 
 protocol InputHandler {
     
-    func onConnectionStatusChanged(_ isConnected: Bool, _ serialNumber: String?)
-    
     func onButtonStateChanged(_ buttonState: Device.ButtonState)
     
     func onRotation(_ direction: Direction, _ buttonState: Device.ButtonState)
     
 }
 
-extension NSString {
-    
-    convenience init(wcharArray: UnsafeMutablePointer<wchar_t>) {
-        self.init(
-            bytes: UnsafePointer(wcharArray),
-            length: wcslen(wcharArray) * MemoryLayout<wchar_t>.stride,
-            encoding: String.Encoding.utf32LittleEndian.rawValue
-        )!
-    }
-    
-}
-
-class Device {
+@Observable class Device {
     
     private struct ReadBuffer {
         let pointer: UnsafeMutablePointer<UInt8>
@@ -50,6 +36,8 @@ class Device {
     static let productId: UInt16 = 0x091B
     
     
+    
+    var connectionStatus: ConnectionStatus = .disconnected
     
     var inputHandler: InputHandler?
     
@@ -82,6 +70,14 @@ class Device {
 }
 
 extension Device {
+    
+    enum ConnectionStatus {
+        
+        case connected(String)
+        
+        case disconnected
+        
+    }
     
     enum HapticsMode: UInt8 {
         
@@ -150,8 +146,8 @@ extension Device {
         
         if isConnected {
             print("Connected to device \(serialNumber)!")
+            connectionStatus = .connected(serialNumber)
             initSensitivity()
-            inputHandler?.onConnectionStatusChanged(true, serialNumber)
             buzz(3)
         }
         
@@ -164,7 +160,7 @@ extension Device {
             hid_close(dev)
             
             self.dev = nil
-            inputHandler?.onConnectionStatusChanged(false, nil)
+            connectionStatus = .disconnected
             print("Device disconnected.")
         }
     }

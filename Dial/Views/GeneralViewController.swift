@@ -103,23 +103,35 @@ extension GeneralViewController {
 extension GeneralViewController: DialMenuDelegate {
     
     func setController(_ sender: Any?) {
-        <#code#>
+        
     }
     
     func setSensitivity(_ sender: Any?) {
-        <#code#>
+        
     }
     
     func setDirection(_ sender: Any?) {
-        <#code#>
+        
     }
     
     func setHaptics(_ sender: Any?) {
-        <#code#>
+        
     }
     
     func setStartsWithMacOS(_ sender: Any?) {
-        <#code#>
+        
+    }
+    
+    func openSettings(_ sender: Any?) {
+        
+    }
+    
+    func quitApp(_ sender: Any?) {
+        
+    }
+    
+    func reconnect(_ sender: Any?) {
+        
     }
     
 }

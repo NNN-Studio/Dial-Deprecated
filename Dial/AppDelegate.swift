@@ -82,21 +82,15 @@ extension AppDelegate {
 
 extension AppDelegate {
     
-    @objc func reconnect(
-        _ sender: Any?
-    ) {
+    func reconnect() {
         dial.reconnect()
     }
     
-    @objc func openSettings(
-        _ sender: Any?
-    ) {
+    func openSettings() {
         SettingsWindowController.shared.showWindow(nil)
     }
     
-    @objc func quitApp(
-        _ sender: Any?
-    ) {
+    func quitApp() {
         NSApplication.shared.terminate(self)
     }
     

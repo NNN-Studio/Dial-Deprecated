@@ -30,6 +30,8 @@
 		28D9F46A2B79EC5600494B7E /* SFSymbol+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D9F4692B79EC5600494B7E /* SFSymbol+Extension.swift */; };
 		28D9F46C2B79EC8C00494B7E /* NSImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D9F46B2B79EC8C00494B7E /* NSImage+Extension.swift */; };
 		28D9F46E2B79ED2B00494B7E /* MenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D9F46D2B79ED2B00494B7E /* MenuItems.swift */; };
+		28D9F4772B7A12D500494B7E /* ObservationTrackingStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D9F4762B7A12D500494B7E /* ObservationTrackingStream.swift */; };
+		28D9F4792B7A13E100494B7E /* NSString+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D9F4782B7A13E100494B7E /* NSString+Extension.swift */; };
 		28DBB1612B7903D000743575 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1602B7903D000743575 /* Localization.swift */; };
 		28DBB1642B79046D00743575 /* SymbolRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1632B79046D00743575 /* SymbolRepresentation.swift */; };
 		28DBB1682B7904B200743575 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1672B7904B200743575 /* MainController.swift */; };
@@ -71,6 +73,8 @@
 		28D9F4692B79EC5600494B7E /* SFSymbol+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SFSymbol+Extension.swift"; sourceTree = "<group>"; };
 		28D9F46B2B79EC8C00494B7E /* NSImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSImage+Extension.swift"; sourceTree = "<group>"; };
 		28D9F46D2B79ED2B00494B7E /* MenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItems.swift; sourceTree = "<group>"; };
+		28D9F4762B7A12D500494B7E /* ObservationTrackingStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationTrackingStream.swift; sourceTree = "<group>"; };
+		28D9F4782B7A13E100494B7E /* NSString+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSString+Extension.swift"; sourceTree = "<group>"; };
 		28DBB1602B7903D000743575 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		28DBB1632B79046D00743575 /* SymbolRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolRepresentation.swift; sourceTree = "<group>"; };
 		28DBB1672B7904B200743575 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
@@ -154,9 +158,8 @@
 		28D278E82AEFC23E00844ADE /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				28DBB1662B79049B00743575 /* Controller */,
+				28DBB1662B79049B00743575 /* Controllers */,
 				28D278EA2AEFC35D00844ADE /* Device.swift */,
-				28B833BB2B7747D200D96825 /* ShortcutsController.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				28B833BF2B77582C00D96825 /* ShortcutArray.swift */,
 				28DBB1632B79046D00743575 /* SymbolRepresentation.swift */,
 				28DBB1602B7903D000743575 /* Localization.swift */,
+				28D9F4762B7A12D500494B7E /* ObservationTrackingStream.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -186,6 +190,7 @@
 				28D9F4672B79EC2200494B7E /* NSButton+Extension.swift */,
 				28D9F4692B79EC5600494B7E /* SFSymbol+Extension.swift */,
 				28D9F46B2B79EC8C00494B7E /* NSImage+Extension.swift */,
+				28D9F4782B7A13E100494B7E /* NSString+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -199,15 +204,16 @@
 			path = Windows;
 			sourceTree = "<group>";
 		};
-		28DBB1662B79049B00743575 /* Controller */ = {
+		28DBB1662B79049B00743575 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				28864F032B786B58009FB069 /* Controllers.swift */,
 				C89D24282703BA5E00B1A458 /* Controller.swift */,
 				28DBB1672B7904B200743575 /* MainController.swift */,
 				28D9F4612B79C29100494B7E /* DefaultController.swift */,
+				28B833BB2B7747D200D96825 /* ShortcutsController.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		C882FA0D26F1430C00595EE1 = {
@@ -334,6 +340,7 @@
 				28D9F46A2B79EC5600494B7E /* SFSymbol+Extension.swift in Sources */,
 				28D9F4662B79EC0D00494B7E /* NSSwitch+Extension.swift in Sources */,
 				2822C3D62B75C443000D5C58 /* Defaults.swift in Sources */,
+				28D9F4772B7A12D500494B7E /* ObservationTrackingStream.swift in Sources */,
 				2822C3DA2B75DB8C000D5C58 /* BrightnessController.swift in Sources */,
 				C882FA2D26F143E300595EE1 /* StatusBarController.swift in Sources */,
 				2822C3F22B75F909000D5C58 /* SettingsWindow.swift in Sources */,
@@ -346,6 +353,7 @@
 				28DBB1612B7903D000743575 /* Localization.swift in Sources */,
 				C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */,
 				28D9F4622B79C29100494B7E /* DefaultController.swift in Sources */,
+				28D9F4792B7A13E100494B7E /* NSString+Extension.swift in Sources */,
 				C89D24292703BA5E00B1A458 /* Controller.swift in Sources */,
 				28B833C32B77615500D96825 /* ControllersViewController.swift in Sources */,
 				28B833C02B77582C00D96825 /* ShortcutArray.swift in Sources */,
@@ -523,7 +531,7 @@
 					"@executable_path/../Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/lib/hidapi/build/src/mac";
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-lhidapi";
 				PRODUCT_BUNDLE_IDENTIFIER = studio.nnn.Dial;
@@ -556,7 +564,7 @@
 				);
 				LIBRARY_SEARCH_PATHS = "$(SRCROOT)/lib/hidapi/build/src/mac";
 				"LIBRARY_SEARCH_PATHS[arch=x86_64]" = "$(SRCROOT)/lib/hidapi/build_x86/src/mac";
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = "-lhidapi";
 				PRODUCT_BUNDLE_IDENTIFIER = studio.nnn.Dial;

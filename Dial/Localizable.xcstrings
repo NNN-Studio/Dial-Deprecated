@@ -325,18 +325,6 @@
         }
       }
     },
-    "General/AutoHideIcon.Name" : {
-      "comment" : "auto hide icon",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Hide icon while disconnected"
-          }
-        }
-      }
-    },
     "General/AutoHideIcon.Title" : {
       "comment" : "auto hide icon",
       "extractionState" : "extracted_with_value",
@@ -345,6 +333,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Hide Icon while Disconnected"
+          }
+        }
+      }
+    },
+    "General/AutoHidesIcon.Name" : {
+      "comment" : "auto hides icon",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Hides icon while disconnected"
           }
         }
       }
