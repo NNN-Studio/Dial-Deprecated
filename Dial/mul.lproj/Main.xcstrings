@@ -73,24 +73,6 @@
         }
       }
     },
-    "7hl-x2-zSb.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Alternative direction\"; ObjectID = \"7hl-x2-zSb\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Alternative direction"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "反转方向"
-          }
-        }
-      }
-    },
     "8eN-j7-62O.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Follows physical direction\"; ObjectID = \"8eN-j7-62O\";",
       "extractionState" : "extracted_with_value",
@@ -141,12 +123,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : " Hide icon while disconnected"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "断开连接时隐藏图标"
           }
         }
       }
@@ -496,12 +472,6 @@
             "state" : "new",
             "value" : "Extreme"
           }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "最高"
-          }
         }
       }
     },
@@ -574,12 +544,6 @@
             "state" : "new",
             "value" : "Starts with macOS"
           }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "随macOS启动"
-          }
         }
       }
     },
@@ -640,12 +604,6 @@
             "state" : "new",
             "value" : "Stepping"
           }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "步进"
-          }
         }
       }
     },
@@ -657,12 +615,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Low"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "低"
           }
         }
       }
@@ -676,30 +628,6 @@
             "state" : "new",
             "value" : "Clockwise"
           }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "顺时针"
-          }
-        }
-      }
-    },
-    "Pee-vh-drg.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Haptic feedback\"; ObjectID = \"Pee-vh-drg\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Haptic feedback"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "震感反馈"
-          }
         }
       }
     },
@@ -712,12 +640,6 @@
             "state" : "new",
             "value" : "Sensitivity"
           }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "敏感度"
-          }
         }
       }
     },
@@ -729,12 +651,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "High"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "高"
           }
         }
       }
@@ -838,12 +754,6 @@
             "state" : "new",
             "value" : "Medium"
           }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "中"
-          }
         }
       }
     },
@@ -855,12 +765,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Continuous"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "连续"
           }
         }
       }
@@ -885,12 +789,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Rotation Type"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "处理旋转的方式"
           }
         }
       }
@@ -931,24 +829,6 @@
         }
       }
     },
-    "vOq-PO-OFy.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Follows physical direction\"; ObjectID = \"vOq-PO-OFy\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Follows physical direction"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "跟随物理设备旋转方向"
-          }
-        }
-      }
-    },
     "wFe-uU-akt.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"SURFACE DIAL SERIAL\"; ObjectID = \"wFe-uU-akt\";",
       "extractionState" : "extracted_with_value",
@@ -969,12 +849,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Natural"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自然"
           }
         }
       }
@@ -1005,12 +879,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Primary direction"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "首选旋转方向"
           }
         }
       }
@@ -1054,12 +922,6 @@
             "state" : "new",
             "value" : "Counterclockwise"
           }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "逆时针"
-          }
         }
       }
     },
@@ -1071,12 +933,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Global haptic feedback"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "全局震感反馈"
           }
         }
       }
