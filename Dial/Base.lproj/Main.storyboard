@@ -76,7 +76,7 @@
         <!--General-->
         <scene sceneID="ODy-dO-YdE">
             <objects>
-                <viewController title="General" id="fkX-le-ubk" customClass="SettingsGeneralViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="General" id="fkX-le-ubk" customClass="GeneralViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="iSE-c1-LdQ">
                         <rect key="frame" x="0.0" y="0.0" width="365" height="725"/>
                         <subviews>
@@ -523,7 +523,7 @@
         <!--Controllers-->
         <scene sceneID="vNc-dk-VCg">
             <objects>
-                <viewController title="Controllers" id="24w-Ra-sQb" customClass="SettingsControllersViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Controllers" id="24w-Ra-sQb" customClass="ControllersViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sk0-lI-faL">
                         <rect key="frame" x="0.0" y="0.0" width="365" height="1072"/>
                         <subviews>
@@ -1385,9 +1385,14 @@
                         <outlet property="buttonAddController" destination="L2C-Is-cEu" id="A99-rw-Qyy"/>
                         <outlet property="buttonDeleteController" destination="rFv-gE-b3s" id="ck2-Sv-ONN"/>
                         <outlet property="buttonIconChooser" destination="xl0-8n-ldy" id="FgV-wt-ipo"/>
+                        <outlet property="labelAlternativeDirection" destination="UKi-ZL-NIM" id="ANh-hz-8pp"/>
                         <outlet property="labelDefaultControllerDescription" destination="EJv-n7-vPd" id="vqz-vG-POz"/>
+                        <outlet property="labelHaptics" destination="xTP-kC-eEq" id="ld8-WV-SPB"/>
+                        <outlet property="labelPhysicalDirection" destination="08W-7F-WLD" id="yUb-Dn-uqE"/>
+                        <outlet property="labelRotationType" destination="feS-7K-yN7" id="hub-5T-QGP"/>
                         <outlet property="labelSerial" destination="J4v-P7-MhA" id="x2M-15-HXz"/>
                         <outlet property="popUpButtonControllerSelector" destination="MmK-EL-Ebs" id="TWk-tJ-ugF"/>
+                        <outlet property="popUpButtonRotationType" destination="evj-aA-GZI" id="hhO-C4-Rvt"/>
                         <outlet property="popUpButtonShortcuts1Keys1" destination="m9N-8h-kRf" id="7nf-za-btu"/>
                         <outlet property="popUpButtonShortcuts1Keys2" destination="HcH-r1-2AU" id="qWY-gQ-wbx"/>
                         <outlet property="popUpButtonShortcuts1Modifiers1" destination="kic-hx-6rq" id="CMi-gI-ixL"/>
@@ -1397,7 +1402,10 @@
                         <outlet property="popUpButtonShortcuts2Modifiers1" destination="8sR-nY-Jr8" id="c5g-D7-DOU"/>
                         <outlet property="popUpButtonShortcuts2Modifiers2" destination="Opw-jK-MJW" id="88e-tx-cKh"/>
                         <outlet property="segmentedControlShortcutsAdvanced" destination="ct0-HU-jl1" id="Lje-Rr-NAB"/>
+                        <outlet property="switchAlternativeDirection" destination="Sw5-nv-KFr" id="ymA-1n-3VD"/>
                         <outlet property="switchControllerActivated" destination="1sj-UZ-Ryn" id="pFb-Cd-DSc"/>
+                        <outlet property="switchHaptics" destination="m65-gU-4G0" id="bsB-tr-W5a"/>
+                        <outlet property="switchPhysicalDirection" destination="HGg-e0-6Z8" id="ahy-A3-4Ua"/>
                         <outlet property="textFieldControllerName" destination="enj-tW-3QN" id="FiN-Wp-rab"/>
                         <outlet property="viewControllerName" destination="REC-Bn-oGz" id="ONI-JG-W0M"/>
                         <outlet property="viewDefaultControllerLabels" destination="hND-fo-JUU" id="c0L-rJ-QHE"/>

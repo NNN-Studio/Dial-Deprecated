@@ -74,8 +74,30 @@ extension AppDelegate {
 
 extension AppDelegate {
     
-    static var instance: AppDelegate? {
+    static var shared: AppDelegate? {
         NSApplication.shared.delegate as? AppDelegate
+    }
+    
+}
+
+extension AppDelegate {
+    
+    @objc func reconnect(
+        _ sender: Any?
+    ) {
+        dial.reconnect()
+    }
+    
+    @objc func openSettings(
+        _ sender: Any?
+    ) {
+        SettingsWindowController.shared.showWindow(nil)
+    }
+    
+    @objc func quitApp(
+        _ sender: Any?
+    ) {
+        NSApplication.shared.terminate(self)
     }
     
 }

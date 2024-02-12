@@ -7,6 +7,8 @@ import SwiftUI
 
 class Dial {
     
+    var cachedConnectionStatus: Bool
+    
     var device = Device()
     
     var statusBarController = StatusBarController()
@@ -149,6 +151,8 @@ extension Dial {
 extension Dial: InputHandler {
     
     func onConnectionStatusChanged(_ isConnected: Bool, _ serialNumber: String?) {
+        cachedConnectionStatus = isConnected
+        
         statusBarController.onConnectionStatusChanged(isConnected, serialNumber)
     }
     

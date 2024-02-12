@@ -8,7 +8,7 @@
 import Foundation
 import AppKit
 
-class SettingsControllersViewController: NSViewController {
+class ControllersViewController: NSViewController {
     
     // MARK: - Views
     
@@ -66,7 +66,27 @@ class SettingsControllersViewController: NSViewController {
     
     @IBOutlet weak var popUpButtonShortcuts2Keys2: NSButton!
     
+    
+    
+    @IBOutlet weak var popUpButtonRotationType: NSPopUpButton!
+    
+    @IBOutlet weak var switchHaptics: NSSwitch!
+    
+    @IBOutlet weak var switchPhysicalDirection: NSSwitch!
+    
+    @IBOutlet weak var switchAlternativeDirection: NSSwitch!
+    
     // MARK: - Descriptives
+    
+    @IBOutlet weak var labelRotationType: NSTextField!
+    
+    @IBOutlet weak var labelHaptics: NSTextField!
+    
+    @IBOutlet weak var labelPhysicalDirection: NSTextField!
+    
+    @IBOutlet weak var labelAlternativeDirection: NSTextField!
+    
+    
     
     @IBOutlet weak var labelDefaultControllerDescription: NSTextField!
     
