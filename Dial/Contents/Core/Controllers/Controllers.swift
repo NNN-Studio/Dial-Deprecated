@@ -19,7 +19,8 @@ struct Controllers {
     
     static var shortcutsControllers: [ShortcutsController] {
         get {
-            Defaults[.shortcutsControllerSettings].map { ShortcutsController(settings: $0) }
+            Defaults[.shortcutsControllerSettings]
+                .map { ShortcutsController(settings: $0) }
         }
         
         set {
@@ -29,7 +30,8 @@ struct Controllers {
     
     static var activatedControllers: [Controller] {
         get {
-            Defaults[.activatedControllerIDs].map( { fetch($0)! })
+            Defaults[.activatedControllerIDs]
+                .compactMap { fetch($0) }
         }
         
         set {
@@ -39,32 +41,40 @@ struct Controllers {
     
     static var currentController: Controller {
         get {
-            fetch(Defaults[.currentControllerID])!
+            fetch(Defaults[.currentControllerID]) ?? defaultControllers[0]
         }
         
         set {
             Defaults[.currentControllerID] = newValue.id
-            
-            if let shortcutsController = newValue as? ShortcutsController {
-                // TODO: Complete this
-            }
         }
     }
     
     static func cycleThroughControllers(_ sign: Int = 1, wrap: Bool = true) {
         guard sign != 0 else { return }
+        guard let index = activatedControllers.firstIndex(where: { $0.id == currentController.id }) else { return }
         
-        let index = activatedControllers.firstIndex(where: { $0.id == currentController.id })! + sign.signum()
+        let cycledIndex = index + sign.signum()
         let max = activatedControllers.count
-        let inRange = NSRange(location: 0, length: activatedControllers.count).contains(index)
+        let inRange = NSRange(location: 0, length: activatedControllers.count).contains(cycledIndex)
         
         if wrap || inRange {
-            Defaults[.currentControllerID] = activatedControllers[index % max].id
+            currentController = activatedControllers[cycledIndex % max]
         }
     }
     
-    static func indexOf(_ id: ControllerID) -> Int? {
-        return defaultControllers.firstIndex(where: { $0.id == id }) ?? (shortcutsControllers.firstIndex(where: { $0.id == id }).map { $0 + defaultControllers.count })
+    static func indexOf(_ controller: Controller) -> Int? {
+        if let defaultController = controller as? DefaultController {
+            return defaultControllers
+                .firstIndex(where: { $0.id == controller.id })
+        }
+        
+        if let shortcutsController = controller as? ShortcutsController {
+            return shortcutsControllers
+                .firstIndex(where: { $0.id == controller.id })
+                .map { $0 + defaultControllers.count }
+        }
+        
+        return nil
     }
     
     static func fetch(_ id: ControllerID) -> Controller? {
@@ -78,6 +88,7 @@ struct Controllers {
         }
     }
     
+    @available(*, deprecated)
     static func fetch(menuIndex index: Int) -> Controller? {
         guard index >= 0 else { return nil }
         
@@ -92,33 +103,38 @@ struct Controllers {
         shortcutsControllers.append(ShortcutsController(settings: ShortcutsController.Settings()))
     }
     
-    static func remove(at index: Int) {
-        shortcutsControllers.remove(at: index)
+    static func remove(_ controller: Controller) {
+        guard let shortcutsController = controller as? ShortcutsController else { return }
+        if let index = shortcutsControllers.firstIndex(of: shortcutsController) {
+            shortcutsControllers.remove(at: index)
+        }
     }
     
     static func modify(
-        _ index: Int,
+        _ controller: Controller,
         operation: @escaping (ShortcutsController) -> ShortcutsController
     ) {
-        guard index >= 0 && index < Defaults[.shortcutsControllerSettings].count else { return }
+        guard let shortcutsController = controller as? ShortcutsController else { return }
         
-        let controller = shortcutsControllers[index]
-        shortcutsControllers[index] = operation(controller)
+        if let index = shortcutsControllers.firstIndex(of: shortcutsController) {
+            shortcutsControllers[index] = operation(shortcutsController)
+        }
     }
     
-    static func toggle(_ activated: Bool, id: ControllerID) {
+    static func toggle(_ activated: Bool, controller: Controller) {
         if activated {
-            Defaults[.activatedControllerIDs].append(id)
+            Defaults[.activatedControllerIDs].append(controller.id)
         } else {
-            if let i = Defaults[.activatedControllerIDs].firstIndex(of: id) {
+            if let i = Defaults[.activatedControllerIDs].firstIndex(of: controller.id) {
                 Defaults[.activatedControllerIDs].remove(at: i)
             }
         }
     }
     
+    @available(*, deprecated)
     static func toggle(_ activated: Bool, menuIndex index: Int) {
-        if let id = fetch(menuIndex: index)?.id {
-            toggle(activated, id: id)
+        if let controller = fetch(menuIndex: index) {
+            toggle(activated, controller: controller)
         }
     }
     

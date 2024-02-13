@@ -131,3 +131,11 @@ class ShortcutsController: Controller {
     }
     
 }
+
+extension ShortcutsController: Equatable {
+    
+    static func == (lhs: ShortcutsController, rhs: ShortcutsController) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+}
