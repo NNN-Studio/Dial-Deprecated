@@ -12,15 +12,15 @@ class MainController: Controller {
     
     var id: ControllerID = .default(.main)
     
-    var name: String = NSLocalizedString("Controllers/Default/Main", value: "Main", comment: "main controller")
+    var name: String = NSLocalizedString("Controllers/Default/Main/Name", value: "Main", comment: "main controller")
     
-    var representingSymbol: SFSymbol {
-        .hockeyPuck
-    }
+    var representingSymbol: SFSymbol = .hockeyPuck
     
     var haptics: Bool = false
     
-    func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {}
+    func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
+        
+    }
     
     func onRotation(
         rotation: Dial.Rotation, totalDegrees: Int,

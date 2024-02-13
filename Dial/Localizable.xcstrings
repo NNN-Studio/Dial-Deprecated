@@ -145,8 +145,8 @@
         }
       }
     },
-    "Controllers/Default/Brigshtnes" : {
-      "comment" : "brightness controller",
+    "Controllers/Default/Brigshtnes/Description" : {
+      "comment" : "brightness controller description",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
@@ -157,7 +157,19 @@
         }
       }
     },
-    "Controllers/Default/Main" : {
+    "Controllers/Default/Brigshtnes/Name" : {
+      "comment" : "brightness controller name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Brightness"
+          }
+        }
+      }
+    },
+    "Controllers/Default/Main/Name" : {
       "comment" : "main controller",
       "extractionState" : "extracted_with_value",
       "localizations" : {
@@ -169,8 +181,8 @@
         }
       }
     },
-    "Controllers/Default/Mission" : {
-      "comment" : "mission controller",
+    "Controllers/Default/Mission/Description" : {
+      "comment" : "mission controller description",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
@@ -181,8 +193,20 @@
         }
       }
     },
-    "Controllers/Default/Playback" : {
-      "comment" : "playback controller",
+    "Controllers/Default/Mission/Name" : {
+      "comment" : "mission controller name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Mission"
+          }
+        }
+      }
+    },
+    "Controllers/Default/Playback/Description" : {
+      "comment" : "playback controller description",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
@@ -193,8 +217,32 @@
         }
       }
     },
-    "Controllers/Default/Scroll" : {
-      "comment" : "scroll controller",
+    "Controllers/Default/Playback/Name" : {
+      "comment" : "playback controller name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Playback"
+          }
+        }
+      }
+    },
+    "Controllers/Default/Scroll/Description" : {
+      "comment" : "scroll controller description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Scroll"
+          }
+        }
+      }
+    },
+    "Controllers/Default/Scroll/Name" : {
+      "comment" : "scroll controller description",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
@@ -217,7 +265,7 @@
         }
       }
     },
-    "Controllers/Shortcuts/Fallback" : {
+    "Controllers/Shortcuts/Fallback/Name" : {
       "comment" : "shortcuts controller fallback name",
       "extractionState" : "extracted_with_value",
       "localizations" : {

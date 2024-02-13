@@ -13,23 +13,17 @@ class MissionController: DefaultController {
     
     var id: ControllerID = .default(.mission)
     
-    var name: String = NSLocalizedString("Controllers/Default/Mission", value: "Mission", comment: "mission controller")
+    var name: String = NSLocalizedString("Controllers/Default/Mission/Name", value: "Mission", comment: "mission controller name")
     
-    var representingSymbol: SFSymbol {
-        .command
-    }
+    var representingSymbol: SFSymbol = .command
     
-    var description: String {
-        ""
-    }
+    var description: String = NSLocalizedString("Controllers/Default/Mission/Description", value: "Mission", comment: "mission controller description")
     
     private var inMission = false
     
     private var escapeDispatch: DispatchWorkItem?
     
-    var haptics: Bool {
-        true
-    }
+    var haptics: Bool = true
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
         if !isDoubleClick {

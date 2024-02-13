@@ -89,7 +89,7 @@ class ShortcutsController: Controller {
     
     var name: String {
         settings.name ?? NSLocalizedString(
-            "Controllers/Shortcuts/Fallback",
+            "Controllers/Shortcuts/Fallback/Name",
             value: "Controller \(settings.index + 1)",
             comment: "shortcuts controller fallback name"
         )

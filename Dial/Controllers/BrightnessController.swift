@@ -12,19 +12,13 @@ class BrightnessController: DefaultController {
     
     var id: ControllerID = .default(.brightness)
     
-    var name: String = NSLocalizedString("Controllers/Default/Brigshtnes", value: "Brightness", comment: "brightness controller")
+    var name: String = NSLocalizedString("Controllers/Default/Brigshtnes/Name", value: "Brightness", comment: "brightness controller name")
     
-    var representingSymbol: SFSymbol {
-        .sunMax
-    }
+    var representingSymbol: SFSymbol = .sunMax
     
-    var description: String {
-        ""
-    }
+    var description: String = NSLocalizedString("Controllers/Default/Brigshtnes/Description", value: "Brightness", comment: "brightness controller description")
     
-    var haptics: Bool {
-        true
-    }
+    var haptics: Bool = true
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
         

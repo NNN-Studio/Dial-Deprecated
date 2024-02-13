@@ -6,15 +6,11 @@ class PlaybackController: DefaultController {
     
     var id: ControllerID = .default(.playback)
     
-    var name: String = NSLocalizedString("Controllers/Default/Playback", value: "Playback", comment: "playback controller")
+    var name: String = NSLocalizedString("Controllers/Default/Playback/Name", value: "Playback", comment: "playback controller name")
     
-    var representingSymbol: SFSymbol {
-        .speakerWave2
-    }
+    var representingSymbol: SFSymbol = .speakerWave2
     
-    var description: String {
-        ""
-    }
+    var description: String = NSLocalizedString("Controllers/Default/Playback/Description", value: "Playback", comment: "playback controller description")
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
         if isDoubleClick {

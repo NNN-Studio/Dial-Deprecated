@@ -6,15 +6,11 @@ class ScrollController: DefaultController {
     
     var id: ControllerID = .default(.scroll)
     
-    var name: String = NSLocalizedString("Controllers/Default/Scroll", value: "Scroll", comment: "scroll controller")
+    var name: String = NSLocalizedString("Controllers/Default/Scroll/Name", value: "Scroll", comment: "scroll controller description")
     
-    var representingSymbol: SFSymbol {
-        .arrowUpArrowDown
-    }
+    var representingSymbol: SFSymbol = .arrowUpArrowDown
     
-    var description: String {
-        ""
-    }
+    var description: String = NSLocalizedString("Controllers/Default/Scroll/Description", value: "Scroll", comment: "scroll controller description")
     
     private var accumulated = 0
     
