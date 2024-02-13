@@ -814,16 +814,22 @@
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
+                                                                            <connections>
+                                                                                <action selector="rename:" target="24w-Ra-sQb" id="1lT-4N-Lgz"/>
+                                                                            </connections>
                                                                         </textField>
                                                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="xl0-8n-ldy">
                                                                             <rect key="frame" x="255" y="0.0" width="30" height="30"/>
                                                                             <buttonCell key="cell" type="inline" bezelStyle="inline" image="doc.fill" catalog="system" imagePosition="only" borderStyle="border" inset="2" id="BD5-Us-Os8">
-                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                             </buttonCell>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="xl0-8n-ldy" secondAttribute="height" multiplier="1:1" id="0PM-nZ-dTc"/>
                                                                             </constraints>
+                                                                            <connections>
+                                                                                <action selector="openIconChooser:" target="24w-Ra-sQb" id="wjF-BQ-b6K"/>
+                                                                            </connections>
                                                                         </button>
                                                                     </subviews>
                                                                     <constraints>
@@ -1222,6 +1228,9 @@
                                                                                 </textField>
                                                                                 <switch horizontalHuggingPriority="750" verticalHuggingPriority="751" baseWritingDirection="leftToRight" alignment="left" state="on" translatesAutoresizingMaskIntoConstraints="NO" id="m65-gU-4G0">
                                                                                     <rect key="frame" x="245" y="-2" width="42" height="25"/>
+                                                                                    <connections>
+                                                                                        <action selector="toggleHaptics:" target="24w-Ra-sQb" id="8h1-zD-E99"/>
+                                                                                    </connections>
                                                                                 </switch>
                                                                             </subviews>
                                                                             <constraints>
@@ -1270,6 +1279,9 @@
                                                                                 </textField>
                                                                                 <switch horizontalHuggingPriority="750" verticalHuggingPriority="751" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="HGg-e0-6Z8">
                                                                                     <rect key="frame" x="245" y="-2" width="42" height="25"/>
+                                                                                    <connections>
+                                                                                        <action selector="togglePhysicalDirection:" target="24w-Ra-sQb" id="aKc-Lj-enr"/>
+                                                                                    </connections>
                                                                                 </switch>
                                                                             </subviews>
                                                                             <constraints>
@@ -1299,6 +1311,9 @@
                                                                                 </textField>
                                                                                 <switch horizontalHuggingPriority="750" verticalHuggingPriority="751" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="Sw5-nv-KFr">
                                                                                     <rect key="frame" x="245" y="-2" width="42" height="25"/>
+                                                                                    <connections>
+                                                                                        <action selector="toggleAlternativeDirection:" target="24w-Ra-sQb" id="Hcg-n1-ujI"/>
+                                                                                    </connections>
                                                                                 </switch>
                                                                             </subviews>
                                                                             <constraints>
@@ -1467,7 +1482,7 @@
                 </viewController>
                 <customObject id="by5-ab-QSV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-173" y="1230"/>
+            <point key="canvasLocation" x="-173.5" y="1229.5"/>
         </scene>
     </scenes>
     <resources>

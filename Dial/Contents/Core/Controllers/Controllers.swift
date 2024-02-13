@@ -20,7 +20,7 @@ struct Controllers {
     static var shortcutsControllers: [ShortcutsController] {
         get {
             Defaults[.shortcutsControllerSettings]
-                .map { ShortcutsController(settings: $0) }
+                .map { .init(settings: $0) }
         }
         
         set {
@@ -83,6 +83,22 @@ struct Controllers {
         
         set {
             Defaults[.selectedControllerID] = newValue.id
+        }
+    }
+    
+    static var selectedSettings: ShortcutsController.Settings? {
+        get {
+            (selectedController as? ShortcutsController)?.settings
+        }
+        
+        set {
+            if let newValue {
+                for (index, settings) in Defaults[.shortcutsControllerSettings].enumerated() {
+                    if settings.id == newValue.id {
+                        shortcutsControllers[index] = .init(settings: newValue)
+                    }
+                }
+            }
         }
     }
     

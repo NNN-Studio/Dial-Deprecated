@@ -52,13 +52,11 @@ struct ControllerMenuItems {
             Task { @MainActor in
                 for await value in Defaults.updates(.shortcutsControllerSettings) {
                     if let shortcutsController = item.option as? ShortcutsController {
-                        switch shortcutsController.id {
-                        case .id(let id):
-                            if let icon = value.filter({ id == $0.id }).first?.representingSymbol {
-                                item.image = icon.raw
+                        for controller in Controllers.shortcutsControllers {
+                            if controller.id == shortcutsController.id {
+                                item.image = controller.representingSymbol.raw
+                                item.title = controller.name
                             }
-                        default:
-                            break
                         }
                     }
                 }

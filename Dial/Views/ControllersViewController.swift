@@ -220,7 +220,11 @@ extension ControllersViewController: NSMenuDelegate {
                     
                     buttonDeleteController.isEnabled = false
                     buttonAddController.isEnabled = true
-                } else {
+                }
+                
+                else if let shortcutsController = controller as? ShortcutsController {
+                    textFieldControllerName.stringValue = shortcutsController.settings.name ?? ""
+                    
                     viewDefaultControllerLabels.isHidden = true
                     viewControllerName.isHidden = false
                     
@@ -283,6 +287,8 @@ extension ControllersViewController: DialControllerMenuDelegate {
 
 extension ControllersViewController {
     
+    // MARK: - Leading controls
+    
     @IBAction func switchSegment(_ sender: NSSegmentedControl) {
         if let nextSegment = Segment(rawValue: sender.indexOfSelectedItem) {
             updateSegment(nextSegment)
@@ -324,6 +330,39 @@ extension ControllersViewController {
         
         Controllers.selectedController = controller
         Controllers.toggle(true, controller: controller)
+    }
+    
+}
+
+extension ControllersViewController {
+    
+    // MARK: - Shortcuts options
+    
+    @IBAction func rename(_ sender: NSTextField) {
+        print(sender.stringValue)
+        Controllers.selectedSettings?.name = sender.stringValue
+    }
+    
+    @IBAction func openIconChooser(_ sender: NSButton) {
+        
+    }
+    
+}
+
+extension ControllersViewController {
+    
+    // MARK: - Advanced options
+    
+    @IBAction func toggleHaptics(_ sender: NSSwitch) {
+        
+    }
+    
+    @IBAction func togglePhysicalDirection(_ sender: NSSwitch) {
+        
+    }
+    
+    @IBAction func toggleAlternativeDirection(_ sender: NSSwitch) {
+        
     }
     
 }
