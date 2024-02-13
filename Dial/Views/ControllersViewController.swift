@@ -101,6 +101,10 @@ class ControllersViewController: NSViewController {
     
     private var shortcutsControllerMenuItems: ControllerMenuItems?
     
+    private var rotationTypeMenuManager: MenuManager?
+    
+    private var rotationTypeMenuItems: RotationTypeMenuItems?
+    
     private var segment: Segment = .shortcuts
     
     enum Segment: Int {
@@ -142,35 +146,10 @@ extension ControllersViewController: NSMenuDelegate {
         super.viewDidLoad()
         defaultControllerMenuItems = .init(delegate: self, source: .default)
         shortcutsControllerMenuItems = .init(delegate: self, source: .shortcuts)
+        rotationTypeMenuItems = .init(delegate: self)
         
         initDescriptives()
         initInteractives()
-    }
-    
-    func refreshMenuManager() {
-        controllersMenuManager = .init(delegate: self) {
-            var items: [MenuManager.MenuItemGroup] = []
-            
-            items.append(MenuManager.groupItems(
-                title: NSLocalizedString(
-                    "Menu/Title/DefaultControllers",
-                    value: "Default Controllers",
-                    comment: "default controllers"
-                ),
-                defaultControllerMenuItems!.controllers
-            ))
-            
-            items.append(MenuManager.groupItems(
-                title: NSLocalizedString(
-                    "Menu/Title/ShortcutsControllers",
-                    value: "Custom Controllers",
-                    comment: "shortcuts controllers"
-                ),
-                shortcutsControllerMenuItems!.controllers
-            ))
-            
-            return items
-        }
     }
     
     func initDescriptives() {
@@ -223,8 +202,6 @@ extension ControllersViewController: NSMenuDelegate {
                 }
                 
                 else if let shortcutsController = controller as? ShortcutsController {
-                    textFieldControllerName.stringValue = shortcutsController.settings.name ?? ""
-                    
                     viewDefaultControllerLabels.isHidden = true
                     viewControllerName.isHidden = false
                     
@@ -234,9 +211,28 @@ extension ControllersViewController: NSMenuDelegate {
                     
                     buttonDeleteController.isEnabled = true
                     buttonAddController.isEnabled = true
+                    
+                    textFieldControllerName.stringValue = shortcutsController.settings.name ?? ""
+                    
+                    switchHaptics.flag = shortcutsController.settings.haptics
+                    switchPhysicalDirection.flag = shortcutsController.settings.physicalDirection
+                    switchAlternativeDirection.flag = shortcutsController.settings.alternativeDirection
+                    
+                    refreshRotationTypeMenuManager()
+                    popUpButtonRotationType.menu = rotationTypeMenuManager?.menu
+                    
+                    for (index, item) in popUpButtonRotationType.itemArray.enumerated() {
+                        if
+                            let rotationType = item.representedObject as? Dial.Rotation.RawType,
+                            rotationType == shortcutsController.settings.rotationType
+                        {
+                            popUpButtonRotationType.selectItem(at: index)
+                        }
+                        
+                    }
                 }
                 
-                refreshMenuManager()
+                refreshControllersMenuManager()
                 popUpButtonControllerSelector.menu = controllersMenuManager?.menu
                 
                 for (index, item) in popUpButtonControllerSelector.itemArray.enumerated() {
@@ -249,6 +245,46 @@ extension ControllersViewController: NSMenuDelegate {
                     
                 }
             }
+        }
+    }
+    
+}
+
+extension ControllersViewController {
+    
+    func refreshControllersMenuManager() {
+        controllersMenuManager = .init(delegate: self) {
+            var items: [MenuManager.MenuItemGroup] = []
+            
+            items.append(MenuManager.groupItems(
+                title: NSLocalizedString(
+                    "Menu/Title/DefaultControllers",
+                    value: "Default Controllers",
+                    comment: "default controllers"
+                ),
+                defaultControllerMenuItems!.controllers
+            ))
+            
+            items.append(MenuManager.groupItems(
+                title: NSLocalizedString(
+                    "Menu/Title/ShortcutsControllers",
+                    value: "Custom Controllers",
+                    comment: "shortcuts controllers"
+                ),
+                shortcutsControllerMenuItems!.controllers
+            ))
+            
+            return items
+        }
+    }
+    
+    func refreshRotationTypeMenuManager() {
+        rotationTypeMenuManager = .init(delegate: self) {
+            var items: [MenuManager.MenuItemGroup] = []
+            
+            items.append(MenuManager.groupItems(rotationTypeMenuItems!.rotationTypeOptions))
+            
+            return items
         }
     }
     
@@ -281,6 +317,16 @@ extension ControllersViewController: DialControllerMenuDelegate {
         guard let item = sender as? ControllerOptionItem else { return }
         
         Controllers.selectedController = item.option
+    }
+    
+}
+
+extension ControllersViewController: DialRotationTypeMenuDelegate {
+    
+    func setRotationType(_ sender: Any?) {
+        guard let item = sender as? MenuOptionItem<Dial.Rotation.RawType> else { return }
+        
+        Controllers.selectedSettings?.rotationType = item.option
     }
     
 }
@@ -353,16 +399,25 @@ extension ControllersViewController {
     
     // MARK: - Advanced options
     
-    @IBAction func toggleHaptics(_ sender: NSSwitch) {
+    @IBAction func toggleRotationType(_ sender: NSPopUpButton) {
+        guard
+            let item = sender.selectedItem,
+            let rotationType = item.representedObject as? Dial.Rotation.RawType
+        else { return }
         
+        Controllers.selectedSettings?.rotationType = rotationType
+    }
+
+    @IBAction func toggleHaptics(_ sender: NSSwitch) {
+        Controllers.selectedSettings?.haptics = sender.flag
     }
     
     @IBAction func togglePhysicalDirection(_ sender: NSSwitch) {
-        
+        Controllers.selectedSettings?.physicalDirection = sender.flag
     }
     
     @IBAction func toggleAlternativeDirection(_ sender: NSSwitch) {
-        
+        Controllers.selectedSettings?.alternativeDirection = sender.flag
     }
     
 }

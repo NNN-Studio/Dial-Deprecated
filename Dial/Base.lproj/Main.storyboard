@@ -642,9 +642,9 @@
                                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6lh-E8-EW4">
                                                                         <rect key="frame" x="272" y="0.0" width="53" height="24"/>
                                                                         <subviews>
-                                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rFv-gE-b3s">
-                                                                                <rect key="frame" x="0.0" y="-1" width="24" height="25"/>
-                                                                                <buttonCell key="cell" type="recessed" title="Button" bezelStyle="recessed" image="minus" catalog="system" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NJk-rN-PTs">
+                                                                            <button translatesAutoresizingMaskIntoConstraints="NO" id="rFv-gE-b3s">
+                                                                                <rect key="frame" x="0.0" y="2.5" width="24.5" height="19.5"/>
+                                                                                <buttonCell key="cell" type="recessed" title="Button" bezelStyle="recessed" image="minus" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="NJk-rN-PTs">
                                                                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                     <font key="font" metaFont="systemBold" size="12"/>
                                                                                 </buttonCell>
@@ -822,7 +822,7 @@
                                                                             <rect key="frame" x="255" y="0.0" width="30" height="30"/>
                                                                             <buttonCell key="cell" type="inline" bezelStyle="inline" image="doc.fill" catalog="system" imagePosition="only" borderStyle="border" inset="2" id="BD5-Us-Os8">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                <font key="font" metaFont="smallSystem"/>
+                                                                                <font key="font" metaFont="smallSystemBold"/>
                                                                             </buttonCell>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" secondItem="xl0-8n-ldy" secondAttribute="height" multiplier="1:1" id="0PM-nZ-dTc"/>
@@ -1199,6 +1199,9 @@
                                                                                             </items>
                                                                                         </menu>
                                                                                     </popUpButtonCell>
+                                                                                    <connections>
+                                                                                        <action selector="toggleRotationType:" target="24w-Ra-sQb" id="a0V-gv-afR"/>
+                                                                                    </connections>
                                                                                 </popUpButton>
                                                                             </subviews>
                                                                             <constraints>

@@ -62,7 +62,7 @@ extension Dial {
         
         case stepping(Direction)
         
-        var type: `Type` {
+        var type: RawType {
             switch self {
             case .continuous(_):
                 .continuous
@@ -78,11 +78,11 @@ extension Dial {
             }
         }
         
-        func conformsTo(_ type: `Type`) -> Bool {
+        func conformsTo(_ type: RawType) -> Bool {
             self.type == type
         }
         
-        enum `Type`: Codable {
+        enum RawType: Codable {
             
             case continuous
             
@@ -94,7 +94,7 @@ extension Dial {
     
 }
 
-extension Dial.Rotation.`Type`: Localizable {
+extension Dial.Rotation.RawType: Localizable {
     
     var localizedName: String {
         switch self {
@@ -116,7 +116,7 @@ extension Dial.Rotation.`Type`: Localizable {
     
 }
 
-extension Dial.Rotation.`Type`: SymbolRepresentable {
+extension Dial.Rotation.RawType: SymbolRepresentable {
     
     var representingSymbol: SFSymbol {
         switch self {

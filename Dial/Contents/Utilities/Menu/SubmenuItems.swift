@@ -21,12 +21,12 @@ struct SubmenuItems {
     let delegate: DialSubmenuDelegate
     
     var sensitivityOptions: [MenuOptionItem<Sensitivity>] {
-        let options = [
-            MenuOptionItem<Sensitivity>(Sensitivity.low.localizedName, option: .low),
-            MenuOptionItem<Sensitivity>(Sensitivity.medium.localizedName, option: .medium),
-            MenuOptionItem<Sensitivity>(Sensitivity.natural.localizedName, option: .natural),
-            MenuOptionItem<Sensitivity>(Sensitivity.high.localizedName, option: .high),
-            MenuOptionItem<Sensitivity>(Sensitivity.extreme.localizedName, option: .extreme)
+        let options: [MenuOptionItem<Sensitivity>] = [
+            .init(Sensitivity.low.localizedName, option: .low),
+            .init(Sensitivity.medium.localizedName, option: .medium),
+            .init(Sensitivity.natural.localizedName, option: .natural),
+            .init(Sensitivity.high.localizedName, option: .high),
+            .init(Sensitivity.extreme.localizedName, option: .extreme)
         ]
         
         for option in options {
@@ -44,9 +44,9 @@ struct SubmenuItems {
     }
     
     var directionOptions: [MenuOptionItem<Direction>] {
-        let options = [
-            MenuOptionItem<Direction>(Direction.clockwise.localizedName, option: .clockwise),
-            MenuOptionItem<Direction>(Direction.counterclockwise.localizedName, option: .counterclockwise)
+        let options: [MenuOptionItem<Direction>] = [
+            .init(Direction.clockwise.localizedName, option: .clockwise),
+            .init(Direction.counterclockwise.localizedName, option: .counterclockwise)
         ]
         
         for option in options {

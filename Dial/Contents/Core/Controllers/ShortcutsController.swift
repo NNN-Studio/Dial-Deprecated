@@ -35,7 +35,7 @@ class ShortcutsController: Controller {
         
         
         
-        var rotationType: Dial.Rotation.`Type`
+        var rotationType: Dial.Rotation.RawType
         
         var shortcuts: Shortcuts
         
@@ -64,7 +64,7 @@ class ShortcutsController: Controller {
             representingSymbol: SFSymbol = .fallback,
             haptics: Bool = true,
             physicalDirection: Bool = false, alternativeDirection: Bool = false,
-            rotationType: Dial.Rotation.`Type` = .continuous, shortcuts: Shortcuts = Shortcuts()
+            rotationType: Dial.Rotation.RawType = .continuous, shortcuts: Shortcuts = Shortcuts()
         ) {
             self.id = UUID()
             

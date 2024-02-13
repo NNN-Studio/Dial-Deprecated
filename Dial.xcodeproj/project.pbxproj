@@ -38,6 +38,7 @@
 		28DBB1642B79046D00743575 /* SymbolRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1632B79046D00743575 /* SymbolRepresentation.swift */; };
 		28DBB1682B7904B200743575 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1672B7904B200743575 /* MainController.swift */; };
 		28FA280C2B78A3310071FB1B /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 28FA280B2B78A3310071FB1B /* SFSafeSymbols */; };
+		28FCB92C2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCB92B2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift */; };
 		C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882FA1926F1430C00595EE1 /* AppDelegate.swift */; };
 		C882FA1E26F1430D00595EE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C882FA1D26F1430D00595EE1 /* Assets.xcassets */; };
 		C882FA2426F1430D00595EE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C882FA2226F1430D00595EE1 /* Main.storyboard */; };
@@ -82,6 +83,7 @@
 		28DBB1602B7903D000743575 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		28DBB1632B79046D00743575 /* SymbolRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolRepresentation.swift; sourceTree = "<group>"; };
 		28DBB1672B7904B200743575 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		28FCB92B2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationTypeMenuItems.swift; sourceTree = "<group>"; };
 		C882FA1926F1430C00595EE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C882FA1D26F1430D00595EE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C882FA2326F1430D00595EE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				28D9F46D2B79ED2B00494B7E /* MenuItems.swift */,
 				28D9F47B2B7A301000494B7E /* SubmenuItems.swift */,
 				280AA0862B7AF64600798BB1 /* ControllerMenuItems.swift */,
+				28FCB92B2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				28D9F47C2B7A301000494B7E /* SubmenuItems.swift in Sources */,
 				28DBB1612B7903D000743575 /* Localization.swift in Sources */,
 				C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */,
+				28FCB92C2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift in Sources */,
 				28D9F4622B79C29100494B7E /* DefaultController.swift in Sources */,
 				28D9F4792B7A13E100494B7E /* NSString+Extension.swift in Sources */,
 				C89D24292703BA5E00B1A458 /* Controller.swift in Sources */,

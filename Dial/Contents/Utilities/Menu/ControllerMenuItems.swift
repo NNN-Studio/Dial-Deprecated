@@ -50,7 +50,7 @@ struct ControllerMenuItems {
             item.image = controller.representingSymbol.raw
             
             Task { @MainActor in
-                for await value in Defaults.updates(.shortcutsControllerSettings) {
+                for await _ in Defaults.updates(.shortcutsControllerSettings) {
                     if let shortcutsController = item.option as? ShortcutsController {
                         for controller in Controllers.shortcutsControllers {
                             if controller.id == shortcutsController.id {
