@@ -72,8 +72,16 @@ struct ControllerMenuItems {
                 }
             } else {
                 Task { @MainActor in
-                    for await value in Defaults.updates(.selectedControllerID) {
-                        item.flag = item.option.id == value
+                    for await _ in Defaults.updates([
+                        .selectedControllerID,
+                        .activatedControllerIDs
+                    ]) {let activated = Controllers.activatedControllers.contains(where: { $0.id == item.option.id })
+                        
+                        if item.option.id == Controllers.selectedController.id {
+                            item.state = .on
+                        } else {
+                            item.state = activated ? .mixed : .off
+                        }
                     }
                 }
             }

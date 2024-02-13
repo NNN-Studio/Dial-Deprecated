@@ -192,7 +192,7 @@ extension ControllersViewController: NSMenuDelegate {
     
     func initInteractives() {
         Task { @MainActor in
-            for await value in Defaults.updates([
+            for await _ in Defaults.updates([
                 .selectedControllerID,
                 .shortcutsControllerSettings
             ]) {
@@ -201,8 +201,9 @@ extension ControllersViewController: NSMenuDelegate {
                 let canDeactivate = Controllers.activatedControllers.count > 1
                 let canActivate = Controllers.activatedControllers.count < Defaults[.maxControllerCount]
                 
-                switchControllerActivated.flag = Controllers.activatedControllers.contains(where: { $0.id == controller.id })
-                switchControllerActivated.isEnabled = canDeactivate && canActivate
+                let activated = Controllers.activatedControllers.contains(where: { $0.id == controller.id })
+                switchControllerActivated.flag = activated
+                switchControllerActivated.isEnabled = (activated && canDeactivate) || (!activated && canActivate)
                 
                 if let defaultController = controller as? DefaultController {
                     labelDefaultControllerDescription.stringValue = defaultController.description
@@ -215,7 +216,7 @@ extension ControllersViewController: NSMenuDelegate {
                     viewOptions1.isHidden = true
                     viewOptions2.isHidden = true
                     
-                    segmentedControlShortcutsAdvanced.isEnabled = false
+                    segmentedControlShortcutsAdvanced.isHidden = true
                     
                     buttonDeleteController.isEnabled = false
                     buttonAddController.isEnabled = true
@@ -225,7 +226,7 @@ extension ControllersViewController: NSMenuDelegate {
                     
                     updateSegment(self.segment)
                     
-                    segmentedControlShortcutsAdvanced.isEnabled = true
+                    segmentedControlShortcutsAdvanced.isHidden = false
                     
                     buttonDeleteController.isEnabled = true
                     buttonAddController.isEnabled = true
@@ -234,7 +235,7 @@ extension ControllersViewController: NSMenuDelegate {
                 refreshMenuManager()
                 popUpButtonControllerSelector.menu = controllersMenuManager?.menu
                 
-                for (index, item) in popUpButtonControllerSelector.menu!.items.enumerated() {
+                for (index, item) in popUpButtonControllerSelector.itemArray.enumerated() {
                     if
                         let controller = item.representedObject as? Controller,
                         controller.id == Controllers.selectedController.id
@@ -289,15 +290,40 @@ extension ControllersViewController {
     }
     
     @IBAction func toggleController(_ sender: NSSwitch) {
-        Controllers.toggle(sender.flag, controller: Controllers.currentController)
+        Controllers.toggle(sender.flag, controller: Controllers.selectedController)
     }
     
     @IBAction func deleteController(_ sender: NSButton) {
-        Controllers.remove(Controllers.selectedController)
+        guard let selectedController = Controllers.selectedController as? ShortcutsController else { return }
+        
+        var previous: Controller?
+        var next: Controller?
+        var found = false
+        
+        for item in popUpButtonControllerSelector.itemArray{
+            if let controller = item.representedObject as? ShortcutsController {
+                if controller.id == selectedController.id { found = true }
+                else if !found { previous = controller }
+                else if found && next == nil { next = controller }
+            }
+        }
+        
+        Controllers.remove(selectedController)
+        
+        if let next {
+            Controllers.selectedController = next
+        } else if let previous {
+            Controllers.selectedController = previous
+        } else {
+            Controllers.selectedController = Controllers.defaultControllers.last!
+        }
     }
     
     @IBAction func addController(_ sender: NSButton) {
-        Controllers.selectedController = Controllers.append()
+        let controller = Controllers.append()
+        
+        Controllers.selectedController = controller
+        Controllers.toggle(true, controller: controller)
     }
     
 }

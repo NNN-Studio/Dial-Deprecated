@@ -30,11 +30,21 @@ struct Controllers {
     
     static var activatedControllers: [Controller] {
         get {
-            Defaults[.activatedControllerIDs]
-                .compactMap { fetch($0) }
+            if Defaults[.activatedControllerIDs].isEmpty {
+                Defaults.reset(.activatedControllerIDs)
+            }
+            
+            if Defaults[.activatedControllerIDs].count > Defaults[.maxControllerCount] {
+                Defaults[.activatedControllerIDs].removeLast(Defaults[.activatedControllerIDs].count - Defaults[.maxControllerCount])
+            }
+            
+            return Defaults[.activatedControllerIDs].compactMap { fetch($0) }
         }
         
         set {
+            guard !newValue.isEmpty else { return }
+            guard newValue.count <= Defaults[.maxControllerCount] else { return }
+            
             Defaults[.activatedControllerIDs] = newValue.map { $0.id }
         }
     }
@@ -132,7 +142,6 @@ struct Controllers {
         guard let shortcutsController = controller as? ShortcutsController else { return }
         if let index = shortcutsControllers.firstIndex(of: shortcutsController) {
             shortcutsControllers.remove(at: index)
-            //selectedController = defaultControllers.first!
         }
     }
     
@@ -149,10 +158,16 @@ struct Controllers {
     
     static func toggle(_ activated: Bool, controller: Controller) {
         if activated {
-            Defaults[.activatedControllerIDs].append(controller.id)
+            if !activatedControllers.contains(where: { $0.id == controller.id }) {
+                activatedControllers.append(controller)
+            }
         } else {
-            if let i = Defaults[.activatedControllerIDs].firstIndex(of: controller.id) {
-                Defaults[.activatedControllerIDs].remove(at: i)
+            if let index = activatedControllers.firstIndex(where: { $0.id == controller.id }) {
+                activatedControllers.remove(at: index)
+                
+                if currentController.id == controller.id {
+                    currentController = activatedControllers.first!
+                }
             }
         }
     }
