@@ -34,6 +34,8 @@ extension Defaults.Keys {
     
     static let currentControllerID = Key<ControllerID>("currentControllerID", default: .default(.scroll))
     
+    static let selectedControllerID = Key<ControllerID>("selectedControllerID", default: .default(.scroll))
+    
     
     
     static let rotationThresholdDegrees = Key<UInt>("rotationThresholdDegrees", default: 10)

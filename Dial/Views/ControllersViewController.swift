@@ -191,51 +191,52 @@ extension ControllersViewController: NSMenuDelegate {
     }
     
     func initInteractives() {
-        updateSelectedController(Controllers.currentController)
+        Task { @MainActor in
+            for await _ in Defaults.updates(.selectedControllerID) {
+                let controller = Controllers.selectedController
+                let canActivate = Controllers.activatedControllers.count > 1
+                
+                switchControllerActivated.flag = Controllers.activatedControllers.contains(where: { $0.id == controller.id })
+                switchControllerActivated.isEnabled = canActivate
+                
+                if let defaultController = controller as? DefaultController {
+                    labelDefaultControllerDescription.stringValue = defaultController.description
+                    
+                    viewDefaultControllerLabels.isHidden = false
+                    viewControllerName.isHidden = true
+                    
+                    viewShortcuts1.isHidden = true
+                    viewShortcuts2.isHidden = true
+                    viewOptions1.isHidden = true
+                    viewOptions2.isHidden = true
+                    
+                    segmentedControlShortcutsAdvanced.isEnabled = false
+                    
+                    buttonDeleteController.isEnabled = false
+                    buttonAddController.isEnabled = true
+                } else {
+                    viewDefaultControllerLabels.isHidden = true
+                    viewControllerName.isHidden = false
+                    
+                    updateSegment(self.segment)
+                    
+                    segmentedControlShortcutsAdvanced.isEnabled = true
+                    
+                    buttonDeleteController.isEnabled = true
+                    buttonAddController.isEnabled = true
+                }
+                
+                refreshMenuManager()
+                popUpButtonControllerSelector.menu = controllersMenuManager?.menu
+                let index = popUpButtonControllerSelector.indexOfItem(withRepresentedObject: controller)
+                popUpButtonControllerSelector.selectItem(at: index)
+            }
+        }
     }
     
 }
 
 extension ControllersViewController {
-    
-    func updateSelectedController(_ controller: Controller) {
-        let canActivate = Controllers.activatedControllers.count > 1
-        
-        switchControllerActivated.flag = Controllers.activatedControllers.contains(where: { $0.id == controller.id })
-        switchControllerActivated.isEnabled = canActivate
-        
-        if let defaultController = controller as? DefaultController {
-            labelDefaultControllerDescription.stringValue = defaultController.description
-            
-            viewDefaultControllerLabels.isHidden = false
-            viewControllerName.isHidden = true
-            
-            viewShortcuts1.isHidden = true
-            viewShortcuts2.isHidden = true
-            viewOptions1.isHidden = true
-            viewOptions2.isHidden = true
-            
-            segmentedControlShortcutsAdvanced.isEnabled = false
-            
-            buttonDeleteController.isEnabled = false
-            buttonAddController.isEnabled = true
-        } else {
-            viewDefaultControllerLabels.isHidden = true
-            viewControllerName.isHidden = false
-            
-            updateSegment(self.segment)
-            
-            segmentedControlShortcutsAdvanced.isEnabled = true
-            
-            buttonDeleteController.isEnabled = true
-            buttonAddController.isEnabled = true
-        }
-        
-        refreshMenuManager()
-        popUpButtonControllerSelector.menu = controllersMenuManager?.menu
-        let index = popUpButtonControllerSelector.indexOfItem(withRepresentedObject: controller)
-        popUpButtonControllerSelector.selectItem(at: index)
-    }
     
     func updateSegment(_ segment: Segment) {
         self.segment = segment
@@ -261,7 +262,7 @@ extension ControllersViewController: DialControllerMenuDelegate {
     func setController(_ sender: Any?) {
         guard let item = sender as? ControllerOptionItem else { return }
         
-        updateSelectedController(item.option)
+        Controllers.selectedController = item.option
     }
     
 }

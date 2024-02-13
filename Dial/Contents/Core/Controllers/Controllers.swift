@@ -41,10 +41,13 @@ struct Controllers {
     
     static var currentController: Controller {
         get {
-            if let controller = fetch(Defaults[.currentControllerID]) {
+            if
+                let controller = fetch(Defaults[.currentControllerID]),
+                Defaults[.activatedControllerIDs].contains(Defaults[.currentControllerID])
+            {
                 return controller
             } else {
-                let controller = activatedControllers[0]
+                let controller = activatedControllers.first!
                 Defaults[.currentControllerID] = controller.id
                 return controller
             }
@@ -52,6 +55,24 @@ struct Controllers {
         
         set {
             Defaults[.currentControllerID] = newValue.id
+        }
+    }
+    
+    static var selectedController: Controller {
+        get {
+            if let controller = fetch(Defaults[.selectedControllerID]) {
+                return controller
+            }
+            
+            else {
+                let controller = defaultControllers.first!
+                Defaults[.selectedControllerID] = controller.id
+                return controller
+            }
+        }
+        
+        set {
+            Defaults[.selectedControllerID] = newValue.id
         }
     }
     

@@ -51,8 +51,31 @@ struct ControllerMenuItems {
                 item.image = controller.representingSymbol.raw
                 
                 Task { @MainActor in
-                    for await value in Defaults.updates(.currentControllerID) {
-                        item.flag = item.option.id == value
+                    for await value in Defaults.updates(.shortcutsControllerSettings) {
+                        if let shortcutsController = item.option as? ShortcutsController {
+                            switch shortcutsController.id {
+                            case .id(let id):
+                                if let icon = value.filter({ id == $0.id }).first?.representingSymbol {
+                                    item.image = icon.raw
+                                }
+                            default:
+                                break
+                            }
+                        }
+                    }
+                }
+                
+                if (source == .activated) {
+                    Task { @MainActor in
+                        for await value in Defaults.updates(.currentControllerID) {
+                            item.flag = item.option.id == value
+                        }
+                    }
+                } else {
+                    Task { @MainActor in
+                        for await value in Defaults.updates(.selectedControllerID) {
+                            item.flag = item.option.id == value
+                        }
                     }
                 }
                 
