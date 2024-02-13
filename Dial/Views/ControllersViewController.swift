@@ -192,12 +192,17 @@ extension ControllersViewController: NSMenuDelegate {
     
     func initInteractives() {
         Task { @MainActor in
-            for await _ in Defaults.updates(.selectedControllerID) {
+            for await value in Defaults.updates([
+                .selectedControllerID,
+                .shortcutsControllerSettings
+            ]) {
                 let controller = Controllers.selectedController
-                let canActivate = Controllers.activatedControllers.count > 1
+                
+                let canDeactivate = Controllers.activatedControllers.count > 1
+                let canActivate = Controllers.activatedControllers.count < Defaults[.maxControllerCount]
                 
                 switchControllerActivated.flag = Controllers.activatedControllers.contains(where: { $0.id == controller.id })
-                switchControllerActivated.isEnabled = canActivate
+                switchControllerActivated.isEnabled = canDeactivate && canActivate
                 
                 if let defaultController = controller as? DefaultController {
                     labelDefaultControllerDescription.stringValue = defaultController.description
@@ -228,8 +233,16 @@ extension ControllersViewController: NSMenuDelegate {
                 
                 refreshMenuManager()
                 popUpButtonControllerSelector.menu = controllersMenuManager?.menu
-                let index = popUpButtonControllerSelector.indexOfItem(withRepresentedObject: controller)
-                popUpButtonControllerSelector.selectItem(at: index)
+                
+                for (index, item) in popUpButtonControllerSelector.menu!.items.enumerated() {
+                    if
+                        let controller = item.representedObject as? Controller,
+                        controller.id == Controllers.selectedController.id
+                    {
+                        popUpButtonControllerSelector.selectItem(at: index)
+                    }
+                    
+                }
             }
         }
     }
@@ -280,21 +293,11 @@ extension ControllersViewController {
     }
     
     @IBAction func deleteController(_ sender: NSButton) {
-        Controllers.remove(Controllers.currentController)
-        
-        refreshMenuManager()
-        popUpButtonControllerSelector.menu = controllersMenuManager?.menu
-        let index = popUpButtonControllerSelector.indexOfItem(withRepresentedObject: Controllers.defaultControllers.first)
-        popUpButtonControllerSelector.selectItem(at: index)
+        Controllers.remove(Controllers.selectedController)
     }
     
     @IBAction func addController(_ sender: NSButton) {
-        Controllers.append()
-        
-        refreshMenuManager()
-        popUpButtonControllerSelector.menu = controllersMenuManager?.menu
-        let index = popUpButtonControllerSelector.indexOfItem(withRepresentedObject: Controllers.shortcutsControllers.last)
-        popUpButtonControllerSelector.selectItem(at: index)
+        Controllers.selectedController = Controllers.append()
     }
     
 }

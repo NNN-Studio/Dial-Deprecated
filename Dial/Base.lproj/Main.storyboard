@@ -645,7 +645,7 @@
                                                                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rFv-gE-b3s">
                                                                                 <rect key="frame" x="0.0" y="-1" width="24" height="25"/>
                                                                                 <buttonCell key="cell" type="recessed" title="Button" bezelStyle="recessed" image="minus" catalog="system" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NJk-rN-PTs">
-                                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                     <font key="font" metaFont="systemBold" size="12"/>
                                                                                 </buttonCell>
                                                                                 <constraints>

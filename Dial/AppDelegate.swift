@@ -35,7 +35,7 @@ Dial needs Accessibility permissions to function properly. In the next dialog, y
         requestPermissions()
         runTasks()
         
-        //test()
+        // TODO: DEBUG
         Defaults.reset(.activatedControllerIDs)
         Defaults.reset(.shortcutsControllerSettings)
         Defaults.reset(.currentControllerID)
@@ -48,36 +48,6 @@ Dial needs Accessibility permissions to function properly. In the next dialog, y
         }
         
         return false
-    }
-    
-}
-
-extension AppDelegate {
-    
-    func test() {
-        Defaults.reset([.activatedControllerIDs])
-        Defaults.reset([.shortcutsControllerSettings])
-        
-        print(1)
-        print(Defaults[.activatedControllerIDs])
-        print()
-        print(Defaults[.shortcutsControllerSettings])
-        print()
-        
-        Controllers.append()
-        print(2)
-        print(Defaults[.activatedControllerIDs])
-        print()
-        print(Defaults[.shortcutsControllerSettings])
-        print()
-        
-        Controllers.toggle(false, menuIndex: 0)
-        Controllers.toggle(true, menuIndex: 4)
-        print(3)
-        print(Defaults[.activatedControllerIDs])
-        print()
-        print(Defaults[.shortcutsControllerSettings])
-        print()
     }
     
 }

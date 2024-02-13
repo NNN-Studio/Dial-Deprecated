@@ -122,14 +122,17 @@ struct Controllers {
         }
     }
     
-    static func append() {
-        shortcutsControllers.append(ShortcutsController(settings: ShortcutsController.Settings()))
+    static func append() -> ShortcutsController {
+        let controller = ShortcutsController(settings: ShortcutsController.Settings())
+        shortcutsControllers.append(controller)
+        return controller
     }
     
     static func remove(_ controller: Controller) {
         guard let shortcutsController = controller as? ShortcutsController else { return }
         if let index = shortcutsControllers.firstIndex(of: shortcutsController) {
             shortcutsControllers.remove(at: index)
+            //selectedController = defaultControllers.first!
         }
     }
     
