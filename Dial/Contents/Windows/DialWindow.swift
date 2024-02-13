@@ -254,7 +254,7 @@ class DialViewController: NSViewController {
     }
     
     private func getRadians(
-        ofIndex index: Int = Controllers.indexOf(Controllers.currentController.id)!
+        ofIndex index: Int = Controllers.indexOf(Controllers.currentController)!
     ) -> CGFloat {
         CGFloat(index % Defaults[.maxControllerCount]) / CGFloat(Defaults[.maxControllerCount]) * 2 * Double.pi + radiansOffset
     }
@@ -263,7 +263,10 @@ class DialViewController: NSViewController {
         if let iconsView {
             for (index, iconView) in iconsView.subviews.enumerated() {
                 if let iconView = iconView as? NSImageView {
-                    if index == Controllers.indexOf(Controllers.currentController.id)! {
+                    if
+                        let currentIndex = Controllers.indexOf(Controllers.currentController),
+                        index == currentIndex
+                    {
                         iconView.contentTintColor = .controlAccentColor
                         let shadow = NSShadow()
                         

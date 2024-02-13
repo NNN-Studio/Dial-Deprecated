@@ -63,18 +63,14 @@ struct Controllers {
     }
     
     static func indexOf(_ controller: Controller) -> Int? {
-        if let defaultController = controller as? DefaultController {
+        if controller.isDefaultController {
             return defaultControllers
                 .firstIndex(where: { $0.id == controller.id })
-        }
-        
-        if let shortcutsController = controller as? ShortcutsController {
+        } else {
             return shortcutsControllers
                 .firstIndex(where: { $0.id == controller.id })
                 .map { $0 + defaultControllers.count }
         }
-        
-        return nil
     }
     
     static func fetch(_ id: ControllerID) -> Controller? {

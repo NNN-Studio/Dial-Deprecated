@@ -21,7 +21,7 @@ class Dial {
         if defaultController.isAgent {
             return defaultController.instance
         } else {
-            let item = statusBarController.menuItems?.controllers
+            let item = statusBarController.menuItems?.controllerMenuItems.controllers
                 .filter { $0.option.id == Controllers.currentController.id }
                 .first
             
@@ -295,11 +295,11 @@ extension Dial {
             self.dial = dial
         }
         
-        func setControllerAndUpdate(
+        func setController(
             _ controller: Controller,
             animate: Bool = false
         ) {
-            dial.statusBarController.setControllerAndUpdate(controller)
+            Controllers.currentController = controller
             window.update(animate: animate)
         }
         

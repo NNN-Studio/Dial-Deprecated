@@ -9,9 +9,7 @@ import Foundation
 import AppKit
 import Defaults
 
-@objc protocol DialMenuDelegate: AnyObject, DialSubmenuDelegate {
-    
-    @objc func setController(_ sender: Any?)
+@objc protocol DialMenuDelegate: AnyObject, DialSubmenuDelegate, DialControllerMenuDelegate {
     
     @objc func setSensitivity(_ sender: Any?)
     
@@ -35,9 +33,12 @@ struct MenuItems {
     
     let submenuItems: SubmenuItems
     
+    let controllerMenuItems: ControllerMenuItems
+    
     init(delegate: DialMenuDelegate) {
         self.delegate = delegate
-        self.submenuItems = SubmenuItems(delegate: delegate)
+        self.submenuItems = .init(delegate: delegate)
+        self.controllerMenuItems = .init(delegate: delegate, source: .activated)
     }
     
     var connectionStatus: NSMenuItem {
@@ -79,24 +80,6 @@ struct MenuItems {
         }
         
         return item
-    }
-    
-    var controllers: [ControllerOptionItem] {
-        Controllers.activatedControllers
-            .map { controller in
-                let item = ControllerOptionItem(controller.name, controller: controller)
-                
-                item.target = delegate
-                item.action = #selector(delegate.setController(_:))
-                
-                Task { @MainActor in
-                    for await value in Defaults.updates(.currentControllerID) {
-                        item.flag = item.option.id == value
-                    }
-                }
-                
-                return item
-            }
     }
     
     var sensitivity: NSMenuItem {

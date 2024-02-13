@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2801CAB52AEDF18000E95B5F /* MissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2801CAB42AEDF18000E95B5F /* MissionController.swift */; };
+		280AA0872B7AF64600798BB1 /* ControllerMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280AA0862B7AF64600798BB1 /* ControllerMenuItems.swift */; };
 		2822C3D42B75C42D000D5C58 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 2822C3D32B75C42D000D5C58 /* Defaults */; };
 		2822C3D62B75C443000D5C58 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D52B75C443000D5C58 /* Defaults.swift */; };
 		2822C3D82B75C44B000D5C58 /* Defaults+Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */; };
@@ -52,6 +53,7 @@
 
 /* Begin PBXFileReference section */
 		2801CAB42AEDF18000E95B5F /* MissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionController.swift; sourceTree = "<group>"; };
+		280AA0862B7AF64600798BB1 /* ControllerMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerMenuItems.swift; sourceTree = "<group>"; };
 		2822C3D52B75C443000D5C58 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Defaults+Structures.swift"; sourceTree = "<group>"; };
 		2822C3D92B75DB8C000D5C58 /* BrightnessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessController.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				2830055B2AEE7FF800D18F65 /* MenuManager.swift */,
 				28D9F46D2B79ED2B00494B7E /* MenuItems.swift */,
 				28D9F47B2B7A301000494B7E /* SubmenuItems.swift */,
+				280AA0862B7AF64600798BB1 /* ControllerMenuItems.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				28B833BC2B7747D200D96825 /* ShortcutsController.swift in Sources */,
 				C89D242B2703CF4500B1A458 /* ScrollController.swift in Sources */,
 				28DBB1642B79046D00743575 /* SymbolRepresentation.swift in Sources */,
+				280AA0872B7AF64600798BB1 /* ControllerMenuItems.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

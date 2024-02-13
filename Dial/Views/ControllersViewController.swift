@@ -95,6 +95,12 @@ class ControllersViewController: NSViewController {
     
     // MARK: - Others
     
+    private var controllersMenuManager: MenuManager?
+    
+    private var defaultControllerMenuItems: ControllerMenuItems?
+    
+    private var shortcutsControllerMenuItems: ControllerMenuItems?
+    
     private var segment: Segment = .shortcuts
     
     enum Segment: Int {
@@ -130,17 +136,62 @@ extension ControllersViewController {
     
 }
 
-extension ControllersViewController {
+extension ControllersViewController: NSMenuDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        defaultControllerMenuItems = .init(delegate: self, source: .default)
+        shortcutsControllerMenuItems = .init(delegate: self, source: .shortcuts)
+        
+        controllersMenuManager = .init(delegate: self) {
+            var items: [MenuManager.MenuItemGroup] = []
+            
+            items.append(MenuManager.groupItems(
+                title: NSLocalizedString(
+                    "Menu/Title/DefaultControllers",
+                    value: "Default Controllers",
+                    comment: "default controllers"
+                ),
+                defaultControllerMenuItems!.controllers
+            ))
+            
+            items.append(MenuManager.groupItems(
+                title: NSLocalizedString(
+                    "Menu/Title/ShortcutsControllers",
+                    value: "Custom Controllers",
+                    comment: "shortcuts controllers"
+                ),
+                shortcutsControllerMenuItems!.controllers
+            ))
+            
+            return items
+        }
+        popUpButtonControllerSelector.menu = controllersMenuManager?.menu
+        
         initDescriptives()
         initInteractives()
     }
     
     func initDescriptives() {
+        func applyConnectionStatus(_ value: Device.ConnectionStatus) {
+            switch value {
+            case .connected(let serialNumber):
+                labelSerial.stringValue = serialNumber
+            default:
+                labelSerial.stringValue = Localization.ConnectionStatus.offOld.localizedName
+            }
+        }
+        
         Task { @MainActor in
-            for await value in Defaults.updates(.currentControllerID) {
+            for await value in observationTrackingStream({ AppDelegate.shared?.dial.device.connectionStatus }) {
+                if let value { applyConnectionStatus(value) }
+            }
+        }
+    }
+    
+    func initInteractives() {
+        Task { @MainActor in
+            for await _ in Defaults.updates(.currentControllerID) {
                 let controller = Controllers.currentController
                 let canActivate = Controllers.activatedControllers.count > 1
                 
@@ -162,9 +213,7 @@ extension ControllersViewController {
                     
                     buttonDeleteController.isEnabled = false
                     buttonAddController.isEnabled = true
-                }
-                
-                if let shortcutsController = controller as? DefaultController {
+                } else {
                     viewDefaultControllerLabels.isHidden = true
                     viewControllerName.isHidden = false
                     
@@ -175,27 +224,11 @@ extension ControllersViewController {
                     buttonDeleteController.isEnabled = true
                     buttonAddController.isEnabled = true
                 }
+                
+                let index = popUpButtonControllerSelector.indexOfItem(withRepresentedObject: controller)
+                popUpButtonControllerSelector.selectItem(at: index)
             }
         }
-        
-        func applyConnectionStatus(_ value: Device.ConnectionStatus) {
-            switch value {
-            case .connected(let serialNumber):
-                labelSerial.stringValue = serialNumber
-            default:
-                labelSerial.stringValue = Localization.ConnectionStatus.offOld.localizedName
-            }
-        }
-        
-        Task { @MainActor in
-            for await value in observationTrackingStream({ AppDelegate.shared?.dial.device.connectionStatus }) {
-                if let value { applyConnectionStatus(value) }
-            }
-        }
-    }
-    
-    func initInteractives() {
-        
     }
     
 }
@@ -221,12 +254,34 @@ extension ControllersViewController {
     
 }
 
+extension ControllersViewController: DialControllerMenuDelegate {
+    
+    func setController(_ sender: Any?) {
+        guard let item = sender as? ControllerOptionItem else { return }
+        
+        Controllers.currentController = item.option
+    }
+    
+}
+
 extension ControllersViewController {
     
     @IBAction func switchSegment(_ sender: NSSegmentedControl) {
         if let nextSegment = Segment(rawValue: sender.indexOfSelectedItem) {
             updateSegment(nextSegment)
         }
+    }
+    
+    @IBAction func toggleController(_ sender: NSSwitch) {
+        Controllers.toggle(sender.flag, controller: Controllers.currentController)
+    }
+    
+    @IBAction func deleteController(_ sender: NSButton) {
+        Controllers.remove(Controllers.currentController)
+    }
+    
+    @IBAction func addController(_ sender: NSButton) {
+        Controllers.append()
     }
     
 }

@@ -15,16 +15,16 @@ class StatusBarController: NSObject, NSMenuDelegate {
     override init() {
         super.init()
         
-        self.menuItems = MenuItems(delegate: self)
-        self.menuManager = MenuManager(delegate: self) {
+        self.menuItems = .init(delegate: self)
+        self.menuManager = .init(delegate: self) {
             var items: [MenuManager.MenuItemGroup] = []
             
             items.append(MenuManager.groupItems(menuItems!.connectionStatus))
             
             items.append(MenuManager.groupItems(
-                title: NSLocalizedString("Menu/Title/Controller", value: "Controller", comment: "controller"),
-                badge: NSLocalizedString("Menu/Title/Controller/Hint", value: "press and hold dial", comment: "controller hint"),
-                menuItems!.controllers
+                title: NSLocalizedString("Menu/Title/Controllers", value: "Controllers", comment: "controllers"),
+                badge: NSLocalizedString("Menu/Title/ControllersHint", value: "press and hold dial", comment: "controllers hint"),
+                menuItems!.controllerMenuItems.controllers
             ))
             
             items.append(MenuManager.groupItems(
@@ -51,6 +51,12 @@ class StatusBarController: NSObject, NSMenuDelegate {
             button.sendAction(on: [.leftMouseUp, .rightMouseUp])
             
             updateIcon(false)
+        }
+        
+        Task { @MainActor in
+            for await _ in Defaults.updates(.currentControllerID) {
+                updateIcon(AppDelegate.shared?.dial.device.isConnected ?? false)
+            }
         }
     }
     
@@ -86,15 +92,6 @@ class StatusBarController: NSObject, NSMenuDelegate {
 
 extension StatusBarController {
     
-    func setControllerAndUpdate(_ controller: Controller) {
-        Defaults[.currentControllerID] = controller.id
-        
-        DispatchQueue.main.async {
-            self.updateIcon(AppDelegate.shared?.dial.device.isConnected ?? false)
-            AppDelegate.shared?.dial.device.buzz()
-        }
-    }
-    
     func onConnectionStatusChanged(_ isConnected: Bool, _ serialNumber: String?) {
         updateIcon(isConnected)
     }
@@ -116,12 +113,13 @@ extension StatusBarController {
             if true {
                 let sign = event.modifierFlags.contains(.shift) ? -1 : 1
                 Controllers.cycleThroughControllers(sign)
-                setControllerAndUpdate(Controllers.currentController)
             } else {
-                AppDelegate.shared?.dial.reconnect()
+                DispatchQueue.main.async {
+                    AppDelegate.shared?.dial.reconnect()
+                }
             }
         } else {
-            statusItem.menu = menuManager?.menu
+            statusItem.menu = menuManager!.menu
             statusItem.button?.performClick(nil)
         }
     }
@@ -131,10 +129,12 @@ extension StatusBarController {
 extension StatusBarController: DialMenuDelegate {
     
     @objc func setController(_ sender: Any?) {
-        guard let item = sender as? ControllerOptionItem
-        else { return }
+        guard let item = sender as? ControllerOptionItem else { return }
         
-        setControllerAndUpdate(item.option)
+        Controllers.currentController = item.option
+        DispatchQueue.main.async {
+            AppDelegate.shared?.dial.device.buzz()
+        }
     }
     
     @objc func setSensitivity(_ sender: Any?) {
@@ -172,7 +172,9 @@ extension StatusBarController: DialMenuDelegate {
     }
     
     func reconnect(_ sender: Any?) {
-        AppDelegate.shared?.dial.reconnect()
+        DispatchQueue.main.async {
+            AppDelegate.shared?.dial.reconnect()
+        }
     }
     
 }
