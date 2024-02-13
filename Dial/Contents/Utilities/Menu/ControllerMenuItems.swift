@@ -48,6 +48,7 @@ struct ControllerMenuItems {
                 
                 item.target = delegate
                 item.action = #selector(delegate.setController(_:))
+                item.image = controller.representingSymbol.raw
                 
                 Task { @MainActor in
                     for await value in Defaults.updates(.currentControllerID) {

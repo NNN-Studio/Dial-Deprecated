@@ -143,6 +143,11 @@ extension ControllersViewController: NSMenuDelegate {
         defaultControllerMenuItems = .init(delegate: self, source: .default)
         shortcutsControllerMenuItems = .init(delegate: self, source: .shortcuts)
         
+        initDescriptives()
+        initInteractives()
+    }
+    
+    func refreshMenuManager() {
         controllersMenuManager = .init(delegate: self) {
             var items: [MenuManager.MenuItemGroup] = []
             
@@ -166,10 +171,6 @@ extension ControllersViewController: NSMenuDelegate {
             
             return items
         }
-        popUpButtonControllerSelector.menu = controllersMenuManager?.menu
-        
-        initDescriptives()
-        initInteractives()
     }
     
     func initDescriptives() {
@@ -190,50 +191,51 @@ extension ControllersViewController: NSMenuDelegate {
     }
     
     func initInteractives() {
-        Task { @MainActor in
-            for await _ in Defaults.updates(.currentControllerID) {
-                let controller = Controllers.currentController
-                let canActivate = Controllers.activatedControllers.count > 1
-                
-                switchControllerActivated.flag = Controllers.activatedControllers.contains(where: { $0.id == controller.id })
-                switchControllerActivated.isEnabled = canActivate
-                
-                if let defaultController = controller as? DefaultController {
-                    labelDefaultControllerDescription.stringValue = defaultController.description
-                    
-                    viewDefaultControllerLabels.isHidden = false
-                    viewControllerName.isHidden = true
-                    
-                    viewShortcuts1.isHidden = true
-                    viewShortcuts2.isHidden = true
-                    viewOptions1.isHidden = true
-                    viewOptions2.isHidden = true
-                    
-                    segmentedControlShortcutsAdvanced.isEnabled = false
-                    
-                    buttonDeleteController.isEnabled = false
-                    buttonAddController.isEnabled = true
-                } else {
-                    viewDefaultControllerLabels.isHidden = true
-                    viewControllerName.isHidden = false
-                    
-                    updateSegment(self.segment)
-                    
-                    segmentedControlShortcutsAdvanced.isEnabled = true
-                    
-                    buttonDeleteController.isEnabled = true
-                    buttonAddController.isEnabled = true
-                }
-                
-                let index = popUpButtonControllerSelector.indexOfItem(withRepresentedObject: controller)
-                popUpButtonControllerSelector.selectItem(at: index)
-            }
-        }
+        updateSelectedController(Controllers.currentController)
     }
     
 }
 
 extension ControllersViewController {
+    
+    func updateSelectedController(_ controller: Controller) {
+        let canActivate = Controllers.activatedControllers.count > 1
+        
+        switchControllerActivated.flag = Controllers.activatedControllers.contains(where: { $0.id == controller.id })
+        switchControllerActivated.isEnabled = canActivate
+        
+        if let defaultController = controller as? DefaultController {
+            labelDefaultControllerDescription.stringValue = defaultController.description
+            
+            viewDefaultControllerLabels.isHidden = false
+            viewControllerName.isHidden = true
+            
+            viewShortcuts1.isHidden = true
+            viewShortcuts2.isHidden = true
+            viewOptions1.isHidden = true
+            viewOptions2.isHidden = true
+            
+            segmentedControlShortcutsAdvanced.isEnabled = false
+            
+            buttonDeleteController.isEnabled = false
+            buttonAddController.isEnabled = true
+        } else {
+            viewDefaultControllerLabels.isHidden = true
+            viewControllerName.isHidden = false
+            
+            updateSegment(self.segment)
+            
+            segmentedControlShortcutsAdvanced.isEnabled = true
+            
+            buttonDeleteController.isEnabled = true
+            buttonAddController.isEnabled = true
+        }
+        
+        refreshMenuManager()
+        popUpButtonControllerSelector.menu = controllersMenuManager?.menu
+        let index = popUpButtonControllerSelector.indexOfItem(withRepresentedObject: controller)
+        popUpButtonControllerSelector.selectItem(at: index)
+    }
     
     func updateSegment(_ segment: Segment) {
         self.segment = segment
@@ -243,12 +245,12 @@ extension ControllersViewController {
             viewShortcuts1.isHidden = false
             viewShortcuts2.isHidden = false
             viewOptions1.isHidden = true
-            viewOptions1.isHidden = true
+            viewOptions2.isHidden = true
         case .advanced:
             viewShortcuts1.isHidden = true
             viewShortcuts2.isHidden = true
             viewOptions1.isHidden = false
-            viewOptions1.isHidden = false
+            viewOptions2.isHidden = false
         }
     }
     
@@ -259,7 +261,7 @@ extension ControllersViewController: DialControllerMenuDelegate {
     func setController(_ sender: Any?) {
         guard let item = sender as? ControllerOptionItem else { return }
         
-        Controllers.currentController = item.option
+        updateSelectedController(item.option)
     }
     
 }
@@ -278,10 +280,20 @@ extension ControllersViewController {
     
     @IBAction func deleteController(_ sender: NSButton) {
         Controllers.remove(Controllers.currentController)
+        
+        refreshMenuManager()
+        popUpButtonControllerSelector.menu = controllersMenuManager?.menu
+        let index = popUpButtonControllerSelector.indexOfItem(withRepresentedObject: Controllers.defaultControllers.first)
+        popUpButtonControllerSelector.selectItem(at: index)
     }
     
     @IBAction func addController(_ sender: NSButton) {
         Controllers.append()
+        
+        refreshMenuManager()
+        popUpButtonControllerSelector.menu = controllersMenuManager?.menu
+        let index = popUpButtonControllerSelector.indexOfItem(withRepresentedObject: Controllers.shortcutsControllers.last)
+        popUpButtonControllerSelector.selectItem(at: index)
     }
     
 }

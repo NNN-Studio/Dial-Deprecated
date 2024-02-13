@@ -16,6 +16,29 @@ class StatusBarController: NSObject, NSMenuDelegate {
         super.init()
         
         self.menuItems = .init(delegate: self)
+        
+        if let button = statusItem.button {
+            button.target = self
+            button.action = #selector(toggle(_:))
+            button.sendAction(on: [.leftMouseUp, .rightMouseUp])
+            
+            updateIcon(false)
+        }
+        
+        Task { @MainActor in
+            for await _ in Defaults.updates(.currentControllerID) {
+                updateIcon(AppDelegate.shared?.dial.device.isConnected ?? false)
+            }
+        }
+        
+        Task { @MainActor in
+            for await _ in Defaults.updates(.activatedControllerIDs) {
+                refreshMenuManager()
+            }
+        }
+    }
+    
+    func refreshMenuManager() {
         self.menuManager = .init(delegate: self) {
             var items: [MenuManager.MenuItemGroup] = []
             
@@ -43,20 +66,6 @@ class StatusBarController: NSObject, NSMenuDelegate {
             ))
             
             return items
-        }
-        
-        if let button = statusItem.button {
-            button.target = self
-            button.action = #selector(toggle(_:))
-            button.sendAction(on: [.leftMouseUp, .rightMouseUp])
-            
-            updateIcon(false)
-        }
-        
-        Task { @MainActor in
-            for await _ in Defaults.updates(.currentControllerID) {
-                updateIcon(AppDelegate.shared?.dial.device.isConnected ?? false)
-            }
         }
     }
     
@@ -119,6 +128,7 @@ extension StatusBarController {
                 }
             }
         } else {
+            refreshMenuManager()
             statusItem.menu = menuManager!.menu
             statusItem.button?.performClick(nil)
         }

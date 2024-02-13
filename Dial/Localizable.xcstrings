@@ -224,7 +224,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Controller (settings.index)"
+            "value" : "Controller (settings.index + 1)"
           }
         }
       }

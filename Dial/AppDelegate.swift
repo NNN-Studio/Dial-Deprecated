@@ -37,6 +37,7 @@ Dial needs Accessibility permissions to function properly. In the next dialog, y
         //test()
         Defaults.reset(.activatedControllerIDs)
         Defaults.reset(.shortcutsControllerSettings)
+        Defaults.reset(.currentControllerID)
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {

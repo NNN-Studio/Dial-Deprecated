@@ -41,7 +41,13 @@ struct Controllers {
     
     static var currentController: Controller {
         get {
-            fetch(Defaults[.currentControllerID]) ?? defaultControllers[0]
+            if let controller = fetch(Defaults[.currentControllerID]) {
+                return controller
+            } else {
+                let controller = activatedControllers[0]
+                Defaults[.currentControllerID] = controller.id
+                return controller
+            }
         }
         
         set {
