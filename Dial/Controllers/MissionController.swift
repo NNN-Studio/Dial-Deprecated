@@ -41,7 +41,7 @@ class MissionController: DefaultController {
             escapeDispatch?.cancel()
             inMission = true
             
-            let modifiers: [Direction: [NSEvent.ModifierFlags]] = [.clockwise: [NSEvent.ModifierFlags.command], .counterclockwise: [NSEvent.ModifierFlags.shift, NSEvent.ModifierFlags.command]]
+            let modifiers: [Direction: NSEvent.ModifierFlags] = [.clockwise: [.command], .counterclockwise: [.shift, .command]]
             let action: [Direction: [Input]] = [.clockwise: [Input.keyTab], .counterclockwise: [Input.keyTab]]
             
             Input.postKeys(action[direction]!, modifiers: modifiers[direction]!)

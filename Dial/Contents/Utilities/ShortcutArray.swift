@@ -16,7 +16,7 @@ extension NSEvent.ModifierFlags: Codable {
 
 struct ShortcutArray: Codable {
     
-    var modifiers: [NSEvent.ModifierFlags]
+    var modifiers: NSEvent.ModifierFlags
     
     var keys: [Input]
     
@@ -25,14 +25,14 @@ struct ShortcutArray: Codable {
     }
     
     init(
-        modifiers: [NSEvent.ModifierFlags] = [],
+        modifiers: NSEvent.ModifierFlags = [],
         keyCodes: [Int32]
     ) {
         self.init(modifiers: modifiers, keys: Input.fromKeyCodes(keyCodes))
     }
     
     init(
-        modifiers: [NSEvent.ModifierFlags] = [],
+        modifiers: NSEvent.ModifierFlags = [],
         keys: [Input] = []
     ) {
         self.modifiers = modifiers

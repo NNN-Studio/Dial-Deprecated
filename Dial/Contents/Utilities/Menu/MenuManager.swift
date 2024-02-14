@@ -7,6 +7,7 @@
 
 import Foundation
 import AppKit
+import Defaults
 
 extension NSMenuItem {
     
@@ -47,8 +48,27 @@ class MenuOptionItem<Type>: NSMenuItem {
 
 class ControllerOptionItem: MenuOptionItem<Controller> {
     
-    init(_ title: String, controller: Controller) {
-        super.init(title, option: controller)
+}
+
+class ModifiersOptionItem: MenuOptionItem<NSEvent.ModifierFlags> {
+    
+    enum ActionTarget: CaseIterable, Codable, Defaults.Serializable {
+        
+        case rotateClockwise
+        
+        case rotateCounterclockwise
+        
+        case clickSingle
+        
+        case clickDouble
+        
+    }
+    
+    let actionTarget: ActionTarget
+    
+    init(_ title: String, option: NSEvent.ModifierFlags, actionTarget: ActionTarget) {
+        self.actionTarget = actionTarget
+        super.init(title, option: option)
     }
     
     required init(coder: NSCoder) {

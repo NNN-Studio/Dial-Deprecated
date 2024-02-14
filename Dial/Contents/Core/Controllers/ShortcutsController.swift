@@ -8,6 +8,7 @@
 import Foundation
 import Defaults
 import SFSafeSymbols
+import AppKit
 
 class ShortcutsController: Controller {
     
@@ -48,13 +49,29 @@ class ShortcutsController: Controller {
             var double: ShortcutArray
             
             init(
-                rotation: [Direction : ShortcutArray] = [.clockwise: ShortcutArray(), .counterclockwise: ShortcutArray()],
+                rotation: [Direction : ShortcutArray] = [
+                    .clockwise: .init(),
+                    .counterclockwise: .init()
+                ],
                 single: ShortcutArray = ShortcutArray(),
                 double: ShortcutArray = ShortcutArray()
             ) {
                 self.rotation = rotation
                 self.single = single
                 self.double = double
+            }
+            
+            func getModifiersOf(_ actionTarget: ModifiersOptionItem.ActionTarget) -> NSEvent.ModifierFlags {
+                switch actionTarget {
+                case .rotateClockwise:
+                    rotation[.clockwise]?.modifiers ?? []
+                case .rotateCounterclockwise:
+                    rotation[.counterclockwise]?.modifiers ?? []
+                case .clickSingle:
+                    single.modifiers
+                case .clickDouble:
+                    double.modifiers
+                }
             }
             
         }

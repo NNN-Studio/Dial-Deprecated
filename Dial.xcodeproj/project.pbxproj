@@ -39,6 +39,7 @@
 		28DBB1682B7904B200743575 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1672B7904B200743575 /* MainController.swift */; };
 		28FA280C2B78A3310071FB1B /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 28FA280B2B78A3310071FB1B /* SFSafeSymbols */; };
 		28FCB92C2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCB92B2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift */; };
+		28FCB92E2B7C34DC0071AE01 /* ModifiersMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCB92D2B7C34DC0071AE01 /* ModifiersMenuItems.swift */; };
 		C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882FA1926F1430C00595EE1 /* AppDelegate.swift */; };
 		C882FA1E26F1430D00595EE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C882FA1D26F1430D00595EE1 /* Assets.xcassets */; };
 		C882FA2426F1430D00595EE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C882FA2226F1430D00595EE1 /* Main.storyboard */; };
@@ -84,6 +85,7 @@
 		28DBB1632B79046D00743575 /* SymbolRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolRepresentation.swift; sourceTree = "<group>"; };
 		28DBB1672B7904B200743575 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		28FCB92B2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationTypeMenuItems.swift; sourceTree = "<group>"; };
+		28FCB92D2B7C34DC0071AE01 /* ModifiersMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifiersMenuItems.swift; sourceTree = "<group>"; };
 		C882FA1926F1430C00595EE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C882FA1D26F1430D00595EE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C882FA2326F1430D00595EE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				28D9F47B2B7A301000494B7E /* SubmenuItems.swift */,
 				280AA0862B7AF64600798BB1 /* ControllerMenuItems.swift */,
 				28FCB92B2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift */,
+				28FCB92D2B7C34DC0071AE01 /* ModifiersMenuItems.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				28D9F4622B79C29100494B7E /* DefaultController.swift in Sources */,
 				28D9F4792B7A13E100494B7E /* NSString+Extension.swift in Sources */,
 				C89D24292703BA5E00B1A458 /* Controller.swift in Sources */,
+				28FCB92E2B7C34DC0071AE01 /* ModifiersMenuItems.swift in Sources */,
 				28B833C32B77615500D96825 /* ControllersViewController.swift in Sources */,
 				28B833C02B77582C00D96825 /* ShortcutArray.swift in Sources */,
 				C89D242D2704870C00B1A458 /* PlaybackController.swift in Sources */,

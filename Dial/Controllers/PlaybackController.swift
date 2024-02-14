@@ -30,12 +30,12 @@ class PlaybackController: DefaultController {
         buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval,
         _ callback: Dial.Callback
     ) {
-        var modifiers: [NSEvent.ModifierFlags]
+        var modifiers: NSEvent.ModifierFlags
         var action: [Device.ButtonState: [Direction: (aux: [Int32], normal: [Input])]] = [:]
         
         switch buttonState {
         case .pressed:
-            modifiers = [NSEvent.ModifierFlags.shift, NSEvent.ModifierFlags.option]
+            modifiers = [.shift, .option]
             action[.pressed] = [
                 .clockwise: (aux: [Input.keyVolumeUp], normal: []),
                 .counterclockwise: (aux: [Input.keyVolumeDown], normal: [])

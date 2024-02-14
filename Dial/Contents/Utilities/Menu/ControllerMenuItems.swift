@@ -43,7 +43,7 @@ struct ControllerMenuItems {
     
     var controllers: [ControllerOptionItem] {
         source.fetch.map { controller in
-            let item = ControllerOptionItem(controller.name, controller: controller)
+            let item = ControllerOptionItem(controller.name, option: controller)
             
             item.target = delegate
             item.action = #selector(delegate.setController(_:))

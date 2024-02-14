@@ -278,7 +278,7 @@ enum Input: Int32, CaseIterable, Codable, Defaults.Serializable {
         keyCode == rawValue
     }
     
-    func post(modifiers: [NSEvent.ModifierFlags] = []) {
+    func post(modifiers: NSEvent.ModifierFlags = []) {
         Input.postKeys([self], modifiers: modifiers)
     }
     
@@ -332,14 +332,9 @@ extension Input {
     }
     
     // https://stackoverflow.com/a/55854051
-    static func postAuxKeys(_ keys: [Int32], modifiers: [NSEvent.ModifierFlags] = [], _repeat: Int = 1) {
+    static func postAuxKeys(_ keys: [Int32], modifiers: NSEvent.ModifierFlags = [], _repeat: Int = 1) {
         func doKey(_ key: Int32, down: Bool) {
-            var rawFlags: UInt = (down ? 0xa00 : 0xb00);
-            
-            for modifier in modifiers {
-                rawFlags |= modifier.rawValue
-            }
-            
+            let rawFlags: UInt = (down ? 0xa00 : 0xb00) | modifiers.rawValue;
             let flags = NSEvent.ModifierFlags(rawValue: rawFlags)
             
             let data1 = Int((key << 16) | (down ? 0xa00 : 0xb00))
@@ -368,7 +363,7 @@ extension Input {
         }
     }
     
-    static func postKeys(_ keys: [Input], modifiers: [NSEvent.ModifierFlags] = [], _repeat: Int = 1) {
+    static func postKeys(_ keys: [Input], modifiers: NSEvent.ModifierFlags = [], _repeat: Int = 1) {
         func doKey(_ key: Int32, down: Bool) {
             guard let eventSource = CGEventSource(stateID: .hidSystemState) else {
                 print("Failed to create event source")
@@ -380,7 +375,7 @@ extension Input {
                 virtualKey: CGKeyCode(key),
                 keyDown: down
             )
-            ev?.flags = CGEventFlags(rawValue: (modifiers.reduce(0) { $0 | UInt64($1.rawValue) }))
+            ev?.flags = CGEventFlags(rawValue: UInt64(modifiers.rawValue))
             ev?.post(tap: .cghidEventTap)
         }
         

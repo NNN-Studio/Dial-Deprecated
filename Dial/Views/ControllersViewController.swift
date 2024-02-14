@@ -101,9 +101,28 @@ class ControllersViewController: NSViewController {
     
     private var shortcutsControllerMenuItems: ControllerMenuItems?
     
+    
+    
     private var rotationTypeMenuManager: MenuManager?
     
     private var rotationTypeMenuItems: RotationTypeMenuItems?
+    
+    
+    
+    private var modifiersMenuManagers: [ModifiersOptionItem.ActionTarget: MenuManager] = [:]
+    
+    private var modifiersMenuItemsArray: [ModifiersOptionItem.ActionTarget: ModifiersMenuItems] = [:]
+    
+    private var popUpButtonShortcutsModifiersArray: [ModifiersOptionItem.ActionTarget: NSPopUpButton] {
+        [
+            .rotateClockwise: popUpButtonShortcuts1Modifiers1,
+            .rotateCounterclockwise: popUpButtonShortcuts1Modifiers2,
+            .clickSingle: popUpButtonShortcuts2Modifiers1,
+            .clickDouble: popUpButtonShortcuts2Modifiers2
+        ]
+    }
+    
+    
     
     private var segment: Segment = .shortcuts
     
@@ -144,9 +163,18 @@ extension ControllersViewController: NSMenuDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         defaultControllerMenuItems = .init(delegate: self, source: .default)
         shortcutsControllerMenuItems = .init(delegate: self, source: .shortcuts)
+        
         rotationTypeMenuItems = .init(delegate: self)
+        
+        modifiersMenuItemsArray = [
+            .rotateClockwise: .init(delegate: self, actionTarget: .rotateClockwise),
+            .rotateCounterclockwise: .init(delegate: self, actionTarget: .rotateCounterclockwise),
+            .clickSingle: .init(delegate: self, actionTarget: .clickSingle),
+            .clickDouble: .init(delegate: self, actionTarget: .clickDouble)
+        ]
         
         initDescriptives()
         initInteractives()
@@ -225,10 +253,18 @@ extension ControllersViewController: NSMenuDelegate {
                         if
                             let rotationType = item.representedObject as? Dial.Rotation.RawType,
                             rotationType == shortcutsController.settings.rotationType
-                        {
-                            popUpButtonRotationType.selectItem(at: index)
-                        }
-                        
+                        { popUpButtonRotationType.selectItem(at: index) }
+                    }
+                    
+                    refreshModifiersMenuManagers()
+                    
+                    popUpButtonShortcuts1Modifiers1.menu = modifiersMenuManagers[.rotateClockwise]?.menu
+                    popUpButtonShortcuts1Modifiers2.menu = modifiersMenuManagers[.rotateCounterclockwise]?.menu
+                    
+                    popUpButtonShortcuts2Modifiers1.menu = modifiersMenuManagers[.clickSingle]?.menu
+                    popUpButtonShortcuts2Modifiers2.menu = modifiersMenuManagers[.clickDouble]?.menu
+                    
+                    for actionTarget in ModifiersOptionItem.ActionTarget.allCases {
                     }
                 }
                 
@@ -239,9 +275,7 @@ extension ControllersViewController: NSMenuDelegate {
                     if
                         let controller = item.representedObject as? Controller,
                         controller.id == Controllers.selectedController.id
-                    {
-                        popUpButtonControllerSelector.selectItem(at: index)
-                    }
+                    { popUpButtonControllerSelector.selectItem(at: index) }
                     
                 }
             }
@@ -288,6 +322,18 @@ extension ControllersViewController {
         }
     }
     
+    func refreshModifiersMenuManagers() {
+        for actionTarget in ModifiersOptionItem.ActionTarget.allCases {
+            modifiersMenuManagers[actionTarget] = .init(delegate: self) {
+                var items: [MenuManager.MenuItemGroup] = []
+                
+                items.append(MenuManager.groupItems(modifiersMenuItemsArray[actionTarget]!.modifiersOptions))
+                
+                return items
+            }
+        }
+    }
+    
 }
 
 extension ControllersViewController {
@@ -327,6 +373,16 @@ extension ControllersViewController: DialRotationTypeMenuDelegate {
         guard let item = sender as? MenuOptionItem<Dial.Rotation.RawType> else { return }
         
         Controllers.selectedSettings?.rotationType = item.option
+    }
+    
+}
+
+extension ControllersViewController: DialModifiersMenuDelegate {
+    
+    func setModifiers(_ sender: Any?) {
+        guard let option = sender as? ModifiersOptionItem else { return }
+        
+        print(option.actionTarget)
     }
     
 }
