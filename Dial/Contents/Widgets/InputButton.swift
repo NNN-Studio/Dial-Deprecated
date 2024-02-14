@@ -13,6 +13,12 @@ class InputButton: NSButton {
     
     var keys: [Input] = []
     
+    let task = Task { @MainActor in
+        for await value in observationTrackingStream({ SettingsWindowController.shared.pressedKey }) {
+            print(100)
+        }
+    }
+    
     override func mouseDown(with event: NSEvent) {
         print("down")
         listening = true
@@ -23,12 +29,6 @@ class InputButton: NSButton {
         listening = false
         sendAction(action, to: target)
         print(keys)
-    }
-    
-    override func keyDown(with event: NSEvent) {
-        print(1)
-        let key = Input(rawValue: Int32(event.keyCode))
-        if let key, key != .unknown { keys.append(key) }
     }
     
 }

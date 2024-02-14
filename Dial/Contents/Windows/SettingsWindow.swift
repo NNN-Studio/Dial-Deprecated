@@ -8,7 +8,7 @@
 import Cocoa
 import SwiftUI
 
-class SettingsWindowController: NSWindowController {
+@Observable class SettingsWindowController: NSWindowController {
     
     static let shared: SettingsWindowController = {
         return NSStoryboard(
@@ -17,7 +17,11 @@ class SettingsWindowController: NSWindowController {
         ).instantiateController(withIdentifier: "SettingsWindowController") as! SettingsWindowController
     }()
     
+    var pressedKey: Input = .unknown
+    
     override func windowDidLoad() {
+        super.windowDidLoad()
+        
         self.window?.level = .mainMenu
         self.window?.center()
         self.window?.makeKeyAndOrderFront(nil)
@@ -25,6 +29,11 @@ class SettingsWindowController: NSWindowController {
     
     override func keyDown(with event: NSEvent) {
         let keyCode = Int32(event.keyCode)
+        print(keyCode)
+        
+        if let key = Input(rawValue: keyCode) {
+            pressedKey = key
+        }
         
         if event.modifierFlags.contains(.command) && (Input.keyQ.conformsTo(keyCode) || Input.keyW.conformsTo(keyCode)) {
             // Closes with Command+W / Command+W
