@@ -80,7 +80,7 @@ class ShortcutsController: Controller {
                 activated: Bool
             ) {
                 let original = getModifiersOf(actionTarget)
-                let modified = activated ? original.union(modifiers) : original.subtracting(original)
+                let modified = activated ? original.union(modifiers) : original.subtracting(modifiers)
                 
                 switch actionTarget {
                 case .rotateClockwise:
