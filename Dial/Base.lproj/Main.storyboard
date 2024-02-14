@@ -951,7 +951,7 @@
                                                                                         </menu>
                                                                                     </popUpButtonCell>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="75" id="DWF-Vm-z1Y"/>
+                                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="DWF-Vm-z1Y"/>
                                                                                     </constraints>
                                                                                 </popUpButton>
                                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="HcH-r1-2AU">
@@ -1114,7 +1114,7 @@
                                                                                         </menu>
                                                                                     </popUpButtonCell>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" constant="75" id="nbz-6k-4m3"/>
+                                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="nbz-6k-4m3"/>
                                                                                     </constraints>
                                                                                 </popUpButton>
                                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="qeC-AC-khf">

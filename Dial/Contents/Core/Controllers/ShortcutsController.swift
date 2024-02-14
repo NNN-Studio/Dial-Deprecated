@@ -74,6 +74,26 @@ class ShortcutsController: Controller {
                 }
             }
             
+            mutating func setModifiersFor(
+                _ actionTarget: ModifiersOptionItem.ActionTarget,
+                modifiers: NSEvent.ModifierFlags,
+                activated: Bool
+            ) {
+                let original = getModifiersOf(actionTarget)
+                let modified = activated ? original.union(modifiers) : original.subtracting(original)
+                
+                switch actionTarget {
+                case .rotateClockwise:
+                    rotation[.clockwise]?.modifiers = modified
+                case .rotateCounterclockwise:
+                    rotation[.counterclockwise]?.modifiers = modified
+                case .clickSingle:
+                    single.modifiers = modified
+                case .clickDouble:
+                    double.modifiers = modified
+                }
+            }
+            
         }
         
         init(

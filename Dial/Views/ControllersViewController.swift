@@ -263,9 +263,6 @@ extension ControllersViewController: NSMenuDelegate {
                     
                     popUpButtonShortcuts2Modifiers1.menu = modifiersMenuManagers[.clickSingle]?.menu
                     popUpButtonShortcuts2Modifiers2.menu = modifiersMenuManagers[.clickDouble]?.menu
-                    
-                    for actionTarget in ModifiersOptionItem.ActionTarget.allCases {
-                    }
                 }
                 
                 refreshControllersMenuManager()
@@ -382,7 +379,12 @@ extension ControllersViewController: DialModifiersMenuDelegate {
     func setModifiers(_ sender: Any?) {
         guard let option = sender as? ModifiersOptionItem else { return }
         
-        print(option.actionTarget)
+        option.flag.toggle()
+        Controllers.selectedSettings?.shortcuts.setModifiersFor(
+            option.actionTarget,
+            modifiers: option.option,
+            activated: option.flag
+        )
     }
     
 }

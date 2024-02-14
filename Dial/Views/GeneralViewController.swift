@@ -99,6 +99,8 @@ extension GeneralViewController {
         
         buttonQuit.title = Localization.quit.localizedName
         
+        labelAutoHidesIconDescription.isHidden = true // Avoid glitches
+        
         let directionMenu = NSMenu()
         submenuItems?.directionOptions.forEach(directionMenu.addItem(_:))
         popUpButtonDirection.menu = directionMenu

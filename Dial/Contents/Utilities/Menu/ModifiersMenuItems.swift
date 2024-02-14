@@ -22,13 +22,15 @@ struct ModifiersMenuItems {
     
     let actionTarget: ModifiersOptionItem.ActionTarget
     
-    var modifiersOptions: [ModifiersOptionItem] {
+    var modifiersOptions: [NSMenuItem] {
         let options: [ModifiersOptionItem] = [
             .init("􀆔", option: .command, actionTarget: actionTarget),
             .init("􀆕", option: .option, actionTarget: actionTarget),
             .init("􀆍", option: .control, actionTarget: actionTarget),
             .init("􀆝", option: .shift, actionTarget: actionTarget)
         ]
+        
+        let title = NSMenuItem(title: "")
         
         for option in options {
             option.target = delegate
@@ -41,11 +43,21 @@ struct ModifiersMenuItems {
                             option.flag = controller.settings.shortcuts.getModifiersOf(actionTarget).contains(option.option)
                         }
                     }
+                    
+                    title.title = options
+                        .filter { $0.flag }
+                        .map { $0.title }
+                        .joined()
                 }
             }
         }
         
-        return options
+        var items: [NSMenuItem] = []
+        
+        items.append(title)
+        items.append(contentsOf: options)
+        
+        return items
     }
     
 }
