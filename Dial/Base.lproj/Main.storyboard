@@ -882,7 +882,7 @@
                                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="EuR-Jj-NhP"/>
                                                                                     </constraints>
                                                                                 </popUpButton>
-                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="m9N-8h-kRf">
+                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="m9N-8h-kRf" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                                     <rect key="frame" x="85" y="0.0" width="160" height="32"/>
                                                                                     <buttonCell key="cell" type="inline" title="M 􀥌1" bezelStyle="inline" alignment="center" scrollable="YES" lineBreakMode="clipping" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HFa-rp-Fr5">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -891,6 +891,9 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="32" id="tbJ-1I-0kW"/>
                                                                                     </constraints>
+                                                                                    <connections>
+                                                                                        <action selector="toggleShortcutsKeys:" target="24w-Ra-sQb" id="9n2-HB-Kaj"/>
+                                                                                    </connections>
                                                                                 </button>
                                                                                 <imageView toolTip="Triggers when dialed clockwisely." horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xa9-FX-na8">
                                                                                     <rect key="frame" x="253" y="-6" width="32.5" height="44"/>
@@ -954,7 +957,7 @@
                                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="DWF-Vm-z1Y"/>
                                                                                     </constraints>
                                                                                 </popUpButton>
-                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="HcH-r1-2AU">
+                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="HcH-r1-2AU" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                                     <rect key="frame" x="83" y="0.0" width="162" height="32"/>
                                                                                     <buttonCell key="cell" type="inline" title="Press and enter" bezelStyle="inline" alignment="center" scrollable="YES" lineBreakMode="clipping" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RAv-6F-xWz">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -963,6 +966,9 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="32" id="kWK-Ln-gUt"/>
                                                                                     </constraints>
+                                                                                    <connections>
+                                                                                        <action selector="toggleShortcutsKeys:" target="24w-Ra-sQb" id="M51-cJ-hVS"/>
+                                                                                    </connections>
                                                                                 </button>
                                                                                 <imageView toolTip="Triggers when dialed counterclockwisely." horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="du3-b5-oEf">
                                                                                     <rect key="frame" x="253" y="-6" width="32.5" height="44"/>
@@ -1045,7 +1051,7 @@
                                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="bPD-X9-i5K"/>
                                                                                     </constraints>
                                                                                 </popUpButton>
-                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="VEM-eW-IqD">
+                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="VEM-eW-IqD" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                                     <rect key="frame" x="83" y="0.0" width="162" height="32"/>
                                                                                     <buttonCell key="cell" type="inline" title="Release to cancel" bezelStyle="inline" alignment="center" scrollable="YES" lineBreakMode="clipping" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dFk-Hp-yCC">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1054,6 +1060,9 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="32" id="xrJ-GV-mdC"/>
                                                                                     </constraints>
+                                                                                    <connections>
+                                                                                        <action selector="toggleShortcutsKeys:" target="24w-Ra-sQb" id="m0n-IK-KlZ"/>
+                                                                                    </connections>
                                                                                 </button>
                                                                                 <imageView toolTip="Triggers when clicked." horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kzW-ll-5mS">
                                                                                     <rect key="frame" x="253" y="-5.5" width="32.5" height="46"/>
@@ -1117,7 +1126,7 @@
                                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="nbz-6k-4m3"/>
                                                                                     </constraints>
                                                                                 </popUpButton>
-                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="qeC-AC-khf">
+                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="qeC-AC-khf" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                                     <rect key="frame" x="83" y="0.0" width="162" height="32"/>
                                                                                     <buttonCell key="cell" type="inline" title="=" bezelStyle="inline" alignment="center" scrollable="YES" lineBreakMode="clipping" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cZo-gq-Kjk">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1126,6 +1135,9 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="32" id="vZS-z9-Ss5"/>
                                                                                     </constraints>
+                                                                                    <connections>
+                                                                                        <action selector="toggleShortcutsKeys:" target="24w-Ra-sQb" id="snu-Nf-TIQ"/>
+                                                                                    </connections>
                                                                                 </button>
                                                                                 <imageView toolTip="Triggers when double clicked." horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hNm-Mp-ggM">
                                                                                     <rect key="frame" x="253" y="-5.5" width="32.5" height="46"/>
@@ -1452,6 +1464,10 @@
                         <outlet property="buttonAddController" destination="L2C-Is-cEu" id="A99-rw-Qyy"/>
                         <outlet property="buttonDeleteController" destination="rFv-gE-b3s" id="ck2-Sv-ONN"/>
                         <outlet property="buttonIconChooser" destination="xl0-8n-ldy" id="FgV-wt-ipo"/>
+                        <outlet property="buttonShortcuts1Keys1" destination="m9N-8h-kRf" id="SMU-GV-3Hs"/>
+                        <outlet property="buttonShortcuts1Keys2" destination="HcH-r1-2AU" id="Ii7-lV-gqT"/>
+                        <outlet property="buttonShortcuts2Keys1" destination="VEM-eW-IqD" id="yPx-qV-7Gu"/>
+                        <outlet property="buttonShortcuts2Keys2" destination="qeC-AC-khf" id="red-uw-Pz5"/>
                         <outlet property="labelAlternativeDirection" destination="UKi-ZL-NIM" id="ANh-hz-8pp"/>
                         <outlet property="labelDefaultControllerDescription" destination="EJv-n7-vPd" id="vqz-vG-POz"/>
                         <outlet property="labelHaptics" destination="xTP-kC-eEq" id="ld8-WV-SPB"/>
@@ -1460,12 +1476,8 @@
                         <outlet property="labelSerial" destination="J4v-P7-MhA" id="x2M-15-HXz"/>
                         <outlet property="popUpButtonControllerSelector" destination="MmK-EL-Ebs" id="TWk-tJ-ugF"/>
                         <outlet property="popUpButtonRotationType" destination="evj-aA-GZI" id="hhO-C4-Rvt"/>
-                        <outlet property="popUpButtonShortcuts1Keys1" destination="m9N-8h-kRf" id="7nf-za-btu"/>
-                        <outlet property="popUpButtonShortcuts1Keys2" destination="HcH-r1-2AU" id="qWY-gQ-wbx"/>
                         <outlet property="popUpButtonShortcuts1Modifiers1" destination="kic-hx-6rq" id="CMi-gI-ixL"/>
                         <outlet property="popUpButtonShortcuts1Modifiers2" destination="3vu-0s-p8m" id="pOQ-94-7Ob"/>
-                        <outlet property="popUpButtonShortcuts2Keys1" destination="VEM-eW-IqD" id="Bca-Ou-ghS"/>
-                        <outlet property="popUpButtonShortcuts2Keys2" destination="qeC-AC-khf" id="pap-5u-nkY"/>
                         <outlet property="popUpButtonShortcuts2Modifiers1" destination="8sR-nY-Jr8" id="c5g-D7-DOU"/>
                         <outlet property="popUpButtonShortcuts2Modifiers2" destination="Opw-jK-MJW" id="88e-tx-cKh"/>
                         <outlet property="segmentedControlShortcutsAdvanced" destination="ct0-HU-jl1" id="Lje-Rr-NAB"/>

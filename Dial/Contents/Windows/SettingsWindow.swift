@@ -24,7 +24,6 @@ class SettingsWindowController: NSWindowController {
     }
     
     override func keyDown(with event: NSEvent) {
-        print(event.keyCode, event.modifierFlags)
         let keyCode = Int32(event.keyCode)
         
         if event.modifierFlags.contains(.command) && (Input.keyQ.conformsTo(keyCode) || Input.keyW.conformsTo(keyCode)) {

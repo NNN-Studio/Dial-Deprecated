@@ -51,21 +51,21 @@ class ControllersViewController: NSViewController {
     
     @IBOutlet weak var popUpButtonShortcuts1Modifiers1: NSPopUpButton!
     
-    @IBOutlet weak var popUpButtonShortcuts1Keys1: NSButton!
+    @IBOutlet weak var buttonShortcuts1Keys1: InputButton!
     
     @IBOutlet weak var popUpButtonShortcuts1Modifiers2: NSPopUpButton!
     
-    @IBOutlet weak var popUpButtonShortcuts1Keys2: NSButton!
+    @IBOutlet weak var buttonShortcuts1Keys2: InputButton!
     
     
     
     @IBOutlet weak var popUpButtonShortcuts2Modifiers1: NSPopUpButton!
     
-    @IBOutlet weak var popUpButtonShortcuts2Keys1: NSButton!
+    @IBOutlet weak var buttonShortcuts2Keys1: InputButton!
     
     @IBOutlet weak var popUpButtonShortcuts2Modifiers2: NSPopUpButton!
     
-    @IBOutlet weak var popUpButtonShortcuts2Keys2: NSButton!
+    @IBOutlet weak var buttonShortcuts2Keys2: InputButton!
     
     
     
@@ -197,7 +197,7 @@ extension ControllersViewController: NSMenuDelegate {
         }
     }
     
-    func initInteractives() {
+    func initInteractives() {        
         Task { @MainActor in
             for await _ in Defaults.updates([
                 .selectedControllerID,
@@ -449,6 +449,11 @@ extension ControllersViewController {
     
     @IBAction func openIconChooser(_ sender: NSButton) {
         
+    }
+    
+    @IBAction func toggleShortcutsKeys(_ sender: InputButton) {
+        print(sender.flag)
+        if sender.flag { sender.flag = false }
     }
     
 }

@@ -40,6 +40,7 @@
 		28FA280C2B78A3310071FB1B /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 28FA280B2B78A3310071FB1B /* SFSafeSymbols */; };
 		28FCB92C2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCB92B2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift */; };
 		28FCB92E2B7C34DC0071AE01 /* ModifiersMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCB92D2B7C34DC0071AE01 /* ModifiersMenuItems.swift */; };
+		28FCB9342B7C5ADB0071AE01 /* InputButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCB9332B7C5ADB0071AE01 /* InputButton.swift */; };
 		C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882FA1926F1430C00595EE1 /* AppDelegate.swift */; };
 		C882FA1E26F1430D00595EE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C882FA1D26F1430D00595EE1 /* Assets.xcassets */; };
 		C882FA2426F1430D00595EE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C882FA2226F1430D00595EE1 /* Main.storyboard */; };
@@ -86,6 +87,7 @@
 		28DBB1672B7904B200743575 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
 		28FCB92B2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationTypeMenuItems.swift; sourceTree = "<group>"; };
 		28FCB92D2B7C34DC0071AE01 /* ModifiersMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifiersMenuItems.swift; sourceTree = "<group>"; };
+		28FCB9332B7C5ADB0071AE01 /* InputButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputButton.swift; sourceTree = "<group>"; };
 		C882FA1926F1430C00595EE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C882FA1D26F1430D00595EE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C882FA2326F1430D00595EE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 		28B685292AEC01BC008EBE98 /* Contents */ = {
 			isa = PBXGroup;
 			children = (
+				28FCB9322B7C5ACE0071AE01 /* Widgets */,
 				28DBB1652B79048200743575 /* Windows */,
 				28D278E92AEFC25100844ADE /* Utilities */,
 				28D278E82AEFC23E00844ADE /* Core */,
@@ -234,6 +237,14 @@
 				28B833BB2B7747D200D96825 /* ShortcutsController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		28FCB9322B7C5ACE0071AE01 /* Widgets */ = {
+			isa = PBXGroup;
+			children = (
+				28FCB9332B7C5ADB0071AE01 /* InputButton.swift */,
+			);
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 		C882FA0D26F1430C00595EE1 = {
@@ -372,6 +383,7 @@
 				2822C3D82B75C44B000D5C58 /* Defaults+Structures.swift in Sources */,
 				28D9F47C2B7A301000494B7E /* SubmenuItems.swift in Sources */,
 				28DBB1612B7903D000743575 /* Localization.swift in Sources */,
+				28FCB9342B7C5ADB0071AE01 /* InputButton.swift in Sources */,
 				C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */,
 				28FCB92C2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift in Sources */,
 				28D9F4622B79C29100494B7E /* DefaultController.swift in Sources */,
