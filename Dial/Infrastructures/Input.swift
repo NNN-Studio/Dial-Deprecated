@@ -263,7 +263,7 @@ enum Input: Int32, CaseIterable, Codable, Defaults.Serializable {
             "/"
             
         case .keyF1, .keyF2, .keyF3, .keyF4, .keyF5, .keyF6, .keyF7, .keyF8, .keyF9, .keyF10, .keyF11, .keyF12:
-            "􀥌" + String(describing: self).replacing(/^keyF/, with: "􀥌")
+            String(describing: self).replacing(/^keyF/, with: "􀥌")
             
         default:
             String(describing: self).replacing(/^key/, with: "")

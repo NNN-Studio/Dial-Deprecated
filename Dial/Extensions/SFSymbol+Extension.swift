@@ -12,7 +12,7 @@ extension SFSymbol {
     
     static let circleFillSuffix = ".circle.fill"
     
-    static let fallback: SFSymbol = .questionmark
+    static let fallback: SFSymbol = .gear
     
     static var circleFillableSymbols: [SFSymbol] {
         SFSymbol.allSymbols

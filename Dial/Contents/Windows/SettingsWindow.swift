@@ -29,7 +29,6 @@ import SwiftUI
     
     override func keyDown(with event: NSEvent) {
         let keyCode = Int32(event.keyCode)
-        print(keyCode)
         
         if let key = Input(rawValue: keyCode) {
             pressedKey = key
@@ -38,6 +37,12 @@ import SwiftUI
         if event.modifierFlags.contains(.command) && (Input.keyQ.conformsTo(keyCode) || Input.keyW.conformsTo(keyCode)) {
             // Closes with Command+W / Command+W
             close()
+        }
+    }
+    
+    static func loseFocus() {
+        DispatchQueue.main.async {
+            NSApp.keyWindow?.makeFirstResponder(nil)
         }
     }
 

@@ -377,6 +377,7 @@ extension ControllersViewController: DialRotationTypeMenuDelegate {
 extension ControllersViewController: DialModifiersMenuDelegate {
     
     func setModifiers(_ sender: Any?) {
+        // Well, this hack makes @IBAction unnecessary
         guard let option = sender as? ModifiersOptionItem else { return }
         
         option.flag.toggle()
@@ -443,8 +444,8 @@ extension ControllersViewController {
     // MARK: - Shortcuts options
     
     @IBAction func rename(_ sender: NSTextField) {
-        print(sender.stringValue)
-        Controllers.selectedSettings?.name = sender.stringValue
+        Controllers.selectedSettings?.name = sender.stringValue.isEmpty ? nil : sender.stringValue
+        SettingsWindowController.loseFocus()
     }
     
     @IBAction func openIconChooser(_ sender: NSButton) {
@@ -452,8 +453,21 @@ extension ControllersViewController {
     }
     
     @IBAction func toggleShortcutsKeys(_ sender: InputButton) {
-        print(sender.flag)
-        if sender.flag { sender.flag = false }
+        if sender == buttonShortcuts1Keys1 {
+            Controllers.selectedSettings?.shortcuts.rotation[.clockwise]?.keys = sender.keys
+        }
+        
+        if sender == buttonShortcuts1Keys2 {
+            Controllers.selectedSettings?.shortcuts.rotation[.counterclockwise]?.keys = sender.keys
+        }
+        
+        if sender == buttonShortcuts2Keys1 {
+            Controllers.selectedSettings?.shortcuts.single.keys = sender.keys
+        }
+        
+        if sender == buttonShortcuts2Keys2 {
+            Controllers.selectedSettings?.shortcuts.double.keys = sender.keys
+        }
     }
     
 }
