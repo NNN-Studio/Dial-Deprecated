@@ -41,6 +41,7 @@
 		28FCB92C2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCB92B2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift */; };
 		28FCB92E2B7C34DC0071AE01 /* ModifiersMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCB92D2B7C34DC0071AE01 /* ModifiersMenuItems.swift */; };
 		28FCB9342B7C5ADB0071AE01 /* InputButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCB9332B7C5ADB0071AE01 /* InputButton.swift */; };
+		28FCB9362B7DA21C0071AE01 /* IconChooserWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCB9352B7DA21C0071AE01 /* IconChooserWindow.swift */; };
 		C882FA1A26F1430C00595EE1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C882FA1926F1430C00595EE1 /* AppDelegate.swift */; };
 		C882FA1E26F1430D00595EE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C882FA1D26F1430D00595EE1 /* Assets.xcassets */; };
 		C882FA2426F1430D00595EE1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C882FA2226F1430D00595EE1 /* Main.storyboard */; };
@@ -88,6 +89,7 @@
 		28FCB92B2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationTypeMenuItems.swift; sourceTree = "<group>"; };
 		28FCB92D2B7C34DC0071AE01 /* ModifiersMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifiersMenuItems.swift; sourceTree = "<group>"; };
 		28FCB9332B7C5ADB0071AE01 /* InputButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputButton.swift; sourceTree = "<group>"; };
+		28FCB9352B7DA21C0071AE01 /* IconChooserWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconChooserWindow.swift; sourceTree = "<group>"; };
 		C882FA1926F1430C00595EE1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C882FA1D26F1430D00595EE1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C882FA2326F1430D00595EE1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 			children = (
 				2822C3F12B75F909000D5C58 /* SettingsWindow.swift */,
 				2867F1822AEC8D3B0029C937 /* DialWindow.swift */,
+				28FCB9352B7DA21C0071AE01 /* IconChooserWindow.swift */,
 			);
 			path = Windows;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				28D9F46E2B79ED2B00494B7E /* MenuItems.swift in Sources */,
 				2801CAB52AEDF18000E95B5F /* MissionController.swift in Sources */,
 				28C7A0A22AEE06E8003113D5 /* Input.swift in Sources */,
+				28FCB9362B7DA21C0071AE01 /* IconChooserWindow.swift in Sources */,
 				2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */,
 				28D9F46C2B79EC8C00494B7E /* NSImage+Extension.swift in Sources */,
 				2822C3D82B75C44B000D5C58 /* Defaults+Structures.swift in Sources */,

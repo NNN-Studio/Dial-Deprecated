@@ -134,6 +134,10 @@ class ControllersViewController: NSViewController {
         
     }
     
+    
+    
+    private var iconChooserPopover: NSPopover = .init()
+    
 }
 
 extension ControllersViewController {
@@ -159,7 +163,7 @@ extension ControllersViewController {
     
 }
 
-extension ControllersViewController: NSMenuDelegate {
+extension ControllersViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,6 +179,11 @@ extension ControllersViewController: NSMenuDelegate {
             .clickSingle: .init(delegate: self, actionTarget: .clickSingle),
             .clickDouble: .init(delegate: self, actionTarget: .clickDouble)
         ]
+        
+        iconChooserPopover.delegate = self
+        iconChooserPopover.contentViewController = IconChooserViewController()
+        iconChooserPopover.contentSize = .init(width: 275, height: 375)
+        iconChooserPopover.behavior = .transient
         
         initDescriptives()
         initInteractives()
@@ -281,7 +290,7 @@ extension ControllersViewController: NSMenuDelegate {
     
 }
 
-extension ControllersViewController {
+extension ControllersViewController: NSMenuDelegate {
     
     func refreshControllersMenuManager() {
         controllersMenuManager = .init(delegate: self) {
@@ -329,6 +338,14 @@ extension ControllersViewController {
                 return items
             }
         }
+    }
+    
+}
+
+extension ControllersViewController: NSPopoverDelegate {
+    
+    func popoverShouldDetach(_ popover: NSPopover) -> Bool {
+        true
     }
     
 }
@@ -449,7 +466,15 @@ extension ControllersViewController {
     }
     
     @IBAction func openIconChooser(_ sender: NSButton) {
-        
+        if iconChooserPopover.isShown {
+            iconChooserPopover.close()
+        } else {
+            iconChooserPopover.show(
+                relativeTo: sender.visibleRect,
+                of: sender,
+                preferredEdge: .maxX
+            )
+        }
     }
     
     @IBAction func toggleShortcutsKeys(_ sender: InputButton) {
