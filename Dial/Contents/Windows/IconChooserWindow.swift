@@ -12,11 +12,28 @@ import SFSafeSymbols
 class IconChooserViewController: NSViewController {
     
     static func preloadView() {
+        let scrollView = NSScrollView()
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.hasVerticalScroller = true
+        scrollView.hasHorizontalScroller = false
+        
+        NSLayoutConstraint.activate([
+            scrollView.widthAnchor.constraint(equalToConstant: 275),
+            scrollView.heightAnchor.constraint(equalToConstant: 375)
+        ])
+        
         let vStackView = NSStackView()
         let columns: Int = 5
+        scrollView.documentView = vStackView
         
         vStackView.translatesAutoresizingMaskIntoConstraints = false
         vStackView.orientation = .vertical
+        
+        NSLayoutConstraint.activate([
+            vStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 12),
+            vStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -12)
+        ])
         
         for (index, icon) in SFSymbol.circleFillableSymbols.enumerated() {
             let row = index / columns
@@ -27,8 +44,10 @@ class IconChooserViewController: NSViewController {
                 
                 hStackView.translatesAutoresizingMaskIntoConstraints = false
                 hStackView.orientation = .horizontal
+                hStackView.distribution = .fillEqually
                 
                 NSLayoutConstraint.activate([
+                    hStackView.heightAnchor.constraint(equalToConstant: 55),
                     hStackView.leadingAnchor.constraint(equalTo: vStackView.leadingAnchor),
                     hStackView.trailingAnchor.constraint(equalTo: vStackView.trailingAnchor)
                 ])
@@ -44,7 +63,22 @@ class IconChooserViewController: NSViewController {
             ])
         }
         
-        IconChooserViewController.view = vStackView
+        let remaining = 5 - SFSymbol.circleFillableSymbols.count % 5
+        
+        for index in 0..<remaining {
+            let row = (SFSymbol.circleFillableSymbols.count - 1) / 5
+            
+            let hStackView = vStackView.arrangedSubviews[row] as! NSStackView
+            let view = NSView()
+            hStackView.addArrangedSubview(view)
+            
+            NSLayoutConstraint.activate([
+                view.topAnchor.constraint(equalTo: hStackView.topAnchor),
+                view.bottomAnchor.constraint(equalTo: hStackView.bottomAnchor)
+            ])
+        }
+        
+        IconChooserViewController.view = scrollView
         print("View preloaded for icon chooser:", view)
     }
     
@@ -60,16 +94,11 @@ class IconChooserViewController: NSViewController {
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            box.heightAnchor.constraint(equalToConstant: 50),
-            box.widthAnchor.constraint(equalToConstant: 50)
-        ])
-        
         return box
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear() {
+        super.viewWillAppear()
         
         self.view = IconChooserViewController.view // Preloaded
     }
