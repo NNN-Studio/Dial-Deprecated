@@ -38,16 +38,24 @@ struct ModifiersMenuItems {
             
             Task { @MainActor in
                 for await _ in Defaults.updates(.shortcutsControllerSettings) {
+                    let cached: NSEvent.ModifierFlags = options.filter({ $0.flag }).map({ $0.option }).reduce([], { $0.union($1) })
+                    var newer: NSEvent.ModifierFlags = []
+                    
                     for controller in Controllers.shortcutsControllers {
                         if controller.id == Controllers.selectedController.id {
-                            option.flag = controller.settings.shortcuts.getModifiersOf(actionTarget).contains(option.option)
+                            let flag = controller.settings.shortcuts.getModifiersOf(actionTarget).contains(option.option)
+                            option.flag = flag
+                            
+                            if flag { newer.formUnion(option.option) }
                         }
                     }
                     
-                    title.title = options
-                        .filter { $0.flag }
-                        .map { $0.title }
-                        .joined()
+                    if cached != newer {
+                        title.title = options
+                            .filter { $0.flag }
+                            .map { $0.title }
+                            .joined()
+                    }
                 }
             }
         }

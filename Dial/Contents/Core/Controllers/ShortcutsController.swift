@@ -44,6 +44,8 @@ class ShortcutsController: Controller {
             
             var rotation: [Direction: ShortcutArray]
             
+            var pressedRotation: [Direction: ShortcutArray]
+            
             var single: ShortcutArray
             
             var double: ShortcutArray
@@ -53,10 +55,15 @@ class ShortcutsController: Controller {
                     .clockwise: .init(),
                     .counterclockwise: .init()
                 ],
+                pressedRotation: [Direction : ShortcutArray] = [
+                    .clockwise: .init(),
+                    .counterclockwise: .init()
+                ],
                 single: ShortcutArray = ShortcutArray(),
                 double: ShortcutArray = ShortcutArray()
             ) {
                 self.rotation = rotation
+                self.pressedRotation = pressedRotation
                 self.single = single
                 self.double = double
             }
@@ -67,6 +74,12 @@ class ShortcutsController: Controller {
                     rotation[.clockwise]?.modifiers ?? []
                 case .rotateCounterclockwise:
                     rotation[.counterclockwise]?.modifiers ?? []
+                    
+                case .pressAndRotateClockwise:
+                    pressedRotation[.clockwise]?.modifiers ?? []
+                case .pressAndRotateCounterclockwise:
+                    pressedRotation[.counterclockwise]?.modifiers ?? []
+                    
                 case .clickSingle:
                     single.modifiers
                 case .clickDouble:
@@ -87,6 +100,12 @@ class ShortcutsController: Controller {
                     rotation[.clockwise]?.modifiers = modified
                 case .rotateCounterclockwise:
                     rotation[.counterclockwise]?.modifiers = modified
+                    
+                case .pressAndRotateClockwise:
+                    pressedRotation[.clockwise]?.modifiers = modified
+                case .pressAndRotateCounterclockwise:
+                    pressedRotation[.counterclockwise]?.modifiers = modified
+                    
                 case .clickSingle:
                     single.modifiers = modified
                 case .clickDouble:
@@ -164,7 +183,12 @@ class ShortcutsController: Controller {
         if settings.alternativeDirection { direction = direction.negate }
         if settings.physicalDirection { direction = direction.physical }
         
-        settings.shortcuts.rotation[direction]?.post()
+        switch buttonState {
+        case .pressed:
+            settings.shortcuts.pressedRotation[direction]?.post()
+        case .released:
+            settings.shortcuts.rotation[direction]?.post()
+        }
     }
     
 }

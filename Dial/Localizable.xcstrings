@@ -152,7 +152,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Brightness"
+            "value" : "You can increase / decrease screen brightness by dialing, increase / decrease keyboard backlighting by dialing while pressing, and toggle keyboard backlighting by clicking through this controller."
           }
         }
       }
@@ -188,7 +188,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Mission"
+            "value" : "You can iterate through App Switcher and activate the app windows through this controller."
           }
         }
       }
@@ -212,7 +212,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "You can increase / decrease volume by dialing, toggle system play / pause by single clicking and mute / unmute by double clicking through this controller."
+            "value" : "You can trigger forward / backward by dialing, increase / decrease volume by dialing while pressing, toggle system play / pause by single clicking, and mute / unmute by double clicking through this controller."
           }
         }
       }

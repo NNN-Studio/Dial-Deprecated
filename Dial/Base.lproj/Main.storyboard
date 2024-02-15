@@ -547,16 +547,16 @@
             <objects>
                 <viewController title="Controllers" storyboardIdentifier="ControllersController" id="24w-Ra-sQb" customClass="ControllersViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="sk0-lI-faL">
-                        <rect key="frame" x="0.0" y="0.0" width="365" height="1089"/>
+                        <rect key="frame" x="0.0" y="0.0" width="365" height="1193"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Yal-mS-KHu">
-                                <rect key="frame" x="0.0" y="0.0" width="365" height="1089"/>
+                                <rect key="frame" x="0.0" y="0.0" width="365" height="1193"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="24" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="250" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aLB-wS-hvn">
-                                        <rect key="frame" x="20" y="12" width="325" height="1057"/>
+                                        <rect key="frame" x="20" y="12" width="325" height="1161"/>
                                         <subviews>
                                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9NK-4J-cp1">
-                                                <rect key="frame" x="0.0" y="659" width="325" height="398"/>
+                                                <rect key="frame" x="0.0" y="763" width="325" height="398"/>
                                                 <subviews>
                                                     <box boxType="custom" borderWidth="0.0" cornerRadius="12" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="PSc-dA-OV4">
                                                         <rect key="frame" x="0.0" y="73" width="325" height="325"/>
@@ -744,7 +744,7 @@
                                                 </customSpacing>
                                             </stackView>
                                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ct0-HU-jl1">
-                                                <rect key="frame" x="-2" y="612" width="329" height="24"/>
+                                                <rect key="frame" x="-2" y="716" width="329" height="24"/>
                                                 <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fill" style="rounded" trackingMode="selectOne" id="gTg-Y5-LUe">
                                                     <font key="font" metaFont="system"/>
                                                     <segments>
@@ -757,16 +757,16 @@
                                                 </connections>
                                             </segmentedControl>
                                             <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="12" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="m3Z-gW-K7K">
-                                                <rect key="frame" x="0.0" y="39" width="325" height="550"/>
+                                                <rect key="frame" x="0.0" y="39" width="325" height="654"/>
                                                 <view key="contentView" id="o1B-mh-BaI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="325" height="550"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="325" height="654"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="32" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M3j-no-2H3">
-                                                            <rect key="frame" x="20" y="20" width="285" height="510"/>
+                                                            <rect key="frame" x="20" y="20" width="285" height="614"/>
                                                             <subviews>
                                                                 <box hidden="YES" boxType="custom" cornerRadius="4" title="Constraint Hack" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7L-eP-d4V">
-                                                                    <rect key="frame" x="0.0" y="500" width="285" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="604" width="285" height="10"/>
                                                                     <view key="contentView" id="ZDL-0j-BqK">
                                                                         <rect key="frame" x="1" y="1" width="283" height="8"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -776,7 +776,7 @@
                                                                     </constraints>
                                                                 </box>
                                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hND-fo-JUU">
-                                                                    <rect key="frame" x="0.0" y="438" width="285" height="72"/>
+                                                                    <rect key="frame" x="0.0" y="542" width="285" height="72"/>
                                                                     <subviews>
                                                                         <textField focusRingType="none" verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bh0-07-eRl">
                                                                             <rect key="frame" x="-2" y="40" width="289" height="32"/>
@@ -805,7 +805,7 @@
                                                                     </customSpacing>
                                                                 </stackView>
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="REC-Bn-oGz">
-                                                                    <rect key="frame" x="0.0" y="376" width="285" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="480" width="285" height="30"/>
                                                                     <subviews>
                                                                         <textField focusRingType="none" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="enj-tW-3QN">
                                                                             <rect key="frame" x="0.0" y="0.0" width="247" height="30"/>
@@ -848,7 +848,7 @@
                                                                     </customSpacing>
                                                                 </stackView>
                                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SZu-fw-iBP">
-                                                                    <rect key="frame" x="0.0" y="272" width="285" height="72"/>
+                                                                    <rect key="frame" x="0.0" y="376" width="285" height="72"/>
                                                                     <subviews>
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y9Z-zl-oZg">
                                                                             <rect key="frame" x="0.0" y="40" width="285" height="32"/>
@@ -896,11 +896,11 @@
                                                                                     </connections>
                                                                                 </button>
                                                                                 <imageView toolTip="Triggers when dialed clockwisely." horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xa9-FX-na8">
-                                                                                    <rect key="frame" x="253" y="-6" width="32.5" height="44"/>
+                                                                                    <rect key="frame" x="253" y="-6" width="32.5" height="45"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="Xa9-FX-na8" secondAttribute="height" multiplier="1:1" id="Ae6-uN-t5q"/>
                                                                                     </constraints>
-                                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="digitalcrown.horizontal.arrow.clockwise.fill" catalog="system" id="fwc-yI-7eb"/>
+                                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="digitalcrown.horizontal.arrow.clockwise" catalog="system" id="fwc-yI-7eb"/>
                                                                                     <symbolConfiguration key="symbolConfiguration" scale="large">
                                                                                         <nil key="locale"/>
                                                                                     </symbolConfiguration>
@@ -975,7 +975,7 @@
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="du3-b5-oEf" secondAttribute="height" multiplier="1:1" id="uys-Qa-fCt"/>
                                                                                     </constraints>
-                                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="digitalcrown.horizontal.arrow.counterclockwise.fill" catalog="system" id="wTc-5k-4SA"/>
+                                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="digitalcrown.horizontal.arrow.counterclockwise" catalog="system" id="wTc-5k-4SA"/>
                                                                                     <symbolConfiguration key="symbolConfiguration" scale="large">
                                                                                         <nil key="locale"/>
                                                                                     </symbolConfiguration>
@@ -1006,6 +1006,175 @@
                                                                         <constraint firstAttribute="trailing" secondItem="y9Z-zl-oZg" secondAttribute="trailing" id="Q8i-F7-Rc1"/>
                                                                         <constraint firstItem="xA2-iS-cVO" firstAttribute="leading" secondItem="SZu-fw-iBP" secondAttribute="leading" id="X8U-nk-hqf"/>
                                                                         <constraint firstAttribute="trailing" secondItem="xA2-iS-cVO" secondAttribute="trailing" id="bOH-sM-8xS"/>
+                                                                    </constraints>
+                                                                    <visibilityPriorities>
+                                                                        <integer value="1000"/>
+                                                                        <integer value="1000"/>
+                                                                    </visibilityPriorities>
+                                                                    <customSpacing>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                    </customSpacing>
+                                                                </stackView>
+                                                                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p6e-Xi-nSQ">
+                                                                    <rect key="frame" x="0.0" y="272" width="285" height="72"/>
+                                                                    <subviews>
+                                                                        <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BTk-Bu-m7o">
+                                                                            <rect key="frame" x="0.0" y="40" width="285" height="32"/>
+                                                                            <subviews>
+                                                                                <popUpButton horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PI5-tn-TUJ">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="77" height="32"/>
+                                                                                    <popUpButtonCell key="cell" type="inline" title="􀆔􀆕􀆍􀆝" bezelStyle="inline" alignment="center" controlSize="large" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="akJ-60-XNX" id="KSy-HK-atV">
+                                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                        <font key="font" size="11" name="SFMono-Regular"/>
+                                                                                        <menu key="menu" id="WP0-tV-vnc">
+                                                                                            <items>
+                                                                                                <menuItem title="􀆔􀆕􀆍􀆝" state="on" hidden="YES" id="akJ-60-XNX">
+                                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                                </menuItem>
+                                                                                                <menuItem title="􀆔" state="on" id="Pg2-fk-Ft2">
+                                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                                </menuItem>
+                                                                                                <menuItem title="􀆕" state="on" id="cjb-vq-NsT">
+                                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                                </menuItem>
+                                                                                                <menuItem title="􀆍" state="on" id="L6R-FZ-cBC">
+                                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                                </menuItem>
+                                                                                                <menuItem title="􀆝" state="on" id="cNw-bZ-dzt">
+                                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                                </menuItem>
+                                                                                            </items>
+                                                                                        </menu>
+                                                                                    </popUpButtonCell>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="alt-ax-aV4"/>
+                                                                                    </constraints>
+                                                                                </popUpButton>
+                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="4LT-F7-HTa" customClass="InputButton" customModule="Dial" customModuleProvider="target">
+                                                                                    <rect key="frame" x="85" y="0.0" width="160" height="32"/>
+                                                                                    <buttonCell key="cell" type="inline" title="M 􀥌1" bezelStyle="inline" alignment="center" scrollable="YES" lineBreakMode="clipping" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XSU-0F-JJg">
+                                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                        <font key="font" size="13" name="SFMono-Medium"/>
+                                                                                    </buttonCell>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="32" id="Tar-bP-cJM"/>
+                                                                                    </constraints>
+                                                                                    <connections>
+                                                                                        <action selector="toggleShortcutsKeys:" target="24w-Ra-sQb" id="0aU-Ld-A05"/>
+                                                                                    </connections>
+                                                                                </button>
+                                                                                <imageView toolTip="Triggers when dialed clockwisely while pressing." horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iSQ-Dt-wpe">
+                                                                                    <rect key="frame" x="253" y="-6" width="32.5" height="44"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" secondItem="iSQ-Dt-wpe" secondAttribute="height" multiplier="1:1" id="Wxz-MV-ZVK"/>
+                                                                                    </constraints>
+                                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="digitalcrown.horizontal.arrow.clockwise.fill" catalog="system" id="S6s-Pl-Ago"/>
+                                                                                    <symbolConfiguration key="symbolConfiguration" scale="large">
+                                                                                        <nil key="locale"/>
+                                                                                    </symbolConfiguration>
+                                                                                </imageView>
+                                                                            </subviews>
+                                                                            <constraints>
+                                                                                <constraint firstItem="iSQ-Dt-wpe" firstAttribute="top" secondItem="BTk-Bu-m7o" secondAttribute="top" id="Aui-bi-VP2"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="PI5-tn-TUJ" secondAttribute="bottom" id="Kfi-4I-ooV"/>
+                                                                                <constraint firstItem="4LT-F7-HTa" firstAttribute="top" secondItem="BTk-Bu-m7o" secondAttribute="top" id="Pk5-NE-drC"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="iSQ-Dt-wpe" secondAttribute="bottom" id="WOw-o3-8KM"/>
+                                                                                <constraint firstItem="PI5-tn-TUJ" firstAttribute="top" secondItem="BTk-Bu-m7o" secondAttribute="top" id="isu-ao-CH3"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="4LT-F7-HTa" secondAttribute="bottom" id="uwU-WG-5BA"/>
+                                                                            </constraints>
+                                                                            <visibilityPriorities>
+                                                                                <integer value="1000"/>
+                                                                                <integer value="1000"/>
+                                                                                <integer value="1000"/>
+                                                                            </visibilityPriorities>
+                                                                            <customSpacing>
+                                                                                <real value="3.4028234663852886e+38"/>
+                                                                                <real value="3.4028234663852886e+38"/>
+                                                                                <real value="3.4028234663852886e+38"/>
+                                                                            </customSpacing>
+                                                                        </stackView>
+                                                                        <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dcG-1X-pbN">
+                                                                            <rect key="frame" x="0.0" y="0.0" width="285" height="32"/>
+                                                                            <subviews>
+                                                                                <popUpButton horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KO1-Y3-YSP">
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="32"/>
+                                                                                    <popUpButtonCell key="cell" type="inline" title="􀆔" bezelStyle="inline" alignment="center" controlSize="large" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" selectedItem="uUS-tf-8HB" id="jcv-Qu-EV0">
+                                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                        <font key="font" size="11" name="SFMono-Regular"/>
+                                                                                        <menu key="menu" id="VU6-CI-ikG">
+                                                                                            <items>
+                                                                                                <menuItem title="􀆔" state="on" hidden="YES" id="uUS-tf-8HB">
+                                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                                </menuItem>
+                                                                                                <menuItem title="􀆔" state="on" id="EVI-DL-iDY">
+                                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                                </menuItem>
+                                                                                                <menuItem title="􀆕" id="9ds-mP-OMX">
+                                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                                </menuItem>
+                                                                                                <menuItem title="􀆍" id="XF1-Ud-yGC">
+                                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                                </menuItem>
+                                                                                                <menuItem title="􀆝" id="y9m-8a-pji">
+                                                                                                    <modifierMask key="keyEquivalentModifierMask"/>
+                                                                                                </menuItem>
+                                                                                            </items>
+                                                                                        </menu>
+                                                                                    </popUpButtonCell>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="Ghq-VE-8h8"/>
+                                                                                    </constraints>
+                                                                                </popUpButton>
+                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="jD0-KQ-o3p" customClass="InputButton" customModule="Dial" customModuleProvider="target">
+                                                                                    <rect key="frame" x="83" y="0.0" width="162" height="32"/>
+                                                                                    <buttonCell key="cell" type="inline" title="Press and enter" bezelStyle="inline" alignment="center" scrollable="YES" lineBreakMode="clipping" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="agj-5F-0ZQ">
+                                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                                        <font key="font" size="10" name="SFMono-Medium"/>
+                                                                                    </buttonCell>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="32" id="HNK-WL-5jD"/>
+                                                                                    </constraints>
+                                                                                    <connections>
+                                                                                        <action selector="toggleShortcutsKeys:" target="24w-Ra-sQb" id="htf-Ra-cy4"/>
+                                                                                    </connections>
+                                                                                </button>
+                                                                                <imageView toolTip="Triggers when dialed counterclockwisely while pressing." horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h5g-Vx-nYA">
+                                                                                    <rect key="frame" x="253" y="-6" width="32.5" height="44"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" secondItem="h5g-Vx-nYA" secondAttribute="height" multiplier="1:1" id="LsB-2U-De4"/>
+                                                                                    </constraints>
+                                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="digitalcrown.horizontal.arrow.counterclockwise.fill" catalog="system" id="sya-Kg-BXS"/>
+                                                                                    <symbolConfiguration key="symbolConfiguration" scale="large">
+                                                                                        <nil key="locale"/>
+                                                                                    </symbolConfiguration>
+                                                                                </imageView>
+                                                                            </subviews>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="bottom" secondItem="KO1-Y3-YSP" secondAttribute="bottom" id="I4n-mY-6zi"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="h5g-Vx-nYA" secondAttribute="bottom" id="P3L-mv-ajZ"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="jD0-KQ-o3p" secondAttribute="bottom" id="eyk-6E-zgC"/>
+                                                                                <constraint firstItem="jD0-KQ-o3p" firstAttribute="top" secondItem="dcG-1X-pbN" secondAttribute="top" id="qOq-Fa-QVy"/>
+                                                                                <constraint firstItem="h5g-Vx-nYA" firstAttribute="top" secondItem="dcG-1X-pbN" secondAttribute="top" id="saT-R5-1Tb"/>
+                                                                                <constraint firstItem="KO1-Y3-YSP" firstAttribute="top" secondItem="dcG-1X-pbN" secondAttribute="top" id="yae-mc-2tC"/>
+                                                                            </constraints>
+                                                                            <visibilityPriorities>
+                                                                                <integer value="1000"/>
+                                                                                <integer value="1000"/>
+                                                                                <integer value="1000"/>
+                                                                            </visibilityPriorities>
+                                                                            <customSpacing>
+                                                                                <real value="3.4028234663852886e+38"/>
+                                                                                <real value="3.4028234663852886e+38"/>
+                                                                                <real value="3.4028234663852886e+38"/>
+                                                                            </customSpacing>
+                                                                        </stackView>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="trailing" secondItem="BTk-Bu-m7o" secondAttribute="trailing" id="IVR-2R-LJh"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="dcG-1X-pbN" secondAttribute="trailing" id="pp4-lt-We9"/>
+                                                                        <constraint firstItem="dcG-1X-pbN" firstAttribute="leading" secondItem="p6e-Xi-nSQ" secondAttribute="leading" id="u1l-k7-48q"/>
+                                                                        <constraint firstItem="BTk-Bu-m7o" firstAttribute="leading" secondItem="p6e-Xi-nSQ" secondAttribute="leading" id="vdy-wJ-5Iy"/>
                                                                     </constraints>
                                                                     <visibilityPriorities>
                                                                         <integer value="1000"/>
@@ -1366,6 +1535,7 @@
                                                                 <constraint firstAttribute="trailing" secondItem="REC-Bn-oGz" secondAttribute="trailing" id="5yh-qT-arT"/>
                                                                 <constraint firstItem="eSR-EO-RFS" firstAttribute="leading" secondItem="M3j-no-2H3" secondAttribute="leading" id="6Aa-Uh-2bW"/>
                                                                 <constraint firstItem="faa-uB-uLI" firstAttribute="leading" secondItem="M3j-no-2H3" secondAttribute="leading" id="CP5-SR-tNh"/>
+                                                                <constraint firstItem="p6e-Xi-nSQ" firstAttribute="leading" secondItem="M3j-no-2H3" secondAttribute="leading" id="ClV-V6-4Hs"/>
                                                                 <constraint firstAttribute="trailing" secondItem="eSR-EO-RFS" secondAttribute="trailing" id="E6V-Uy-FPA"/>
                                                                 <constraint firstItem="REC-Bn-oGz" firstAttribute="leading" secondItem="M3j-no-2H3" secondAttribute="leading" id="E7U-Mx-jJo"/>
                                                                 <constraint firstAttribute="trailing" secondItem="e7L-eP-d4V" secondAttribute="trailing" id="Rro-OD-7Ys"/>
@@ -1377,6 +1547,7 @@
                                                                 <constraint firstAttribute="trailing" secondItem="faa-uB-uLI" secondAttribute="trailing" id="jh6-0a-4CX"/>
                                                                 <constraint firstItem="hND-fo-JUU" firstAttribute="leading" secondItem="M3j-no-2H3" secondAttribute="leading" id="kKH-S2-84t"/>
                                                                 <constraint firstItem="SZu-fw-iBP" firstAttribute="leading" secondItem="M3j-no-2H3" secondAttribute="leading" id="tad-5I-SQN"/>
+                                                                <constraint firstAttribute="trailing" secondItem="p6e-Xi-nSQ" secondAttribute="trailing" id="vcu-fh-29m"/>
                                                             </constraints>
                                                             <visibilityPriorities>
                                                                 <integer value="1000"/>
@@ -1386,8 +1557,10 @@
                                                                 <integer value="1000"/>
                                                                 <integer value="1000"/>
                                                                 <integer value="1000"/>
+                                                                <integer value="1000"/>
                                                             </visibilityPriorities>
                                                             <customSpacing>
+                                                                <real value="3.4028234663852886e+38"/>
                                                                 <real value="3.4028234663852886e+38"/>
                                                                 <real value="3.4028234663852886e+38"/>
                                                                 <real value="3.4028234663852886e+38"/>
@@ -1466,8 +1639,10 @@
                         <outlet property="buttonIconChooser" destination="xl0-8n-ldy" id="FgV-wt-ipo"/>
                         <outlet property="buttonShortcuts1Keys1" destination="m9N-8h-kRf" id="SMU-GV-3Hs"/>
                         <outlet property="buttonShortcuts1Keys2" destination="HcH-r1-2AU" id="Ii7-lV-gqT"/>
-                        <outlet property="buttonShortcuts2Keys1" destination="VEM-eW-IqD" id="yPx-qV-7Gu"/>
-                        <outlet property="buttonShortcuts2Keys2" destination="qeC-AC-khf" id="red-uw-Pz5"/>
+                        <outlet property="buttonShortcuts2Keys1" destination="4LT-F7-HTa" id="PWl-8d-P7l"/>
+                        <outlet property="buttonShortcuts2Keys2" destination="jD0-KQ-o3p" id="lyq-04-oEB"/>
+                        <outlet property="buttonShortcuts3Keys1" destination="VEM-eW-IqD" id="yPx-qV-7Gu"/>
+                        <outlet property="buttonShortcuts3Keys2" destination="qeC-AC-khf" id="red-uw-Pz5"/>
                         <outlet property="labelAlternativeDirection" destination="UKi-ZL-NIM" id="ANh-hz-8pp"/>
                         <outlet property="labelDefaultControllerDescription" destination="EJv-n7-vPd" id="vqz-vG-POz"/>
                         <outlet property="labelHaptics" destination="xTP-kC-eEq" id="ld8-WV-SPB"/>
@@ -1478,8 +1653,10 @@
                         <outlet property="popUpButtonRotationType" destination="evj-aA-GZI" id="hhO-C4-Rvt"/>
                         <outlet property="popUpButtonShortcuts1Modifiers1" destination="kic-hx-6rq" id="CMi-gI-ixL"/>
                         <outlet property="popUpButtonShortcuts1Modifiers2" destination="3vu-0s-p8m" id="pOQ-94-7Ob"/>
-                        <outlet property="popUpButtonShortcuts2Modifiers1" destination="8sR-nY-Jr8" id="c5g-D7-DOU"/>
-                        <outlet property="popUpButtonShortcuts2Modifiers2" destination="Opw-jK-MJW" id="88e-tx-cKh"/>
+                        <outlet property="popUpButtonShortcuts2Modifiers1" destination="PI5-tn-TUJ" id="m9D-xb-zHA"/>
+                        <outlet property="popUpButtonShortcuts2Modifiers2" destination="KO1-Y3-YSP" id="P8y-YA-5XG"/>
+                        <outlet property="popUpButtonShortcuts3Modifiers1" destination="8sR-nY-Jr8" id="c5g-D7-DOU"/>
+                        <outlet property="popUpButtonShortcuts3Modifiers2" destination="Opw-jK-MJW" id="88e-tx-cKh"/>
                         <outlet property="segmentedControlShortcutsAdvanced" destination="ct0-HU-jl1" id="Lje-Rr-NAB"/>
                         <outlet property="switchAlternativeDirection" destination="Sw5-nv-KFr" id="ymA-1n-3VD"/>
                         <outlet property="switchControllerActivated" destination="1sj-UZ-Ryn" id="pFb-Cd-DSc"/>
@@ -1492,12 +1669,13 @@
                         <outlet property="viewOptions1" destination="faa-uB-uLI" id="PTm-S5-paP"/>
                         <outlet property="viewOptions2" destination="IoK-Ih-Gsm" id="DYN-mR-NFU"/>
                         <outlet property="viewShortcuts1" destination="SZu-fw-iBP" id="Hfn-av-v9Z"/>
-                        <outlet property="viewShortcuts2" destination="eSR-EO-RFS" id="hMb-xr-m5t"/>
+                        <outlet property="viewShortcuts2" destination="p6e-Xi-nSQ" id="XDu-rv-Jpy"/>
+                        <outlet property="viewShortcuts3" destination="eSR-EO-RFS" id="hMb-xr-m5t"/>
                     </connections>
                 </viewController>
                 <customObject id="by5-ab-QSV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-173.5" y="1229.5"/>
+            <point key="canvasLocation" x="-173" y="1291"/>
         </scene>
     </scenes>
     <resources>
@@ -1506,7 +1684,9 @@
         <image name="alternatingcurrent" catalog="system" width="18" height="7"/>
         <image name="command" catalog="system" width="15" height="14"/>
         <image name="control" catalog="system" width="15" height="9"/>
+        <image name="digitalcrown.horizontal.arrow.clockwise" catalog="system" width="16" height="17"/>
         <image name="digitalcrown.horizontal.arrow.clockwise.fill" catalog="system" width="16" height="17"/>
+        <image name="digitalcrown.horizontal.arrow.counterclockwise" catalog="system" width="16" height="17"/>
         <image name="digitalcrown.horizontal.arrow.counterclockwise.fill" catalog="system" width="16" height="17"/>
         <image name="digitalcrown.horizontal.press" catalog="system" width="16" height="18"/>
         <image name="digitalcrown.horizontal.press.fill" catalog="system" width="16" height="18"/>

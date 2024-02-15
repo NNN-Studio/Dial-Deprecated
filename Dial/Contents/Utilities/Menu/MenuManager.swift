@@ -58,6 +58,10 @@ class ModifiersOptionItem: MenuOptionItem<NSEvent.ModifierFlags> {
         
         case rotateCounterclockwise
         
+        case pressAndRotateClockwise
+        
+        case pressAndRotateCounterclockwise
+        
         case clickSingle
         
         case clickDouble
