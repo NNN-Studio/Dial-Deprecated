@@ -182,7 +182,7 @@ extension ControllersViewController {
         
         iconChooserPopover.delegate = self
         iconChooserPopover.contentViewController = IconChooserViewController()
-        iconChooserPopover.contentSize = .init(width: 275, height: 375)
+        iconChooserPopover.contentSize = .zero
         iconChooserPopover.behavior = .transient
         
         initDescriptives()

@@ -27,7 +27,7 @@ struct RotationTypeMenuItems {
         for option in options {
             option.target = delegate
             option.action = #selector(delegate.setRotationType(_:))
-            option.image = option.option.representingSymbol.raw
+            option.image = option.option.representingSymbol.image
             
             Task { @MainActor in
                 for await _ in Defaults.updates(.shortcutsControllerSettings) {

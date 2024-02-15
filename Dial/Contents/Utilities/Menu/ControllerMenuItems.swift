@@ -47,14 +47,14 @@ struct ControllerMenuItems {
             
             item.target = delegate
             item.action = #selector(delegate.setController(_:))
-            item.image = controller.representingSymbol.raw
+            item.image = controller.representingSymbol.image
             
             Task { @MainActor in
                 for await _ in Defaults.updates(.shortcutsControllerSettings) {
                     if let shortcutsController = item.option as? ShortcutsController {
                         for controller in Controllers.shortcutsControllers {
                             if controller.id == shortcutsController.id {
-                                item.image = controller.representingSymbol.raw
+                                item.image = controller.representingSymbol.image
                                 item.title = controller.name
                             }
                         }

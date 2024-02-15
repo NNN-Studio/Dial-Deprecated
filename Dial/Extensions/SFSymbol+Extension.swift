@@ -44,11 +44,11 @@ extension SFSymbol {
         SFSymbol.circleFillableSymbols.contains(self)
     }
     
-    var raw: NSImage {
+    var image: NSImage {
         NSImage(systemSymbol: self)
     }
     
-    var circleFilled: NSImage {
+    var circleFilledImage: NSImage {
         NSImage(systemSymbol: self.withSuffix(SFSymbol.circleFillSuffix) ?? .fallback)
     }
     

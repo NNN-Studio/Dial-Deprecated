@@ -52,7 +52,7 @@ struct SubmenuItems {
         for option in options {
             option.target = delegate
             option.action = #selector(delegate.setDirection(_:))
-            option.image = option.option.representingSymbol.raw
+            option.image = option.option.representingSymbol.image
             
             Task { @MainActor in
                 for await value in Defaults.updates(.direction) {

@@ -34,6 +34,7 @@ Dial needs Accessibility permissions to function properly. In the next dialog, y
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         requestPermissions()
         runTasks()
+        IconChooserViewController.preloadView()
         
         // TODO: DEBUG
         Defaults.reset(.activatedControllerIDs)
