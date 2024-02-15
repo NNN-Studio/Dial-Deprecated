@@ -149,7 +149,7 @@ import SFSafeSymbols
             
             return icon == chosen
         }) else { return }
-        print(button)
+        
         if let point = scrollPoint(for: button) {
             scrollView?.contentView.scroll(to: point)
         }
@@ -162,10 +162,10 @@ import SFSafeSymbols
         else { return nil }
         
         let height = scrollView?.frame.height ?? 0
-        let scrollableHeight = view.frame.height
+        let scrollableHeight = view.frame.height - height
         let y = superview.frame.maxY - height / 2
         
-        return .init(x: 0, y: min(max(y, height / 2), scrollableHeight - height / 2))
+        return .init(x: 0, y: max(0, min(y, scrollableHeight)))
     }
     
 }
