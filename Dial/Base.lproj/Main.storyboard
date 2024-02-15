@@ -132,7 +132,7 @@
                                                     <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>
-                                            <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="zrA-v7-7DM">
+                                            <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="12" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="zrA-v7-7DM">
                                                 <rect key="frame" x="0.0" y="40" width="325" height="346"/>
                                                 <view key="contentView" id="yHW-BX-yrd">
                                                     <rect key="frame" x="0.0" y="0.0" width="325" height="346"/>
@@ -558,7 +558,7 @@
                                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9NK-4J-cp1">
                                                 <rect key="frame" x="0.0" y="643" width="325" height="398"/>
                                                 <subviews>
-                                                    <box boxType="custom" borderWidth="0.0" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="PSc-dA-OV4">
+                                                    <box boxType="custom" borderWidth="0.0" cornerRadius="12" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="PSc-dA-OV4">
                                                         <rect key="frame" x="0.0" y="73" width="325" height="325"/>
                                                         <view key="contentView" id="aEe-AC-GC9">
                                                             <rect key="frame" x="0.0" y="0.0" width="325" height="325"/>
@@ -756,7 +756,7 @@
                                                     <action selector="switchSegment:" target="24w-Ra-sQb" id="7uP-Sq-d76"/>
                                                 </connections>
                                             </segmentedControl>
-                                            <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="12" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="m3Z-gW-K7K">
+                                            <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="12" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="m3Z-gW-K7K">
                                                 <rect key="frame" x="0.0" y="39" width="325" height="534"/>
                                                 <view key="contentView" id="o1B-mh-BaI">
                                                     <rect key="frame" x="0.0" y="0.0" width="325" height="534"/>

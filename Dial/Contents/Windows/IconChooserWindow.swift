@@ -12,14 +12,11 @@ import SFSafeSymbols
 class IconChooserViewController: NSViewController {
     
     static func preloadView() {
-        let view = NSView()
-        let columns: Int = 5
         let vStackView = NSStackView()
-        view.addSubview(vStackView)
+        let columns: Int = 5
         
         vStackView.translatesAutoresizingMaskIntoConstraints = false
         vStackView.orientation = .vertical
-        vStackView.distribution = .fillEqually
         
         for (index, icon) in SFSymbol.circleFillableSymbols.enumerated() {
             let row = index / columns
@@ -30,10 +27,8 @@ class IconChooserViewController: NSViewController {
                 
                 hStackView.translatesAutoresizingMaskIntoConstraints = false
                 hStackView.orientation = .horizontal
-                hStackView.distribution = .fillEqually
                 
                 NSLayoutConstraint.activate([
-                    hStackView.heightAnchor.constraint(equalToConstant: 35),
                     hStackView.leadingAnchor.constraint(equalTo: vStackView.leadingAnchor),
                     hStackView.trailingAnchor.constraint(equalTo: vStackView.trailingAnchor)
                 ])
@@ -49,26 +44,28 @@ class IconChooserViewController: NSViewController {
             ])
         }
         
-        NSLayoutConstraint.activate([
-            view.widthAnchor.constraint(equalToConstant: 275),
-            vStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            vStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
-        
-        IconChooserViewController.view = view
+        IconChooserViewController.view = vStackView
         print("View preloaded for icon chooser:", view)
     }
     
     static var view: NSView = .init()
     
     static func generateIconView(_ icon: SFSymbol) -> NSView {
-        let view = NSView()
-        let imageView = NSImageView(image: icon.image.withSymbolConfiguration(.init(pointSize: 20, weight: .bold))!)
-        view.addSubview(imageView)
+        let box = NSBox()
+        let imageView = NSImageView(image: icon.image.withSymbolConfiguration(.init(pointSize: 16, weight: .bold))!)
+        box.addSubview(imageView)
         
-        view.translatesAutoresizingMaskIntoConstraints = false
+        box.translatesAutoresizingMaskIntoConstraints = false
+        box.titlePosition = .noTitle
         
-        return view
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            box.heightAnchor.constraint(equalToConstant: 50),
+            box.widthAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        return box
     }
     
     override func viewDidLoad() {
