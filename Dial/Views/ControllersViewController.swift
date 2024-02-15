@@ -138,6 +138,10 @@ class ControllersViewController: NSViewController {
     
     private var iconChooserPopover: NSPopover = .init()
     
+    private var iconChooserViewController: IconChooserViewController? {
+        AppDelegate.shared?.iconChooserViewController
+    }
+    
 }
 
 extension ControllersViewController {
@@ -236,6 +240,8 @@ extension ControllersViewController {
                     
                     buttonDeleteController.isEnabled = false
                     buttonAddController.isEnabled = true
+                    
+                    iconChooserViewController?.setAll(false)
                 }
                 
                 else if let shortcutsController = controller as? ShortcutsController {
@@ -257,6 +263,11 @@ extension ControllersViewController {
                     
                     refreshRotationTypeMenuManager()
                     popUpButtonRotationType.menu = rotationTypeMenuManager?.menu
+                    
+                    let icon = shortcutsController.settings.representingSymbol
+                    buttonIconChooser.image = icon.image
+                    iconChooserViewController?.setAll(true)
+                    iconChooserViewController?.chosen = icon
                     
                     for (index, item) in popUpButtonRotationType.itemArray.enumerated() {
                         if
@@ -283,6 +294,17 @@ extension ControllersViewController {
                         controller.id == Controllers.selectedController.id
                     { popUpButtonControllerSelector.selectItem(at: index) }
                     
+                }
+            }
+        }
+        
+        Task { @MainActor in
+            for await value in observationTrackingStream({ self.iconChooserViewController!.chosen }) {
+                if 
+                    let settings = Controllers.selectedSettings,
+                    settings.representingSymbol != value
+                {
+                    Controllers.selectedSettings?.representingSymbol = value
                 }
             }
         }
@@ -474,7 +496,8 @@ extension ControllersViewController {
                 of: sender,
                 preferredEdge: .maxX
             )
-            AppDelegate.shared?.iconChooserViewController.scrollToChosen()
+            
+            iconChooserViewController?.scrollToChosen()
         }
     }
     

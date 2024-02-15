@@ -27,6 +27,10 @@ import SFSafeSymbols
         }
     }
     
+    let columns: Int = 5
+    
+    let margin: CGFloat = 24
+    
     func preloadView() {
         buttons = []
         
@@ -35,10 +39,11 @@ import SFSafeSymbols
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.hasVerticalScroller = true
         scrollView.hasHorizontalScroller = false
+        scrollView.drawsBackground = false
         
         NSLayoutConstraint.activate([
-            scrollView.widthAnchor.constraint(equalToConstant: 325),
-            scrollView.heightAnchor.constraint(equalToConstant: 400)
+            scrollView.widthAnchor.constraint(equalToConstant: 355),
+            scrollView.heightAnchor.constraint(equalToConstant: 425)
         ])
         
         let wrapperView = NSView()
@@ -52,17 +57,17 @@ import SFSafeSymbols
         ])
         
         let vStackView = NSStackView()
-        let columns: Int = 5
         wrapperView.addSubview(vStackView)
         
         vStackView.translatesAutoresizingMaskIntoConstraints = false
         vStackView.orientation = .vertical
+        vStackView.spacing = 12
         
         NSLayoutConstraint.activate([
-            vStackView.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor, constant: 12),
-            vStackView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor, constant: -12),
-            vStackView.topAnchor.constraint(equalTo: wrapperView.topAnchor, constant: 12),
-            vStackView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: -12)
+            vStackView.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor, constant: margin),
+            vStackView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor, constant: -margin),
+            vStackView.topAnchor.constraint(equalTo: wrapperView.topAnchor, constant: margin),
+            vStackView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: -margin)
         ])
         
         for (index, icon) in SFSymbol.circleFillableSymbols
@@ -77,9 +82,10 @@ import SFSafeSymbols
                 hStackView.translatesAutoresizingMaskIntoConstraints = false
                 hStackView.orientation = .horizontal
                 hStackView.distribution = .fillEqually
+                hStackView.spacing = 12
                 
                 NSLayoutConstraint.activate([
-                    hStackView.heightAnchor.constraint(equalToConstant: 42.5),
+                    hStackView.heightAnchor.constraint(equalToConstant: 37.5),
                     hStackView.leadingAnchor.constraint(equalTo: vStackView.leadingAnchor),
                     hStackView.trailingAnchor.constraint(equalTo: vStackView.trailingAnchor)
                 ])
@@ -116,8 +122,12 @@ import SFSafeSymbols
                     guard let toolTip = button.toolTip else { continue }
                     let icon = SFSymbol(rawValue: toolTip)
                     
-                    button.flag = icon == value
+                    let flag = icon == value
+                    button.flag = flag
+                    button.showsBorderOnlyWhileMouseInside = !flag
                 }
+                
+                scrollToChosen(animated: true)
             }
         }
         
@@ -130,7 +140,7 @@ import SFSafeSymbols
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.toolTip = icon.rawValue
-        button.image = icon.image.withSymbolConfiguration(.init(pointSize: 15, weight: .bold))
+        button.image = icon.image.withSymbolConfiguration(.init(pointSize: 16, weight: .bold))
         button.bezelStyle = .flexiblePush
         button.setButtonType(.onOff)
         
@@ -142,7 +152,7 @@ import SFSafeSymbols
         return button
     }
     
-    func scrollToChosen() {
+    func scrollToChosen(animated: Bool = false) {
         guard let button = buttons.first(where: { button in
             guard let toolTip = button.toolTip else { return false }
             let icon = SFSymbol(rawValue: toolTip)
@@ -151,7 +161,15 @@ import SFSafeSymbols
         }) else { return }
         
         if let point = scrollPoint(for: button) {
-            scrollView?.contentView.scroll(to: point)
+            if animated {
+                NSAnimationContext.runAnimationGroup { context in
+                    context.allowsImplicitAnimation = true
+                    
+                    scrollView?.contentView.setBoundsOrigin(point)
+                }
+            } else {
+                scrollView?.contentView.scroll(to: point)
+            }
         }
     }
     
@@ -163,9 +181,13 @@ import SFSafeSymbols
         
         let height = scrollView?.frame.height ?? 0
         let scrollableHeight = view.frame.height - height
-        let y = superview.frame.maxY - height / 2
+        let y = margin + superview.frame.midY - height / 2
         
         return .init(x: 0, y: max(0, min(y, scrollableHeight)))
+    }
+    
+    func setAll(_ enabled: Bool) {
+        buttons.forEach { $0.isEnabled = enabled }
     }
     
 }
