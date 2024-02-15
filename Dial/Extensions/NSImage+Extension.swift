@@ -33,7 +33,15 @@ extension NSImage {
             
             combinedImage.lockFocus()
             
-            draw(at: NSZeroPoint, from: NSZeroRect, operation: .copy, fraction: 1.0)
+            draw(
+                at: NSPoint(
+                    x: 0,
+                    y: (newSize.height - size.height) / 2
+                ),
+                from: NSZeroRect,
+                operation: .copy,
+                fraction: 1.0
+            )
             image.draw(
                 at: NSPoint(
                     x: size.width + padding,

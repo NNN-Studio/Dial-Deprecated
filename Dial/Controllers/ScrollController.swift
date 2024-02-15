@@ -10,7 +10,12 @@ class ScrollController: DefaultController {
     
     var representingSymbol: SFSymbol = .arrowUpArrowDown
     
-    var description: String = NSLocalizedString("Controllers/Default/Scroll/Description", value: "Scroll", comment: "scroll controller description")
+    var description: String = NSLocalizedString(
+        "Controllers/Default/Scroll/Description", 
+        value: """
+You can scroll and perform middle button clicks through this controller. Scrolls and clicks will always happen at the cursor.
+""",
+        comment: "scroll controller description")
     
     private var accumulated = 0
     

@@ -17,7 +17,13 @@ class MissionController: DefaultController {
     
     var representingSymbol: SFSymbol = .command
     
-    var description: String = NSLocalizedString("Controllers/Default/Mission/Description", value: "Mission", comment: "mission controller description")
+    var description: String = NSLocalizedString(
+        "Controllers/Default/Mission/Description",
+        value: """
+You can iterate through App Switcher and activate the app windows through this controller.
+""",
+        comment: "mission controller description"
+    )
     
     private var inMission = false
     
@@ -42,12 +48,12 @@ class MissionController: DefaultController {
             inMission = true
             
             let modifiers: [Direction: NSEvent.ModifierFlags] = [.clockwise: [.command], .counterclockwise: [.shift, .command]]
-            let action: [Direction: [Input]] = [.clockwise: [Input.keyTab], .counterclockwise: [Input.keyTab]]
+            let action: [Direction: [Input]] = [.clockwise: [.keyTab], .counterclockwise: [.keyTab]]
             
             Input.postKeys(action[direction]!, modifiers: modifiers[direction]!)
             
             escapeDispatch = DispatchWorkItem {
-                Input.postKeys([Input.keyEscape])
+                Input.keyEscape.post()
             }
             if let escapeDispatch {
                 DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval * 3, execute: escapeDispatch)
@@ -61,7 +67,8 @@ class MissionController: DefaultController {
         if inMission {
             inMission = false
             escapeDispatch?.cancel()
-            Input.postKeys([Input.keyReturn])
+            
+            Input.keyReturn.post()
         }
     }
     

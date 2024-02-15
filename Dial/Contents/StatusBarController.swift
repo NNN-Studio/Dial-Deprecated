@@ -77,12 +77,12 @@ class StatusBarController: NSObject, NSMenuDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
             if let button = statusItem.button {
                 let dialIcon = SymbolRepresentation.dial.representingSymbol.image
-                    .withSymbolConfiguration(.init(pointSize: 26, weight: .bold))
+                    .withSymbolConfiguration(.init(pointSize: 17.5, weight: .bold))
                 
                 // TODO: DEBUG
-                //let modeIcon = (isConnected ? Controllers.currentController.icon.filled : NSImage(systemSymbol: .ellipsisCircleFill) .withSymbolConfiguration(NSImage.SymbolConfiguration(pointSize: 24, weight: .bold)))?
+                //let modeIcon = (isConnected ? Controllers.currentController.icon.filled : NSImage(systemSymbol: .ellipsisCircleFill)
                 let modeIcon = Controllers.currentController.representingSymbol.circleFilledImage
-                    .withSymbolConfiguration(.init(pointSize: 24, weight: .bold))!
+                    .withSymbolConfiguration(.init(pointSize: 17.5, weight: .bold))!
                     .withVerticalPadding(2)
                 
                 // TODO: DEBUG

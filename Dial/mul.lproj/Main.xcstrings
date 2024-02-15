@@ -386,13 +386,13 @@
       }
     },
     "iIQ-VE-2IB.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"This is a warning.\"; ObjectID = \"iIQ-VE-2IB\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"This is a default controller, the configurations are not applicable.\"; ObjectID = \"iIQ-VE-2IB\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "This is a warning."
+            "value" : "This is a default controller, the configurations are not applicable."
           }
         }
       }

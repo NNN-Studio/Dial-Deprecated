@@ -10,18 +10,23 @@ class PlaybackController: DefaultController {
     
     var representingSymbol: SFSymbol = .speakerWave2
     
-    var description: String = NSLocalizedString("Controllers/Default/Playback/Description", value: "Playback", comment: "playback controller description")
+    var description: String = NSLocalizedString(
+        "Controllers/Default/Playback/Description",
+        value: """
+You can trigger forward / backward by dialing, increase / decrease volume by dialing while pressing, toggle system play / pause by single clicking, and mute / unmute by double clicking through this controller.
+""",
+        comment: "playback controller description")
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
         if isDoubleClick {
             // Undo pause sent on first click
-            Input.postAuxKeys([Input.keyPlay], modifiers: [], _repeat: 1)
+            Input.postAuxKeys([Input.keyPlay], modifiers: [])
             
             // Mute on double click
             Input.postAuxKeys([Input.keyMute], modifiers: [])
         } else {
             // Play / Pause on single click
-            Input.postAuxKeys([Input.keyPlay], modifiers: [], _repeat: 1)
+            Input.postAuxKeys([Input.keyPlay], modifiers: [])
         }
     }
     
@@ -30,28 +35,33 @@ class PlaybackController: DefaultController {
         buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval,
         _ callback: Dial.Callback
     ) {
-        var modifiers: NSEvent.ModifierFlags
-        var action: [Device.ButtonState: [Direction: (aux: [Int32], normal: [Input])]] = [:]
-        
-        switch buttonState {
-        case .pressed:
-            modifiers = [.shift, .option]
-            action[.pressed] = [
-                .clockwise: (aux: [Input.keyVolumeUp], normal: []),
-                .counterclockwise: (aux: [Input.keyVolumeDown], normal: [])
-            ]
-            break
-        case .released:
-            modifiers = []
-            action[.released] = [
-                .clockwise: (aux: [], normal: [Input.keyRightArrow]),
-                .counterclockwise: (aux: [], normal: [Input.keyLeftArrow])
-            ]
+        switch rotation {
+        case .continuous(let direction):
+            var modifiers: NSEvent.ModifierFlags
+            var action: [Device.ButtonState: [Direction: (aux: [Int32], normal: [Input])]] = [:]
+            
+            switch buttonState {
+            case .pressed:
+                modifiers = [.shift, .option]
+                action[.pressed] = [
+                    .clockwise: (aux: [Input.keyVolumeUp], normal: []),
+                    .counterclockwise: (aux: [Input.keyVolumeDown], normal: [])
+                ]
+                break
+            case .released:
+                modifiers = []
+                action[.released] = [
+                    .clockwise: (aux: [], normal: [.keyRightArrow]),
+                    .counterclockwise: (aux: [], normal: [.keyLeftArrow])
+                ]
+                break
+            }
+            
+            Input.postAuxKeys(action[buttonState]![direction]!.aux, modifiers: modifiers)
+            Input.postKeys(action[buttonState]![direction]!.normal, modifiers: modifiers)
+        default:
             break
         }
-        
-        Input.postAuxKeys(action[buttonState]![rotation.direction]!.aux, modifiers: modifiers)
-        Input.postKeys(action[buttonState]![rotation.direction]!.normal, modifiers: modifiers)
     }
     
 }

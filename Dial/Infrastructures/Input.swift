@@ -332,7 +332,7 @@ extension Input {
     }
     
     // https://stackoverflow.com/a/55854051
-    static func postAuxKeys(_ keys: [Int32], modifiers: NSEvent.ModifierFlags = [], _repeat: Int = 1) {
+    static func postAuxKeys(_ keys: [Int32], modifiers: NSEvent.ModifierFlags = [], repetition count: Int = 1) {
         func doKey(_ key: Int32, down: Bool) {
             let rawFlags: UInt = (down ? 0xa00 : 0xb00) | modifiers.rawValue;
             let flags = NSEvent.ModifierFlags(rawValue: rawFlags)
@@ -356,14 +356,14 @@ extension Input {
         }
         
         for key in keys {
-            for _ in 0..<_repeat {
+            for _ in 0..<count {
                 doKey(key, down: true)
                 doKey(key, down: false)
             }
         }
     }
     
-    static func postKeys(_ keys: [Input], modifiers: NSEvent.ModifierFlags = [], _repeat: Int = 1) {
+    static func postKeys(_ keys: [Input], modifiers: NSEvent.ModifierFlags = [], repetition count: Int = 1) {
         func doKey(_ key: Int32, down: Bool) {
             guard let eventSource = CGEventSource(stateID: .hidSystemState) else {
                 print("Failed to create event source")
@@ -380,7 +380,7 @@ extension Input {
         }
         
         for key in keys {
-            for _ in 0..<_repeat {
+            for _ in 0..<count {
                 doKey(key.rawValue, down: true)
                 doKey(key.rawValue, down: false)
             }

@@ -212,7 +212,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Playback"
+            "value" : "You can increase / decrease volume by dialing, toggle system play / pause by single clicking and mute / unmute by double clicking through this controller."
           }
         }
       }
@@ -236,7 +236,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Scroll"
+            "value" : "You can scroll and perform middle button clicks through this controller. Scrolls and clicks will always happen at the cursor."
           }
         }
       }

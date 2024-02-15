@@ -547,16 +547,16 @@
             <objects>
                 <viewController title="Controllers" storyboardIdentifier="ControllersController" id="24w-Ra-sQb" customClass="ControllersViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="sk0-lI-faL">
-                        <rect key="frame" x="0.0" y="0.0" width="365" height="1073"/>
+                        <rect key="frame" x="0.0" y="0.0" width="365" height="1089"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="Yal-mS-KHu">
-                                <rect key="frame" x="0.0" y="0.0" width="365" height="1073"/>
+                                <rect key="frame" x="0.0" y="0.0" width="365" height="1089"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="24" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="250" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aLB-wS-hvn">
-                                        <rect key="frame" x="20" y="12" width="325" height="1041"/>
+                                        <rect key="frame" x="20" y="12" width="325" height="1057"/>
                                         <subviews>
                                             <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9NK-4J-cp1">
-                                                <rect key="frame" x="0.0" y="643" width="325" height="398"/>
+                                                <rect key="frame" x="0.0" y="659" width="325" height="398"/>
                                                 <subviews>
                                                     <box boxType="custom" borderWidth="0.0" cornerRadius="12" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="PSc-dA-OV4">
                                                         <rect key="frame" x="0.0" y="73" width="325" height="325"/>
@@ -744,7 +744,7 @@
                                                 </customSpacing>
                                             </stackView>
                                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ct0-HU-jl1">
-                                                <rect key="frame" x="-2" y="596" width="329" height="24"/>
+                                                <rect key="frame" x="-2" y="612" width="329" height="24"/>
                                                 <segmentedCell key="cell" borderStyle="border" alignment="left" segmentDistribution="fill" style="rounded" trackingMode="selectOne" id="gTg-Y5-LUe">
                                                     <font key="font" metaFont="system"/>
                                                     <segments>
@@ -757,16 +757,16 @@
                                                 </connections>
                                             </segmentedControl>
                                             <box boxType="custom" borderType="none" borderWidth="0.0" cornerRadius="12" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="m3Z-gW-K7K">
-                                                <rect key="frame" x="0.0" y="39" width="325" height="534"/>
+                                                <rect key="frame" x="0.0" y="39" width="325" height="550"/>
                                                 <view key="contentView" id="o1B-mh-BaI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="325" height="534"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="325" height="550"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="32" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M3j-no-2H3">
-                                                            <rect key="frame" x="20" y="20" width="285" height="494"/>
+                                                            <rect key="frame" x="20" y="20" width="285" height="510"/>
                                                             <subviews>
                                                                 <box hidden="YES" boxType="custom" cornerRadius="4" title="Constraint Hack" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e7L-eP-d4V">
-                                                                    <rect key="frame" x="0.0" y="484" width="285" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="500" width="285" height="10"/>
                                                                     <view key="contentView" id="ZDL-0j-BqK">
                                                                         <rect key="frame" x="1" y="1" width="283" height="8"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -776,11 +776,11 @@
                                                                     </constraints>
                                                                 </box>
                                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hND-fo-JUU">
-                                                                    <rect key="frame" x="0.0" y="438" width="285" height="56"/>
+                                                                    <rect key="frame" x="0.0" y="438" width="285" height="72"/>
                                                                     <subviews>
                                                                         <textField focusRingType="none" verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bh0-07-eRl">
-                                                                            <rect key="frame" x="-2" y="40" width="109" height="16"/>
-                                                                            <textFieldCell key="cell" selectable="YES" title="This is a warning." id="iIQ-VE-2IB">
+                                                                            <rect key="frame" x="-2" y="40" width="289" height="32"/>
+                                                                            <textFieldCell key="cell" selectable="YES" title="This is a default controller, the configurations are not applicable." id="iIQ-VE-2IB">
                                                                                 <font key="font" usesAppearanceFont="YES"/>
                                                                                 <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

@@ -245,6 +245,8 @@ extension ControllersViewController {
                 }
                 
                 else if let shortcutsController = controller as? ShortcutsController {
+                    let settings = shortcutsController.settings
+                    
                     viewDefaultControllerLabels.isHidden = true
                     viewControllerName.isHidden = false
                     
@@ -255,16 +257,16 @@ extension ControllersViewController {
                     buttonDeleteController.isEnabled = true
                     buttonAddController.isEnabled = true
                     
-                    textFieldControllerName.stringValue = shortcutsController.settings.name ?? ""
+                    textFieldControllerName.stringValue = settings.name ?? ""
                     
-                    switchHaptics.flag = shortcutsController.settings.haptics
-                    switchPhysicalDirection.flag = shortcutsController.settings.physicalDirection
-                    switchAlternativeDirection.flag = shortcutsController.settings.alternativeDirection
+                    switchHaptics.flag = settings.haptics
+                    switchPhysicalDirection.flag = settings.physicalDirection
+                    switchAlternativeDirection.flag = settings.alternativeDirection
                     
                     refreshRotationTypeMenuManager()
                     popUpButtonRotationType.menu = rotationTypeMenuManager?.menu
                     
-                    let icon = shortcutsController.settings.representingSymbol
+                    let icon = settings.representingSymbol
                     buttonIconChooser.image = icon.image
                     iconChooserViewController?.setAll(true)
                     iconChooserViewController?.chosen = icon
@@ -272,7 +274,7 @@ extension ControllersViewController {
                     for (index, item) in popUpButtonRotationType.itemArray.enumerated() {
                         if
                             let rotationType = item.representedObject as? Dial.Rotation.RawType,
-                            rotationType == shortcutsController.settings.rotationType
+                            rotationType == settings.rotationType
                         { popUpButtonRotationType.selectItem(at: index) }
                     }
                     
