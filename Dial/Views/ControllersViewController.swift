@@ -474,6 +474,7 @@ extension ControllersViewController {
                 of: sender,
                 preferredEdge: .maxX
             )
+            AppDelegate.shared?.iconChooserViewController.scrollToChosen()
         }
     }
     

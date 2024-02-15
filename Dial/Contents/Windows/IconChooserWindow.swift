@@ -37,8 +37,8 @@ import SFSafeSymbols
         scrollView.hasHorizontalScroller = false
         
         NSLayoutConstraint.activate([
-            scrollView.widthAnchor.constraint(equalToConstant: 275),
-            scrollView.heightAnchor.constraint(equalToConstant: 375)
+            scrollView.widthAnchor.constraint(equalToConstant: 325),
+            scrollView.heightAnchor.constraint(equalToConstant: 400)
         ])
         
         let wrapperView = NSView()
@@ -79,7 +79,7 @@ import SFSafeSymbols
                 hStackView.distribution = .fillEqually
                 
                 NSLayoutConstraint.activate([
-                    hStackView.heightAnchor.constraint(equalToConstant: 50),
+                    hStackView.heightAnchor.constraint(equalToConstant: 42.5),
                     hStackView.leadingAnchor.constraint(equalTo: vStackView.leadingAnchor),
                     hStackView.trailingAnchor.constraint(equalTo: vStackView.trailingAnchor)
                 ])
@@ -112,14 +112,11 @@ import SFSafeSymbols
         
         Task { @MainActor in
             for await value in observationTrackingStream({ self.chosen }) {
-                print(value.rawValue)
                 for button in buttons {
                     guard let toolTip = button.toolTip else { continue }
                     let icon = SFSymbol(rawValue: toolTip)
                     
-                    if icon != value {
-                        button.flag = false
-                    }
+                    button.flag = icon == value
                 }
             }
         }
@@ -133,7 +130,7 @@ import SFSafeSymbols
         
         button.translatesAutoresizingMaskIntoConstraints = false
         button.toolTip = icon.rawValue
-        button.image = icon.image.withSymbolConfiguration(.init(pointSize: 16, weight: .bold))
+        button.image = icon.image.withSymbolConfiguration(.init(pointSize: 15, weight: .bold))
         button.bezelStyle = .flexiblePush
         button.setButtonType(.onOff)
         
@@ -143,6 +140,32 @@ import SFSafeSymbols
         buttons.append(button)
         
         return button
+    }
+    
+    func scrollToChosen() {
+        guard let button = buttons.first(where: { button in
+            guard let toolTip = button.toolTip else { return false }
+            let icon = SFSymbol(rawValue: toolTip)
+            
+            return icon == chosen
+        }) else { return }
+        print(button)
+        if let point = scrollPoint(for: button) {
+            scrollView?.contentView.scroll(to: point)
+        }
+    }
+    
+    func scrollPoint(for button: NSButton) -> NSPoint? {
+        guard
+            let superview = button.superview,
+            let view = scrollView?.contentView.documentView
+        else { return nil }
+        
+        let height = scrollView?.frame.height ?? 0
+        let scrollableHeight = view.frame.height
+        let y = superview.frame.maxY - height / 2
+        
+        return .init(x: 0, y: min(max(y, height / 2), scrollableHeight - height / 2))
     }
     
 }
