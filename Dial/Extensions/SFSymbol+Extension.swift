@@ -10,14 +10,14 @@ import AppKit
 
 extension SFSymbol {
     
-    static let circleFillSuffix = ".circle.fill"
+    static let circleFillableSuffix = ".circle.fill"
     
-    static let fallback: SFSymbol = .gear
+    static let circleFillableFallback: SFSymbol = .gear
     
     static var circleFillableSymbols: [SFSymbol] {
         SFSymbol.allSymbols
-            .filter { $0.hasSuffix(SFSymbol.circleFillSuffix) && $0.withoutSuffix(SFSymbol.circleFillSuffix) != nil }
-            .map { $0.withoutSuffix(SFSymbol.circleFillSuffix)! }
+            .filter { $0.hasSuffix(SFSymbol.circleFillableSuffix) && $0.withoutSuffix(SFSymbol.circleFillableSuffix) != nil }
+            .map { $0.withoutSuffix(SFSymbol.circleFillableSuffix)! }
     }
     
     func hasSuffix(_ suffix: String) -> Bool {
@@ -49,7 +49,7 @@ extension SFSymbol {
     }
     
     var circleFilledImage: NSImage {
-        NSImage(systemSymbol: self.withSuffix(SFSymbol.circleFillSuffix) ?? .fallback)
+        NSImage(systemSymbol: self.withSuffix(SFSymbol.circleFillableSuffix) ?? .circleFillableFallback)
     }
     
 }

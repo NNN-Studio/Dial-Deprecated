@@ -72,7 +72,7 @@ extension Controller {
 extension Controller {
     
     var representingSymbol: SFSymbol {
-        .fallback
+        .circleFillableFallback
     }
     
     var haptics: Bool {

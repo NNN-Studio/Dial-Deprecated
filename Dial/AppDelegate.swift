@@ -9,6 +9,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var dial = Dial()
     
+    var iconChooserViewController = IconChooserViewController()
+    
     func requestPermissions() {
         // More information on this behaviour: https://stackoverflow.com/questions/29006379/accessibility-permissions-reset-after-application-update
         if !AXIsProcessTrusted() {
@@ -34,7 +36,8 @@ Dial needs Accessibility permissions to function properly. In the next dialog, y
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         requestPermissions()
         runTasks()
-        IconChooserViewController.preloadView()
+        
+        iconChooserViewController.preloadView()
         
         // TODO: DEBUG
         Defaults.reset(.activatedControllerIDs)

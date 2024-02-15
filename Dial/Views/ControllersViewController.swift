@@ -181,7 +181,7 @@ extension ControllersViewController {
         ]
         
         iconChooserPopover.delegate = self
-        iconChooserPopover.contentViewController = IconChooserViewController()
+        iconChooserPopover.contentViewController = AppDelegate.shared?.iconChooserViewController
         iconChooserPopover.contentSize = .zero
         iconChooserPopover.behavior = .transient
         

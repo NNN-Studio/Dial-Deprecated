@@ -9,9 +9,27 @@ import Foundation
 import AppKit
 import SFSafeSymbols
 
-class IconChooserViewController: NSViewController {
+@Observable class IconChooserViewController: NSViewController {
     
-    static func preloadView() {
+    private var buttons: [NSButton] = []
+    
+    var chosen: SFSymbol = .circleFillableFallback
+    
+    var scrollView: NSScrollView? {
+        get {
+            view as? NSScrollView
+        }
+        
+        set {
+            guard let newValue else { return }
+            
+            view = newValue
+        }
+    }
+    
+    func preloadView() {
+        buttons = []
+        
         let scrollView = NSScrollView()
         
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,19 +41,33 @@ class IconChooserViewController: NSViewController {
             scrollView.heightAnchor.constraint(equalToConstant: 375)
         ])
         
+        let wrapperView = NSView()
+        scrollView.documentView = wrapperView
+        
+        wrapperView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            wrapperView.leadingAnchor.constraint(equalTo: scrollView.contentView.leadingAnchor),
+            wrapperView.trailingAnchor.constraint(equalTo: scrollView.contentView.trailingAnchor)
+        ])
+        
         let vStackView = NSStackView()
         let columns: Int = 5
-        scrollView.documentView = vStackView
+        wrapperView.addSubview(vStackView)
         
         vStackView.translatesAutoresizingMaskIntoConstraints = false
         vStackView.orientation = .vertical
         
         NSLayoutConstraint.activate([
-            vStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 12),
-            vStackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -12)
+            vStackView.leadingAnchor.constraint(equalTo: wrapperView.leadingAnchor, constant: 12),
+            vStackView.trailingAnchor.constraint(equalTo: wrapperView.trailingAnchor, constant: -12),
+            vStackView.topAnchor.constraint(equalTo: wrapperView.topAnchor, constant: 12),
+            vStackView.bottomAnchor.constraint(equalTo: wrapperView.bottomAnchor, constant: -12)
         ])
         
-        for (index, icon) in SFSymbol.circleFillableSymbols.enumerated() {
+        for (index, icon) in SFSymbol.circleFillableSymbols
+            .sorted(by: { $0.rawValue < $1.rawValue })
+            .enumerated() {
             let row = index / columns
             
             if vStackView.arrangedSubviews.count <= row {
@@ -47,14 +79,14 @@ class IconChooserViewController: NSViewController {
                 hStackView.distribution = .fillEqually
                 
                 NSLayoutConstraint.activate([
-                    hStackView.heightAnchor.constraint(equalToConstant: 55),
+                    hStackView.heightAnchor.constraint(equalToConstant: 50),
                     hStackView.leadingAnchor.constraint(equalTo: vStackView.leadingAnchor),
                     hStackView.trailingAnchor.constraint(equalTo: vStackView.trailingAnchor)
                 ])
             }
             
             let hStackView = vStackView.arrangedSubviews[row] as! NSStackView
-            let iconView = IconChooserViewController.generateIconView(icon)
+            let iconView = generateIconView(icon)
             hStackView.addArrangedSubview(iconView)
             
             NSLayoutConstraint.activate([
@@ -65,7 +97,7 @@ class IconChooserViewController: NSViewController {
         
         let remaining = 5 - SFSymbol.circleFillableSymbols.count % 5
         
-        for index in 0..<remaining {
+        for _ in 0..<remaining {
             let row = (SFSymbol.circleFillableSymbols.count - 1) / 5
             
             let hStackView = vStackView.arrangedSubviews[row] as! NSStackView
@@ -78,29 +110,55 @@ class IconChooserViewController: NSViewController {
             ])
         }
         
-        IconChooserViewController.view = scrollView
+        Task { @MainActor in
+            for await value in observationTrackingStream({ self.chosen }) {
+                print(value.rawValue)
+                for button in buttons {
+                    guard let toolTip = button.toolTip else { continue }
+                    let icon = SFSymbol(rawValue: toolTip)
+                    
+                    if icon != value {
+                        button.flag = false
+                    }
+                }
+            }
+        }
+        
+        self.scrollView = scrollView
         print("View preloaded for icon chooser:", view)
     }
     
-    static var view: NSView = .init()
-    
-    static func generateIconView(_ icon: SFSymbol) -> NSView {
-        let box = NSBox()
-        let imageView = NSImageView(image: icon.image.withSymbolConfiguration(.init(pointSize: 16, weight: .bold))!)
-        box.addSubview(imageView)
+    func generateIconView(_ icon: SFSymbol) -> NSView {
+        let button = NSButton()
         
-        box.translatesAutoresizingMaskIntoConstraints = false
-        box.titlePosition = .noTitle
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.toolTip = icon.rawValue
+        button.image = icon.image.withSymbolConfiguration(.init(pointSize: 16, weight: .bold))
+        button.bezelStyle = .flexiblePush
+        button.setButtonType(.onOff)
         
-        imageView.translatesAutoresizingMaskIntoConstraints = false
+        button.target = self
+        button.action = #selector(self.chooseIcon(_:))
         
-        return box
+        buttons.append(button)
+        
+        return button
     }
     
-    override func viewWillAppear() {
-        super.viewWillAppear()
+}
+
+extension IconChooserViewController {
+    
+    @objc func chooseIcon(_ sender: Any?) {
+        guard let button = sender as? NSButton else { return }
+        guard let toolTip = button.toolTip else { return }
         
-        self.view = IconChooserViewController.view // Preloaded
+        let icon = SFSymbol(rawValue: toolTip)
+        if chosen != icon {
+            chosen = icon
+        }
+        
+        button.flag = true
     }
     
 }

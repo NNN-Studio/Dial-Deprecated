@@ -98,7 +98,7 @@ class ShortcutsController: Controller {
         
         init(
             name: String? = nil,
-            representingSymbol: SFSymbol = .fallback,
+            representingSymbol: SFSymbol = .circleFillableFallback,
             haptics: Bool = true,
             physicalDirection: Bool = false, alternativeDirection: Bool = false,
             rotationType: Dial.Rotation.RawType = .continuous, shortcuts: Shortcuts = Shortcuts()
