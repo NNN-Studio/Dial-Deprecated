@@ -50,9 +50,11 @@ import SwiftUI
                 case .keyW:
                     close()
                     return true
+                    
                 // TODO: DEBUG
                 case .keyD:
                     AppDelegate.shared?.dial.window.toggle()
+                    
                 default:
                     break
                 }
