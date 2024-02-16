@@ -165,6 +165,8 @@ class DialViewController: NSViewController {
     
     var radiansOffset = CGFloat.zero
     
+    private var titleCache = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -200,8 +202,34 @@ class DialViewController: NSViewController {
             relativeTo: nil
         )
         
-        var iconsView = NSView()
+        let iconsView = NSView()
         fillSubview(parentView, iconsView)
+        
+        let titleView = NSTextField(labelWithString: titleCache)
+        parentView.addSubview(titleView)
+        
+        titleView.translatesAutoresizingMaskIntoConstraints = false
+        titleView.drawsBackground = false
+        titleView.isBezeled = false
+        titleView.isEditable = false
+        titleView.isSelectable = false
+        
+        titleView.alignment = .center
+        titleView.textColor = .controlAccentColor
+        titleView.font = .systemFont(ofSize: DialWindow.diameters.inner * 0.072, weight: .medium)
+        
+        let titleShadow = NSShadow()
+        
+        titleShadow.shadowColor = .controlAccentColor
+        titleShadow.shadowBlurRadius = 15
+        
+        titleView.shadow = titleShadow
+        
+        NSLayoutConstraint.activate([
+            titleView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
+            titleView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
+            titleView.centerYAnchor.constraint(equalTo: parentView.centerYAnchor)
+        ])
         
         func updateIconViews() {
             for (index, iconView) in iconsView.subviews.enumerated() {
@@ -212,6 +240,7 @@ class DialViewController: NSViewController {
                     {
                         iconView.contentTintColor = .controlAccentColor
                         iconView.alphaValue = 1
+                        
                         let shadow = NSShadow()
                         
                         shadow.shadowColor = .controlAccentColor
@@ -230,7 +259,7 @@ class DialViewController: NSViewController {
         
         Task { @MainActor in
             for await _ in Defaults.updates([.activatedControllerIDs, .shortcutsControllerSettings]) {
-                iconsView.subviews.forEach({ $0.removeFromSuperview() })
+                iconsView.subviews.filter({ $0 is NSImageView }).forEach({ $0.removeFromSuperview() })
                 iconsView.wantsLayer = true
                 
                 Controllers.activatedControllers
@@ -264,6 +293,10 @@ class DialViewController: NSViewController {
             for await _ in Defaults.updates(.currentControllerID) {
                 iconsView.setRotation(getRadians(), animated: true)
                 updateIconViews()
+                
+                titleView.stringValue = Controllers.currentController.name
+                titleCache = Controllers.currentController.name
+                
             }
         }
         
