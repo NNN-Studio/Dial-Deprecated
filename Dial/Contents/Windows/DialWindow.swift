@@ -114,10 +114,12 @@ class DialWindow: NSWindow {
     }
     
     func hide() {
-        dialViewController?.showDetails = false
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-            self.close()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.dialViewController?.showDetails = false
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                self.close()
+            }
         }
     }
     
