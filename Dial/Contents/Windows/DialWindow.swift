@@ -37,9 +37,7 @@ extension NSView {
 
 class DialWindow: NSWindow {
     
-    static let size = (outer: 225.0, inner: 135.0)
-    
-    
+    static let diameters = (outer: 225.0, inner: 135.0)
     
     var dialViewController: DialViewController? {
         contentViewController as? DialViewController
@@ -73,7 +71,7 @@ class DialWindow: NSWindow {
         DialWindow.menuAppearanceObservation = NSApp.observe(\.effectiveAppearance) { (app, _) in
             app.effectiveAppearance.performAsCurrentDrawingAppearance {
                 if let dialViewController = self.dialViewController, dialViewController.isViewLoaded {
-                    dialViewController.updateColoredWidgets()
+                    //dialViewController.updateColoredWidgets()
                 }
             }
         }
@@ -82,9 +80,8 @@ class DialWindow: NSWindow {
     func show() {
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             self.makeKeyAndOrderFront(nil)
-            self.dialViewController?.updateColoredWidgets()
             self.updatePosition()
-            self.dialViewController?.update()
+            //self.dialViewController?.update()
         }
     }
     
@@ -128,7 +125,7 @@ class DialWindow: NSWindow {
             minY: translatedFrameOrigin.y <= screenOrigin.y,
             maxX: translatedFrameOrigin.x + frameSize.width >= screenOrigin.x + screenSize.width
         )
-        let offset: CGFloat = (DialWindow.size.inner / 2) / sqrt(2)
+        let offset: CGFloat = (DialWindow.diameters.inner / 2) / sqrt(2)
         dialViewController?.radiansOffset = 0
         
         if reached.minX {
@@ -169,39 +166,54 @@ class DialViewController: NSViewController {
     
     var radiansOffset = CGFloat.zero
     
-    var visualEffectViews: (background: NSVisualEffectView?, foreground: NSVisualEffectView?)
-    
-    var iconsView: NSView?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view = NSView(frame: NSRect(origin: .zero, size: .init(width: DialWindow.size.outer, height: DialWindow.size.outer)))
+        let parentView = NSView()
         
-        let foregroundMultiplier = DialWindow.size.inner / DialWindow.size.outer
-        visualEffectViews = (
-            background: createVisualEffectView(material: .contentBackground),
-            foreground: createVisualEffectView(multiplier: foregroundMultiplier, material: .windowBackground)
+        parentView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            parentView.widthAnchor.constraint(equalToConstant: DialWindow.diameters.outer),
+            parentView.heightAnchor.constraint(equalToConstant: DialWindow.diameters.outer)
+        ])
+        
+        let foregroundMultiplier = DialWindow.diameters.inner / DialWindow.diameters.outer
+        
+        fillSubview(
+            view,
+            createVisualEffectView(material: .contentBackground),
+            positioned: .above,
+            relativeTo: nil
         )
-        fillView(view, visualEffectViews.background!, positioned: .above, relativeTo: nil)
-        fillView(view, visualEffectViews.foreground!, multiplier: foregroundMultiplier, positioned: .above, relativeTo: nil)
+        fillSubview(
+            view,
+            createVisualEffectView(multiplier: foregroundMultiplier, material: .windowBackground),
+            multiplier: foregroundMultiplier,
+            positioned: .above,
+            relativeTo: nil
+        )
+        
+        var iconsView = NSView()
         
         Task { @MainActor in
             for await _ in Defaults.updates(.activatedControllerIDs) {
-                iconsView?.removeFromSuperview()
+                iconsView.removeFromSuperview()
+                
                 iconsView = NSView()
-                iconsView?.wantsLayer = true
-                fillView(view, iconsView!)
+                fillSubview(parentView, iconsView)
+                
+                iconsView.wantsLayer = true
                 
                 Controllers.activatedControllers
                     .enumerated()
-                    .forEach { createIconView(self.iconsView!, $0.element.representingSymbol, $0.offset) }
+                    .forEach { iconsView.addSubview(createIconView($0.element.representingSymbol, index: $0.offset)) }
             }
         }
         
         Task { @MainActor in
             for await _ in Defaults.updates([.currentControllerID, .activatedControllerIDs]) {
-                update(animated: true)
+                //update(animated: true)
             }
         }
     }
@@ -209,8 +221,8 @@ class DialViewController: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         
-        updateColoredWidgets()
-        update()
+        //updateColoredWidgets()
+        //update()
         setCursorVisibility(false)
     }
     
@@ -225,9 +237,10 @@ class DialViewController: NSViewController {
         blendMode: NSVisualEffectView.BlendingMode = .behindWindow,
         material: NSVisualEffectView.Material
     ) -> NSVisualEffectView {
-        let size = DialWindow.size.outer * multiplier
+        let size = DialWindow.diameters.outer * multiplier
         let view = NSVisualEffectView()
         
+        view.translatesAutoresizingMaskIntoConstraints = false
         view.blendingMode = blendMode
         view.material = material
         
@@ -239,27 +252,22 @@ class DialViewController: NSViewController {
     }
     
     private func createIconView(
-        _ superview: NSView,
         _ icon: SFSymbol,
-        _ index: Int
-    ) {
+        index: Int
+    ) -> NSImageView {
         let radians = getRadians(ofIndex: index)
-        let radius = CGFloat(DialWindow.size.inner + DialWindow.size.outer) / 4
+        let radius = CGFloat(DialWindow.diameters.inner + DialWindow.diameters.outer) / 4
         let pos = NSPoint(x: radius * sin(-radians - Double.pi), y: radius * cos(radians - Double.pi))
         
-        let view = NSImageView(image: icon.image)
-        superview.addSubview(view)
+        let view = NSImageView(image: icon.image.withSymbolConfiguration(.init(scale: .large))!)
         
         view.translatesAutoresizingMaskIntoConstraints = false
         view.rotate(byDegrees: -radians * 180 / Double.pi)
         
-        NSLayoutConstraint.activate([
-            view.centerXAnchor.constraint(equalTo: self.iconsView!.centerXAnchor, constant: pos.x),
-            view.centerYAnchor.constraint(equalTo: self.iconsView!.centerYAnchor, constant: pos.y)
-        ])
+        return view
     }
     
-    private func fillView(
+    private func fillSubview(
         _ superview: NSView,
         _ view: NSView,
         multiplier: CGFloat = 1,
@@ -272,10 +280,10 @@ class DialViewController: NSViewController {
         view.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            view.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: multiplier),
-            view.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: multiplier),
-            view.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            view.centerYAnchor.constraint(equalTo: self.view.centerYAnchor)
+            view.widthAnchor.constraint(equalTo: superview.widthAnchor, multiplier: multiplier),
+            view.heightAnchor.constraint(equalTo: superview.heightAnchor, multiplier: multiplier),
+            view.centerXAnchor.constraint(equalTo: superview.centerXAnchor),
+            view.centerYAnchor.constraint(equalTo: superview.centerYAnchor)
         ])
     }
     
@@ -285,6 +293,7 @@ class DialViewController: NSViewController {
         CGFloat(index % Defaults[.maxControllerCount]) / CGFloat(Defaults[.maxControllerCount]) * 2 * Double.pi + radiansOffset
     }
     
+    /*
     func updateColoredWidgets() {
         if let iconsView {
             for (index, iconView) in iconsView.subviews.enumerated() {
@@ -314,32 +323,6 @@ class DialViewController: NSViewController {
         iconsView?.setRotation(getRadians(), animated: animated)
         updateColoredWidgets()
     }
-    
-}
-
-extension DialWindow {
-    
-    var callback: Callback {
-        Callback(self)
-    }
-    
-    struct Callback {
-        
-        private var window: DialWindow
-        
-        init(_ window: DialWindow) {
-            self.window = window
-        }
-        
-        func update(animated: Bool = false) {
-            DispatchQueue.main.async {
-                if let viewController = window.dialViewController {
-                    viewController.updateColoredWidgets()
-                    viewController.update(animated: animated)
-                }
-            }
-        }
-        
-    }
+     */
     
 }

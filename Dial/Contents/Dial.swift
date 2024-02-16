@@ -285,13 +285,7 @@ extension Dial {
             dial.device.callback
         }
         
-        var window: DialWindow.Callback {
-            dial.window.callback
-        }
-        
-        init(
-            _ dial: Dial
-        ) {
+        init(_ dial: Dial) {
             self.dial = dial
         }
         
