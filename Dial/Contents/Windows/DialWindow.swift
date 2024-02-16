@@ -248,11 +248,6 @@ class DialWindow: NSWindow {
         titleView.alignment = .center
         titleView.font = .systemFont(ofSize: DialWindow.diameters.inner * 0.072, weight: .medium)
         
-        let titleShadow = NSShadow()
-        
-        titleShadow.shadowColor = .controlAccentColor
-        titleShadow.shadowBlurRadius = 15
-        
         NSLayoutConstraint.activate([
             titleView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
             titleView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
@@ -268,18 +263,10 @@ class DialWindow: NSWindow {
                     {
                         iconView.contentTintColor = .controlAccentColor
                         iconView.alphaValue = 1
-                        
-                        let shadow = NSShadow()
-                        
-                        shadow.shadowColor = .controlAccentColor
-                        shadow.shadowBlurRadius = 5
-                        
                         iconView.wantsLayer = true
-                        iconView.shadow = shadow
                     } else {
                         iconView.contentTintColor = .tertiaryLabelColor
                         iconView.alphaValue = 0.8
-                        iconView.shadow = nil
                     }
                 }
             }
@@ -340,18 +327,18 @@ class DialWindow: NSWindow {
         
         Task { @MainActor in
             for await value in observationTrackingStream({ self.showDetails }) {
-                if showDetails {
-                    iconsView.animator().alphaValue = 1
-                    backgroundViews.forEach({ $0.animator().alphaValue = 1 })
+                if value {
+                    iconsView.alphaValue = 1
+                    backgroundViews.forEach({ $0.alphaValue = 1 })
                     
-                    titleView.animator().textColor = .controlAccentColor
-                    titleView.animator().shadow = titleShadow
+                    titleView.textColor = .controlAccentColor
+                    parentView.setScale(0.9, animated: true)
                 } else {
                     iconsView.animator().alphaValue = 0
                     backgroundViews.forEach({ $0.animator().alphaValue = 0.35 })
                     
                     titleView.animator().textColor = .labelColor
-                    titleView.animator().shadow = nil
+                    parentView.setScale(1, animated: true)
                 }
             }
         }
