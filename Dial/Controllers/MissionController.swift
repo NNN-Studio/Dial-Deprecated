@@ -38,7 +38,7 @@ You can iterate through App Switcher and activate the app windows through this c
     }
     
     func onRotation(
-        rotation: Dial.Rotation, totalDegrees: Int,
+        rotation: Rotation, totalDegrees: Int,
         buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval,
         _ callback: Dial.Callback
     ) {

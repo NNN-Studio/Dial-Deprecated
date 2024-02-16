@@ -55,7 +55,7 @@ protocol Controller: AnyObject, SymbolRepresentable {
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback)
     
-    func onRotation(rotation: Dial.Rotation, totalDegrees: Int, buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval, _ callback: Dial.Callback)
+    func onRotation(rotation: Rotation, totalDegrees: Int, buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval, _ callback: Dial.Callback)
     
     func onRelease(_ callback: Dial.Callback)
     

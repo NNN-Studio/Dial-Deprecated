@@ -18,10 +18,10 @@ struct RotationTypeMenuItems {
     
     let delegate: DialRotationTypeMenuDelegate
     
-    var rotationTypeOptions: [MenuOptionItem<Dial.Rotation.RawType>] {
-        let options: [MenuOptionItem<Dial.Rotation.RawType>] = [
-            .init(Dial.Rotation.RawType.continuous.localizedName, option: .continuous),
-            .init(Dial.Rotation.RawType.stepping.localizedName, option: .stepping)
+    var rotationTypeOptions: [MenuOptionItem<Rotation.RawType>] {
+        let options: [MenuOptionItem<Rotation.RawType>] = [
+            .init(Rotation.RawType.continuous.localizedName, option: .continuous),
+            .init(Rotation.RawType.stepping.localizedName, option: .stepping)
         ]
         
         for option in options {

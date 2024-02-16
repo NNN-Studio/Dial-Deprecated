@@ -36,7 +36,7 @@ class ShortcutsController: Controller {
         
         
         
-        var rotationType: Dial.Rotation.RawType
+        var rotationType: Rotation.RawType
         
         var shortcuts: Shortcuts
         
@@ -120,7 +120,7 @@ class ShortcutsController: Controller {
             representingSymbol: SFSymbol = .circleFillableFallback,
             haptics: Bool = true,
             physicalDirection: Bool = false, alternativeDirection: Bool = false,
-            rotationType: Dial.Rotation.RawType = .continuous, shortcuts: Shortcuts = Shortcuts()
+            rotationType: Rotation.RawType = .continuous, shortcuts: Shortcuts = Shortcuts()
         ) {
             self.id = UUID()
             
@@ -172,7 +172,7 @@ class ShortcutsController: Controller {
     }
     
     func onRotation(
-        rotation: Dial.Rotation, totalDegrees: Int,
+        rotation: Rotation, totalDegrees: Int,
         buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval,
         _ callback: Dial.Callback
     ) {

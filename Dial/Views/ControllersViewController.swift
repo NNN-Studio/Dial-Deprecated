@@ -269,7 +269,7 @@ extension ControllersViewController {
                     
                     for (index, item) in popUpButtonRotationType.itemArray.enumerated() {
                         if
-                            let rotationType = item.representedObject as? Dial.Rotation.RawType,
+                            let rotationType = item.representedObject as? Rotation.RawType,
                             rotationType == settings.rotationType
                         { popUpButtonRotationType.selectItem(at: index) }
                     }
@@ -409,7 +409,7 @@ extension ControllersViewController: DialControllerMenuDelegate {
 extension ControllersViewController: DialRotationTypeMenuDelegate {
     
     func setRotationType(_ sender: Any?) {
-        guard let item = sender as? MenuOptionItem<Dial.Rotation.RawType> else { return }
+        guard let item = sender as? MenuOptionItem<Rotation.RawType> else { return }
         
         Controllers.selectedSettings?.rotationType = item.option
     }
@@ -541,7 +541,7 @@ extension ControllersViewController {
     @IBAction func toggleRotationType(_ sender: NSPopUpButton) {
         guard
             let item = sender.selectedItem,
-            let rotationType = item.representedObject as? Dial.Rotation.RawType
+            let rotationType = item.representedObject as? Rotation.RawType
         else { return }
         
         Controllers.selectedSettings?.rotationType = rotationType

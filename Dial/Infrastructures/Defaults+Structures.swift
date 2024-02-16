@@ -92,9 +92,9 @@ enum Direction: Int, CaseIterable, Codable, Defaults.Serializable {
     var negate: Direction {
         switch self {
         case .clockwise:
-                .counterclockwise
+            .counterclockwise
         case .counterclockwise:
-                .clockwise
+            .clockwise
         }
     }
     
@@ -147,6 +147,77 @@ extension Direction: SymbolRepresentable {
             .digitalcrownHorizontalArrowClockwiseFill
         case .counterclockwise:
             .digitalcrownHorizontalArrowCounterclockwiseFill
+        }
+    }
+    
+}
+
+enum Rotation: Codable {
+    
+    case continuous(Direction)
+    
+    case stepping(Direction)
+    
+    var type: RawType {
+        switch self {
+        case .continuous(_):
+            .continuous
+        case .stepping(_):
+            .stepping
+        }
+    }
+    
+    var direction: Direction {
+        switch self {
+        case .continuous(let direction), .stepping(let direction):
+            direction
+        }
+    }
+    
+    func conformsTo(_ type: RawType) -> Bool {
+        self.type == type
+    }
+    
+    enum RawType: Codable {
+        
+        case continuous
+        
+        case stepping
+        
+    }
+    
+}
+
+extension Rotation.RawType: Localizable {
+    
+    var localizedName: String {
+        switch self {
+        case .continuous:
+            NSLocalizedString("Dial/Rotation/Type/Continuous.Name", value: "Continuous", comment: "continuous rotation type")
+        case .stepping:
+            NSLocalizedString("Dial/Rotation/Type/Stepping.Name", value: "Stepping", comment: "stepping rotation type")
+        }
+    }
+    
+    var localizedBadge: String {
+        switch self {
+        case .continuous:
+            NSLocalizedString("Dial/Rotation/Type/Continuous.Badge", value: "continuous", comment: "continuous rotation type")
+        case .stepping:
+            NSLocalizedString("Dial/Rotation/Type/Stepping.Badge", value: "stepping", comment: "stepping rotation type")
+        }
+    }
+    
+}
+
+extension Rotation.RawType: SymbolRepresentable {
+    
+    var representingSymbol: SFSymbol {
+        switch self {
+        case .continuous:
+            .alternatingcurrent
+        case .stepping:
+            .directcurrent
         }
     }
     

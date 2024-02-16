@@ -33,6 +33,27 @@ extension NSView {
         }
     }
     
+    func setScale(
+        _ scale: CGFloat,
+        animated: Bool = false
+    ) {
+        if let layer, let animatorLayer = animator().layer {
+            layer.position = CGPoint(x: frame.midX, y: frame.midY)
+            layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+            
+            let transform = CATransform3DMakeScale(scale, scale, 0)
+            
+            if animated {
+                NSAnimationContext.runAnimationGroup { context in
+                    context.allowsImplicitAnimation = true
+                    animatorLayer.transform = transform
+                }
+            } else {
+                layer.transform = transform
+            }
+        }
+    }
+    
 }
 
 class DialWindow: NSWindow {
@@ -78,6 +99,8 @@ class DialWindow: NSWindow {
     }
     
     func show() {
+        dialViewController?.showDetails = true
+        
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             self.makeKeyAndOrderFront(nil)
             self.updatePosition()
@@ -85,7 +108,9 @@ class DialWindow: NSWindow {
     }
     
     func hide() {
-        DispatchQueue.main.asyncAfter(deadline: .now()) {
+        dialViewController?.showDetails = false
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
             self.close()
         }
     }
@@ -161,9 +186,11 @@ class DialWindow: NSWindow {
     
 }
 
-class DialViewController: NSViewController {
+@Observable class DialViewController: NSViewController {
     
     var radiansOffset = CGFloat.zero
+    
+    var showDetails = true
     
     private var titleCache = ""
     
@@ -180,26 +207,30 @@ class DialViewController: NSViewController {
         ])
         
         let foregroundMultiplier = DialWindow.diameters.inner / DialWindow.diameters.outer
+        var backgroundViews: [NSView] = []
+        var foregroundViews: [NSView] = []
         
+        let effect1 = createVisualEffectView(material: .menu)
+        backgroundViews.append(effect1)
         fillSubview(
-            parentView,
-            createVisualEffectView(material: .menu),
-            positioned: .above,
-            relativeTo: nil
+            parentView, effect1,
+            positioned: .above, relativeTo: nil
         )
+        
+        let effect2 = createVisualEffectView(multiplier: foregroundMultiplier * 1.05, material: .hudWindow)
+        backgroundViews.append(effect2)
         fillSubview(
-            parentView,
-            createVisualEffectView(multiplier: foregroundMultiplier * 1.05, material: .hudWindow),
+            parentView, effect2,
             multiplier: foregroundMultiplier * 1.05,
-            positioned: .above,
-            relativeTo: nil
+            positioned: .above, relativeTo: nil
         )
+        
+        let effect3 = createVisualEffectView(multiplier: foregroundMultiplier, material: .contentBackground)
+        foregroundViews.append(effect3)
         fillSubview(
-            parentView,
-            createVisualEffectView(multiplier: foregroundMultiplier, material: .contentBackground),
+            parentView, effect3,
             multiplier: foregroundMultiplier,
-            positioned: .above,
-            relativeTo: nil
+            positioned: .above, relativeTo: nil
         )
         
         let iconsView = NSView()
@@ -215,15 +246,12 @@ class DialViewController: NSViewController {
         titleView.isSelectable = false
         
         titleView.alignment = .center
-        titleView.textColor = .controlAccentColor
         titleView.font = .systemFont(ofSize: DialWindow.diameters.inner * 0.072, weight: .medium)
         
         let titleShadow = NSShadow()
         
         titleShadow.shadowColor = .controlAccentColor
         titleShadow.shadowBlurRadius = 15
-        
-        titleView.shadow = titleShadow
         
         NSLayoutConstraint.activate([
             titleView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
@@ -296,6 +324,35 @@ class DialViewController: NSViewController {
                 
                 titleView.stringValue = Controllers.currentController.name
                 titleCache = Controllers.currentController.name
+            }
+        }
+        
+        Task { @MainActor in
+            for await value in observationTrackingStream({ AppDelegate.shared!.dial.buttonState }) {
+                switch value {
+                case .pressed:
+                    parentView.setScale(0.9, animated: true)
+                case .released:
+                    parentView.setScale(1, animated: true)
+                }
+            }
+        }
+        
+        Task { @MainActor in
+            for await value in observationTrackingStream({ self.showDetails }) {
+                if showDetails {
+                    iconsView.animator().alphaValue = 1
+                    backgroundViews.forEach({ $0.animator().alphaValue = 1 })
+                    
+                    titleView.animator().textColor = .controlAccentColor
+                    titleView.animator().shadow = titleShadow
+                } else {
+                    iconsView.animator().alphaValue = 0
+                    backgroundViews.forEach({ $0.animator().alphaValue = 0.35 })
+                    
+                    titleView.animator().textColor = .labelColor
+                    titleView.animator().shadow = nil
+                }
             }
         }
         

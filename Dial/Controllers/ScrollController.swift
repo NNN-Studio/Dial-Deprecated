@@ -25,7 +25,7 @@ You can scroll and perform middle button clicks through this controller. Scrolls
     }
     
     func onRotation(
-        rotation: Dial.Rotation, totalDegrees: Int,
+        rotation: Rotation, totalDegrees: Int,
         buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval,
         _ callback: Dial.Callback
     ) {

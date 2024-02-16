@@ -5,11 +5,13 @@ import AppKit
 import Cocoa
 import SwiftUI
 
-class Dial {
+@Observable class Dial {
     
     var device = Device()
     
     var statusBarController = StatusBarController()
+    
+    var buttonState: Device.ButtonState = .released
     
     var window = DialWindow(
         styleMask: [.borderless],
@@ -56,81 +58,6 @@ class Dial {
 
 extension Dial {
     
-    enum Rotation: Codable {
-        
-        case continuous(Direction)
-        
-        case stepping(Direction)
-        
-        var type: RawType {
-            switch self {
-            case .continuous(_):
-                .continuous
-            case .stepping(_):
-                .stepping
-            }
-        }
-        
-        var direction: Direction {
-            switch self {
-            case .continuous(let direction), .stepping(let direction):
-                direction
-            }
-        }
-        
-        func conformsTo(_ type: RawType) -> Bool {
-            self.type == type
-        }
-        
-        enum RawType: Codable {
-            
-            case continuous
-            
-            case stepping
-            
-        }
-        
-    }
-    
-}
-
-extension Dial.Rotation.RawType: Localizable {
-    
-    var localizedName: String {
-        switch self {
-        case .continuous:
-            NSLocalizedString("Dial/Rotation/Type/Continuous.Name", value: "Continuous", comment: "continuous rotation type")
-        case .stepping:
-            NSLocalizedString("Dial/Rotation/Type/Stepping.Name", value: "Stepping", comment: "stepping rotation type")
-        }
-    }
-    
-    var localizedBadge: String {
-        switch self {
-        case .continuous:
-            NSLocalizedString("Dial/Rotation/Type/Continuous.Badge", value: "continuous", comment: "continuous rotation type")
-        case .stepping:
-            NSLocalizedString("Dial/Rotation/Type/Stepping.Badge", value: "stepping", comment: "stepping rotation type")
-        }
-    }
-    
-}
-
-extension Dial.Rotation.RawType: SymbolRepresentable {
-    
-    var representingSymbol: SFSymbol {
-        switch self {
-        case .continuous:
-            .alternatingcurrent
-        case .stepping:
-            .directcurrent
-        }
-    }
-    
-}
-
-extension Dial {
-    
     func connect() {
         device.start()
     }
@@ -154,6 +81,8 @@ extension Dial: InputHandler {
         
         rotationBehavior.started = nil
         rotationBehavior.degrees = 0
+        
+        self.buttonState = buttonState
         
         switch buttonState {
         case .pressed:

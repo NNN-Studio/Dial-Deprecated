@@ -31,7 +31,7 @@ You can trigger forward / backward by dialing, increase / decrease volume by dia
     }
     
     func onRotation(
-        rotation: Dial.Rotation, totalDegrees: Int,
+        rotation: Rotation, totalDegrees: Int,
         buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval,
         _ callback: Dial.Callback
     ) {
