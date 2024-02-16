@@ -59,29 +59,6 @@ class GeneralViewController: NSViewController {
 
 extension GeneralViewController {
     
-    // MARK: - Storyboard Instantiation
-    
-    static func freshController() -> GeneralViewController {
-        let storyboard = NSStoryboard(
-            name: NSStoryboard.Name("Main"),
-            bundle: nil
-        )
-        
-        let identifier = NSStoryboard.SceneIdentifier("GeneralController")
-        
-        guard let controller = storyboard.instantiateController(
-            withIdentifier: identifier
-        ) as? GeneralViewController else {
-            fatalError("Can not find GeneralController")
-        }
-        
-        return controller
-    }
-    
-}
-
-extension GeneralViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         submenuItems = SubmenuItems(delegate: self)

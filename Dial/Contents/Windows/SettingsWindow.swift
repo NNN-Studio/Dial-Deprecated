@@ -25,19 +25,38 @@ import SwiftUI
         self.window?.level = .mainMenu
         self.window?.center()
         self.window?.makeKeyAndOrderFront(nil)
+        NSRunningApplication.current.activate()
     }
     
     override func keyDown(with event: NSEvent) {
         let keyCode = Int32(event.keyCode)
+        let performed = performKeyEquivalent(with: event)
         
-        if let key = Input(rawValue: keyCode) {
+        if let key = Input(rawValue: keyCode), !performed {
             pressedKey = key
         }
-        
-        if event.modifierFlags.contains(.command) && (Input.keyQ.conformsTo(keyCode) || Input.keyW.conformsTo(keyCode)) {
-            // Closes with Command+W / Command+W
-            close()
+    }
+    
+    override func performKeyEquivalent(with event: NSEvent) -> Bool {
+        if event.type == .keyDown {
+            let flags = NSEvent.ModifierFlags(rawValue: event.modifierFlags.rawValue & NSEvent.ModifierFlags.deviceIndependentFlagsMask.rawValue)
+            let key = Input(rawValue: Int32(event.keyCode))
+            
+            if flags == .command {
+                switch key {
+                case .keyQ:
+                    AppDelegate.quitApp()
+                    return true
+                case .keyW:
+                    close()
+                    return true
+                default:
+                    break
+                }
+            }
         }
+        
+        return super.performKeyEquivalent(with: event)
     }
     
     static func loseFocus() {

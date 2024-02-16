@@ -45,7 +45,7 @@ class ControllersViewController: NSViewController {
     
     
     
-    @IBOutlet weak var textFieldControllerName: NSTextField!
+    @IBOutlet weak var textFieldControllerName: EditableTextField!
     
     @IBOutlet weak var buttonIconChooser: NSButton!
     
@@ -156,29 +156,6 @@ class ControllersViewController: NSViewController {
     
     private var iconChooserViewController: IconChooserViewController? {
         AppDelegate.shared?.iconChooserViewController
-    }
-    
-}
-
-extension ControllersViewController {
-    
-    // MARK: - Storyboard Instantiation
-    
-    static func freshController() -> ControllersViewController {
-        let storyboard = NSStoryboard(
-            name: NSStoryboard.Name("Main"),
-            bundle: nil
-        )
-        
-        let identifier = NSStoryboard.SceneIdentifier("ControllersController")
-        
-        guard let controller = storyboard.instantiateController(
-            withIdentifier: identifier
-        ) as? ControllersViewController else {
-            fatalError("Can not find ControllersController")
-        }
-        
-        return controller
     }
     
 }

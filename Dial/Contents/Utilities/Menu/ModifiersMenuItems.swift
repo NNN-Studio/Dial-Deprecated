@@ -16,11 +16,21 @@ import Defaults
     
 }
 
-struct ModifiersMenuItems {
+class ModifiersMenuItems { // It needs to be self mutable
     
     let delegate: DialModifiersMenuDelegate
     
     let actionTarget: ModifiersOptionItem.ActionTarget
+    
+    private var titleCache = ""
+    
+    init(
+        delegate: DialModifiersMenuDelegate,
+        actionTarget: ModifiersOptionItem.ActionTarget
+    ) {
+        self.delegate = delegate
+        self.actionTarget = actionTarget
+    }
     
     var modifiersOptions: [NSMenuItem] {
         let options: [ModifiersOptionItem] = [
@@ -30,33 +40,33 @@ struct ModifiersMenuItems {
             .init("􀆝", option: .shift, actionTarget: actionTarget)
         ]
         
-        let title = NSMenuItem(title: "")
+        let title = NSMenuItem(title: titleCache)
         
         for option in options {
             option.target = delegate
             option.action = #selector(delegate.setModifiers(_:))
             
             Task { @MainActor in
-                for await _ in Defaults.updates(.shortcutsControllerSettings) {
-                    let cached: NSEvent.ModifierFlags = options.filter({ $0.flag }).map({ $0.option }).reduce([], { $0.union($1) })
-                    var newer: NSEvent.ModifierFlags = []
-                    
-                    for controller in Controllers.shortcutsControllers {
-                        if controller.id == Controllers.selectedController.id {
-                            let flag = controller.settings.shortcuts.getModifiersOf(actionTarget).contains(option.option)
+                for await value in Defaults.updates(.shortcutsControllerSettings) {
+                    for settings in value {
+                        if let selectedSettings = Controllers.selectedSettings, settings.id == selectedSettings.id {
+                            let flag = settings.shortcuts.getModifiersOf(actionTarget).contains(option.option)
                             option.flag = flag
-                            
-                            if flag { newer.formUnion(option.option) }
                         }
                     }
-                    
-                    if cached != newer {
-                        title.title = options
-                            .filter { $0.flag }
-                            .map { $0.title }
-                            .joined()
-                    }
                 }
+            }
+        }
+        
+        Task { @MainActor in
+            for await _ in Defaults.updates(.shortcutsControllerSettings) {
+                let string = options
+                    .filter { $0.flag }
+                    .map { $0.title }
+                    .joined()
+                
+                title.title = string
+                titleCache = string
             }
         }
         

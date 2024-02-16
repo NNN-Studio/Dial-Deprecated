@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2801CAB52AEDF18000E95B5F /* MissionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2801CAB42AEDF18000E95B5F /* MissionController.swift */; };
 		280AA0872B7AF64600798BB1 /* ControllerMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280AA0862B7AF64600798BB1 /* ControllerMenuItems.swift */; };
+		2822407C2B7EEBDD00F73DF4 /* EditableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822407B2B7EEBDD00F73DF4 /* EditableTextField.swift */; };
 		2822C3D42B75C42D000D5C58 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 2822C3D32B75C42D000D5C58 /* Defaults */; };
 		2822C3D62B75C443000D5C58 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D52B75C443000D5C58 /* Defaults.swift */; };
 		2822C3D82B75C44B000D5C58 /* Defaults+Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */; };
@@ -58,6 +59,7 @@
 /* Begin PBXFileReference section */
 		2801CAB42AEDF18000E95B5F /* MissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionController.swift; sourceTree = "<group>"; };
 		280AA0862B7AF64600798BB1 /* ControllerMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerMenuItems.swift; sourceTree = "<group>"; };
+		2822407B2B7EEBDD00F73DF4 /* EditableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTextField.swift; sourceTree = "<group>"; };
 		2822C3D52B75C443000D5C58 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Defaults+Structures.swift"; sourceTree = "<group>"; };
 		2822C3D92B75DB8C000D5C58 /* BrightnessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessController.swift; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				28FCB9332B7C5ADB0071AE01 /* InputButton.swift */,
+				2822407B2B7EEBDD00F73DF4 /* EditableTextField.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 				2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */,
 				28D9F46C2B79EC8C00494B7E /* NSImage+Extension.swift in Sources */,
 				2822C3D82B75C44B000D5C58 /* Defaults+Structures.swift in Sources */,
+				2822407C2B7EEBDD00F73DF4 /* EditableTextField.swift in Sources */,
 				28D9F47C2B7A301000494B7E /* SubmenuItems.swift in Sources */,
 				28DBB1612B7903D000743575 /* Localization.swift in Sources */,
 				28FCB9342B7C5ADB0071AE01 /* InputButton.swift in Sources */,

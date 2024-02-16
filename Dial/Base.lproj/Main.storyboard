@@ -807,9 +807,9 @@
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="REC-Bn-oGz">
                                                                     <rect key="frame" x="0.0" y="480" width="285" height="30"/>
                                                                     <subviews>
-                                                                        <textField focusRingType="none" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="enj-tW-3QN">
+                                                                        <textField focusRingType="none" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="enj-tW-3QN" customClass="EditableTextField" customModule="Dial" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="247" height="30"/>
-                                                                            <textFieldCell key="cell" controlSize="large" selectable="YES" editable="YES" continuous="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Controller Name" usesSingleLineMode="YES" bezelStyle="round" id="Iu5-Fb-NkF">
+                                                                            <textFieldCell key="cell" controlSize="large" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Controller Name" usesSingleLineMode="YES" bezelStyle="round" id="Iu5-Fb-NkF">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
