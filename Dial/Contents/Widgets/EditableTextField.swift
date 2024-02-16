@@ -19,7 +19,7 @@ class EditableTextField: NSTextField {
             if flags == [] {
                 switch key {
                 case .keyEscape:
-                    SettingsWindowController.loseFocus()
+                    AppDelegate.loseFocus()
                     return true
                 default:
                     break
@@ -54,7 +54,7 @@ class EditableTextField: NSTextField {
         }
         
         if SettingsWindowController.shared.performKeyEquivalent(with: event) {
-            SettingsWindowController.loseFocus() // Save session
+            AppDelegate.loseFocus() // Save session
             return true
         }
         

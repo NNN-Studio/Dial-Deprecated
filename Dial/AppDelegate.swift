@@ -74,6 +74,12 @@ extension AppDelegate {
         NSApplication.shared.terminate(self)
     }
     
+    static func loseFocus() {
+        DispatchQueue.main.async {
+            NSApp.keyWindow?.makeFirstResponder(nil)
+        }
+    }
+    
 }
 
 func runTasks() {

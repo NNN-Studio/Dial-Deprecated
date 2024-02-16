@@ -489,10 +489,12 @@ extension ControllersViewController {
     
     @IBAction func rename(_ sender: NSTextField) {
         Controllers.selectedSettings?.name = sender.stringValue.isEmpty ? nil : sender.stringValue
-        SettingsWindowController.loseFocus()
+        AppDelegate.loseFocus()
     }
     
     @IBAction func openIconChooser(_ sender: NSButton) {
+        AppDelegate.loseFocus()
+        
         if iconChooserPopover.isShown {
             iconChooserPopover.close()
         } else {

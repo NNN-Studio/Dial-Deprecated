@@ -38,6 +38,7 @@ class InputButton: NSButton {
     }
     
     override func mouseDown(with event: NSEvent) {
+        AppDelegate.loseFocus()
         keys = []
         listening = true
         updateTitle()

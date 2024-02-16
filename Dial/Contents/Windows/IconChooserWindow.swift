@@ -31,6 +31,7 @@ import SFSafeSymbols
     
     let margin: CGFloat = 24
     
+    // It is still slow to show the view. Why?
     func preloadView() {
         buttons = []
         

@@ -58,11 +58,5 @@ import SwiftUI
         
         return super.performKeyEquivalent(with: event)
     }
-    
-    static func loseFocus() {
-        DispatchQueue.main.async {
-            NSApp.keyWindow?.makeFirstResponder(nil)
-        }
-    }
 
 }
