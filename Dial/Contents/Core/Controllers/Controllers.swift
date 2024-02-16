@@ -107,11 +107,11 @@ struct Controllers {
         guard let index = activatedControllers.firstIndex(where: { $0.id == currentController.id }) else { return }
         
         let cycledIndex = index + sign.signum()
-        let max = activatedControllers.count
-        let inRange = NSRange(location: 0, length: activatedControllers.count).contains(cycledIndex)
+        let count = activatedControllers.count
+        let inRange = NSRange(location: 0, length: count).contains(cycledIndex)
         
         if wrap || inRange {
-            currentController = activatedControllers[cycledIndex % max]
+            currentController = activatedControllers[(cycledIndex + count) % count]
         }
     }
     
@@ -159,6 +159,10 @@ struct Controllers {
         
         if let index = shortcutsControllers.firstIndex(of: shortcutsController) {
             shortcutsControllers.remove(at: index)
+        }
+        
+        if let index = activatedControllers.firstIndex(where: { $0.id == shortcutsController.id }) {
+            activatedControllers.remove(at: index)
         }
         
         if shortcutsController.id == currentController.id {

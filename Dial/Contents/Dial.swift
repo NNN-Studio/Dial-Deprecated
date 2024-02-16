@@ -18,18 +18,18 @@ class Dial {
     )
     
     var controller: Controller {
-        if defaultController.isAgent {
-            return defaultController.instance
+        if mainController.isAgent {
+            return mainController.instance
         } else {
             let item = statusBarController.menuItems?.controllerMenuItems.controllers
                 .filter { $0.option.id == Controllers.currentController.id }
                 .first
             
-            return item?.option ?? defaultController.instance
+            return item?.option ?? mainController.instance
         }
     }
     
-    private var defaultController = (
+    private var mainController = (
         instance: MainController(),
         isAgent: false,
         dispatch: DispatchWorkItem {}
@@ -203,7 +203,7 @@ extension Dial: InputHandler {
         )
         
         if let duration = Date.now.timeIntervalSince(rotationBehavior.started) {
-            if !defaultController.isAgent {
+            if !mainController.isAgent {
                 setDefaultControllerState(isAgent: false)
             }
             
@@ -250,19 +250,19 @@ extension Dial: InputHandler {
         deadline: DispatchTime = .now()
     ) {
         if isAgent {
-            defaultController.dispatch = DispatchWorkItem {
-                self.defaultController.isAgent = true
+            mainController.dispatch = DispatchWorkItem {
+                self.mainController.isAgent = true
                 self.window.show()
                 self.device.buzz()
                 print("Default controller is now the agent.")
             }
             
-            DispatchQueue.main.asyncAfter(deadline: deadline, execute: defaultController.dispatch)
+            DispatchQueue.main.asyncAfter(deadline: deadline, execute: mainController.dispatch)
         } else {
-            defaultController.dispatch.cancel()
+            mainController.dispatch.cancel()
             
-            if defaultController.isAgent {
-                defaultController.isAgent = false
+            if mainController.isAgent {
+                mainController.isAgent = false
                 window.hide()
                 print("Default controller is no longer the agent.")
             }

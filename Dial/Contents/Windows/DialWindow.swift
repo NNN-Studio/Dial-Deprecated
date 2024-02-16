@@ -37,7 +37,7 @@ extension NSView {
 
 class DialWindow: NSWindow {
     
-    static let diameters = (outer: 225.0, inner: 135.0)
+    static let diameters = (outer: 340.0, inner: 220.0)
     
     var dialViewController: DialViewController? {
         contentViewController as? DialViewController
@@ -81,7 +81,6 @@ class DialWindow: NSWindow {
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             self.makeKeyAndOrderFront(nil)
             self.updatePosition()
-            //self.dialViewController?.update()
         }
     }
     
@@ -181,48 +180,99 @@ class DialViewController: NSViewController {
         let foregroundMultiplier = DialWindow.diameters.inner / DialWindow.diameters.outer
         
         fillSubview(
-            view,
-            createVisualEffectView(material: .contentBackground),
+            parentView,
+            createVisualEffectView(material: .menu),
             positioned: .above,
             relativeTo: nil
         )
         fillSubview(
-            view,
-            createVisualEffectView(multiplier: foregroundMultiplier, material: .windowBackground),
+            parentView,
+            createVisualEffectView(multiplier: foregroundMultiplier * 1.05, material: .hudWindow),
+            multiplier: foregroundMultiplier * 1.05,
+            positioned: .above,
+            relativeTo: nil
+        )
+        fillSubview(
+            parentView,
+            createVisualEffectView(multiplier: foregroundMultiplier, material: .contentBackground),
             multiplier: foregroundMultiplier,
             positioned: .above,
             relativeTo: nil
         )
         
         var iconsView = NSView()
+        fillSubview(parentView, iconsView)
+        
+        func updateIconViews() {
+            for (index, iconView) in iconsView.subviews.enumerated() {
+                if let iconView = iconView as? NSImageView {
+                    if
+                        let currentIndex = Controllers.indexOf(Controllers.currentController),
+                        index == currentIndex
+                    {
+                        iconView.contentTintColor = .controlAccentColor
+                        iconView.alphaValue = 1
+                        let shadow = NSShadow()
+                        
+                        shadow.shadowColor = .controlAccentColor
+                        shadow.shadowBlurRadius = 5
+                        
+                        iconView.wantsLayer = true
+                        iconView.shadow = shadow
+                    } else {
+                        iconView.contentTintColor = .tertiaryLabelColor
+                        iconView.alphaValue = 0.8
+                        iconView.shadow = nil
+                    }
+                }
+            }
+        }
         
         Task { @MainActor in
-            for await _ in Defaults.updates(.activatedControllerIDs) {
-                iconsView.removeFromSuperview()
-                
-                iconsView = NSView()
-                fillSubview(parentView, iconsView)
-                
+            for await _ in Defaults.updates([.activatedControllerIDs, .shortcutsControllerSettings]) {
+                iconsView.subviews.forEach({ $0.removeFromSuperview() })
                 iconsView.wantsLayer = true
                 
                 Controllers.activatedControllers
                     .enumerated()
-                    .forEach { iconsView.addSubview(createIconView($0.element.representingSymbol, index: $0.offset)) }
+                    .forEach {
+                        let index = $0.offset
+                        let radians = getRadians(ofIndex: index)
+                        let radius = CGFloat(DialWindow.diameters.inner + DialWindow.diameters.outer) / 4
+                        let pos = NSPoint(x: radius * sin(-radians - Double.pi), y: radius * cos(radians - Double.pi))
+                        
+                        let iconView = NSImageView(image: $0.element.representingSymbol.image.withSymbolConfiguration(.init(
+                            pointSize: (DialWindow.diameters.outer - DialWindow.diameters.inner) / 2 * 0.375,
+                            weight: .regular
+                        ))!)
+                        iconsView.addSubview(iconView)
+                        
+                        iconView.translatesAutoresizingMaskIntoConstraints = false
+                        iconView.rotate(byDegrees: -radians * 180 / Double.pi)
+                        
+                        NSLayoutConstraint.activate([
+                            iconView.centerXAnchor.constraint(equalTo: iconsView.centerXAnchor, constant: pos.x),
+                            iconView.centerYAnchor.constraint(equalTo: iconsView.centerYAnchor, constant: pos.y)
+                        ])
+                    }
+                
+                updateIconViews()
             }
         }
         
         Task { @MainActor in
-            for await _ in Defaults.updates([.currentControllerID, .activatedControllerIDs]) {
-                //update(animated: true)
+            for await _ in Defaults.updates(.currentControllerID) {
+                iconsView.setRotation(getRadians(), animated: true)
+                updateIconViews()
             }
         }
+        
+        view = parentView
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         
-        //updateColoredWidgets()
-        //update()
         setCursorVisibility(false)
     }
     
@@ -247,22 +297,6 @@ class DialViewController: NSViewController {
         view.wantsLayer = true
         view.layer?.cornerRadius = size / 2
         view.state = .active
-        
-        return view
-    }
-    
-    private func createIconView(
-        _ icon: SFSymbol,
-        index: Int
-    ) -> NSImageView {
-        let radians = getRadians(ofIndex: index)
-        let radius = CGFloat(DialWindow.diameters.inner + DialWindow.diameters.outer) / 4
-        let pos = NSPoint(x: radius * sin(-radians - Double.pi), y: radius * cos(radians - Double.pi))
-        
-        let view = NSImageView(image: icon.image.withSymbolConfiguration(.init(scale: .large))!)
-        
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.rotate(byDegrees: -radians * 180 / Double.pi)
         
         return view
     }
@@ -292,37 +326,5 @@ class DialViewController: NSViewController {
     ) -> CGFloat {
         CGFloat(index % Defaults[.maxControllerCount]) / CGFloat(Defaults[.maxControllerCount]) * 2 * Double.pi + radiansOffset
     }
-    
-    /*
-    func updateColoredWidgets() {
-        if let iconsView {
-            for (index, iconView) in iconsView.subviews.enumerated() {
-                if let iconView = iconView as? NSImageView {
-                    if
-                        let currentIndex = Controllers.indexOf(Controllers.currentController),
-                        index == currentIndex
-                    {
-                        iconView.contentTintColor = .controlAccentColor
-                        let shadow = NSShadow()
-                        
-                        shadow.shadowColor = .controlAccentColor
-                        shadow.shadowBlurRadius = 7.5
-                        
-                        iconView.wantsLayer = true
-                        iconView.shadow = shadow
-                    } else {
-                        iconView.contentTintColor = .tertiaryLabelColor
-                        iconView.shadow = nil
-                    }
-                }
-            }
-        }
-    }
-    
-    func update(animated: Bool = false) {
-        iconsView?.setRotation(getRadians(), animated: animated)
-        updateColoredWidgets()
-    }
-     */
     
 }
