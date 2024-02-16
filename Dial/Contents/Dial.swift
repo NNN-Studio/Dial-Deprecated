@@ -295,14 +295,6 @@ extension Dial {
             self.dial = dial
         }
         
-        func setController(
-            _ controller: Controller,
-            animate: Bool = false
-        ) {
-            Controllers.currentController = controller
-            window.update(animate: animate)
-        }
-        
     }
     
 }

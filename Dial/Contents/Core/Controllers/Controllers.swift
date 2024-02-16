@@ -156,8 +156,13 @@ struct Controllers {
     
     static func remove(_ controller: Controller) {
         guard let shortcutsController = controller as? ShortcutsController else { return }
+        
         if let index = shortcutsControllers.firstIndex(of: shortcutsController) {
             shortcutsControllers.remove(at: index)
+        }
+        
+        if shortcutsController.id == currentController.id {
+            currentController = activatedControllers.first!
         }
     }
     

@@ -32,7 +32,6 @@ class MainController: Controller {
             break
         case .stepping(let direction):
             Controllers.cycleThroughControllers(direction.physical.negate.rawValue)
-            callback.setController(Controllers.currentController, animate: true)
             callback.device.buzz()
         }
     }
