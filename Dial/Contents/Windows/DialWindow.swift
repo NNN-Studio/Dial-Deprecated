@@ -14,7 +14,8 @@ extension NSView {
     
     func setRotation(
         _ radians: CGFloat,
-        animated: Bool = false
+        animated: Bool = false,
+        duration: TimeInterval = 0.2
     ) {
         if let layer, let animatorLayer = animator().layer {
             layer.position = CGPoint(x: frame.midX, y: frame.midY)
@@ -25,6 +26,8 @@ extension NSView {
             if animated {
                 NSAnimationContext.runAnimationGroup { context in
                     context.allowsImplicitAnimation = true
+                    context.duration = duration
+                    
                     animatorLayer.transform = transform
                 }
             } else {
@@ -35,7 +38,8 @@ extension NSView {
     
     func setScale(
         _ scale: CGFloat,
-        animated: Bool = false
+        animated: Bool = false,
+        duration: TimeInterval = 0.2
     ) {
         if let layer, let animatorLayer = animator().layer {
             layer.position = CGPoint(x: frame.midX, y: frame.midY)
@@ -46,6 +50,8 @@ extension NSView {
             if animated {
                 NSAnimationContext.runAnimationGroup { context in
                     context.allowsImplicitAnimation = true
+                    context.duration = duration
+                    
                     animatorLayer.transform = transform
                 }
             } else {
@@ -194,6 +200,8 @@ class DialWindow: NSWindow {
     
     private var titleCache = ""
     
+    private var titleImageCache: NSImage?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -246,12 +254,24 @@ class DialWindow: NSWindow {
         titleView.isSelectable = false
         
         titleView.alignment = .center
-        titleView.font = .systemFont(ofSize: DialWindow.diameters.inner * 0.072, weight: .medium)
+        titleView.font = .systemFont(ofSize: DialWindow.diameters.inner * 0.0875, weight: .medium)
         
         NSLayoutConstraint.activate([
             titleView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
             titleView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
             titleView.centerYAnchor.constraint(equalTo: parentView.centerYAnchor)
+        ])
+        
+        let titleIconView = NSImageView()
+        parentView.addSubview(titleIconView)
+        
+        titleIconView.translatesAutoresizingMaskIntoConstraints = false
+        titleIconView.contentTintColor = .tertiaryLabelColor
+        titleIconView.image = titleImageCache
+        
+        NSLayoutConstraint.activate([
+            titleIconView.centerXAnchor.constraint(equalTo: parentView.centerXAnchor),
+            titleIconView.centerYAnchor.constraint(equalTo: parentView.centerYAnchor, constant: -DialWindow.diameters.inner / 4)
         ])
         
         func updateIconViews() {
@@ -309,8 +329,16 @@ class DialWindow: NSWindow {
                 iconsView.setRotation(getRadians(), animated: true)
                 updateIconViews()
                 
-                titleView.stringValue = Controllers.currentController.name
-                titleCache = Controllers.currentController.name
+                let title = Controllers.currentController.name
+                titleView.stringValue = title
+                titleCache = title
+                
+                let image = Controllers.currentController.representingSymbol.image.withSymbolConfiguration(.init(
+                    pointSize: DialWindow.diameters.inner * 0.135,
+                    weight: .medium
+                ))
+                titleIconView.image = image
+                titleImageCache = image
             }
         }
         
@@ -318,9 +346,9 @@ class DialWindow: NSWindow {
             for await value in observationTrackingStream({ AppDelegate.shared!.dial.buttonState }) {
                 switch value {
                 case .pressed:
-                    parentView.setScale(0.9, animated: true)
+                    parentView.setScale(0.9, animated: true, duration: 0.1)
                 case .released:
-                    parentView.setScale(1, animated: true)
+                    parentView.setScale(1, animated: true, duration: 0.1)
                 }
             }
         }
@@ -332,13 +360,13 @@ class DialWindow: NSWindow {
                     backgroundViews.forEach({ $0.alphaValue = 1 })
                     
                     titleView.textColor = .controlAccentColor
-                    parentView.setScale(0.9, animated: true)
+                    titleIconView.alphaValue = 0
                 } else {
                     iconsView.animator().alphaValue = 0
                     backgroundViews.forEach({ $0.animator().alphaValue = 0.35 })
                     
                     titleView.animator().textColor = .labelColor
-                    parentView.setScale(1, animated: true)
+                    titleIconView.animator().alphaValue = 1
                 }
             }
         }
