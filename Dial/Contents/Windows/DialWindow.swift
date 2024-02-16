@@ -296,7 +296,6 @@ class DialViewController: NSViewController {
                 
                 titleView.stringValue = Controllers.currentController.name
                 titleCache = Controllers.currentController.name
-                
             }
         }
         
