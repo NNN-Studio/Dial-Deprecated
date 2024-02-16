@@ -154,9 +154,7 @@ class ControllersViewController: NSViewController {
     
     private var iconChooserPopover: NSPopover = .init()
     
-    private var iconChooserViewController: IconChooserViewController? {
-        AppDelegate.shared?.iconChooserViewController
-    }
+    private var iconChooserViewController = IconChooserViewController()
     
 }
 
@@ -182,7 +180,7 @@ extension ControllersViewController {
         ]
         
         iconChooserPopover.delegate = self
-        iconChooserPopover.contentViewController = AppDelegate.shared?.iconChooserViewController
+        iconChooserPopover.contentViewController = iconChooserViewController
         iconChooserPopover.contentSize = .zero
         iconChooserPopover.behavior = .transient
         
@@ -239,7 +237,7 @@ extension ControllersViewController {
                     buttonDeleteController.isEnabled = false
                     buttonAddController.isEnabled = true
                     
-                    iconChooserViewController?.setAll(false)
+                    iconChooserViewController.setAll(false)
                 }
                 
                 else if let shortcutsController = controller as? ShortcutsController {
@@ -266,8 +264,8 @@ extension ControllersViewController {
                     
                     let icon = settings.representingSymbol
                     buttonIconChooser.image = icon.image
-                    iconChooserViewController?.setAll(true)
-                    iconChooserViewController?.chosen = icon
+                    iconChooserViewController.setAll(true)
+                    iconChooserViewController.chosen = icon
                     
                     for (index, item) in popUpButtonRotationType.itemArray.enumerated() {
                         if
@@ -302,7 +300,7 @@ extension ControllersViewController {
         }
         
         Task { @MainActor in
-            for await value in observationTrackingStream({ self.iconChooserViewController!.chosen }) {
+            for await value in observationTrackingStream({ self.iconChooserViewController.chosen }) {
                 if 
                     let settings = Controllers.selectedSettings,
                     settings.representingSymbol != value
@@ -504,7 +502,7 @@ extension ControllersViewController {
                 preferredEdge: .maxX
             )
             
-            iconChooserViewController?.scrollToChosen()
+            iconChooserViewController.scrollToChosen()
         }
     }
     

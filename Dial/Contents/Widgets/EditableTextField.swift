@@ -53,7 +53,7 @@ class EditableTextField: NSTextField {
             }
         }
         
-        if SettingsWindowController.shared.performKeyEquivalent(with: event) {
+        if SettingsWindowController.shared?.performKeyEquivalent(with: event) ?? false {
             AppDelegate.loseFocus() // Save session
             return true
         }

@@ -9,8 +9,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var dial = Dial()
     
-    var iconChooserViewController = IconChooserViewController()
-    
     func requestPermissions() {
         // More information on this behaviour: https://stackoverflow.com/questions/29006379/accessibility-permissions-reset-after-application-update
         if !AXIsProcessTrusted() {
@@ -37,8 +35,6 @@ Dial needs Accessibility permissions to function properly. In the next dialog, y
         requestPermissions()
         runTasks()
         
-        iconChooserViewController.preloadView()
-        
         // TODO: DEBUG
         Defaults.reset(.activatedControllerIDs)
         Defaults.reset(.shortcutsControllerSettings)
@@ -48,7 +44,7 @@ Dial needs Accessibility permissions to function properly. In the next dialog, y
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
         if !flag {
-            SettingsWindowController.shared.showWindow(nil)
+            SettingsWindowController.shared?.showWindow(nil)
         }
         
         return false
@@ -67,7 +63,7 @@ extension AppDelegate {
 extension AppDelegate {
     
     static func openSettings() {
-        SettingsWindowController.shared.showWindow(nil)
+        SettingsWindowController.shared?.showWindow(nil)
     }
     
     static func quitApp() {
@@ -99,6 +95,9 @@ func runTasks() {
 func setCursorVisibility(
     _ visible: Bool
 ) {
+    // TODO: DEBUG
+    return
+    
     let propertyString = CFStringCreateWithCString(kCFAllocatorDefault, "SetsCursorInBackground", 0)
     CGSSetConnectionProperty(_CGSDefaultConnection(), _CGSDefaultConnection(), propertyString, kCFBooleanTrue)
     

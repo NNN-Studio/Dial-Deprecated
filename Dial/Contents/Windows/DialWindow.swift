@@ -63,7 +63,7 @@ class DialWindow: NSWindow {
         hidesOnDeactivate = false
         ignoresMouseEvents = true
         
-        level = .floating
+        level = .screenSaver
         animationBehavior = .utilityWindow
         collectionBehavior = .canJoinAllSpaces
         backgroundColor = .clear
@@ -90,6 +90,14 @@ class DialWindow: NSWindow {
     func hide() {
         DispatchQueue.main.asyncAfter(deadline: .now()) {
             self.close()
+        }
+    }
+    
+    func toggle() {
+        if isVisible {
+            hide()
+        } else {
+            show()
         }
     }
     

@@ -23,7 +23,7 @@ class InputButton: NSButton {
         super.init(coder: coder)
         
         Task { @MainActor in
-            for await value in observationTrackingStream({ SettingsWindowController.shared.pressedKey }) {
+            for await value in observationTrackingStream({ SettingsWindowController.shared!.pressedKey }) {
                 if value != .unknown && listening {
                     // Remove the key if present before adding it again
                     keys.removeAll(where: { $0 == value })

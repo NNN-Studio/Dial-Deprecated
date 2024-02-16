@@ -10,11 +10,11 @@ import SwiftUI
 
 @Observable class SettingsWindowController: NSWindowController {
     
-    static let shared: SettingsWindowController = {
+    static let shared: SettingsWindowController? = {
         return NSStoryboard(
             name: "Main",
             bundle: nil
-        ).instantiateController(withIdentifier: "SettingsWindowController") as! SettingsWindowController
+        ).instantiateController(withIdentifier: "SettingsWindowController") as? SettingsWindowController
     }()
     
     var pressedKey: Input = .unknown
@@ -50,6 +50,9 @@ import SwiftUI
                 case .keyW:
                     close()
                     return true
+                // TODO: DEBUG
+                case .keyD:
+                    AppDelegate.shared?.dial.window.toggle()
                 default:
                     break
                 }

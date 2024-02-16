@@ -31,8 +31,7 @@ import SFSafeSymbols
     
     let margin: CGFloat = 24
     
-    // It is still slow to show the view. Why?
-    func preloadView() {
+    override func viewDidLoad() {
         buttons = []
         
         let scrollView = NSScrollView()
@@ -133,7 +132,6 @@ import SFSafeSymbols
         }
         
         self.scrollView = scrollView
-        print("View preloaded for icon chooser:", view)
     }
     
     func generateIconView(_ icon: SFSymbol) -> NSView {
