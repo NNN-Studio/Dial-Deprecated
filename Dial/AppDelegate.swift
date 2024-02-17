@@ -60,6 +60,10 @@ extension AppDelegate {
         NSApplication.shared.delegate as? AppDelegate
     }
     
+    static var version: String? {
+        Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    
 }
 
 extension AppDelegate {

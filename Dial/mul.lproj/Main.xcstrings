@@ -109,6 +109,18 @@
         }
       }
     },
+    "78m-eA-dJD.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"1.0.0\"; ObjectID = \"78m-eA-dJD\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "1.0.0"
+          }
+        }
+      }
+    },
     "81u-uF-qA7.label" : {
       "comment" : "Class = \"NSTabViewItem\"; label = \"General\"; ObjectID = \"81u-uF-qA7\";",
       "extractionState" : "extracted_with_value",

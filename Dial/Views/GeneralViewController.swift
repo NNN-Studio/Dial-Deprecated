@@ -47,6 +47,8 @@ class GeneralViewController: NSViewController {
     
     @IBOutlet weak var imageDial: NSImageView!
     
+    @IBOutlet weak var labelVersion: NSTextField!
+    
     @IBOutlet weak var labelSerial: NSTextField!
     
     @IBOutlet weak var labelAutoHidesIconDescription: NSTextField!
@@ -77,6 +79,7 @@ extension GeneralViewController {
         buttonQuit.title = Localization.quit.localizedName
         
         labelAutoHidesIconDescription.isHidden = true // Avoid glitches
+        labelVersion.stringValue = AppDelegate.version ?? ""
         
         let directionMenu = NSMenu()
         submenuItems?.directionOptions.forEach(directionMenu.addItem(_:))
