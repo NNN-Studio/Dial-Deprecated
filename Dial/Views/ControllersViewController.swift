@@ -194,6 +194,8 @@ extension ControllersViewController {
         labelPhysicalDirection.stringValue = Localization.Controllers.Advanced.physicalDirection.localizedName
         labelAlternativeDirection.stringValue = Localization.Controllers.Advanced.alternativeDirection.localizedName
         
+        loadDialCircleViewInto(viewDialCircle)
+        
         func applyConnectionStatus(_ value: Device.ConnectionStatus) {
             switch value {
             case .connected(let serialNumber):

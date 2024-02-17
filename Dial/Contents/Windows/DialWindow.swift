@@ -260,24 +260,21 @@ class DialWindow: NSWindow {
         let effect1 = createVisualEffectView(material: .menu)
         backgroundViews.append(effect1)
         fillSubview(
-            parentView, effect1,
-            positioned: .above, relativeTo: nil
+            parentView, effect1
         )
         
         let effect2 = createVisualEffectView(multiplier: foregroundMultiplier * 1.05, material: .hudWindow)
         backgroundViews.append(effect2)
         fillSubview(
             parentView, effect2,
-            multiplier: foregroundMultiplier * 1.05,
-            positioned: .above, relativeTo: nil
+            multiplier: foregroundMultiplier * 1.05
         )
         
         let effect3 = createVisualEffectView(multiplier: foregroundMultiplier, material: .contentBackground)
         foregroundViews.append(effect3)
         fillSubview(
             parentView, effect3,
-            multiplier: foregroundMultiplier,
-            positioned: .above, relativeTo: nil
+            multiplier: foregroundMultiplier
         )
         
         let iconsView = NSView()

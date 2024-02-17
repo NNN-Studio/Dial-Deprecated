@@ -95,7 +95,7 @@
                                             <stackView orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W2W-4t-gVD">
                                                 <rect key="frame" x="0.0" y="410" width="325" height="15"/>
                                                 <beginningViews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IJS-Eh-9pK">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IJS-Eh-9pK">
                                                         <rect key="frame" x="-2" y="0.0" width="45" height="15"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" title="1.0.0" id="78m-eA-dJD">
                                                             <font key="font" size="13" name="SFMono-Regular"/>
@@ -105,7 +105,7 @@
                                                     </textField>
                                                 </beginningViews>
                                                 <middleViews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="cDZ-nr-0Y0">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="cDZ-nr-0Y0">
                                                         <rect key="frame" x="82" y="0.0" width="161" height="15"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="SURFACE DIAL SERIAL" id="wFe-uU-akt">
                                                             <font key="font" size="13" name="SFMono-Regular"/>
@@ -167,7 +167,7 @@
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cz0-ET-44w">
                                                                     <rect key="frame" x="0.0" y="284" width="285" height="22"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bLD-mz-G1L">
+                                                                        <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bLD-mz-G1L">
                                                                             <rect key="frame" x="-2" y="2" width="243" height="16"/>
                                                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Global haptic feedback" id="YW6-kc-CrJ">
                                                                                 <font key="font" metaFont="system"/>
@@ -202,7 +202,7 @@
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IR2-9c-8in">
                                                                             <rect key="frame" x="0.0" y="30" width="285" height="22"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i9Y-7E-Bg8">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="i9Y-7E-Bg8">
                                                                                     <rect key="frame" x="-2" y="2" width="124" height="16"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Primary direction" id="Xwq-Hp-JXa">
                                                                                         <font key="font" metaFont="system"/>
@@ -244,7 +244,7 @@
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4p3-RP-ZzH">
                                                                             <rect key="frame" x="0.0" y="0.0" width="285" height="22"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tro-g9-Tmp">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tro-g9-Tmp">
                                                                                     <rect key="frame" x="-2" y="2" width="202" height="16"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Sensitivity" id="pFU-zn-zRx">
                                                                                         <font key="font" metaFont="system"/>
@@ -308,7 +308,7 @@
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uCT-NU-Bhb">
                                                                             <rect key="frame" x="0.0" y="86" width="285" height="22"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UaL-aq-6WK">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UaL-aq-6WK">
                                                                                     <rect key="frame" x="-2" y="2" width="243" height="16"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title=" Hides icon while disconnected" id="aTT-Ug-cXf">
                                                                                         <font key="font" metaFont="system"/>
@@ -337,7 +337,7 @@
                                                                                 <real value="3.4028234663852886e+38"/>
                                                                             </customSpacing>
                                                                         </stackView>
-                                                                        <textField verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="IMx-3Q-XWx">
+                                                                        <textField focusRingType="none" verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="IMx-3Q-XWx">
                                                                             <rect key="frame" x="-2" y="30" width="289" height="48"/>
                                                                             <textFieldCell key="cell" selectable="YES" title="While disconnected to your Surface Dial, it is possible to access this page by launching this app again." id="tAY-67-1OO">
                                                                                 <font key="font" usesAppearanceFont="YES"/>
@@ -348,7 +348,7 @@
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yz0-gE-GW5">
                                                                             <rect key="frame" x="0.0" y="0.0" width="285" height="22"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KR1-Fp-B7k">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KR1-Fp-B7k">
                                                                                     <rect key="frame" x="-2" y="2" width="243" height="16"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Starts with macOS" id="N6e-7l-BtN">
                                                                                         <font key="font" metaFont="system"/>
@@ -465,7 +465,7 @@
                                                             <action selector="visitSourceCode:" target="fkX-le-ubk" id="2LK-Cw-bTS"/>
                                                         </connections>
                                                     </button>
-                                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R7b-T4-19Q">
+                                                    <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R7b-T4-19Q">
                                                         <rect key="frame" x="89" y="0.0" width="238" height="16"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Presented with 􀊵 by KrLite" id="NkC-uS-QmI">
                                                             <font key="font" metaFont="system"/>
@@ -581,12 +581,11 @@
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="PSc-dA-OV4" secondAttribute="height" multiplier="1:1" id="Ufr-lr-YfZ"/>
                                                         </constraints>
-                                                        <color key="fillColor" name="quinaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                     </box>
                                                     <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="3" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hrw-EF-Cou">
                                                         <rect key="frame" x="0.0" y="32" width="325" height="33"/>
                                                         <subviews>
-                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lOE-0a-C1u">
+                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lOE-0a-C1u">
                                                                 <rect key="frame" x="-2" y="20" width="329" height="13"/>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Dial Circle" id="njj-4D-dJK">
                                                                     <font key="font" metaFont="systemBold" size="10"/>
@@ -597,7 +596,7 @@
                                                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="eUb-i8-5n4">
                                                                 <rect key="frame" x="0.0" y="14" width="325" height="5"/>
                                                             </box>
-                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aca-rQ-rEP">
+                                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aca-rQ-rEP">
                                                                 <rect key="frame" x="-2" y="0.0" width="329" height="13"/>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Current Controller" id="aUW-Uf-Zb3">
                                                                     <font key="font" metaFont="systemBold" size="10"/>
@@ -792,7 +791,7 @@
                                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hND-fo-JUU">
                                                                     <rect key="frame" x="0.0" y="542" width="285" height="72"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bh0-07-eRl">
+                                                                        <textField focusRingType="none" verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="bh0-07-eRl">
                                                                             <rect key="frame" x="-2" y="40" width="289" height="32"/>
                                                                             <textFieldCell key="cell" selectable="YES" title="This is a default controller, the configurations are not applicable." id="iIQ-VE-2IB">
                                                                                 <font key="font" usesAppearanceFont="YES"/>
@@ -800,7 +799,7 @@
                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
-                                                                        <textField verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EJv-n7-vPd">
+                                                                        <textField focusRingType="none" verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EJv-n7-vPd">
                                                                             <rect key="frame" x="-2" y="0.0" width="289" height="32"/>
                                                                             <textFieldCell key="cell" selectable="YES" title="This is the description of a default controller. It is intended to be multiline." id="fYb-Da-NUL">
                                                                                 <font key="font" usesAppearanceFont="YES"/>
@@ -821,7 +820,7 @@
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="REC-Bn-oGz">
                                                                     <rect key="frame" x="0.0" y="480" width="285" height="30"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="enj-tW-3QN" customClass="EditableTextField" customModule="Dial" customModuleProvider="target">
+                                                                        <textField focusRingType="none" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="enj-tW-3QN" customClass="EditableTextField" customModule="Dial" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="247" height="30"/>
                                                                             <textFieldCell key="cell" controlSize="large" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Controller Name" usesSingleLineMode="YES" bezelStyle="round" id="Iu5-Fb-NkF">
                                                                                 <font key="font" metaFont="system"/>
@@ -1374,7 +1373,7 @@
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="750" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7O1-8c-2B8">
                                                                             <rect key="frame" x="0.0" y="30" width="285" height="22"/>
                                                                             <subviews>
-                                                                                <textField translatesAutoresizingMaskIntoConstraints="NO" id="feS-7K-yN7">
+                                                                                <textField focusRingType="none" translatesAutoresizingMaskIntoConstraints="NO" id="feS-7K-yN7">
                                                                                     <rect key="frame" x="-2" y="0.0" width="162" height="20"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Rotation Type" usesSingleLineMode="YES" id="Uev-dd-2dy">
                                                                                         <font key="font" metaFont="system"/>
@@ -1416,7 +1415,7 @@
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E20-8J-VJe">
                                                                             <rect key="frame" x="0.0" y="0.0" width="285" height="22"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xTP-kC-eEq">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xTP-kC-eEq">
                                                                                     <rect key="frame" x="-2" y="2" width="243" height="16"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Haptic feedback" id="VjK-HS-ILa">
                                                                                         <font key="font" metaFont="system"/>
@@ -1467,7 +1466,7 @@
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bk7-B6-Qj6">
                                                                             <rect key="frame" x="0.0" y="30" width="285" height="22"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="08W-7F-WLD">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="08W-7F-WLD">
                                                                                     <rect key="frame" x="-2" y="2" width="243" height="16"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Follows physical direction" id="8eN-j7-62O">
                                                                                         <font key="font" metaFont="system"/>
@@ -1499,7 +1498,7 @@
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q09-bR-e1Q">
                                                                             <rect key="frame" x="0.0" y="0.0" width="285" height="22"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UKi-ZL-NIM">
+                                                                                <textField focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UKi-ZL-NIM">
                                                                                     <rect key="frame" x="-2" y="2" width="243" height="16"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Alternative direction" id="0vZ-5h-psk">
                                                                                         <font key="font" metaFont="system"/>
@@ -1596,7 +1595,7 @@
                                                 </view>
                                                 <color key="fillColor" name="quinaryLabelColor" catalog="System" colorSpace="catalog"/>
                                             </box>
-                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="J4v-P7-MhA">
+                                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="J4v-P7-MhA">
                                                 <rect key="frame" x="-2" y="0.0" width="329" height="15"/>
                                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="SURFACE DIAL SERIAL" id="ZUZ-Zi-yQ6">
                                                     <font key="font" size="13" name="SFMono-Regular"/>
