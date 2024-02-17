@@ -8,12 +8,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Dial needs Accessibility permissions to function properly. In the next dialog, you will be asked to open the Settings in order to grant them."
+            "value" : "Dial needs Accessibility permissions to function properly. In the next dialog, you will be asked to open the Settings in order to grant them.\nDue to an issue of macOS, if you're upgrading from an earlier version of Dial, you might have to remove Dial from the accessibility permissions and then restart the app to re-add the permissions."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Dial需要辅助功能权限以正常运行。在接下来的对话框里，你将会被引导至系统设置并赋予Dial所需的权限。"
           }
         }

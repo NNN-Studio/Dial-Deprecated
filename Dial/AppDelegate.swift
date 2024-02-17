@@ -20,15 +20,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 "App/PermissionsAlert/Content",
                 value: """
 Dial needs Accessibility permissions to function properly. In the next dialog, you will be asked to open the Settings in order to grant them.
+Due to an issue of macOS, if you're upgrading from an earlier version of Dial, you might have to remove Dial from the accessibility permissions and then restart the app to re-add the permissions.
 """,
                 comment: "permissions alert content")
             
             alert.runModal()
         }
         
-        let options : NSDictionary = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true]
+        let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true]
         
-        AXIsProcessTrustedWithOptions(options)
+        let trusted = AXIsProcessTrustedWithOptions(options)
+        print(trusted)
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {

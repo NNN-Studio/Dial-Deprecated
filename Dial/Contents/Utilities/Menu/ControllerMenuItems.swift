@@ -7,6 +7,7 @@
 
 import Foundation
 import Defaults
+import AppKit
 
 @objc protocol DialControllerMenuDelegate: AnyObject {
     
@@ -35,6 +36,17 @@ struct ControllerMenuItems {
             }
         }
         
+        var modifiers: NSEvent.ModifierFlags {
+            switch self {
+            case .default:
+                    .command
+            case .shortcuts:
+                    .option
+            case .activated:
+                []
+            }
+        }
+        
     }
     
     let delegate: DialControllerMenuDelegate
@@ -53,7 +65,7 @@ struct ControllerMenuItems {
             
             if index <= 9 {
                 item.keyEquivalent = String(index)
-                item.keyEquivalentModifierMask = []
+                item.keyEquivalentModifierMask = source.modifiers
             }
             
             Task { @MainActor in
