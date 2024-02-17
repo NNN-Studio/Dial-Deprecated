@@ -126,6 +126,10 @@ struct Controllers {
         }
     }
     
+    static func activatedIndexOf(_ controller: Controller) -> Int? {
+        activatedControllers.firstIndex(where: { $0.id == controller.id })
+    }
+    
     static func fetch(_ id: ControllerID) -> Controller? {
         switch id {
         case .id(let uUID):

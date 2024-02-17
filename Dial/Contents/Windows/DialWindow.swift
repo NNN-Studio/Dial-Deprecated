@@ -329,7 +329,7 @@ class DialWindow: NSWindow {
             for (index, iconView) in iconsView.subviews.enumerated() {
                 if let iconView = iconView as? NSImageView {
                     if
-                        let currentIndex = Controllers.indexOf(Controllers.currentController),
+                        let currentIndex = Controllers.activatedIndexOf(Controllers.currentController),
                         index == currentIndex
                     {
                         iconView.contentTintColor = .controlAccentColor
@@ -396,8 +396,8 @@ class DialWindow: NSWindow {
         }
         
         Task { @MainActor in
-            for await value in observationTrackingStream({ AppDelegate.shared!.dial.buttonState }) {
-                switch value {
+            for await _ in observationTrackingStream({ AppDelegate.shared!.dial.buttonState }) {
+                switch AppDelegate.shared!.dial.buttonState {
                 case .pressed:
                     parentView.setScale(0.9, animated: true, duration: 0.1)
                 case .released:
@@ -492,7 +492,7 @@ class DialWindow: NSWindow {
     }
     
     private func getRadians(
-        ofIndex index: Int = Controllers.indexOf(Controllers.currentController)!
+        ofIndex index: Int = Controllers.activatedIndexOf(Controllers.currentController) ?? 0
     ) -> CGFloat {
         CGFloat(index % Defaults[.maxControllerCount]) / CGFloat(Defaults[.maxControllerCount]) * 2.0 * Double.pi + radiansOffset
     }

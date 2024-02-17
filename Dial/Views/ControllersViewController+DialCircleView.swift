@@ -38,7 +38,7 @@ extension ControllersViewController {
         
         func updateIconViews() {
             for (index, iconView) in iconsView.subviews.compactMap({ $0 as? NSImageView }).enumerated() {
-                if index == Controllers.activatedControllers.firstIndex(where: { $0.id == Controllers.selectedController.id }) {
+                if index == Controllers.activatedIndexOf(Controllers.currentController) {
                     iconView.contentTintColor = .controlAccentColor
                 } else {
                     iconView.contentTintColor = nil
@@ -85,7 +85,7 @@ extension ControllersViewController {
             for (index, button) in buttonsView.subviews.compactMap({ $0 as? NSButton }).enumerated() {
                 button.isHidden = index >= Controllers.activatedControllers.count
                 
-                if index == Controllers.activatedControllers.firstIndex(where: { $0.id == Controllers.selectedController.id }) {
+                if index == Controllers.activatedIndexOf(Controllers.currentController) {
                     button.showsBorderOnlyWhileMouseInside = false
                 } else {
                     button.showsBorderOnlyWhileMouseInside = true
@@ -124,7 +124,7 @@ extension ControllersViewController {
         
         func updateIndicators() {
             for (index, indicator) in indicatorsView.subviews.enumerated() {
-                if index == Controllers.activatedControllers.firstIndex(where: { $0.id == Controllers.currentController.id }) {
+                if index == Controllers.activatedIndexOf(Controllers.currentController) {
                     indicator.isHidden = false
                 } else {
                     indicator.isHidden = true
@@ -192,7 +192,7 @@ extension ControllersViewController {
     }
     
     private func getRadians(
-        ofIndex index: Int = Controllers.indexOf(Controllers.selectedController)!
+        ofIndex index: Int = Controllers.activatedIndexOf(Controllers.currentController) ?? 0
     ) -> CGFloat {
         CGFloat(index % Defaults[.maxControllerCount]) / CGFloat(Defaults[.maxControllerCount]) * 2.0 * Double.pi
     }
