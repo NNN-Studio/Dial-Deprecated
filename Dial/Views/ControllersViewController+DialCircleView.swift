@@ -36,10 +36,6 @@ extension ControllersViewController {
         iconsView.translatesAutoresizingMaskIntoConstraints = false
         layerSubview(superview, iconsView)
         
-        let buttonsView = NSView()
-        buttonsView.translatesAutoresizingMaskIntoConstraints = false
-        layerSubview(superview, buttonsView)
-        
         func updateIconViews() {
             for (index, iconView) in iconsView.subviews.compactMap({ $0 as? NSImageView }).enumerated() {
                 if index == Controllers.activatedControllers.firstIndex(where: { $0.id == Controllers.selectedController.id }) {
@@ -81,8 +77,14 @@ extension ControllersViewController {
             }
         }
         
+        let buttonsView = NSView()
+        buttonsView.translatesAutoresizingMaskIntoConstraints = false
+        layerSubview(superview, buttonsView)
+        
         func updateButtons() {
             for (index, button) in buttonsView.subviews.compactMap({ $0 as? NSButton }).enumerated() {
+                button.isHidden = index >= Controllers.activatedControllers.count
+                
                 if index == Controllers.activatedControllers.firstIndex(where: { $0.id == Controllers.selectedController.id }) {
                     button.showsBorderOnlyWhileMouseInside = false
                 } else {
@@ -91,43 +93,86 @@ extension ControllersViewController {
             }
         }
         
-        Task { @MainActor in
-            for await _ in Defaults.updates([.activatedControllerIDs, .shortcutsControllerSettings]) {
-                buttonsView.subviews.filter({ $0 is NSButton }).forEach({ $0.removeFromSuperview() })
-                
-                for index in 0..<Controllers.activatedControllers.count {
-                    let radians = self.getRadians(ofIndex: index)
-                    let radius = superview.frame.height / 4.0 * radiansMultiplier * 0.99
-                    let pos = NSPoint(x: radius * sin(-radians - Double.pi), y: radius * cos(radians - Double.pi))
-                    let size = superview.frame.height / 4 * 0.65
-                    
-                    let button = NSButton()
-                    buttonsView.addSubview(button)
-                    
-                    button.translatesAutoresizingMaskIntoConstraints = false
-                    button.target = self
-                    button.action = #selector(self.dialCircleSelectController(_:))
-                    
-                    button.title = ""
-                    button.bezelStyle = .badge
-                    button.showsBorderOnlyWhileMouseInside = true
-                    
-                    NSLayoutConstraint.activate([
-                        button.widthAnchor.constraint(equalToConstant: size),
-                        button.heightAnchor.constraint(equalToConstant: size),
-                        button.centerXAnchor.constraint(equalTo: buttonsView.centerXAnchor, constant: pos.x),
-                        button.centerYAnchor.constraint(equalTo: buttonsView.centerYAnchor, constant: pos.y)
-                    ])
+        for index in 0..<Defaults[.maxControllerCount] {
+            let radians = self.getRadians(ofIndex: index)
+            let radius = superview.frame.height / 4.0 * radiansMultiplier * 0.99
+            let pos = NSPoint(x: radius * sin(-radians - Double.pi), y: radius * cos(radians - Double.pi))
+            let size = superview.frame.height / 4 * 0.65
+            
+            let button = NSButton()
+            buttonsView.addSubview(button)
+            
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.target = self
+            button.action = #selector(self.dialCircleSelectController(_:))
+            
+            button.title = ""
+            button.bezelStyle = .badge
+            button.showsBorderOnlyWhileMouseInside = true
+            
+            NSLayoutConstraint.activate([
+                button.widthAnchor.constraint(equalToConstant: size),
+                button.heightAnchor.constraint(equalToConstant: size),
+                button.centerXAnchor.constraint(equalTo: buttonsView.centerXAnchor, constant: pos.x),
+                button.centerYAnchor.constraint(equalTo: buttonsView.centerYAnchor, constant: pos.y)
+            ])
+        }
+        
+        let indicatorsView = NSView()
+        indicatorsView.translatesAutoresizingMaskIntoConstraints = false
+        layerSubview(superview, indicatorsView)
+        
+        func updateIndicators() {
+            for (index, indicator) in indicatorsView.subviews.enumerated() {
+                if index == Controllers.activatedControllers.firstIndex(where: { $0.id == Controllers.currentController.id }) {
+                    indicator.isHidden = false
+                } else {
+                    indicator.isHidden = true
                 }
-                
-                updateButtons()
             }
+        }
+        
+        for index in 0..<Defaults[.maxControllerCount] {
+            let radians = self.getRadians(ofIndex: index)
+            let radius = superview.frame.height / 4.0 * radiansMultiplier * 1.35
+            let pos = NSPoint(x: radius * sin(-radians - Double.pi), y: radius * cos(radians - Double.pi))
+            let size = 7.5
+            
+            let indicator = NSBox()
+            indicatorsView.addSubview(indicator)
+            
+            indicator.translatesAutoresizingMaskIntoConstraints = false
+            indicator.contentView?.translatesAutoresizingMaskIntoConstraints = false // Toxic
+            indicator.boxType = .custom
+            indicator.titlePosition = .noTitle
+            
+            indicator.borderWidth = 0
+            indicator.cornerRadius = size / 2
+            indicator.fillColor = .controlAccentColor
+            
+            NSLayoutConstraint.activate([
+                indicator.widthAnchor.constraint(equalToConstant: size),
+                indicator.heightAnchor.constraint(equalToConstant: size),
+                indicator.centerXAnchor.constraint(equalTo: indicatorsView.centerXAnchor, constant: pos.x),
+                indicator.centerYAnchor.constraint(equalTo: indicatorsView.centerYAnchor, constant: pos.y)
+            ])
         }
         
         Task { @MainActor in
             for await _ in Defaults.updates(.selectedControllerID) {
                 updateIconViews()
+            }
+        }
+        
+        Task { @MainActor in
+            for await _ in Defaults.updates([.activatedControllerIDs, .selectedControllerID]) {
                 updateButtons()
+            }
+        }
+        
+        Task { @MainActor in
+            for await _ in Defaults.updates(.currentControllerID) {
+                updateIndicators()
             }
         }
     }
