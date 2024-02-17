@@ -388,6 +388,12 @@
             "state" : "new",
             "value" : "This is the description of a default controller. It is intended to be multiline."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "这是一个默认控制器，自定义选项不可用。"
+          }
         }
       }
     },
@@ -877,7 +883,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "在你的智能旋钮失去连接时，你可以通过再次启动此App的方式打开此界面。"
           }
         }

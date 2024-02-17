@@ -51,22 +51,14 @@ struct MenuItems {
         @Sendable func apply(_ value: Device.ConnectionStatus) {
             switch value {
             case .connected(let serialNumber):
-                if #available(macOS 14.0, *) {
-                    item.title = Localization.ConnectionStatus.on.localizedName
-                    item.badge = NSMenuItemBadge(string: serialNumber)
-                } else {
-                    item.title = String(format: Localization.ConnectionStatus.onOld.localizedName, serialNumber)
-                }
+                item.title = Localization.ConnectionStatus.on.localizedName
+                item.badge = NSMenuItemBadge(string: serialNumber)
                 
                 item.flag = true
                 item.isEnabled = false
             case .disconnected:
-                if #available(macOS 14.0, *) {
-                    item.title = Localization.ConnectionStatus.off.localizedName
-                    item.badge = NSMenuItemBadge(string: Localization.ConnectionStatus.offBadge.localizedName)
-                } else {
-                    item.title = Localization.ConnectionStatus.offOld.localizedName
-                }
+                item.title = Localization.ConnectionStatus.off.localizedName
+                item.badge = NSMenuItemBadge(string: Localization.ConnectionStatus.offBadge.localizedName)
                 
                 item.flag = false
                 item.isEnabled = true
@@ -79,6 +71,7 @@ struct MenuItems {
             }
         }
         
+        apply(.disconnected)
         return item
     }
     
@@ -88,14 +81,17 @@ struct MenuItems {
         item.submenu = NSMenu()
         submenuItems.sensitivityOptions.forEach(item.submenu!.addItem(_:))
         
+        @Sendable func apply(_ value: Sensitivity) {
+            item.badge = NSMenuItemBadge(string: value.localizedBadge)
+        }
+        
         Task { @MainActor in
-            if #available(macOS 14.0, *) {
-                for await value in Defaults.updates(.sensitivity) {
-                    item.badge = NSMenuItemBadge(string: value.localizedBadge)
-                }
+            for await value in Defaults.updates(.sensitivity) {
+                apply(value)
             }
         }
         
+        apply(Defaults[.sensitivity])
         return item
     }
     
@@ -105,14 +101,17 @@ struct MenuItems {
         item.submenu = NSMenu()
         submenuItems.directionOptions.forEach(item.submenu!.addItem(_:))
         
+        @Sendable func apply(_ value: Direction) {
+            item.badge = NSMenuItemBadge(string: value.localizedBadge)
+        }
+        
         Task { @MainActor in
-            if #available(macOS 14.0, *) {
-                for await value in Defaults.updates(.direction) {
-                    item.badge = NSMenuItemBadge(string: value.localizedBadge)
-                }
+            for await value in Defaults.updates(.direction) {
+                apply(value)
             }
         }
         
+        apply(Defaults[.direction])
         return item
     }
     
@@ -152,6 +151,9 @@ struct MenuItems {
         item.target = delegate
         item.action = #selector(delegate.openSettings(_:))
         
+        item.keyEquivalent = ","
+        item.keyEquivalentModifierMask = .command
+        
         return item
     }
     
@@ -160,6 +162,9 @@ struct MenuItems {
         
         item.target = delegate
         item.action = #selector(delegate.quitApp(_:))
+        
+        item.keyEquivalent = "q"
+        item.keyEquivalentModifierMask = .command
         
         return item
     }

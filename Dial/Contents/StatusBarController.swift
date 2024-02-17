@@ -56,11 +56,11 @@ class StatusBarController: NSObject, NSMenuDelegate {
             ))
             
             items.append(MenuManager.groupItems(
-                menuItems!.haptics
+                menuItems!.haptics,
+                menuItems!.startsWithMacOS
             ))
             
             items.append(MenuManager.groupItems(
-                menuItems!.startsWithMacOS,
                 menuItems!.openSettings,
                 menuItems!.quit
             ))

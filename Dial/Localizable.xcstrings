@@ -38,7 +38,7 @@
       }
     },
     "ConnectionStatus/Off.Name" : {
-      "comment" : "[macOS >=14.0] if (!connected)",
+      "comment" : "if (!connected)",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
@@ -46,11 +46,17 @@
             "state" : "new",
             "value" : "Dial"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "智能旋钮"
+          }
         }
       }
     },
     "ConnectionStatus/OffBadge.Name" : {
-      "comment" : "[macOS >=14.0] if (!connected) badge",
+      "comment" : "if (!connected) badge",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
@@ -58,11 +64,35 @@
             "state" : "new",
             "value" : "disconnected"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未连接"
+          }
         }
       }
     },
     "ConnectionStatus/OffOld.Name" : {
       "comment" : "if (!connected)",
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Surface Dial disconnected"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未连接到智能旋钮"
+          }
+        }
+      }
+    },
+    "ConnectionStatus/OffPlaceholder.Name" : {
+      "comment" : "if (!connected) badge",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
@@ -74,7 +104,7 @@
       }
     },
     "ConnectionStatus/On.Name" : {
-      "comment" : "[macOS >=14.0] if (connected)",
+      "comment" : "if (connected)",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
@@ -82,17 +112,29 @@
             "state" : "new",
             "value" : "Dial"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "智能旋钮"
+          }
         }
       }
     },
     "ConnectionStatus/OnOld.Name" : {
       "comment" : "[macOS <14.0] if (connected)",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Dial: "
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "智能旋钮："
           }
         }
       }
@@ -106,6 +148,12 @@
             "state" : "new",
             "value" : "Alternative direction"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "反转方向"
+          }
         }
       }
     },
@@ -117,6 +165,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Haptic feedback"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "震感反馈"
           }
         }
       }
@@ -130,6 +184,12 @@
             "state" : "new",
             "value" : "Follows physical direction"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "跟随物理设备方向"
+          }
         }
       }
     },
@@ -141,6 +201,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Rotation type"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "旋转处理方式"
           }
         }
       }
@@ -154,6 +220,12 @@
             "state" : "new",
             "value" : "You can increase / decrease screen brightness by dialing, increase / decrease keyboard backlighting by dialing while pressing, and toggle keyboard backlighting by clicking through this controller."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过此控制器，你可以旋转以增大/减小屏幕亮度，按下并旋转以增大/减小键盘背光亮度，以及按下以开关键盘背光。"
+          }
         }
       }
     },
@@ -165,6 +237,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Brightness"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "亮度"
           }
         }
       }
@@ -178,6 +256,12 @@
             "state" : "new",
             "value" : "Main"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "主要"
+          }
         }
       }
     },
@@ -189,6 +273,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "You can iterate through App Switcher and activate the app windows through this controller."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过此控制器，你可以遍历应用选择器中打开的应用。"
           }
         }
       }
@@ -202,6 +292,12 @@
             "state" : "new",
             "value" : "Mission"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "任务"
+          }
         }
       }
     },
@@ -213,6 +309,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "You can trigger forward / backward by dialing, increase / decrease volume by dialing while pressing, toggle system play / pause by single clicking, and mute / unmute by double clicking through this controller."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过此控制器，你可以旋转以触发媒体快进/快退，按下并旋转以增大/减小音量，按下以播放/暂停媒体，以及连按以静音/解除静音。"
           }
         }
       }
@@ -226,6 +328,12 @@
             "state" : "new",
             "value" : "Playback"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "媒体"
+          }
         }
       }
     },
@@ -237,6 +345,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "You can scroll and perform middle button clicks through this controller. Scrolls and clicks will always happen at the cursor."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通过此控制器，你可以滚动屏幕并触发鼠标中键单击。所有事件均发生在鼠标所在位置。"
           }
         }
       }
@@ -250,6 +364,12 @@
             "state" : "new",
             "value" : "Scroll"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "滚动"
+          }
         }
       }
     },
@@ -262,17 +382,47 @@
             "state" : "new",
             "value" : "Release to cancel"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "松开以取消"
+          }
         }
       }
     },
-    "Controllers/Shortcuts/Fallback/Name" : {
-      "comment" : "shortcuts controller fallback name",
+    "Controllers/Shortcuts/Fallback.Name" : {
+      "comment" : "shortcuts controller fallback",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Controller (settings.index + 1)"
+            "value" : "Controller %lld"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "控制器%lld"
+          }
+        }
+      }
+    },
+    "Controllers/Shortcuts/Fallback.Title" : {
+      "comment" : "shortcuts controller fallback",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Controller %lld"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "控制器%lld"
           }
         }
       }
@@ -286,6 +436,12 @@
             "state" : "new",
             "value" : "Press and enter"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按住以输入"
+          }
         }
       }
     },
@@ -297,6 +453,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "continuous"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "连续"
           }
         }
       }
@@ -310,6 +472,12 @@
             "state" : "new",
             "value" : "Continuous"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "连续"
+          }
         }
       }
     },
@@ -321,6 +489,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "stepping"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "步进"
           }
         }
       }
@@ -334,6 +508,12 @@
             "state" : "new",
             "value" : "Stepping"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "步进"
+          }
         }
       }
     },
@@ -345,6 +525,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "clockwise"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顺时针"
           }
         }
       }
@@ -358,6 +544,12 @@
             "state" : "new",
             "value" : "Clockwise"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顺时针"
+          }
         }
       }
     },
@@ -369,6 +561,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "counterclockwise"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "逆时针"
           }
         }
       }
@@ -382,6 +580,12 @@
             "state" : "new",
             "value" : "Counterclockwise"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "逆时针"
+          }
         }
       }
     },
@@ -392,7 +596,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Hide Icon while Disconnected"
+            "value" : "Hides Icon while Disconnected"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "未连接时隐藏菜单栏图标"
           }
         }
       }
@@ -406,6 +616,12 @@
             "state" : "new",
             "value" : "Hides icon while disconnected"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未连接时隐藏菜单栏图标"
+          }
         }
       }
     },
@@ -417,6 +633,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Primary direction"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "默认旋转方向"
           }
         }
       }
@@ -430,6 +652,12 @@
             "state" : "new",
             "value" : "Primary Direction"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "默认旋转方向"
+          }
         }
       }
     },
@@ -441,6 +669,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Global haptic feedback"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全局震感反馈"
           }
         }
       }
@@ -454,6 +688,12 @@
             "state" : "new",
             "value" : "Global Haptic Feedback"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全局震感反馈"
+          }
         }
       }
     },
@@ -465,6 +705,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Sensitivity"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "灵敏度"
           }
         }
       }
@@ -478,6 +724,12 @@
             "state" : "new",
             "value" : "Sensitivity"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "灵敏度"
+          }
         }
       }
     },
@@ -489,6 +741,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Starts with macOS"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "随macOS启动"
           }
         }
       }
@@ -502,6 +760,12 @@
             "state" : "new",
             "value" : "Starts with macOS"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "随macOS启动"
+          }
         }
       }
     },
@@ -513,6 +777,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Controllers"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "控制器"
           }
         }
       }
@@ -526,6 +796,12 @@
             "state" : "new",
             "value" : "press and hold dial"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按住智能旋钮"
+          }
         }
       }
     },
@@ -536,7 +812,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Default Controllers"
+            "value" : "Default"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "默认"
           }
         }
       }
@@ -548,7 +830,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Custom Controllers"
+            "value" : "Custom"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "自定义"
           }
         }
       }
@@ -560,7 +848,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open settings"
+            "value" : "Settings..."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "打开设置"
           }
         }
       }
@@ -572,7 +866,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open Settings"
+            "value" : "Settings..."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "打开设置"
           }
         }
       }
@@ -586,6 +886,12 @@
             "state" : "new",
             "value" : "Quit"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "退出"
+          }
         }
       }
     },
@@ -597,6 +903,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Quit"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "退出"
           }
         }
       }
@@ -610,6 +922,12 @@
             "state" : "new",
             "value" : "extreme"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最高"
+          }
         }
       }
     },
@@ -621,6 +939,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Extreme"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最高"
           }
         }
       }
@@ -634,6 +958,12 @@
             "state" : "new",
             "value" : "high"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高"
+          }
         }
       }
     },
@@ -645,6 +975,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "High"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高"
           }
         }
       }
@@ -658,6 +994,12 @@
             "state" : "new",
             "value" : "low"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "低"
+          }
         }
       }
     },
@@ -669,6 +1011,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Low"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "低"
           }
         }
       }
@@ -682,6 +1030,12 @@
             "state" : "new",
             "value" : "medium"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中"
+          }
         }
       }
     },
@@ -693,6 +1047,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Medium"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "中"
           }
         }
       }
@@ -706,6 +1066,12 @@
             "state" : "new",
             "value" : "natural"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自然"
+          }
         }
       }
     },
@@ -717,6 +1083,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Natural"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自然"
           }
         }
       }

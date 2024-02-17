@@ -42,12 +42,19 @@ struct ControllerMenuItems {
     let source: ControllersSource
     
     var controllers: [ControllerOptionItem] {
-        source.fetch.map { controller in
+        source.fetch.enumerated().map {
+            let controller = $0.element
+            let index = $0.offset
             let item = ControllerOptionItem(controller.name, option: controller)
             
             item.target = delegate
             item.action = #selector(delegate.setController(_:))
             item.image = controller.representingSymbol.image
+            
+            if index <= 9 {
+                item.keyEquivalent = String(index)
+                item.keyEquivalentModifierMask = []
+            }
             
             Task { @MainActor in
                 for await _ in Defaults.updates(.shortcutsControllerSettings) {

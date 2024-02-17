@@ -119,10 +119,8 @@ struct MenuManager {
                 let titleItem = NSMenuItem(title: titleContent)
                 titleItem.isEnabled = false
                 
-                if #available(macOS 14.0, *) {
-                    if let titleBadge = title.badge {
-                        titleItem.badge = NSMenuItemBadge(string: titleBadge)
-                    }
+                if let titleBadge = title.badge {
+                    titleItem.badge = NSMenuItemBadge(string: titleBadge)
                 }
                 
                 menu.addItem(titleItem)

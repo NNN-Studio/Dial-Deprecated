@@ -92,7 +92,7 @@ extension GeneralViewController {
                 labelSerial.stringValue = serialNumber
                 imageDial.isEnabled = true
             default:
-                labelSerial.stringValue = Localization.ConnectionStatus.offOld.localizedName
+                labelSerial.stringValue = Localization.ConnectionStatus.offPlaceholder.localizedName
                 imageDial.isEnabled = false
             }
         }

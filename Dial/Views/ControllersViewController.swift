@@ -194,7 +194,7 @@ extension ControllersViewController {
             case .connected(let serialNumber):
                 labelSerial.stringValue = serialNumber
             default:
-                labelSerial.stringValue = Localization.ConnectionStatus.offOld.localizedName
+                labelSerial.stringValue = Localization.ConnectionStatus.offPlaceholder.localizedName
             }
         }
         
@@ -322,7 +322,7 @@ extension ControllersViewController: NSMenuDelegate {
             items.append(MenuManager.groupItems(
                 title: NSLocalizedString(
                     "Menu/Title/DefaultControllers",
-                    value: "Default Controllers",
+                    value: "Default",
                     comment: "default controllers"
                 ),
                 defaultControllerMenuItems!.controllers
@@ -331,7 +331,7 @@ extension ControllersViewController: NSMenuDelegate {
             items.append(MenuManager.groupItems(
                 title: NSLocalizedString(
                     "Menu/Title/ShortcutsControllers",
-                    value: "Custom Controllers",
+                    value: "Custom",
                     comment: "shortcuts controllers"
                 ),
                 shortcutsControllerMenuItems!.controllers

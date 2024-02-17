@@ -38,17 +38,17 @@ enum Localization: Codable {
     
     case quit
     
+    case shortcutsNameFormat
+    
     enum ConnectionStatus: Codable {
         
         case on
         
-        case onOld
-        
         case off
         
-        case offOld
-        
         case offBadge
+        
+        case offPlaceholder
         
     }
     
@@ -97,18 +97,30 @@ extension Localization: Localizable {
     var localizedName: String {
         switch self {
         case .openSettings:
-            NSLocalizedString("OpenSettings.Name", value:"Open settings", comment: "open settings")
+            NSLocalizedString("OpenSettings.Name", value:"Settings...", comment: "open settings")
         case .quit:
             NSLocalizedString("Quit.Name", value:"Quit", comment: "quit")
+        case .shortcutsNameFormat:
+            NSLocalizedString(
+                "Controllers/Shortcuts/Fallback.Name",
+                value: "Controller %lld",
+                comment: "shortcuts controller fallback"
+            )
         }
     }
     
     var localizedTitle: String {
         switch self {
         case .openSettings:
-            NSLocalizedString("OpenSettings.Title", value:"Open Settings", comment: "open settings")
+            NSLocalizedString("OpenSettings.Title", value:"Settings...", comment: "open settings")
         case .quit:
             NSLocalizedString("Quit.Title", value:"Quit", comment: "quit")
+        case .shortcutsNameFormat:
+            NSLocalizedString(
+                "Controllers/Shortcuts/Fallback.Title",
+                value: "Controller %lld",
+                comment: "shortcuts controller fallback"
+            )
         }
     }
     
@@ -122,31 +134,25 @@ extension Localization.ConnectionStatus: Localizable {
             NSLocalizedString(
                 "ConnectionStatus/On.Name",
                 value: "Dial",
-                comment: "[macOS >=14.0] if (connected)"
-            )
-        case .onOld:
-            NSLocalizedString(
-                "ConnectionStatus/OnOld.Name",
-                value: "Dial: ",
-                comment: "[macOS <14.0] if (connected)"
+                comment: "if (connected)"
             )
         case .off:
             NSLocalizedString(
                 "ConnectionStatus/Off.Name",
                 value: "Dial",
-                comment: "[macOS >=14.0] if (!connected)"
-            )
-        case .offOld:
-            NSLocalizedString(
-                "ConnectionStatus/OffOld.Name",
-                value: "Surface Dial disconnected",
                 comment: "if (!connected)"
             )
         case .offBadge:
             NSLocalizedString(
                 "ConnectionStatus/OffBadge.Name",
                 value: "disconnected",
-                comment: "[macOS >=14.0] if (!connected) badge"
+                comment: "if (!connected) badge"
+            )
+        case .offPlaceholder:
+            NSLocalizedString(
+                "ConnectionStatus/OffPlaceholder.Name",
+                value: "Surface Dial disconnected",
+                comment: "if (!connected) badge"
             )
         }
     }
@@ -179,7 +185,7 @@ extension Localization.General: Localizable {
         case .haptics:
             NSLocalizedString("General/Haptics.Title", value: "Global Haptic Feedback", comment: "haptics")
         case .autoHidesIcon:
-            NSLocalizedString("General/AutoHideIcon.Title", value: "Hide Icon while Disconnected", comment: "auto hide icon")
+            NSLocalizedString("General/AutoHideIcon.Title", value: "Hides Icon while Disconnected", comment: "auto hide icon")
         case .startsWithMacOS:
             NSLocalizedString("General/StartsWithMacOS.Title", value: "Starts with macOS", comment: "starts with macOS")
         }

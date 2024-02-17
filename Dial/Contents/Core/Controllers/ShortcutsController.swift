@@ -144,11 +144,7 @@ class ShortcutsController: Controller {
     }
     
     var name: String {
-        settings.name ?? NSLocalizedString(
-            "Controllers/Shortcuts/Fallback/Name",
-            value: "Controller \(settings.index + 1)",
-            comment: "shortcuts controller fallback name"
-        )
+        settings.name ?? String(format: Localization.shortcutsNameFormat.localizedName, settings.index + 1)
     }
     
     var representingSymbol: SFSymbol {
