@@ -32,6 +32,7 @@ struct SubmenuItems {
         for option in options {
             option.target = delegate
             option.action = #selector(delegate.setSensitivity(_:))
+            option.image = option.option.representingSymbol.image
             
             Task { @MainActor in
                 for await value in Defaults.updates(.sensitivity) {

@@ -189,6 +189,11 @@ extension ControllersViewController {
     }
     
     func initDescriptives() {
+        labelRotationType.stringValue = Localization.Controllers.Advanced.rotationType.localizedName
+        labelHaptics.stringValue = Localization.Controllers.Advanced.haptics.localizedName
+        labelPhysicalDirection.stringValue = Localization.Controllers.Advanced.physicalDirection.localizedName
+        labelAlternativeDirection.stringValue = Localization.Controllers.Advanced.alternativeDirection.localizedName
+        
         func applyConnectionStatus(_ value: Device.ConnectionStatus) {
             switch value {
             case .connected(let serialNumber):

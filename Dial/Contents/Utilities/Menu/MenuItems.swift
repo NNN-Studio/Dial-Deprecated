@@ -82,7 +82,8 @@ struct MenuItems {
         submenuItems.sensitivityOptions.forEach(item.submenu!.addItem(_:))
         
         @Sendable func apply(_ value: Sensitivity) {
-            item.badge = NSMenuItemBadge(string: value.localizedBadge)
+            let icon = value.representingSymbol.unicode?.appending(" ") ?? ""
+            item.badge = NSMenuItemBadge(string: icon + value.localizedBadge)
         }
         
         Task { @MainActor in
@@ -102,7 +103,8 @@ struct MenuItems {
         submenuItems.directionOptions.forEach(item.submenu!.addItem(_:))
         
         @Sendable func apply(_ value: Direction) {
-            item.badge = NSMenuItemBadge(string: value.localizedBadge)
+            let icon = value.representingSymbol.unicode?.appending(" ") ?? ""
+            item.badge = NSMenuItemBadge(string: icon + value.localizedBadge)
         }
         
         Task { @MainActor in

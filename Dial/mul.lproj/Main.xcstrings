@@ -290,19 +290,19 @@
       }
     },
     "du3-b5-oEf.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when dialed counterclockwisely.\"; ObjectID = \"du3-b5-oEf\";",
+      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when dialed counterclockwisely\"; ObjectID = \"du3-b5-oEf\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Triggers when dialed counterclockwisely."
+            "value" : "Triggers when dialed counterclockwisely"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "顺时针旋转旋钮时触发。"
+            "value" : "顺时针旋转旋钮时触发"
           }
         }
       }
@@ -388,12 +388,6 @@
             "state" : "new",
             "value" : "This is the description of a default controller. It is intended to be multiline."
           }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "这是一个默认控制器，自定义选项不可用。"
-          }
         }
       }
     },
@@ -406,6 +400,12 @@
             "state" : "new",
             "value" : "Shortcuts"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快捷键"
+          }
         }
       }
     },
@@ -417,6 +417,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Advanced"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "高级"
           }
         }
       }
@@ -434,13 +440,19 @@
       }
     },
     "h5g-Vx-nYA.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when dialed counterclockwisely while pressing.\"; ObjectID = \"h5g-Vx-nYA\";",
+      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when dialed counterclockwisely while pressing\"; ObjectID = \"h5g-Vx-nYA\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Triggers when dialed counterclockwisely while pressing."
+            "value" : "Triggers when dialed counterclockwisely while pressing"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按住并逆时针旋转旋钮时触发"
           }
         }
       }
@@ -458,19 +470,19 @@
       }
     },
     "hNm-Mp-ggM.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when double clicked.\"; ObjectID = \"hNm-Mp-ggM\";",
+      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when double clicked\"; ObjectID = \"hNm-Mp-ggM\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Triggers when double clicked."
+            "value" : "Triggers when double clicked"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "连续点按时触发。"
+            "value" : "连续点按时触发"
           }
         }
       }
@@ -483,6 +495,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "This is a default controller, the configurations are not applicable."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自定义选项不可用于默认控制器。"
           }
         }
       }
@@ -500,13 +518,19 @@
       }
     },
     "iSQ-Dt-wpe.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when dialed clockwisely while pressing.\"; ObjectID = \"iSQ-Dt-wpe\";",
+      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when dialed clockwisely while pressing\"; ObjectID = \"iSQ-Dt-wpe\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Triggers when dialed clockwisely while pressing."
+            "value" : "Triggers when dialed clockwisely while pressing"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按住并顺时针旋转旋钮时触发"
           }
         }
       }
@@ -519,6 +543,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Controller Name"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "控制器名称"
           }
         }
       }
@@ -560,19 +590,19 @@
       }
     },
     "kzW-ll-5mS.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when clicked.\"; ObjectID = \"kzW-ll-5mS\";",
+      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when clicked\"; ObjectID = \"kzW-ll-5mS\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Triggers when clicked."
+            "value" : "Triggers when clicked"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "点按时触发。"
+            "value" : "点按时触发"
           }
         }
       }
@@ -1010,19 +1040,19 @@
       }
     },
     "Xa9-FX-na8.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when dialed clockwisely.\"; ObjectID = \"Xa9-FX-na8\";",
+      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when dialed clockwisely\"; ObjectID = \"Xa9-FX-na8\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Triggers when dialed clockwisely."
+            "value" : "Triggers when dialed clockwisely"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "逆时针旋转旋钮时触发。"
+            "value" : "逆时针旋转旋钮时触发"
           }
         }
       }
@@ -1035,6 +1065,24 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "􀆍"
+          }
+        }
+      }
+    },
+    "xl0-8n-ldy.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Icon chooser...\"; ObjectID = \"xl0-8n-ldy\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Icon chooser..."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "图标选择器..."
           }
         }
       }

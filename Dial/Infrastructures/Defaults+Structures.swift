@@ -82,6 +82,25 @@ extension Sensitivity: Localizable {
     
 }
 
+extension Sensitivity: SymbolRepresentable {
+    
+    var representingSymbol: SFSafeSymbols.SFSymbol {
+        switch self {
+        case .low:
+                .hexagon
+        case .medium:
+                .rays
+        case .natural:
+                .slowmo
+        case .high:
+                .timelapse
+        case .extreme:
+                .circleCircle
+        }
+    }
+    
+}
+
 enum Direction: Int, CaseIterable, Codable, Defaults.Serializable {
     
     case clockwise = 1
@@ -92,9 +111,9 @@ enum Direction: Int, CaseIterable, Codable, Defaults.Serializable {
     var negate: Direction {
         switch self {
         case .clockwise:
-            .counterclockwise
+                .counterclockwise
         case .counterclockwise:
-            .clockwise
+                .clockwise
         }
     }
     
@@ -144,9 +163,9 @@ extension Direction: SymbolRepresentable {
     var representingSymbol: SFSymbol {
         switch self {
         case .clockwise:
-            .digitalcrownHorizontalArrowClockwiseFill
+                .digitalcrownHorizontalArrowClockwiseFill
         case .counterclockwise:
-            .digitalcrownHorizontalArrowCounterclockwiseFill
+                .digitalcrownHorizontalArrowCounterclockwiseFill
         }
     }
     
@@ -161,9 +180,9 @@ enum Rotation: Codable {
     var type: RawType {
         switch self {
         case .continuous(_):
-            .continuous
+                .continuous
         case .stepping(_):
-            .stepping
+                .stepping
         }
     }
     
@@ -215,9 +234,9 @@ extension Rotation.RawType: SymbolRepresentable {
     var representingSymbol: SFSymbol {
         switch self {
         case .continuous:
-            .alternatingcurrent
+                .alternatingcurrent
         case .stepping:
-            .directcurrent
+                .directcurrent
         }
     }
     

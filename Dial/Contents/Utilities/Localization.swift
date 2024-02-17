@@ -99,7 +99,7 @@ extension Localization: Localizable {
         case .openSettings:
             NSLocalizedString("OpenSettings.Name", value:"Settings...", comment: "open settings")
         case .quit:
-            NSLocalizedString("Quit.Name", value:"Quit", comment: "quit")
+            NSLocalizedString("Quit.Name", value:"Quit app", comment: "quit")
         case .shortcutsNameFormat:
             NSLocalizedString(
                 "Controllers/Shortcuts/Fallback.Name",
@@ -114,7 +114,7 @@ extension Localization: Localizable {
         case .openSettings:
             NSLocalizedString("OpenSettings.Title", value:"Settings...", comment: "open settings")
         case .quit:
-            NSLocalizedString("Quit.Title", value:"Quit", comment: "quit")
+            NSLocalizedString("Quit.Title", value:"Quit App", comment: "quit")
         case .shortcutsNameFormat:
             NSLocalizedString(
                 "Controllers/Shortcuts/Fallback.Title",
@@ -185,7 +185,7 @@ extension Localization.General: Localizable {
         case .haptics:
             NSLocalizedString("General/Haptics.Title", value: "Global Haptic Feedback", comment: "haptics")
         case .autoHidesIcon:
-            NSLocalizedString("General/AutoHideIcon.Title", value: "Hides Icon while Disconnected", comment: "auto hide icon")
+            NSLocalizedString("General/AutoHideIcon.Title", value: "Hides Icon while Disconnected", comment: "auto hides icon")
         case .startsWithMacOS:
             NSLocalizedString("General/StartsWithMacOS.Title", value: "Starts with macOS", comment: "starts with macOS")
         }

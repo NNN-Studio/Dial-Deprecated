@@ -73,9 +73,9 @@
         }
       }
     },
-    "ConnectionStatus/OffOld.Name" : {
-      "comment" : "if (!connected)",
-      "extractionState" : "stale",
+    "ConnectionStatus/OffPlaceholder.Name" : {
+      "comment" : "if (!connected) badge",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -87,18 +87,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未连接到智能旋钮"
-          }
-        }
-      }
-    },
-    "ConnectionStatus/OffPlaceholder.Name" : {
-      "comment" : "if (!connected) badge",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Surface Dial disconnected"
           }
         }
       }
@@ -117,24 +105,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "智能旋钮"
-          }
-        }
-      }
-    },
-    "ConnectionStatus/OnOld.Name" : {
-      "comment" : "[macOS <14.0] if (connected)",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Dial: "
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "智能旋钮："
           }
         }
       }
@@ -188,7 +158,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "跟随物理设备方向"
+            "value" : "跟随真实旋转方向"
           }
         }
       }
@@ -314,7 +284,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "通过此控制器，你可以旋转以触发媒体快进/快退，按下并旋转以增大/减小音量，按下以播放/暂停媒体，以及连按以静音/解除静音。"
+            "value" : "通过此控制器，你可以旋转以触发媒体快进/快退，按下并旋转以增大/减小音量，按下以播放/暂停媒体，以及连续点按以静音/解除静音。"
           }
         }
       }
@@ -590,7 +560,7 @@
       }
     },
     "General/AutoHideIcon.Title" : {
-      "comment" : "auto hide icon",
+      "comment" : "auto hides icon",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
@@ -601,7 +571,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "未连接时隐藏菜单栏图标"
           }
         }
@@ -787,8 +757,8 @@
         }
       }
     },
-    "Menu/Title/ControllersHint" : {
-      "comment" : "controllers hint",
+    "Menu/Title/ControllersBadge" : {
+      "comment" : "controllers badge",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
@@ -805,6 +775,24 @@
         }
       }
     },
+    "Menu/Title/ConvenienceSettings" : {
+      "comment" : "convenience settings",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Convenience Settings"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快速设置"
+          }
+        }
+      }
+    },
     "Menu/Title/DefaultControllers" : {
       "comment" : "default controllers",
       "extractionState" : "extracted_with_value",
@@ -817,7 +805,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "默认"
           }
         }
@@ -835,7 +823,7 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "自定义"
           }
         }
@@ -853,8 +841,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "打开设置"
+            "state" : "translated",
+            "value" : "设置..."
           }
         }
       }
@@ -871,8 +859,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "打开设置"
+            "state" : "translated",
+            "value" : "设置..."
           }
         }
       }
@@ -884,13 +872,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Quit"
+            "value" : "Quit app"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "退出"
+            "value" : "退出应用"
           }
         }
       }
@@ -902,13 +890,13 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Quit"
+            "value" : "Quit App"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "退出"
+            "value" : "退出应用"
           }
         }
       }

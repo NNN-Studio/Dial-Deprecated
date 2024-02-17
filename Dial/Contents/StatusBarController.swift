@@ -46,16 +46,14 @@ class StatusBarController: NSObject, NSMenuDelegate {
             
             items.append(MenuManager.groupItems(
                 title: NSLocalizedString("Menu/Title/Controllers", value: "Controllers", comment: "controllers"),
-                badge: NSLocalizedString("Menu/Title/ControllersHint", value: "press and hold dial", comment: "controllers hint"),
+                badge: NSLocalizedString("Menu/Title/ControllersBadge", value: "press and hold dial", comment: "controllers badge"),
                 menuItems!.controllerMenuItems.controllers
             ))
             
             items.append(MenuManager.groupItems(
+                title: NSLocalizedString("Menu/Title/ConvenienceSettings", value: "Convenience Settings", comment: "convenience settings"),
                 menuItems!.direction,
-                menuItems!.sensitivity
-            ))
-            
-            items.append(MenuManager.groupItems(
+                menuItems!.sensitivity,
                 menuItems!.haptics,
                 menuItems!.startsWithMacOS
             ))

@@ -818,7 +818,7 @@
                                                                                 <action selector="rename:" target="24w-Ra-sQb" id="1lT-4N-Lgz"/>
                                                                             </connections>
                                                                         </textField>
-                                                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="xl0-8n-ldy">
+                                                                        <button toolTip="Icon chooser..." allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xl0-8n-ldy">
                                                                             <rect key="frame" x="255" y="0.0" width="30" height="30"/>
                                                                             <buttonCell key="cell" type="inline" bezelStyle="inline" image="doc.fill" catalog="system" imagePosition="only" borderStyle="border" inset="2" id="BD5-Us-Os8">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -895,7 +895,7 @@
                                                                                         <action selector="toggleShortcutsKeys:" target="24w-Ra-sQb" id="9n2-HB-Kaj"/>
                                                                                     </connections>
                                                                                 </button>
-                                                                                <imageView toolTip="Triggers when dialed clockwisely." horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xa9-FX-na8">
+                                                                                <imageView toolTip="Triggers when dialed clockwisely" horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xa9-FX-na8">
                                                                                     <rect key="frame" x="253" y="-6" width="32.5" height="45"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="Xa9-FX-na8" secondAttribute="height" multiplier="1:1" id="Ae6-uN-t5q"/>
@@ -970,7 +970,7 @@
                                                                                         <action selector="toggleShortcutsKeys:" target="24w-Ra-sQb" id="M51-cJ-hVS"/>
                                                                                     </connections>
                                                                                 </button>
-                                                                                <imageView toolTip="Triggers when dialed counterclockwisely." horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="du3-b5-oEf">
+                                                                                <imageView toolTip="Triggers when dialed counterclockwisely" horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="du3-b5-oEf">
                                                                                     <rect key="frame" x="253" y="-6" width="32.5" height="44"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="du3-b5-oEf" secondAttribute="height" multiplier="1:1" id="uys-Qa-fCt"/>
@@ -1064,7 +1064,7 @@
                                                                                         <action selector="toggleShortcutsKeys:" target="24w-Ra-sQb" id="0aU-Ld-A05"/>
                                                                                     </connections>
                                                                                 </button>
-                                                                                <imageView toolTip="Triggers when dialed clockwisely while pressing." horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iSQ-Dt-wpe">
+                                                                                <imageView toolTip="Triggers when dialed clockwisely while pressing" horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iSQ-Dt-wpe">
                                                                                     <rect key="frame" x="253" y="-6" width="32.5" height="44"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="iSQ-Dt-wpe" secondAttribute="height" multiplier="1:1" id="Wxz-MV-ZVK"/>
@@ -1139,7 +1139,7 @@
                                                                                         <action selector="toggleShortcutsKeys:" target="24w-Ra-sQb" id="htf-Ra-cy4"/>
                                                                                     </connections>
                                                                                 </button>
-                                                                                <imageView toolTip="Triggers when dialed counterclockwisely while pressing." horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h5g-Vx-nYA">
+                                                                                <imageView toolTip="Triggers when dialed counterclockwisely while pressing" horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h5g-Vx-nYA">
                                                                                     <rect key="frame" x="253" y="-6" width="32.5" height="44"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="h5g-Vx-nYA" secondAttribute="height" multiplier="1:1" id="LsB-2U-De4"/>
@@ -1233,7 +1233,7 @@
                                                                                         <action selector="toggleShortcutsKeys:" target="24w-Ra-sQb" id="m0n-IK-KlZ"/>
                                                                                     </connections>
                                                                                 </button>
-                                                                                <imageView toolTip="Triggers when clicked." horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kzW-ll-5mS">
+                                                                                <imageView toolTip="Triggers when clicked" horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kzW-ll-5mS">
                                                                                     <rect key="frame" x="253" y="-5.5" width="32.5" height="46"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="kzW-ll-5mS" secondAttribute="height" multiplier="1:1" id="2II-qe-S6C"/>
@@ -1308,7 +1308,7 @@
                                                                                         <action selector="toggleShortcutsKeys:" target="24w-Ra-sQb" id="snu-Nf-TIQ"/>
                                                                                     </connections>
                                                                                 </button>
-                                                                                <imageView toolTip="Triggers when double clicked." horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hNm-Mp-ggM">
+                                                                                <imageView toolTip="Triggers when double clicked" horizontalHuggingPriority="251" verticalHuggingPriority="251" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hNm-Mp-ggM">
                                                                                     <rect key="frame" x="253" y="-5.5" width="32.5" height="46"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" secondItem="hNm-Mp-ggM" secondAttribute="height" multiplier="1:1" id="NVf-IU-wVO"/>

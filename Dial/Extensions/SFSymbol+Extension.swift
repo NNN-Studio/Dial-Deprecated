@@ -59,3 +59,21 @@ extension SFSymbol: Codable {
     // Make it codable
     
 }
+
+extension SFSymbol {
+    
+    // Toxic
+    var unicode: String? {
+        if self == .hexagon { return "􀝝" }
+        if self == .rays { return "􀇯" }
+        if self == .slowmo { return "􀇱" }
+        if self == .timelapse { return "􀇲" }
+        if self == .circleCircle { return "􀨁" }
+        
+        if self == .digitalcrownHorizontalArrowClockwiseFill { return "􀻲" }
+        if self == .digitalcrownHorizontalArrowCounterclockwiseFill { return "􀻴" }
+        
+        return nil
+    }
+    
+}
