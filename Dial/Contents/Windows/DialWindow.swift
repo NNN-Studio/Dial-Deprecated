@@ -155,7 +155,8 @@ class DialWindow: NSWindow {
         let reached = (
             minX: translatedFrameOrigin.x <= screenOrigin.x,
             minY: translatedFrameOrigin.y <= screenOrigin.y,
-            maxX: translatedFrameOrigin.x + frameSize.width >= screenOrigin.x + screenSize.width
+            maxX: translatedFrameOrigin.x + frameSize.width >= screenOrigin.x + screenSize.width,
+            maxY: translatedFrameOrigin.y + frameSize.height >= screenOrigin.y + screenSize.height
         )
         let offset: CGFloat = (DialWindow.diameters.inner / 2) / sqrt(2)
         dialViewController?.radiansOffset = 0
@@ -166,6 +167,12 @@ class DialWindow: NSWindow {
                 clampedFrameOrigin = translatedScreenOrigin
                     .applying(CGAffineTransform(translationX: offset, y: offset))
                 dialViewController?.radiansOffset = -Double.pi / 4
+            } else if reached.maxY {
+                // Left top corner
+                clampedFrameOrigin = translatedScreenOrigin
+                    .applying(CGAffineTransform(translationX: offset, y: -offset))
+                    .applying(CGAffineTransform(translationX: 0, y: screenSize.height))
+                dialViewController?.radiansOffset = -Double.pi / 4 * 3
             } else {
                 // Left edge
                 clampedFrameOrigin.x = translatedScreenOrigin.x
@@ -178,6 +185,12 @@ class DialWindow: NSWindow {
                     .applying(CGAffineTransform(translationX: -offset, y: offset))
                     .applying(CGAffineTransform(translationX: screenSize.width, y: 0))
                 dialViewController?.radiansOffset = Double.pi / 4
+            } else if reached.maxY {
+                // Right top corner
+                clampedFrameOrigin = translatedScreenOrigin
+                    .applying(CGAffineTransform(translationX: -offset, y: -offset))
+                    .applying(CGAffineTransform(translationX: screenSize.width, y: screenSize.height))
+                dialViewController?.radiansOffset = Double.pi / 4 * 3
             } else {
                 // Right edge
                 clampedFrameOrigin.x = translatedScreenOrigin
@@ -341,6 +354,12 @@ class DialWindow: NSWindow {
                 ))
                 titleIconView.image = image
                 titleImageCache = image
+            }
+        }
+        
+        Task { @MainActor in
+            for await _ in observationTrackingStream({ self.radiansOffset }) {
+                iconsView.setRotation(getRadians(), animated: false)
             }
         }
         
