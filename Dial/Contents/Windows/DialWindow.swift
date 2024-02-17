@@ -277,9 +277,6 @@ class DialWindow: NSWindow {
             multiplier: foregroundMultiplier
         )
         
-        let iconsView = NSView()
-        fillSubview(parentView, iconsView)
-        
         let titleView = NSTextField(labelWithString: titleCache)
         parentView.addSubview(titleView)
         
@@ -324,6 +321,9 @@ class DialWindow: NSWindow {
                 titleIconView.centerYAnchor.constraint(equalTo: parentView.centerYAnchor, constant: titleIconOffset)
             ]
         ]
+        
+        let iconsView = NSView()
+        fillSubview(parentView, iconsView)
         
         func updateIconViews() {
             for (index, iconView) in iconsView.subviews.enumerated() {
@@ -494,7 +494,7 @@ class DialWindow: NSWindow {
     private func getRadians(
         ofIndex index: Int = Controllers.indexOf(Controllers.currentController)!
     ) -> CGFloat {
-        CGFloat(index % Defaults[.maxControllerCount]) / CGFloat(Defaults[.maxControllerCount]) * 2 * Double.pi + radiansOffset
+        CGFloat(index % Defaults[.maxControllerCount]) / CGFloat(Defaults[.maxControllerCount]) * 2.0 * Double.pi + radiansOffset
     }
     
 }

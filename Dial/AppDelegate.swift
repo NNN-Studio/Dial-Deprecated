@@ -29,12 +29,6 @@ Due to an issue in macOS, if you're upgrading from an earlier version of Dial, y
         
         let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true]
         let trusted = AXIsProcessTrustedWithOptions(options)
-        
-        if trusted {
-            print("Application is trusted.")
-        } else {
-            print("Application is not trusted!")
-        }
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
