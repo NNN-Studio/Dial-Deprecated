@@ -70,8 +70,6 @@ class DialWindow: NSWindow {
         contentViewController as? DialViewController
     }
     
-    private static var menuAppearanceObservation: NSKeyValueObservation?
-    
     override var canBecomeKey: Bool {
         true
     }
@@ -93,15 +91,6 @@ class DialWindow: NSWindow {
         animationBehavior = .utilityWindow
         collectionBehavior = .canJoinAllSpaces
         backgroundColor = .clear
-        
-        // Observe appearance change
-        DialWindow.menuAppearanceObservation = NSApp.observe(\.effectiveAppearance) { (app, _) in
-            app.effectiveAppearance.performAsCurrentDrawingAppearance {
-                if let dialViewController = self.dialViewController, dialViewController.isViewLoaded {
-                    //dialViewController.updateColoredWidgets()
-                }
-            }
-        }
     }
     
     func show() {
@@ -159,24 +148,29 @@ class DialWindow: NSWindow {
             maxY: translatedFrameOrigin.y + frameSize.height >= screenOrigin.y + screenSize.height
         )
         let offset: CGFloat = (DialWindow.diameters.inner / 2) / sqrt(2)
-        dialViewController?.radiansOffset = 0
         
         if reached.minX {
             if reached.minY {
                 // Left bottom corner
                 clampedFrameOrigin = translatedScreenOrigin
                     .applying(CGAffineTransform(translationX: offset, y: offset))
+                
                 dialViewController?.radiansOffset = -Double.pi / 4
+                dialViewController?.iconDirection = .upper
             } else if reached.maxY {
                 // Left top corner
                 clampedFrameOrigin = translatedScreenOrigin
                     .applying(CGAffineTransform(translationX: offset, y: -offset))
                     .applying(CGAffineTransform(translationX: 0, y: screenSize.height))
+                
                 dialViewController?.radiansOffset = -Double.pi / 4 * 3
+                dialViewController?.iconDirection = .lower
             } else {
                 // Left edge
-                clampedFrameOrigin.x = translatedScreenOrigin.x
+                clampedFrameOrigin.x = translatedScreenOrigin.x + offset
+                
                 dialViewController?.radiansOffset = -Double.pi / 2
+                dialViewController?.iconDirection = .right
             }
         } else if reached.maxX {
             if reached.minY {
@@ -184,22 +178,38 @@ class DialWindow: NSWindow {
                 clampedFrameOrigin = translatedScreenOrigin
                     .applying(CGAffineTransform(translationX: -offset, y: offset))
                     .applying(CGAffineTransform(translationX: screenSize.width, y: 0))
+                
                 dialViewController?.radiansOffset = Double.pi / 4
+                dialViewController?.iconDirection = .upper
             } else if reached.maxY {
                 // Right top corner
                 clampedFrameOrigin = translatedScreenOrigin
                     .applying(CGAffineTransform(translationX: -offset, y: -offset))
                     .applying(CGAffineTransform(translationX: screenSize.width, y: screenSize.height))
+                
                 dialViewController?.radiansOffset = Double.pi / 4 * 3
+                dialViewController?.iconDirection = .lower
             } else {
                 // Right edge
-                clampedFrameOrigin.x = translatedScreenOrigin
-                    .applying(CGAffineTransform(translationX: screenSize.width, y: 0)).x
+                clampedFrameOrigin.x = translatedScreenOrigin.x + screenSize.width - offset
+                
                 dialViewController?.radiansOffset = Double.pi / 2
+                dialViewController?.iconDirection = .left
             }
         } else if reached.minY {
             // Bottom edge
-            clampedFrameOrigin.y = translatedScreenOrigin.y
+            clampedFrameOrigin.y = translatedScreenOrigin.y + offset
+            
+            dialViewController?.iconDirection = .upper
+        } else if reached.maxY {
+            // Top edge
+            clampedFrameOrigin.y = translatedScreenOrigin.y + screenSize.height - offset
+            
+            dialViewController?.iconDirection = .lower
+        } else {
+            // Normal
+            dialViewController?.radiansOffset = 0
+            dialViewController?.iconDirection = .upper
         }
         
         setFrameOrigin(clampedFrameOrigin)
@@ -213,9 +223,23 @@ class DialWindow: NSWindow {
     
     var showDetails = true
     
+    var iconDirection: IconDirection = .upper
+    
     private var titleCache = ""
     
     private var titleImageCache: NSImage?
+    
+    enum IconDirection {
+        
+        case left
+        
+        case right
+        
+        case upper
+        
+        case lower
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -284,10 +308,25 @@ class DialWindow: NSWindow {
         titleIconView.contentTintColor = .tertiaryLabelColor
         titleIconView.image = titleImageCache
         
-        NSLayoutConstraint.activate([
-            titleIconView.centerXAnchor.constraint(equalTo: parentView.centerXAnchor),
-            titleIconView.centerYAnchor.constraint(equalTo: parentView.centerYAnchor, constant: -DialWindow.diameters.inner / 4)
-        ])
+        let titleIconOffset = DialWindow.diameters.inner / 4
+        let titleIconViewConstraints: [IconDirection: [NSLayoutConstraint]] = [
+            .left: [
+                titleIconView.centerXAnchor.constraint(equalTo: parentView.centerXAnchor, constant: -titleIconOffset),
+                titleIconView.centerYAnchor.constraint(equalTo: parentView.centerYAnchor)
+            ],
+            .right: [
+                titleIconView.centerXAnchor.constraint(equalTo: parentView.centerXAnchor, constant: titleIconOffset),
+                titleIconView.centerYAnchor.constraint(equalTo: parentView.centerYAnchor)
+            ],
+            .upper: [
+                titleIconView.centerXAnchor.constraint(equalTo: parentView.centerXAnchor),
+                titleIconView.centerYAnchor.constraint(equalTo: parentView.centerYAnchor, constant: -titleIconOffset)
+            ],
+            .lower: [
+                titleIconView.centerXAnchor.constraint(equalTo: parentView.centerXAnchor),
+                titleIconView.centerYAnchor.constraint(equalTo: parentView.centerYAnchor, constant: titleIconOffset)
+            ]
+        ]
         
         func updateIconViews() {
             for (index, iconView) in iconsView.subviews.enumerated() {
@@ -342,6 +381,8 @@ class DialWindow: NSWindow {
         Task { @MainActor in
             for await _ in Defaults.updates(.currentControllerID) {
                 iconsView.setRotation(getRadians(), animated: true)
+                titleIconViewConstraints.values.forEach(NSLayoutConstraint.deactivate(_:))
+                NSLayoutConstraint.activate(titleIconViewConstraints[iconDirection]!)
                 updateIconViews()
                 
                 let title = Controllers.currentController.name
@@ -358,12 +399,6 @@ class DialWindow: NSWindow {
         }
         
         Task { @MainActor in
-            for await _ in observationTrackingStream({ self.radiansOffset }) {
-                iconsView.setRotation(getRadians(), animated: false)
-            }
-        }
-        
-        Task { @MainActor in
             for await value in observationTrackingStream({ AppDelegate.shared!.dial.buttonState }) {
                 switch value {
                 case .pressed:
@@ -371,6 +406,19 @@ class DialWindow: NSWindow {
                 case .released:
                     parentView.setScale(1, animated: true, duration: 0.1)
                 }
+            }
+        }
+        
+        Task { @MainActor in
+            for await _ in observationTrackingStream({ self.radiansOffset }) {
+                iconsView.setRotation(getRadians(), animated: false)
+            }
+        }
+        
+        Task { @MainActor in
+            for await value in observationTrackingStream({ self.iconDirection }) {
+                titleIconViewConstraints.values.forEach(NSLayoutConstraint.deactivate(_:))
+                NSLayoutConstraint.activate(titleIconViewConstraints[value]!)
             }
         }
         
