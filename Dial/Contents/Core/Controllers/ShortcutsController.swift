@@ -40,7 +40,7 @@ class ShortcutsController: Controller {
         
         var shortcuts: Shortcuts
         
-        struct Shortcuts: Codable {
+        struct Shortcuts: Codable, Defaults.Serializable {
             
             var rotation: [Direction: ShortcutArray]
             

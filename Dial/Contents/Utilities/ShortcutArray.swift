@@ -7,6 +7,7 @@
 
 import Foundation
 import AppKit
+import Defaults
 
 extension NSEvent.ModifierFlags: Codable {
     
@@ -14,7 +15,7 @@ extension NSEvent.ModifierFlags: Codable {
     
 }
 
-struct ShortcutArray: Codable {
+struct ShortcutArray: Codable, Defaults.Serializable {
     
     var modifiers: NSEvent.ModifierFlags
     
@@ -22,13 +23,6 @@ struct ShortcutArray: Codable {
     
     var display: String {
         keys.map { $0.name }.joined(separator: " ")
-    }
-    
-    init(
-        modifiers: NSEvent.ModifierFlags = [],
-        keyCodes: [Int32]
-    ) {
-        self.init(modifiers: modifiers, keys: Input.fromKeyCodes(keyCodes))
     }
     
     init(

@@ -265,6 +265,21 @@ extension ControllersViewController {
                     
                     textFieldControllerName.stringValue = settings.name ?? ""
                     
+                    buttonShortcuts1Keys1.keys = settings.shortcuts.rotation[.clockwise]!.keys
+                    buttonShortcuts1Keys1.updateTitle()
+                    buttonShortcuts1Keys2.keys = settings.shortcuts.rotation[.counterclockwise]!.keys
+                    buttonShortcuts1Keys2.updateTitle()
+                    
+                    buttonShortcuts2Keys1.keys = settings.shortcuts.pressedRotation[.clockwise]!.keys
+                    buttonShortcuts2Keys1.updateTitle()
+                    buttonShortcuts2Keys2.keys = settings.shortcuts.pressedRotation[.counterclockwise]!.keys
+                    buttonShortcuts2Keys2.updateTitle()
+                    
+                    buttonShortcuts3Keys1.keys = settings.shortcuts.single.keys
+                    buttonShortcuts3Keys1.updateTitle()
+                    buttonShortcuts3Keys2.keys = settings.shortcuts.double.keys
+                    buttonShortcuts3Keys2.updateTitle()
+                    
                     switchHaptics.flag = settings.haptics
                     switchPhysicalDirection.flag = settings.physicalDirection
                     switchAlternativeDirection.flag = settings.alternativeDirection

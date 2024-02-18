@@ -108,6 +108,8 @@ extension Dial: InputHandler {
     }
     
     func onRotation(_ direction: Direction, _ buttonState: Device.ButtonState) {
+        mainController.discardUpcomingAgentRole()
+        
         let interval = Date.now.timeIntervalSince(timestamps.rotation)
         if let interval, interval > NSEvent.keyRepeatDelay {
             // Rotation ended
