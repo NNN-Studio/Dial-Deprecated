@@ -38,7 +38,7 @@ extension ControllersViewController {
         
         func updateIconViews() {
             for (index, iconView) in iconsView.subviews.compactMap({ $0 as? NSImageView }).enumerated() {
-                if index == Controllers.activatedIndexOf(Controllers.currentController) {
+                if index == Controllers.activatedIndexOf(Controllers.selectedController) {
                     iconView.contentTintColor = .controlAccentColor
                 } else {
                     iconView.contentTintColor = nil
@@ -85,7 +85,7 @@ extension ControllersViewController {
             for (index, button) in buttonsView.subviews.compactMap({ $0 as? NSButton }).enumerated() {
                 button.isHidden = index >= Controllers.activatedControllers.count
                 
-                if index == Controllers.activatedIndexOf(Controllers.currentController) {
+                if index == Controllers.activatedIndexOf(Controllers.selectedController) {
                     button.showsBorderOnlyWhileMouseInside = false
                 } else {
                     button.showsBorderOnlyWhileMouseInside = true

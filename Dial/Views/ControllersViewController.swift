@@ -8,6 +8,7 @@
 import Foundation
 import AppKit
 import Defaults
+import SFSafeSymbols
 
 class ControllersViewController: NSViewController {
     
@@ -212,7 +213,9 @@ extension ControllersViewController {
         }
     }
     
-    func initInteractives() {        
+    func initInteractives() {   
+        iconChooserViewController.chooseIconHandler = self
+        
         Task { @MainActor in
             for await _ in Defaults.updates([
                 .selectedControllerID,
@@ -305,16 +308,18 @@ extension ControllersViewController {
                 }
             }
         }
-        
-        Task { @MainActor in
-            for await value in observationTrackingStream({ self.iconChooserViewController.chosen }) {
-                if 
-                    let settings = Controllers.selectedSettings,
-                    settings.representingSymbol != value
-                {
-                    Controllers.selectedSettings?.representingSymbol = value
-                }
-            }
+    }
+    
+}
+
+extension ControllersViewController: ChooseIconHandler {
+    
+    func chooseIcon(_ icon: SFSymbol) {
+        if
+            let settings = Controllers.selectedSettings,
+            settings.representingSymbol != icon
+        {
+            Controllers.selectedSettings?.representingSymbol = icon
         }
     }
     

@@ -9,9 +9,15 @@ import Foundation
 import AppKit
 import SFSafeSymbols
 
+protocol ChooseIconHandler {
+    
+    func chooseIcon(_ icon: SFSymbol)
+    
+}
+
 @Observable class IconChooserViewController: NSViewController {
     
-    private var buttons: [NSButton] = []
+    var chooseIconHandler: ChooseIconHandler?
     
     var chosen: SFSymbol = .circleFillableFallback
     
@@ -24,6 +30,8 @@ import SFSafeSymbols
     let margin: CGFloat = 24
     
     let size: NSSize = .init(width: 355, height: 425)
+    
+    private var buttons: [NSButton] = []
     
     override func viewDidLoad() {
         buttons = []
@@ -226,6 +234,8 @@ extension IconChooserViewController {
         }
         
         button.flag = true
+        
+        chooseIconHandler?.chooseIcon(icon)
     }
     
 }
