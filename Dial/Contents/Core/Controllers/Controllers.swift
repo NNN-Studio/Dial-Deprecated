@@ -112,6 +112,9 @@ struct Controllers {
         
         if wrap || inRange {
             currentController = activatedControllers[(cycledIndex + count) % count]
+            DispatchQueue.main.async {
+                AppDelegate.shared?.dial.device.buzz()
+            }
         }
     }
     

@@ -41,6 +41,8 @@ protocol InputHandler {
     
     var inputHandler: InputHandler?
     
+    var buttonState: ButtonState = .released
+    
     var lastButtonState: ButtonState = .released
     
     private var dev: OpaquePointer?
@@ -227,6 +229,10 @@ extension Device {
                 }
             }
             
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.01) { // Hack
+                self.buttonState = buttonState
+            }
+            
             return .dial(buttonState, direction?.multiply(Defaults[.direction]))
         default:
             return .unknown
@@ -254,6 +260,7 @@ extension Device {
         default:
             print()
         }
+        
         return result
     }
     
@@ -334,9 +341,7 @@ extension Device {
         
         private var device: Device
         
-        init(
-            _ device: Device
-        ) {
+        init(_ device: Device) {
             self.device = device
         }
         

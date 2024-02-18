@@ -81,7 +81,9 @@ extension Dial: InputHandler {
         switch buttonState {
         case .pressed:
             // Trigger press and hold
-            mainController.willBeAgent()
+            if !mainController.isAgent {
+                mainController.willBeAgent()
+            }
             
             timestamps.buttonPressed = .now
         case .released:

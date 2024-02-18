@@ -109,9 +109,7 @@ extension StatusBarController {
 
 extension StatusBarController {
     
-    @objc func toggle(
-        _ sender: Any?
-    ) {
+    @objc func toggle(_ sender: Any?) {
         if let event = NSApp.currentEvent, event.type == .leftMouseUp {
             if AppDelegate.shared?.dial.device.isConnected ?? false {
                 let sign = event.modifierFlags.contains(.shift) ? -1 : 1
@@ -136,9 +134,6 @@ extension StatusBarController: DialMenuDelegate {
         guard let item = sender as? ControllerOptionItem else { return }
         
         Controllers.currentController = item.option
-        DispatchQueue.main.async {
-            AppDelegate.shared?.dial.device.buzz()
-        }
     }
     
     @objc func setSensitivity(_ sender: Any?) {

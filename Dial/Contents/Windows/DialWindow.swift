@@ -106,7 +106,7 @@ class DialWindow: NSWindow {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.dialViewController?.showDetails = false
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval) {
                 self.close()
             }
         }
@@ -200,11 +200,13 @@ class DialWindow: NSWindow {
             // Bottom edge
             clampedFrameOrigin.y = translatedScreenOrigin.y + offset
             
+            dialViewController?.radiansOffset = 0
             dialViewController?.iconDirection = .upper
         } else if reached.maxY {
             // Top edge
             clampedFrameOrigin.y = translatedScreenOrigin.y + screenSize.height - offset
             
+            dialViewController?.radiansOffset = Double.pi
             dialViewController?.iconDirection = .lower
         } else {
             // Normal
@@ -396,8 +398,7 @@ class DialWindow: NSWindow {
         }
         
         Task { @MainActor in
-            for await value in observationTrackingStream({ AppDelegate.shared!.dial.device.lastButtonState }) {
-                print(value)
+            for await value in observationTrackingStream({ AppDelegate.shared!.dial.device.buttonState }) {
                 switch value {
                 case .pressed:
                     parentView.setScale(0.9, animated: true, duration: 0.1)

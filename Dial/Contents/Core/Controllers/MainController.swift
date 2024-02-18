@@ -8,6 +8,7 @@
 import Foundation
 import SFSafeSymbols
 import AppKit
+import Defaults
 
 class MainController: Controller {
     
@@ -57,15 +58,13 @@ class MainController: Controller {
     }
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
-        state = .agentPressingRotated
+        discardAgentRole()
     }
     
     func onRelease(_ callback: Dial.Callback) {
         if state == .agentPressing {
             state = .agentReleased
-        }
-        
-        if state == .agentPressingRotated {
+        } else if state == .agentPressingRotated {
             discardAgentRole()
         }
     }
@@ -83,8 +82,8 @@ class MainController: Controller {
         case .continuous(_):
             break
         case .stepping(let direction):
-            Controllers.cycleThroughControllers(direction.physical.negate.rawValue)
-            callback.device.buzz()
+            Controllers.cycleThroughControllers(direction.physical.negate.rawValue, wrap: Controllers.activatedControllers.count == Defaults[.maxControllerCount])
+            // Buzzes are already handled by the method.
         }
     }
     
