@@ -173,8 +173,8 @@ extension GeneralViewController {
         print("Visited source code.")
     }
     
-    @IBAction func reconnect(_ sender: Any?) {
-        AppDelegate.shared?.dial.reconnect()
+    @IBAction func connect(_ sender: Any?) {
+        AppDelegate.shared?.dial.connect()
     }
     
 }

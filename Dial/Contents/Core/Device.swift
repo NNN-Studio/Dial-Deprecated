@@ -97,6 +97,15 @@ extension Device {
         
         case unknown
         
+        var debugMessage: String? {
+            switch self {
+            case .unknown:
+                "(unknown)"
+            default:
+                nil
+            }
+        }
+        
     }
     
     enum ButtonState {
@@ -148,6 +157,7 @@ extension Device {
         
         if isConnected {
             print("Connected to device \(serialNumber)!")
+            
             connectionStatus = .connected(serialNumber)
             initSensitivity()
             buzz(3)
@@ -163,6 +173,7 @@ extension Device {
             
             self.dev = nil
             connectionStatus = .disconnected
+            
             print("Device disconnected.")
         }
     }
@@ -251,15 +262,9 @@ extension Device {
         
         let array = UnsafeMutableBufferPointer(start: readBuffer.pointer, count: Int(readBytes))
         let dataStr = array.map({ String(format:"%02X", $0)}).joined(separator: " ")
-        print("Reading data from device: \(dataStr)", terminator: "")
         
         let result = parse(array)
-        switch result {
-        case .unknown:
-            print(" (unknown)")
-        default:
-            print()
-        }
+        print("Reading data from device: \(dataStr)", result.debugMessage ?? "")
         
         return result
     }

@@ -223,6 +223,8 @@ class DialWindow: NSWindow {
     
     var radiansOffset = CGFloat.zero
     
+    var radiansRefine = CGFloat.zero
+    
     var showDetails = true
     
     var iconDirection: IconDirection = .upper
@@ -411,6 +413,12 @@ class DialWindow: NSWindow {
         Task { @MainActor in
             for await _ in observationTrackingStream({ self.radiansOffset }) {
                 iconsView.setRotation(getRadians(), animated: false)
+            }
+        }
+        
+        Task { @MainActor in
+            for await _ in observationTrackingStream({ self.radiansRefine }) {
+                iconsView.setRotation(getRadians(), animated: true)
             }
         }
         

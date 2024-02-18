@@ -28,7 +28,7 @@ Due to an issue in macOS, if you're upgrading from an earlier version of Dial, y
         }
         
         let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeRetainedValue() as NSString: true]
-        let trusted = AXIsProcessTrustedWithOptions(options)
+        let _ = AXIsProcessTrustedWithOptions(options)
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {

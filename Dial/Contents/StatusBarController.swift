@@ -116,7 +116,7 @@ extension StatusBarController {
                 Controllers.cycleThroughControllers(sign)
             } else {
                 DispatchQueue.main.async {
-                    AppDelegate.shared?.dial.reconnect()
+                    AppDelegate.shared?.dial.connect()
                 }
             }
         } else {
@@ -170,9 +170,9 @@ extension StatusBarController: DialMenuDelegate {
         AppDelegate.quitApp()
     }
     
-    func reconnect(_ sender: Any?) {
+    func connect(_ sender: Any?) {
         DispatchQueue.main.async {
-            AppDelegate.shared?.dial.reconnect()
+            AppDelegate.shared?.dial.connect()
         }
     }
     

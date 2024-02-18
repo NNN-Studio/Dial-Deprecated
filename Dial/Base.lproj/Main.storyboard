@@ -123,7 +123,7 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <connections>
-                                                            <action selector="reconnect:" target="fkX-le-ubk" id="fka-eB-0MU"/>
+                                                            <action selector="connect:" target="fkX-le-ubk" id="fka-eB-0MU"/>
                                                         </connections>
                                                     </button>
                                                 </endViews>

@@ -62,11 +62,6 @@ extension Dial {
         device.stop()
     }
     
-    func reconnect() {
-        disconnect()
-        connect()
-    }
-    
 }
 
 extension Dial: InputHandler {
@@ -111,6 +106,7 @@ extension Dial: InputHandler {
         mainController.discardUpcomingAgentRole()
         
         let interval = Date.now.timeIntervalSince(timestamps.rotation)
+        print(interval)
         if let interval, interval > NSEvent.keyRepeatDelay {
             // Rotation ended
             rotationBehavior.started = nil

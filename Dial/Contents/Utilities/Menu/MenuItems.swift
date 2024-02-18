@@ -23,7 +23,7 @@ import Defaults
     
     @objc func quitApp(_ sender: Any?)
     
-    @objc func reconnect(_ sender: Any?)
+    @objc func connect(_ sender: Any?)
     
 }
 
@@ -45,7 +45,7 @@ struct MenuItems {
         let item = NSMenuItem()
         
         item.target = delegate
-        item.action = #selector(delegate.reconnect(_:))
+        item.action = #selector(delegate.connect(_:))
         item.offStateImage = NSImage(systemSymbol: .arrowTriangle2Circlepath)
         
         @Sendable func apply(_ value: Device.ConnectionStatus) {

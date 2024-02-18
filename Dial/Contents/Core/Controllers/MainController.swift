@@ -88,12 +88,12 @@ class MainController: Controller {
     }
     
     func willBeAgent() {
-        dispatch = DispatchWorkItem {
+        dispatch = .init {
             self.isAgent = true
             self.callback?.window.show()
             self.callback?.device.buzz()
             
-            print("Default controller is now the agent.")
+            print("Main controller is now the agent.")
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval, execute: dispatch!)
@@ -110,7 +110,7 @@ class MainController: Controller {
             isAgent = false
             self.callback?.window.hide()
             
-            print("Default controller is no longer the agent.")
+            print("Main controller is no longer the agent.")
         }
     }
     

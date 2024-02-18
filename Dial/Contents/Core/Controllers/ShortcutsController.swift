@@ -161,10 +161,6 @@ class ShortcutsController: Controller {
         } else {
             settings.shortcuts.single.post()
         }
-        
-        if settings.haptics {
-            callback.device.buzz()
-        }
     }
     
     func onRotation(
@@ -176,14 +172,18 @@ class ShortcutsController: Controller {
         
         var direction = rotation.direction
         
-        if settings.alternativeDirection { direction = direction.negate }
         if settings.physicalDirection { direction = direction.physical }
+        if settings.alternativeDirection { direction = direction.negate }
         
         switch buttonState {
         case .pressed:
             settings.shortcuts.pressedRotation[direction]?.post()
         case .released:
             settings.shortcuts.rotation[direction]?.post()
+        }
+        
+        if settings.haptics && rotation.type == settings.rotationType {
+            callback.device.buzz()
         }
     }
     
