@@ -22,18 +22,24 @@ class StatusBarController: NSObject, NSMenuDelegate {
             button.action = #selector(toggle(_:))
             button.sendAction(on: [.leftMouseUp, .rightMouseUp])
             
-            updateIcon(false)
+            updateIcon(.disconnected)
         }
         
         Task { @MainActor in
             for await _ in Defaults.updates(.currentControllerID) {
-                updateIcon(AppDelegate.shared?.dial.device.isConnected ?? false)
+                updateIcon(AppDelegate.shared?.dial.device.connectionStatus ?? .disconnected)
             }
         }
         
         Task { @MainActor in
             for await _ in Defaults.updates(.activatedControllerIDs) {
                 refreshMenuManager()
+            }
+        }
+        
+        Task { @MainActor in
+            for await value in observationTrackingStream({ AppDelegate.shared!.dial.device.connectionStatus }) {
+                updateIcon(value)
             }
         }
     }
@@ -71,26 +77,22 @@ class StatusBarController: NSObject, NSMenuDelegate {
         statusItem.menu = nil
     }
     
-    private func updateIcon(_ isConnected: Bool) {
+    private func updateIcon(_ connectionStatus: Device.ConnectionStatus) {
         DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
             if let button = statusItem.button {
                 let dialIcon = SymbolRepresentation.dial.representingSymbol.image
                     .withSymbolConfiguration(.init(pointSize: 17.5, weight: .bold))
                 
-                // TODO: DEBUG
-                //let modeIcon = (isConnected ? Controllers.currentController.icon.filled : NSImage(systemSymbol: .ellipsisCircleFill)
                 let modeIcon = Controllers.currentController.representingSymbol.circleFilledImage
                     .withSymbolConfiguration(.init(pointSize: 17.5, weight: .bold))!
                     .withVerticalPadding(2)
                 
-                // TODO: DEBUG
-                //let combinedIcon = (isConnected ? dialIcon?.horizontallyCombine(with: modeIcon) : dialIcon)?
-                let combinedIcon = dialIcon?.horizontallyCombine(with: modeIcon)
+                let combinedIcon = (connectionStatus.isConnected ? dialIcon?.horizontallyCombine(with: modeIcon) : dialIcon)?
                     .withVerticalPadding(2)
                 combinedIcon?.isTemplate = true
                 
                 button.image = combinedIcon?.fitIntoStatusBar()
-                button.appearsDisabled = !isConnected
+                button.appearsDisabled = !connectionStatus.isConnected
             }
         }
     }
@@ -98,10 +100,6 @@ class StatusBarController: NSObject, NSMenuDelegate {
 }
 
 extension StatusBarController {
-    
-    func onConnectionStatusChanged(_ isConnected: Bool, _ serialNumber: String?) {
-        updateIcon(isConnected)
-    }
     
     func toggleVisibility(_ isVisible: Bool) {
         statusItem.isVisible = isVisible
@@ -115,9 +113,7 @@ extension StatusBarController {
         _ sender: Any?
     ) {
         if let event = NSApp.currentEvent, event.type == .leftMouseUp {
-            // TODO: DEBUG
-            //if AppDelegate.instance?.dial.device.isConnected ?? false {
-            if true {
+            if AppDelegate.shared?.dial.device.isConnected ?? false {
                 let sign = event.modifierFlags.contains(.shift) ? -1 : 1
                 Controllers.cycleThroughControllers(sign)
             } else {

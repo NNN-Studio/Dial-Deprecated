@@ -396,8 +396,9 @@ class DialWindow: NSWindow {
         }
         
         Task { @MainActor in
-            for await _ in observationTrackingStream({ AppDelegate.shared!.dial.buttonState }) {
-                switch AppDelegate.shared!.dial.buttonState {
+            for await value in observationTrackingStream({ AppDelegate.shared!.dial.device.lastButtonState }) {
+                print(value)
+                switch value {
                 case .pressed:
                     parentView.setScale(0.9, animated: true, duration: 0.1)
                 case .released:

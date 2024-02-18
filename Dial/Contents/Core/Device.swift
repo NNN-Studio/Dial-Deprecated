@@ -41,6 +41,8 @@ protocol InputHandler {
     
     var inputHandler: InputHandler?
     
+    var lastButtonState: ButtonState = .released
+    
     private var dev: OpaquePointer?
     
     private let readBuffer = ReadBuffer(size: 1024)
@@ -50,17 +52,6 @@ protocol InputHandler {
     private var isRunning: Bool = false
     
     private let semaphore = DispatchSemaphore(value: 0)
-    
-    private var lastButtonState = ButtonState.released
-    
-    
-    
-    init(
-        inputHandler: InputHandler? = nil
-    ) {
-        self.inputHandler = inputHandler
-        hid_init()
-    }
     
     deinit {
         stop()
@@ -76,6 +67,15 @@ extension Device {
         case connected(String)
         
         case disconnected
+        
+        var isConnected: Bool {
+            switch self {
+            case .connected(_):
+                true
+            case .disconnected:
+                false
+            }
+        }
         
     }
     

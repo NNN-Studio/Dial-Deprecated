@@ -7,13 +7,11 @@ import SwiftUI
 
 @Observable class Dial {
     
-    var device = Device()
+    var device: Device = .init()
     
-    var statusBarController = StatusBarController()
+    var statusBarController: StatusBarController = .init()
     
-    var buttonState: Device.ButtonState = .released
-    
-    var window = DialWindow(
+    var window: DialWindow = .init(
         styleMask: [.borderless],
         backing: .buffered,
         defer: true
@@ -21,21 +19,17 @@ import SwiftUI
     
     var controller: Controller {
         if mainController.isAgent {
-            return mainController.instance
+            return mainController
         } else {
             let item = statusBarController.menuItems?.controllerMenuItems.controllers
                 .filter { $0.option.id == Controllers.currentController.id }
                 .first
             
-            return item?.option ?? mainController.instance
+            return item?.option ?? mainController
         }
     }
     
-    private var mainController = (
-        instance: MainController(),
-        isAgent: false,
-        dispatch: DispatchWorkItem {}
-    )
+    private var mainController: MainController = .init()
     
     private var timestamps: (
         buttonPressed: Date?,
@@ -51,6 +45,8 @@ import SwiftUI
     
     init() {
         device.inputHandler = self
+        mainController.callback = .init(self)
+        
         connect()
     }
     
@@ -82,21 +78,18 @@ extension Dial: InputHandler {
         rotationBehavior.started = nil
         rotationBehavior.degrees = 0
         
-        self.buttonState = buttonState
-        
         switch buttonState {
         case .pressed:
             // Trigger press and hold
-            self.setDefaultControllerState(isAgent: true, deadline: .now() + NSEvent.doubleClickInterval)
+            mainController.willBeAgent()
             
             timestamps.buttonPressed = .now
         case .released:
-            setDefaultControllerState(isAgent: false)
+            mainController.discardUpcomingAgentRole()
             
             let clickInterval = Date.now.timeIntervalSince(timestamps.buttonPressed)
             guard let clickInterval, clickInterval <= NSEvent.doubleClickInterval else {
-                controller.onRelease(callback
-                )
+                controller.onRelease(callback)
                 break
             }
             
@@ -118,6 +111,7 @@ extension Dial: InputHandler {
             // Rotation ended
             rotationBehavior.started = nil
             rotationBehavior.degrees = 0
+            
             print("Rotation ended.")
         }
         
@@ -132,10 +126,6 @@ extension Dial: InputHandler {
         )
         
         if let duration = Date.now.timeIntervalSince(rotationBehavior.started) {
-            if !mainController.isAgent {
-                setDefaultControllerState(isAgent: false)
-            }
-            
             if lastStage.continuous != currentStage.continuous {
                 // Continuous rotation
                 controller.onRotation(
@@ -167,35 +157,12 @@ extension Dial: InputHandler {
             let started = rotationBehavior.degrees.magnitude > Defaults[.rotationThresholdDegrees]
             if started {
                 print("Rotation started.")
+                
                 rotationBehavior.started = .now
             }
         }
         
         timestamps.rotation = .now
-    }
-    
-    func setDefaultControllerState(
-        isAgent: Bool,
-        deadline: DispatchTime = .now()
-    ) {
-        if isAgent {
-            mainController.dispatch = DispatchWorkItem {
-                self.mainController.isAgent = true
-                self.window.show()
-                self.device.buzz()
-                print("Default controller is now the agent.")
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: deadline, execute: mainController.dispatch)
-        } else {
-            mainController.dispatch.cancel()
-            
-            if mainController.isAgent {
-                mainController.isAgent = false
-                window.hide()
-                print("Default controller is no longer the agent.")
-            }
-        }
     }
     
 }
@@ -210,12 +177,16 @@ extension Dial {
         
         private var dial: Dial
         
+        init(_ dial: Dial) {
+            self.dial = dial
+        }
+        
         var device: Device.Callback {
             dial.device.callback
         }
         
-        init(_ dial: Dial) {
-            self.dial = dial
+        var window: DialWindow {
+            dial.window
         }
         
     }
