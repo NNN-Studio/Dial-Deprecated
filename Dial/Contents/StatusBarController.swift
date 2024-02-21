@@ -143,6 +143,7 @@ extension StatusBarController: DialMenuDelegate {
         else { return }
         
         Defaults[.sensitivity] = sensitivity
+        menuItems?.updateSensitivity(sensitivity)
     }
     
     @objc func setDirection(_ sender: Any?) {
@@ -152,6 +153,7 @@ extension StatusBarController: DialMenuDelegate {
         else { return }
         
         Defaults[.direction] = direction
+        menuItems?.updateDirection(direction)
     }
     
     @objc func toggleHaptics(_ sender: Any?) {
