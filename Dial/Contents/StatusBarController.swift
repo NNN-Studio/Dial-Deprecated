@@ -56,6 +56,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
                 menuItems!.controllerMenuItems.controllers
             ))
             
+            /*
             items.append(MenuManager.groupItems(
                 title: NSLocalizedString("Menu/Title/ConvenienceSettings", value: "Convenience Settings", comment: "convenience settings"),
                 menuItems!.direction,
@@ -68,6 +69,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
                 menuItems!.openSettings,
                 menuItems!.quit
             ))
+             */
             
             return items
         }

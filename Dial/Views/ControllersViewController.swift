@@ -216,113 +216,21 @@ extension ControllersViewController {
     func initInteractives() {   
         iconChooserViewController.chooseIconHandler = self
         
-        Task { @MainActor in
-            for await _ in Defaults.updates([
-                .selectedControllerID,
-                .shortcutsControllerSettings
-            ]) {
-                let controller = Controllers.selectedController
-                
-                let canDeactivate = Controllers.activatedControllers.count > 1
-                let canActivate = Controllers.activatedControllers.count < Defaults[.maxControllerCount]
-                
-                let activated = Controllers.activatedControllers.contains(where: { $0.id == controller.id })
-                switchControllerActivated.flag = activated
-                switchControllerActivated.isEnabled = (activated && canDeactivate) || (!activated && canActivate)
-                
-                if let defaultController = controller as? DefaultController {
-                    labelDefaultControllerDescription.stringValue = defaultController.description
-                    
-                    viewDefaultControllerLabels.isHidden = false
-                    viewControllerName.isHidden = true
-                    
-                    viewShortcuts1.isHidden = true
-                    viewShortcuts2.isHidden = true
-                    viewShortcuts3.isHidden = true
-                    viewOptions1.isHidden = true
-                    viewOptions2.isHidden = true
-                    
-                    segmentedControlShortcutsAdvanced.isHidden = true
-                    
-                    buttonDeleteController.isEnabled = false
-                    buttonAddController.isEnabled = true
-                    
-                    iconChooserViewController.setAll(false)
-                }
-                
-                else if let shortcutsController = controller as? ShortcutsController {
-                    let settings = shortcutsController.settings
-                    
-                    viewDefaultControllerLabels.isHidden = true
-                    viewControllerName.isHidden = false
-                    
-                    updateSegment(self.segment)
-                    
-                    segmentedControlShortcutsAdvanced.isHidden = false
-                    
-                    buttonDeleteController.isEnabled = true
-                    buttonAddController.isEnabled = true
-                    
-                    textFieldControllerName.stringValue = settings.name ?? ""
-                    
-                    buttonShortcuts1Keys1.keys = settings.shortcuts.rotation[.clockwise]!.keys
-                    buttonShortcuts1Keys1.updateTitle()
-                    buttonShortcuts1Keys2.keys = settings.shortcuts.rotation[.counterclockwise]!.keys
-                    buttonShortcuts1Keys2.updateTitle()
-                    
-                    buttonShortcuts2Keys1.keys = settings.shortcuts.pressedRotation[.clockwise]!.keys
-                    buttonShortcuts2Keys1.updateTitle()
-                    buttonShortcuts2Keys2.keys = settings.shortcuts.pressedRotation[.counterclockwise]!.keys
-                    buttonShortcuts2Keys2.updateTitle()
-                    
-                    buttonShortcuts3Keys1.keys = settings.shortcuts.single.keys
-                    buttonShortcuts3Keys1.updateTitle()
-                    buttonShortcuts3Keys2.keys = settings.shortcuts.double.keys
-                    buttonShortcuts3Keys2.updateTitle()
-                    
-                    switchHaptics.flag = settings.haptics
-                    switchPhysicalDirection.flag = settings.physicalDirection
-                    switchAlternativeDirection.flag = settings.alternativeDirection
-                    
-                    refreshRotationTypeMenuManager()
-                    popUpButtonRotationType.menu = rotationTypeMenuManager?.menu
-                    
-                    let icon = settings.representingSymbol
-                    buttonIconChooser.image = icon.image
-                    iconChooserViewController.setAll(true)
-                    iconChooserViewController.chosen = icon
-                    
-                    for (index, item) in popUpButtonRotationType.itemArray.enumerated() {
-                        if
-                            let rotationType = item.representedObject as? Rotation.RawType,
-                            rotationType == settings.rotationType
-                        { popUpButtonRotationType.selectItem(at: index) }
-                    }
-                    
-                    refreshModifiersMenuManagers()
-                    
-                    popUpButtonShortcuts1Modifiers1.menu = modifiersMenuManagers[.rotateClockwise]?.menu
-                    popUpButtonShortcuts1Modifiers2.menu = modifiersMenuManagers[.rotateCounterclockwise]?.menu
-                    
-                    popUpButtonShortcuts2Modifiers1.menu = modifiersMenuManagers[.pressAndRotateClockwise]?.menu
-                    popUpButtonShortcuts2Modifiers2.menu = modifiersMenuManagers[.pressAndRotateCounterclockwise]?.menu
-                    
-                    popUpButtonShortcuts3Modifiers1.menu = modifiersMenuManagers[.clickSingle]?.menu
-                    popUpButtonShortcuts3Modifiers2.menu = modifiersMenuManagers[.clickDouble]?.menu
-                }
-                
-                refreshControllersMenuManager()
-                popUpButtonControllerSelector.menu = controllersMenuManager?.menu
-                
-                for (index, item) in popUpButtonControllerSelector.itemArray.enumerated() {
-                    if
-                        let controller = item.representedObject as? Controller,
-                        controller.id == Controllers.selectedController.id
-                    { popUpButtonControllerSelector.selectItem(at: index) }
-                    
-                }
-            }
+        rotationTypeMenuManager = .init(delegate: self) { [MenuManager.groupItems(rotationTypeMenuItems!.rotationTypeOptions)] }
+        popUpButtonRotationType.menu = rotationTypeMenuManager?.menu
+        
+        for actionTarget in ModifiersOptionItem.ActionTarget.allCases {
+            modifiersMenuManagers[actionTarget] = .init(delegate: self) { [MenuManager.groupItems(modifiersMenuItemsArray[actionTarget]!.modifierOptions)] }
         }
+        
+        popUpButtonShortcuts1Modifiers1.menu = modifiersMenuManagers[.rotateClockwise]?.menu
+        popUpButtonShortcuts1Modifiers2.menu = modifiersMenuManagers[.rotateCounterclockwise]?.menu
+        
+        popUpButtonShortcuts2Modifiers1.menu = modifiersMenuManagers[.pressAndRotateClockwise]?.menu
+        popUpButtonShortcuts2Modifiers2.menu = modifiersMenuManagers[.pressAndRotateCounterclockwise]?.menu
+        
+        popUpButtonShortcuts3Modifiers1.menu = modifiersMenuManagers[.clickSingle]?.menu
+        popUpButtonShortcuts3Modifiers2.menu = modifiersMenuManagers[.clickDouble]?.menu
     }
     
 }
@@ -368,35 +276,11 @@ extension ControllersViewController: NSMenuDelegate {
         }
     }
     
-    func refreshRotationTypeMenuManager() {
-        rotationTypeMenuManager = .init(delegate: self) {
-            var items: [MenuManager.MenuItemGroup] = []
-            
-            items.append(MenuManager.groupItems(rotationTypeMenuItems!.rotationTypeOptions))
-            
-            return items
-        }
-    }
-    
-    func refreshModifiersMenuManagers() {
-        for actionTarget in ModifiersOptionItem.ActionTarget.allCases {
-            modifiersMenuManagers[actionTarget] = .init(delegate: self) {
-                var items: [MenuManager.MenuItemGroup] = []
-                
-                items.append(MenuManager.groupItems(modifiersMenuItemsArray[actionTarget]!.modifierOptions))
-                
-                return items
-            }
-        }
-    }
-    
 }
 
 extension ControllersViewController: NSPopoverDelegate {
     
-    func popoverShouldDetach(_ popover: NSPopover) -> Bool {
-        true
-    }
+    func popoverShouldDetach(_ popover: NSPopover) -> Bool { true }
     
 }
 
@@ -427,8 +311,94 @@ extension ControllersViewController: DialControllerMenuDelegate {
     
     func setController(_ sender: Any?) {
         guard let item = sender as? ControllerOptionItem else { return }
+                
+        let controller = item.option
+        Controllers.selectedController = controller
         
-        Controllers.selectedController = item.option
+        let canDeactivate = Controllers.activatedControllers.count > 1
+        let canActivate = Controllers.activatedControllers.count < Defaults[.maxControllerCount]
+        
+        let activated = Controllers.activatedControllers.contains(where: { $0.id == controller.id })
+        switchControllerActivated.flag = activated
+        switchControllerActivated.isEnabled = (activated && canDeactivate) || (!activated && canActivate)
+        
+        if let defaultController = controller as? DefaultController {
+            labelDefaultControllerDescription.stringValue = defaultController.description
+            
+            viewDefaultControllerLabels.isHidden = false
+            viewControllerName.isHidden = true
+            
+            viewShortcuts1.isHidden = true
+            viewShortcuts2.isHidden = true
+            viewShortcuts3.isHidden = true
+            viewOptions1.isHidden = true
+            viewOptions2.isHidden = true
+            
+            segmentedControlShortcutsAdvanced.isHidden = true
+            
+            buttonDeleteController.isEnabled = false
+            buttonAddController.isEnabled = true
+            
+            iconChooserViewController.setAll(false)
+        }
+        
+        else if let shortcutsController = controller as? ShortcutsController {
+            let settings = shortcutsController.settings
+            
+            viewDefaultControllerLabels.isHidden = true
+            viewControllerName.isHidden = false
+            
+            updateSegment(self.segment)
+            
+            segmentedControlShortcutsAdvanced.isHidden = false
+            
+            buttonDeleteController.isEnabled = true
+            buttonAddController.isEnabled = true
+            
+            textFieldControllerName.stringValue = settings.name ?? ""
+            
+            buttonShortcuts1Keys1.keys = settings.shortcuts.rotation[.clockwise]!.keys
+            buttonShortcuts1Keys1.updateTitle()
+            buttonShortcuts1Keys2.keys = settings.shortcuts.rotation[.counterclockwise]!.keys
+            buttonShortcuts1Keys2.updateTitle()
+            
+            buttonShortcuts2Keys1.keys = settings.shortcuts.pressedRotation[.clockwise]!.keys
+            buttonShortcuts2Keys1.updateTitle()
+            buttonShortcuts2Keys2.keys = settings.shortcuts.pressedRotation[.counterclockwise]!.keys
+            buttonShortcuts2Keys2.updateTitle()
+            
+            buttonShortcuts3Keys1.keys = settings.shortcuts.single.keys
+            buttonShortcuts3Keys1.updateTitle()
+            buttonShortcuts3Keys2.keys = settings.shortcuts.double.keys
+            buttonShortcuts3Keys2.updateTitle()
+            
+            switchHaptics.flag = settings.haptics
+            switchPhysicalDirection.flag = settings.physicalDirection
+            switchAlternativeDirection.flag = settings.alternativeDirection
+            
+            let icon = settings.representingSymbol
+            buttonIconChooser.image = icon.image
+            iconChooserViewController.setAll(true)
+            iconChooserViewController.chosen = icon
+            
+            for (index, item) in popUpButtonRotationType.itemArray.enumerated() {
+                if
+                    let rotationType = item.representedObject as? Rotation.RawType,
+                    rotationType == settings.rotationType
+                { popUpButtonRotationType.selectItem(at: index) }
+            }
+        }
+        
+        refreshControllersMenuManager()
+        popUpButtonControllerSelector.menu = controllersMenuManager?.menu
+        
+        for (index, item) in popUpButtonControllerSelector.itemArray.enumerated() {
+            if
+                let controller = item.representedObject as? Controller,
+                controller.id == Controllers.selectedController.id
+            { popUpButtonControllerSelector.selectItem(at: index) }
+            
+        }
     }
     
 }
