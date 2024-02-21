@@ -27,7 +27,7 @@ import Defaults
     
 }
 
-struct MenuItems {
+class MenuItems {
     
     let delegate: DialMenuDelegate
     
@@ -39,6 +39,24 @@ struct MenuItems {
         self.delegate = delegate
         self.submenuItems = .init(delegate: delegate)
         self.controllerMenuItems = .init(delegate: delegate, source: .activated)
+        
+        initialize()
+    }
+    
+    private func initialize() {
+        let sensitivity = NSMenuItem(title: Localization.General.sensitivity.localizedTitle)
+        self.sensitivity = sensitivity
+        
+        sensitivity.submenu = NSMenu()
+        submenuItems.sensitivityOptions.forEach(sensitivity.submenu!.addItem(_:))
+        updateSensitivity(Defaults[.sensitivity])
+        
+        let direction = NSMenuItem(title: Localization.General.direction.localizedTitle)
+        self.direction = direction
+        
+        direction.submenu = NSMenu()
+        submenuItems.directionOptions.forEach(direction.submenu!.addItem(_:))
+        updateDirection(Defaults[.direction])
     }
     
     var connectionStatus: NSMenuItem {
@@ -75,47 +93,9 @@ struct MenuItems {
         return item
     }
     
-    var sensitivity: NSMenuItem {
-        let item = NSMenuItem(title: Localization.General.sensitivity.localizedTitle)
-        
-        item.submenu = NSMenu()
-        submenuItems.sensitivityOptions.forEach(item.submenu!.addItem(_:))
-        
-        @Sendable func apply(_ value: Sensitivity) {
-            let icon = value.representingSymbol.unicode?.appending(" ") ?? ""
-            item.badge = NSMenuItemBadge(string: icon + value.localizedBadge)
-        }
-        
-        Task { @MainActor in
-            for await value in Defaults.updates(.sensitivity) {
-                apply(value)
-            }
-        }
-        
-        apply(Defaults[.sensitivity])
-        return item
-    }
+    var sensitivity = NSMenuItem()
     
-    var direction: NSMenuItem {
-        let item = NSMenuItem(title: Localization.General.direction.localizedTitle)
-        
-        item.submenu = NSMenu()
-        submenuItems.directionOptions.forEach(item.submenu!.addItem(_:))
-        
-        @Sendable func apply(_ value: Direction) {
-            let icon = value.representingSymbol.unicode?.appending(" ") ?? ""
-            item.badge = NSMenuItemBadge(string: icon + value.localizedBadge)
-        }
-        
-        Task { @MainActor in
-            for await value in Defaults.updates(.direction) {
-                apply(value)
-            }
-        }
-        
-        apply(Defaults[.direction])
-        return item
-    }
+    var direction = NSMenuItem()
     
     var haptics: StateOptionItem {
         let item = StateOptionItem(Localization.General.haptics.localizedTitle)
@@ -169,6 +149,20 @@ struct MenuItems {
         item.keyEquivalentModifierMask = .command
         
         return item
+    }
+    
+}
+
+extension MenuItems {
+    
+    func updateSensitivity(_ value: Sensitivity) {
+        let icon = value.representingSymbol.unicode?.appending(" ") ?? ""
+        sensitivity.badge = NSMenuItemBadge(string: icon + value.localizedBadge)
+    }
+    
+    func updateDirection(_ value: Direction) {
+        let icon = value.representingSymbol.unicode?.appending(" ") ?? ""
+        direction.badge = NSMenuItemBadge(string: icon + value.localizedBadge)
     }
     
 }

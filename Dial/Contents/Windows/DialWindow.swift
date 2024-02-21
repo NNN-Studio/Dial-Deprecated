@@ -219,7 +219,7 @@ class DialWindow: NSWindow {
     
 }
 
-@Observable class DialViewController: NSViewController {
+class DialViewController: NSViewController {
     
     var radiansOffset = CGFloat.zero
     

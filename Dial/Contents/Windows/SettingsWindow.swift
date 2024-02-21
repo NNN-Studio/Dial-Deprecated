@@ -8,7 +8,7 @@
 import Cocoa
 import SwiftUI
 
-@Observable class SettingsWindowController: NSWindowController {
+class SettingsWindowController: NSWindowController {
     
     static let shared: SettingsWindowController? = {
         return NSStoryboard(

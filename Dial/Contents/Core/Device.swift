@@ -16,7 +16,7 @@ protocol InputHandler {
     
 }
 
-@Observable class Device {
+class Device {
     
     private struct ReadBuffer {
         let pointer: UnsafeMutablePointer<UInt8>

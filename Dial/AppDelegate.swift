@@ -9,6 +9,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var dial = Dial()
     
+    var generalViewController = GeneralViewController()
+    
+    var controllersViewController = ControllersViewController()
+    
     func requestPermissions() {
         // More information on this behaviour: https://stackoverflow.com/questions/29006379/accessibility-permissions-reset-after-application-update
         if !AXIsProcessTrusted() {

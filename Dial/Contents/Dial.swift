@@ -5,7 +5,7 @@ import AppKit
 import Cocoa
 import SwiftUI
 
-@Observable class Dial {
+class Dial {
     
     var device: Device = .init()
     
