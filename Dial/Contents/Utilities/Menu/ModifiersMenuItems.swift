@@ -16,7 +16,7 @@ import Defaults
     
 }
 
-class ModifiersMenuItems { // It needs to be self mutable
+class ModifiersMenuItems {
     
     let delegate: DialModifiersMenuDelegate
     
@@ -30,52 +30,43 @@ class ModifiersMenuItems { // It needs to be self mutable
     ) {
         self.delegate = delegate
         self.actionTarget = actionTarget
+        self.modifierOptions = [
+            .init(title: titleCache),
+            ModifiersOptionItem("􀆔", option: .command, actionTarget: actionTarget),
+            ModifiersOptionItem("􀆕", option: .option, actionTarget: actionTarget),
+            ModifiersOptionItem("􀆍", option: .control, actionTarget: actionTarget),
+            ModifiersOptionItem("􀆝", option: .shift, actionTarget: actionTarget)
+        ]
     }
     
-    var modifiersOptions: [NSMenuItem] {
-        let options: [ModifiersOptionItem] = [
-            .init("􀆔", option: .command, actionTarget: actionTarget),
-            .init("􀆕", option: .option, actionTarget: actionTarget),
-            .init("􀆍", option: .control, actionTarget: actionTarget),
-            .init("􀆝", option: .shift, actionTarget: actionTarget)
-        ]
-        
-        let title = NSMenuItem(title: titleCache)
-        
-        for option in options {
+    private func initialize() {
+        for option in modifierOptions.filter({ $0 is ModifiersOptionItem }) {
             option.target = delegate
             option.action = #selector(delegate.setModifiers(_:))
-            
-            Task { @MainActor in
-                for await value in Defaults.updates(.shortcutsControllerSettings) {
-                    for settings in value {
-                        if let selectedSettings = Controllers.selectedSettings, settings.id == selectedSettings.id {
-                            let flag = settings.shortcuts.getModifiersOf(actionTarget).contains(option.option)
-                            option.flag = flag
-                        }
-                    }
-                }
-            }
+        }
+        if let value = Controllers.selectedSettings?.shortcuts.getModifiersFor(actionTarget) {
+            updateModifierOptions(value)
+        }
+    }
+    
+    var modifierOptions: [NSMenuItem] = []
+    
+}
+
+extension ModifiersMenuItems {
+    
+    func updateModifierOptions(_ value: NSEvent.ModifierFlags) {
+        for option in modifierOptions.compactMap({ $0 as? ModifiersOptionItem }) {
+            option.flag = value.contains(option.option)
         }
         
-        Task { @MainActor in
-            for await _ in Defaults.updates(.shortcutsControllerSettings) {
-                let string = options
-                    .filter { $0.flag }
-                    .map { $0.title }
-                    .joined()
-                
-                title.title = string
-                titleCache = string
-            }
-        }
+        let string = modifierOptions
+            .filter { $0.flag }
+            .map { $0.title }
+            .joined()
         
-        var items: [NSMenuItem] = []
-        
-        items.append(title)
-        items.append(contentsOf: options)
-        
-        return items
+        modifierOptions[0].title = string
+        titleCache = string
     }
     
 }

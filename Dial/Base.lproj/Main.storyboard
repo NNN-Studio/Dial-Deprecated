@@ -1395,9 +1395,6 @@
                                                                                             </items>
                                                                                         </menu>
                                                                                     </popUpButtonCell>
-                                                                                    <connections>
-                                                                                        <action selector="toggleRotationType:" target="24w-Ra-sQb" id="a0V-gv-afR"/>
-                                                                                    </connections>
                                                                                 </popUpButton>
                                                                             </subviews>
                                                                             <constraints>

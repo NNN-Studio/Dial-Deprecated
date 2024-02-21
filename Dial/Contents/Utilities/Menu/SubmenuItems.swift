@@ -16,53 +16,59 @@ import Defaults
     
 }
 
-struct SubmenuItems {
+class SubmenuItems {
     
     let delegate: DialSubmenuDelegate
     
-    var sensitivityOptions: [MenuOptionItem<Sensitivity>] {
-        let options: [MenuOptionItem<Sensitivity>] = [
-            .init(Sensitivity.low.localizedName, option: .low),
-            .init(Sensitivity.medium.localizedName, option: .medium),
-            .init(Sensitivity.natural.localizedName, option: .natural),
-            .init(Sensitivity.high.localizedName, option: .high),
-            .init(Sensitivity.extreme.localizedName, option: .extreme)
-        ]
+    init(delegate: DialSubmenuDelegate) {
+        self.delegate = delegate
         
-        for option in options {
+        initialize()
+    }
+    
+    private func initialize() {
+        for option in sensitivityOptions {
             option.target = delegate
             option.action = #selector(delegate.setSensitivity(_:))
             option.image = option.option.representingSymbol.image
-            
-            Task { @MainActor in
-                for await value in Defaults.updates(.sensitivity) {
-                    option.flag = option.option == value
-                }
-            }
         }
+        updateSensitivityOptions(Defaults[.sensitivity])
         
-        return options
-    }
-    
-    var directionOptions: [MenuOptionItem<Direction>] {
-        let options: [MenuOptionItem<Direction>] = [
-            .init(Direction.clockwise.localizedName, option: .clockwise),
-            .init(Direction.counterclockwise.localizedName, option: .counterclockwise)
-        ]
-        
-        for option in options {
+        for option in directionOptions {
             option.target = delegate
             option.action = #selector(delegate.setDirection(_:))
             option.image = option.option.representingSymbol.image
-            
-            Task { @MainActor in
-                for await value in Defaults.updates(.direction) {
-                    option.flag = option.option == value
-                }
-            }
         }
-        
-        return options
+        updateDirectionOptions(Defaults[.direction])
+    }
+    
+    var sensitivityOptions: [MenuOptionItem<Sensitivity>] = [
+        .init(Sensitivity.low.localizedName, option: .low),
+        .init(Sensitivity.medium.localizedName, option: .medium),
+        .init(Sensitivity.natural.localizedName, option: .natural),
+        .init(Sensitivity.high.localizedName, option: .high),
+        .init(Sensitivity.extreme.localizedName, option: .extreme)
+    ]
+    
+    var directionOptions: [MenuOptionItem<Direction>] = [
+        .init(Direction.clockwise.localizedName, option: .clockwise),
+        .init(Direction.counterclockwise.localizedName, option: .counterclockwise)
+    ]
+    
+}
+
+extension SubmenuItems {
+    
+    func updateSensitivityOptions(_ value: Sensitivity) {
+        for option in sensitivityOptions {
+            option.flag = option.option == value
+        }
+    }
+    
+    func updateDirectionOptions(_ value: Direction) {
+        for option in directionOptions {
+            option.flag = option.option == value
+        }
     }
     
 }

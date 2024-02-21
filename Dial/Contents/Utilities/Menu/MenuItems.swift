@@ -44,19 +44,17 @@ class MenuItems {
     }
     
     private func initialize() {
-        let sensitivity = NSMenuItem(title: Localization.General.sensitivity.localizedTitle)
-        self.sensitivity = sensitivity
-        
         sensitivity.submenu = NSMenu()
         submenuItems.sensitivityOptions.forEach(sensitivity.submenu!.addItem(_:))
         updateSensitivity(Defaults[.sensitivity])
         
-        let direction = NSMenuItem(title: Localization.General.direction.localizedTitle)
-        self.direction = direction
-        
         direction.submenu = NSMenu()
         submenuItems.directionOptions.forEach(direction.submenu!.addItem(_:))
         updateDirection(Defaults[.direction])
+        
+        haptics.target = delegate
+        haptics.action = #selector(delegate.toggleHaptics(_:))
+        updateHaptics(Defaults[.hapticsEnabled])
     }
     
     var connectionStatus: NSMenuItem {
@@ -93,24 +91,11 @@ class MenuItems {
         return item
     }
     
-    var sensitivity = NSMenuItem()
+    var sensitivity = NSMenuItem(title: Localization.General.sensitivity.localizedTitle)
     
-    var direction = NSMenuItem()
+    var direction = NSMenuItem(title: Localization.General.direction.localizedTitle)
     
-    var haptics: StateOptionItem {
-        let item = StateOptionItem(Localization.General.haptics.localizedTitle)
-        
-        item.target = delegate
-        item.action = #selector(delegate.toggleHaptics(_:))
-        
-        Task { @MainActor in
-            for await value in Defaults.updates(.hapticsEnabled) {
-                item.flag = value
-            }
-        }
-        
-        return item
-    }
+    var haptics = StateOptionItem(Localization.General.haptics.localizedTitle)
     
     var startsWithMacOS: StateOptionItem {
         let item = StateOptionItem(Localization.General.startsWithMacOS.localizedTitle)
@@ -158,11 +143,19 @@ extension MenuItems {
     func updateSensitivity(_ value: Sensitivity) {
         let icon = value.representingSymbol.unicode?.appending(" ") ?? ""
         sensitivity.badge = NSMenuItemBadge(string: icon + value.localizedBadge)
+        
+        submenuItems.updateSensitivityOptions(value)
     }
     
     func updateDirection(_ value: Direction) {
         let icon = value.representingSymbol.unicode?.appending(" ") ?? ""
         direction.badge = NSMenuItemBadge(string: icon + value.localizedBadge)
+        
+        submenuItems.updateDirectionOptions(value)
+    }
+    
+    func updateHaptics(_ value: Bool) {
+        haptics.flag = value
     }
     
 }

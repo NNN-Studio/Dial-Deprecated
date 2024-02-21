@@ -383,7 +383,7 @@ extension ControllersViewController: NSMenuDelegate {
             modifiersMenuManagers[actionTarget] = .init(delegate: self) {
                 var items: [MenuManager.MenuItemGroup] = []
                 
-                items.append(MenuManager.groupItems(modifiersMenuItemsArray[actionTarget]!.modifiersOptions))
+                items.append(MenuManager.groupItems(modifiersMenuItemsArray[actionTarget]!.modifierOptions))
                 
                 return items
             }
@@ -439,6 +439,7 @@ extension ControllersViewController: DialRotationTypeMenuDelegate {
         guard let item = sender as? MenuOptionItem<Rotation.RawType> else { return }
         
         Controllers.selectedSettings?.rotationType = item.option
+        rotationTypeMenuItems?.updateRotationTypeOptions(item.option)
     }
     
 }
@@ -446,15 +447,16 @@ extension ControllersViewController: DialRotationTypeMenuDelegate {
 extension ControllersViewController: DialModifiersMenuDelegate {
     
     func setModifiers(_ sender: Any?) {
-        // Well, this hack makes @IBAction unnecessary
         guard let option = sender as? ModifiersOptionItem else { return }
         
-        option.flag.toggle()
         Controllers.selectedSettings?.shortcuts.setModifiersFor(
             option.actionTarget,
             modifiers: option.option,
             activated: option.flag
         )
+        modifiersMenuItemsArray
+            .filter { $0.key == option.actionTarget }
+            .forEach { $0.value.updateModifierOptions(Controllers.selectedSettings?.shortcuts.getModifiersFor(option.actionTarget) ?? []) }
     }
     
 }
@@ -564,15 +566,6 @@ extension ControllersViewController {
 extension ControllersViewController {
     
     // MARK: - Advanced options
-    
-    @IBAction func toggleRotationType(_ sender: NSPopUpButton) {
-        guard
-            let item = sender.selectedItem,
-            let rotationType = item.representedObject as? Rotation.RawType
-        else { return }
-        
-        Controllers.selectedSettings?.rotationType = rotationType
-    }
 
     @IBAction func toggleHaptics(_ sender: NSSwitch) {
         Controllers.selectedSettings?.haptics = sender.flag

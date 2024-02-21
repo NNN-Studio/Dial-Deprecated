@@ -68,7 +68,7 @@ class ShortcutsController: Controller {
                 self.double = double
             }
             
-            func getModifiersOf(_ actionTarget: ModifiersOptionItem.ActionTarget) -> NSEvent.ModifierFlags {
+            func getModifiersFor(_ actionTarget: ModifiersOptionItem.ActionTarget) -> NSEvent.ModifierFlags {
                 switch actionTarget {
                 case .rotateClockwise:
                     rotation[.clockwise]?.modifiers ?? []
@@ -92,7 +92,7 @@ class ShortcutsController: Controller {
                 modifiers: NSEvent.ModifierFlags,
                 activated: Bool
             ) {
-                let original = getModifiersOf(actionTarget)
+                let original = getModifiersFor(actionTarget)
                 let modified = activated ? original.union(modifiers) : original.subtracting(modifiers)
                 
                 switch actionTarget {

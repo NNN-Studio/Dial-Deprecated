@@ -14,33 +14,40 @@ import Defaults
     
 }
 
-struct RotationTypeMenuItems {
+class RotationTypeMenuItems {
     
     let delegate: DialRotationTypeMenuDelegate
     
-    var rotationTypeOptions: [MenuOptionItem<Rotation.RawType>] {
-        let options: [MenuOptionItem<Rotation.RawType>] = [
-            .init(Rotation.RawType.continuous.localizedName, option: .continuous),
-            .init(Rotation.RawType.stepping.localizedName, option: .stepping)
-        ]
+    init(delegate: DialRotationTypeMenuDelegate) {
+        self.delegate = delegate
         
-        for option in options {
+        initialize()
+    }
+    
+    private func initialize() {
+        for option in rotationTypeOptions {
             option.target = delegate
             option.action = #selector(delegate.setRotationType(_:))
             option.image = option.option.representingSymbol.image
-            
-            Task { @MainActor in
-                for await _ in Defaults.updates(.shortcutsControllerSettings) {
-                    for controller in Controllers.shortcutsControllers {
-                        if controller.id == Controllers.selectedController.id {
-                            option.flag = option.option == controller.settings.rotationType
-                        }
-                    }
-                }
-            }
         }
-        
-        return options
+        if let rotationType = Controllers.selectedSettings?.rotationType {
+            updateRotationTypeOptions(rotationType)
+        }
+    }
+    
+    var rotationTypeOptions: [MenuOptionItem<Rotation.RawType>] = [
+            .init(Rotation.RawType.continuous.localizedName, option: .continuous),
+            .init(Rotation.RawType.stepping.localizedName, option: .stepping)
+        ]
+    
+}
+
+extension RotationTypeMenuItems {
+    
+    func updateRotationTypeOptions(_ value: Rotation.RawType) {
+        for option in rotationTypeOptions {
+            option.flag = option.option == value
+        }
     }
     
 }
