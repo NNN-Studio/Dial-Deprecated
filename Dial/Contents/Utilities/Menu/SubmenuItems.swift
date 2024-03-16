@@ -23,6 +23,18 @@ class SubmenuItems {
     init(delegate: DialSubmenuDelegate) {
         self.delegate = delegate
         
+        self.sensitivityOptions = [
+            .init(Sensitivity.low.localizedName, option: .low),
+            .init(Sensitivity.medium.localizedName, option: .medium),
+            .init(Sensitivity.natural.localizedName, option: .natural),
+            .init(Sensitivity.high.localizedName, option: .high),
+            .init(Sensitivity.extreme.localizedName, option: .extreme)
+        ]
+        self.directionOptions = [
+            .init(Direction.clockwise.localizedName, option: .clockwise),
+            .init(Direction.counterclockwise.localizedName, option: .counterclockwise)
+        ]
+        
         initialize()
     }
     
@@ -42,18 +54,9 @@ class SubmenuItems {
         updateDirectionOptions(Defaults[.direction])
     }
     
-    var sensitivityOptions: [MenuOptionItem<Sensitivity>] = [
-        .init(Sensitivity.low.localizedName, option: .low),
-        .init(Sensitivity.medium.localizedName, option: .medium),
-        .init(Sensitivity.natural.localizedName, option: .natural),
-        .init(Sensitivity.high.localizedName, option: .high),
-        .init(Sensitivity.extreme.localizedName, option: .extreme)
-    ]
+    var sensitivityOptions: [MenuOptionItem<Sensitivity>]
     
-    var directionOptions: [MenuOptionItem<Direction>] = [
-        .init(Direction.clockwise.localizedName, option: .clockwise),
-        .init(Direction.counterclockwise.localizedName, option: .counterclockwise)
-    ]
+    var directionOptions: [MenuOptionItem<Direction>]
     
 }
 

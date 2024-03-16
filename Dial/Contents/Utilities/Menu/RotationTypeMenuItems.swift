@@ -21,6 +21,11 @@ class RotationTypeMenuItems {
     init(delegate: DialRotationTypeMenuDelegate) {
         self.delegate = delegate
         
+        self.rotationTypeOptions = [
+            .init(Rotation.RawType.continuous.localizedName, option: .continuous),
+            .init(Rotation.RawType.stepping.localizedName, option: .stepping)
+        ]
+        
         initialize()
     }
     
@@ -35,10 +40,7 @@ class RotationTypeMenuItems {
         }
     }
     
-    var rotationTypeOptions: [MenuOptionItem<Rotation.RawType>] = [
-            .init(Rotation.RawType.continuous.localizedName, option: .continuous),
-            .init(Rotation.RawType.stepping.localizedName, option: .stepping)
-        ]
+    var rotationTypeOptions: [MenuOptionItem<Rotation.RawType>]
     
 }
 
