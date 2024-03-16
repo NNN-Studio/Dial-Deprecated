@@ -14,9 +14,9 @@
             filePath = "Dial/Contents/StatusBarController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "refreshMenuManager()"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "init()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -34,38 +34,6 @@
             endingLineNumber = "51"
             landmarkName = "refreshMenuManager()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B48274CF-373E-46CC-B194-3FDE17E45AD5 - efcca1c84b337e82"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; Swift.Array&lt;(title: (content: Swift.Optional&lt;Swift.String&gt;, badge: Swift.Optional&lt;Swift.String&gt;), options: Swift.Array&lt;__C.NSMenuItem&gt;)&gt; in Dial.StatusBarController.refreshMenuManager() -&gt; ()"
-                  moduleName = "Dial"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Kr/Documents/Swift/Dial/Dial/Contents/StatusBarController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "128">
-               </Location>
-               <Location
-                  uuid = "B48274CF-373E-46CC-B194-3FDE17E45AD5 - efcca1c84b337e82"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; Swift.Array&lt;(title: (content: Swift.Optional&lt;Swift.String&gt;, badge: Swift.Optional&lt;Swift.String&gt;), options: Swift.Array&lt;__C.NSMenuItem&gt;)&gt; in Dial.StatusBarController.refreshMenuManager() -&gt; ()"
-                  moduleName = "Dial"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Kr/Documents/Swift/Dial/Dial/Contents/StatusBarController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "116">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -82,38 +50,6 @@
             endingLineNumber = "53"
             landmarkName = "refreshMenuManager()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "EF3DE959-ED9E-4512-81AB-129869B00931 - efcca1c84b337ec0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; Swift.Array&lt;(title: (content: Swift.Optional&lt;Swift.String&gt;, badge: Swift.Optional&lt;Swift.String&gt;), options: Swift.Array&lt;__C.NSMenuItem&gt;)&gt; in Dial.StatusBarController.refreshMenuManager() -&gt; ()"
-                  moduleName = "Dial"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Kr/Documents/Swift/Dial/Dial/Contents/StatusBarController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53"
-                  offsetFromSymbolStart = "1196">
-               </Location>
-               <Location
-                  uuid = "EF3DE959-ED9E-4512-81AB-129869B00931 - efcca1c84b337ec0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; Swift.Array&lt;(title: (content: Swift.Optional&lt;Swift.String&gt;, badge: Swift.Optional&lt;Swift.String&gt;), options: Swift.Array&lt;__C.NSMenuItem&gt;)&gt; in Dial.StatusBarController.refreshMenuManager() -&gt; ()"
-                  moduleName = "Dial"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Kr/Documents/Swift/Dial/Dial/Contents/StatusBarController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "53"
-                  endingLineNumber = "53"
-                  offsetFromSymbolStart = "1188">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -126,42 +62,10 @@
             filePath = "Dial/Contents/StatusBarController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
             landmarkName = "refreshMenuManager()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "CA24048F-5225-4994-8902-D94C63A9F780 - efcca1c84b3301fa"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; Swift.Array&lt;(title: (content: Swift.Optional&lt;Swift.String&gt;, badge: Swift.Optional&lt;Swift.String&gt;), options: Swift.Array&lt;__C.NSMenuItem&gt;)&gt; in Dial.StatusBarController.refreshMenuManager() -&gt; ()"
-                  moduleName = "Dial"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Kr/Documents/Swift/Dial/Dial/Contents/StatusBarController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "2340">
-               </Location>
-               <Location
-                  uuid = "CA24048F-5225-4994-8902-D94C63A9F780 - efcca1c84b330395"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; Swift.Array&lt;(title: (content: Swift.Optional&lt;Swift.String&gt;, badge: Swift.Optional&lt;Swift.String&gt;), options: Swift.Array&lt;__C.NSMenuItem&gt;)&gt; in Dial.StatusBarController.refreshMenuManager() -&gt; ()"
-                  moduleName = "Dial"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Kr/Documents/Swift/Dial/Dial/Contents/StatusBarController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "1340">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -174,42 +78,10 @@
             filePath = "Dial/Contents/StatusBarController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "refreshMenuManager()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "5B89C4CF-BED9-46AE-80E3-466B93B9F12D - efcca1c84b3300f2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; Swift.Array&lt;(title: (content: Swift.Optional&lt;Swift.String&gt;, badge: Swift.Optional&lt;Swift.String&gt;), options: Swift.Array&lt;__C.NSMenuItem&gt;)&gt; in Dial.StatusBarController.refreshMenuManager() -&gt; ()"
-                  moduleName = "Dial"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Kr/Documents/Swift/Dial/Dial/Contents/StatusBarController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "67"
-                  endingLineNumber = "67"
-                  offsetFromSymbolStart = "2476">
-               </Location>
-               <Location
-                  uuid = "5B89C4CF-BED9-46AE-80E3-466B93B9F12D - efcca1c84b330395"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; Swift.Array&lt;(title: (content: Swift.Optional&lt;Swift.String&gt;, badge: Swift.Optional&lt;Swift.String&gt;), options: Swift.Array&lt;__C.NSMenuItem&gt;)&gt; in Dial.StatusBarController.refreshMenuManager() -&gt; ()"
-                  moduleName = "Dial"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Kr/Documents/Swift/Dial/Dial/Contents/StatusBarController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "1340">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

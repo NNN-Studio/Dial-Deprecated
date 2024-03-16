@@ -31,14 +31,18 @@ class MenuItems {
     
     let delegate: DialMenuDelegate
     
-    let submenuItems: SubmenuItems
+    var submenuItems: SubmenuItems
     
-    let controllerMenuItems: ControllerMenuItems
+    var controllerMenuItems: ControllerMenuItems
     
     init(delegate: DialMenuDelegate) {
         self.delegate = delegate
         self.submenuItems = .init(delegate: delegate)
         self.controllerMenuItems = .init(delegate: delegate, source: .activated)
+        
+        self.sensitivity = NSMenuItem(title: Localization.General.sensitivity.localizedTitle)
+        self.direction = NSMenuItem(title: Localization.General.direction.localizedTitle)
+        self.haptics = StateOptionItem(Localization.General.haptics.localizedTitle)
         
         initialize()
     }
@@ -91,11 +95,11 @@ class MenuItems {
         return item
     }
     
-    var sensitivity = NSMenuItem(title: Localization.General.sensitivity.localizedTitle)
+    var sensitivity: NSMenuItem
     
-    var direction = NSMenuItem(title: Localization.General.direction.localizedTitle)
+    var direction: NSMenuItem
     
-    var haptics = StateOptionItem(Localization.General.haptics.localizedTitle)
+    var haptics: StateOptionItem
     
     var startsWithMacOS: StateOptionItem {
         let item = StateOptionItem(Localization.General.startsWithMacOS.localizedTitle)

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22689"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -39,12 +39,76 @@
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="lje-FX-ceK" kind="relationship" relationship="window.shadowedContentViewController" id="EEY-wd-4LF"/>
+                        <segue destination="B0S-jd-F4c" kind="relationship" relationship="window.shadowedContentViewController" id="nig-3J-mH9"/>
                     </connections>
                 </windowController>
                 <customObject id="eKu-PF-cOl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-410" y="-283"/>
+            <point key="canvasLocation" x="160" y="-770"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="t2l-9t-8WB">
+            <objects>
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="B0S-jd-F4c" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" image="gearshape" catalog="system" id="15U-xF-Sgy"/>
+                        <tabViewItem identifier="" image="hockey.puck" catalog="system" id="7DL-cg-g1P"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="yMA-kS-htr">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <connections>
+                            <outlet property="delegate" destination="B0S-jd-F4c" id="Tp5-c6-fmt"/>
+                        </connections>
+                    </tabView>
+                    <connections>
+                        <outlet property="tabView" destination="yMA-kS-htr" id="Dbb-yp-XNs"/>
+                        <segue destination="Wek-8M-Jzr" kind="relationship" relationship="tabItems" id="ElD-R7-3sq"/>
+                        <segue destination="pXe-L5-k3e" kind="relationship" relationship="tabItems" id="CcF-KK-Xze"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="No7-yp-Axq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="160" y="-319"/>
+        </scene>
+        <!--General-->
+        <scene sceneID="fJn-v2-soD">
+            <objects>
+                <viewController title="General" id="Wek-8M-Jzr" sceneMemberID="viewController">
+                    <view key="view" misplaced="YES" id="sV6-hO-1pd">
+                        <rect key="frame" x="0.0" y="0.0" width="780" height="438"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y3P-OL-kED">
+                                <rect key="frame" x="0.0" y="0.0" width="780" height="438"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DialModel" id="OlX-Ew-ON3"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="y3P-OL-kED" firstAttribute="top" secondItem="sV6-hO-1pd" secondAttribute="top" id="60M-NM-EJt"/>
+                            <constraint firstItem="y3P-OL-kED" firstAttribute="leading" secondItem="sV6-hO-1pd" secondAttribute="leading" id="BfR-qQ-Xg1"/>
+                            <constraint firstAttribute="bottom" secondItem="y3P-OL-kED" secondAttribute="bottom" id="Hcu-SK-HcY"/>
+                            <constraint firstAttribute="trailing" secondItem="y3P-OL-kED" secondAttribute="trailing" id="bmD-cE-zBJ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="gWo-Z9-RC2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="819" y="-489"/>
+        </scene>
+        <!--Controllers-->
+        <scene sceneID="TMR-ff-I14">
+            <objects>
+                <viewController title="Controllers" id="pXe-L5-k3e" sceneMemberID="viewController">
+                    <view key="view" id="GyL-zD-FGL">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="fPj-Zh-g3a" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="819" y="-117"/>
         </scene>
         <!--Settings Tab View Controller-->
         <scene sceneID="nfw-CA-Zq4">
@@ -1704,6 +1768,8 @@
         <image name="digitalcrown.horizontal.press.fill" catalog="system" width="16" height="18"/>
         <image name="directcurrent" catalog="system" width="16" height="7"/>
         <image name="doc.fill" catalog="system" width="14" height="16"/>
+        <image name="gearshape" catalog="system" width="16" height="16"/>
+        <image name="hockey.puck" catalog="system" width="16" height="12"/>
         <image name="minus" catalog="system" width="14" height="4"/>
         <image name="option" catalog="system" width="16" height="14"/>
         <image name="plus" catalog="system" width="14" height="13"/>

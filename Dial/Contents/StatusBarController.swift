@@ -15,8 +15,6 @@ class StatusBarController: NSObject, NSMenuDelegate {
     override init() {
         super.init()
         
-        self.menuItems = .init(delegate: self)
-        
         if let button = statusItem.button {
             button.target = self
             button.action = #selector(toggle(_:))
@@ -46,6 +44,8 @@ class StatusBarController: NSObject, NSMenuDelegate {
     
     func refreshMenuManager() {
         self.menuManager = .init(delegate: self) {
+            menuItems = .init(delegate: self)
+            
             var items: [MenuManager.MenuItemGroup] = []
             
             items.append(MenuManager.groupItems(menuItems!.connectionStatus))
@@ -56,7 +56,6 @@ class StatusBarController: NSObject, NSMenuDelegate {
                 menuItems!.controllerMenuItems.controllers
             ))
             
-            /*
             items.append(MenuManager.groupItems(
                 title: NSLocalizedString("Menu/Title/ConvenienceSettings", value: "Convenience Settings", comment: "convenience settings"),
                 menuItems!.direction,
@@ -69,7 +68,6 @@ class StatusBarController: NSObject, NSMenuDelegate {
                 menuItems!.openSettings,
                 menuItems!.quit
             ))
-             */
             
             return items
         }
