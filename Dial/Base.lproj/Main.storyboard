@@ -82,18 +82,20 @@
                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khf-hr-jyV">
                                 <rect key="frame" x="20" y="20" width="250" height="308"/>
                                 <subviews>
-                                    <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Px9-EB-BKn">
+                                    <stackView orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Px9-EB-BKn">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="308"/>
-                                        <subviews>
-                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="14f-jF-ukm">
-                                                <rect key="frame" x="0.0" y="28" width="250" height="280"/>
+                                        <middleViews>
+                                            <imageView verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="14f-jF-ukm">
+                                                <rect key="frame" x="0.0" y="43" width="250" height="265"/>
                                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DialModel" id="yrZ-s4-U9I"/>
                                             </imageView>
+                                        </middleViews>
+                                        <endViews>
                                             <stackView orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" verticalHuggingPriority="1000" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bz7-Ix-qN4">
-                                                <rect key="frame" x="0.0" y="0.0" width="250" height="20"/>
+                                                <rect key="frame" x="0.0" y="20" width="250" height="15"/>
                                                 <beginningViews>
-                                                    <button translatesAutoresizingMaskIntoConstraints="NO" id="lZ6-aS-eaU">
-                                                        <rect key="frame" x="0.0" y="3" width="15" height="15"/>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lZ6-aS-eaU">
+                                                        <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
                                                         <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="checkmark.circle.fill" catalog="system" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="01L-cq-GLJ">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -102,8 +104,8 @@
                                                     </button>
                                                 </beginningViews>
                                                 <middleViews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2iq-xW-n5R">
-                                                        <rect key="frame" x="45" y="3" width="161" height="15"/>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2iq-xW-n5R">
+                                                        <rect key="frame" x="45" y="0.0" width="161" height="15"/>
                                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="SURFACE DIAL SERIAL" id="hkO-ny-Ovd">
                                                             <font key="font" size="13" name="SFMono-Regular"/>
                                                             <color key="textColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
@@ -111,11 +113,6 @@
                                                         </textFieldCell>
                                                     </textField>
                                                 </middleViews>
-                                                <constraints>
-                                                    <constraint firstItem="2iq-xW-n5R" firstAttribute="centerY" secondItem="bz7-Ix-qN4" secondAttribute="centerY" id="Zaz-Ik-xYa"/>
-                                                    <constraint firstAttribute="height" constant="20" id="fQN-vd-sgs"/>
-                                                    <constraint firstItem="lZ6-aS-eaU" firstAttribute="centerY" secondItem="bz7-Ix-qN4" secondAttribute="centerY" id="jgV-t7-7tw"/>
-                                                </constraints>
                                                 <visibilityPriorities>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
@@ -125,19 +122,50 @@
                                                     <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>
-                                        </subviews>
+                                            <stackView orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lFm-gu-E82">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="12"/>
+                                                <middleViews>
+                                                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OvC-RI-Fy7">
+                                                        <rect key="frame" x="63" y="-0.5" width="85" height="12.5"/>
+                                                        <buttonCell key="cell" type="bevel" title="SOURCE CODE" bezelStyle="rounded" image="link" catalog="system" imagePosition="leading" alignment="left" imageScaling="proportionallyDown" inset="2" id="Vui-M2-ip4">
+                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                            <font key="font" size="10" name="SFMono-Regular"/>
+                                                        </buttonCell>
+                                                        <color key="contentTintColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
+                                                    </button>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kPa-Qg-Zng">
+                                                        <rect key="frame" x="154" y="0.0" width="35" height="12"/>
+                                                        <textFieldCell key="cell" lineBreakMode="clipping" title="0.0.0" id="ILT-Lv-1pB">
+                                                            <font key="font" size="10" name="SFMono-Regular"/>
+                                                            <color key="textColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
+                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </textFieldCell>
+                                                    </textField>
+                                                </middleViews>
+                                                <visibilityPriorities>
+                                                    <integer value="1000"/>
+                                                    <integer value="1000"/>
+                                                </visibilityPriorities>
+                                                <customSpacing>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                    <real value="3.4028234663852886e+38"/>
+                                                </customSpacing>
+                                            </stackView>
+                                        </endViews>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="6g4-3G-Agg"/>
-                                            <constraint firstAttribute="trailing" secondItem="bz7-Ix-qN4" secondAttribute="trailing" id="KNe-40-JfN"/>
-                                            <constraint firstItem="bz7-Ix-qN4" firstAttribute="leading" secondItem="Px9-EB-BKn" secondAttribute="leading" id="bkW-jZ-27u"/>
-                                            <constraint firstAttribute="trailing" secondItem="14f-jF-ukm" secondAttribute="trailing" id="hA5-Nd-3Ow"/>
-                                            <constraint firstItem="14f-jF-ukm" firstAttribute="leading" secondItem="Px9-EB-BKn" secondAttribute="leading" id="jSF-n4-XY2"/>
+                                            <constraint firstAttribute="trailing" secondItem="bz7-Ix-qN4" secondAttribute="trailing" id="DLC-xm-Vu7"/>
+                                            <constraint firstItem="bz7-Ix-qN4" firstAttribute="leading" secondItem="Px9-EB-BKn" secondAttribute="leading" id="JTG-2z-OPm"/>
+                                            <constraint firstAttribute="trailing" secondItem="lFm-gu-E82" secondAttribute="trailing" id="TOo-aq-6rB"/>
+                                            <constraint firstItem="lFm-gu-E82" firstAttribute="leading" secondItem="Px9-EB-BKn" secondAttribute="leading" id="c7o-DG-wNY"/>
                                         </constraints>
                                         <visibilityPriorities>
                                             <integer value="1000"/>
                                             <integer value="1000"/>
+                                            <integer value="1000"/>
                                         </visibilityPriorities>
                                         <customSpacing>
+                                            <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                             <real value="3.4028234663852886e+38"/>
                                         </customSpacing>
@@ -1848,6 +1876,7 @@
         <image name="doc.fill" catalog="system" width="14" height="16"/>
         <image name="gearshape" catalog="system" width="16" height="16"/>
         <image name="hockey.puck" catalog="system" width="16" height="12"/>
+        <image name="link" catalog="system" width="17" height="17"/>
         <image name="minus" catalog="system" width="14" height="4"/>
         <image name="option" catalog="system" width="16" height="14"/>
         <image name="plus" catalog="system" width="14" height="13"/>
