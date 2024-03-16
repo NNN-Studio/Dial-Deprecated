@@ -169,6 +169,18 @@
         }
       }
     },
+    "38z-I1-yGV.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Dialing clockwisely\"; ObjectID = \"38z-I1-yGV\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Dialing clockwisely"
+          }
+        }
+      }
+    },
     "78m-eA-dJD.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"1.0.0\"; ObjectID = \"78m-eA-dJD\";",
       "extractionState" : "extracted_with_value",
@@ -199,6 +211,18 @@
         }
       }
     },
+    "91H-9J-SrU.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Shortcuts\"; ObjectID = \"91H-9J-SrU\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Shortcuts"
+          }
+        }
+      }
+    },
     "95d-n9-rpw.title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"Quit app\"; ObjectID = \"95d-n9-rpw\";",
       "extractionState" : "extracted_with_value",
@@ -207,6 +231,30 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Quit app"
+          }
+        }
+      }
+    },
+    "a77-2D-dTp.ibShadowedLabels[0]" : {
+      "comment" : "Class = \"NSSegmentedCell\"; a77-2D-dTp.ibShadowedLabels[0] = \"Shortcuts\"; ObjectID = \"a77-2D-dTp\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Shortcuts"
+          }
+        }
+      }
+    },
+    "a77-2D-dTp.ibShadowedLabels[1]" : {
+      "comment" : "Class = \"NSSegmentedCell\"; a77-2D-dTp.ibShadowedLabels[1] = \"Advanced\"; ObjectID = \"a77-2D-dTp\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Advanced"
           }
         }
       }
@@ -464,13 +512,13 @@
       }
     },
     "F3J-xg-aVg.title" : {
-      "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"F3J-xg-aVg\";",
+      "comment" : "Class = \"NSBox\"; title = \"Spacer\"; ObjectID = \"F3J-xg-aVg\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Box"
+            "value" : "Spacer"
           }
         }
       }
@@ -847,6 +895,18 @@
         }
       }
     },
+    "Lka-zR-zvz.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Dialing counterclockwisely\"; ObjectID = \"Lka-zR-zvz\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Dialing counterclockwisely"
+          }
+        }
+      }
+    },
     "lLH-aX-8pM.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Extreme\"; ObjectID = \"lLH-aX-8pM\";",
       "extractionState" : "extracted_with_value",
@@ -1135,6 +1195,18 @@
         }
       }
     },
+    "Q0K-tR-5DC.title" : {
+      "comment" : "Class = \"NSButtonCell\"; title = \"Shortcuts\"; ObjectID = \"Q0K-tR-5DC\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Shortcuts"
+          }
+        }
+      }
+    },
     "QCV-kZ-SeY.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Global haptic feedback\"; ObjectID = \"QCV-kZ-SeY\";",
       "extractionState" : "extracted_with_value",
@@ -1407,6 +1479,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "SURFACE DIAL SERIAL"
+          }
+        }
+      }
+    },
+    "wtb-Vr-PFj.title" : {
+      "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"wtb-Vr-PFj\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Box"
           }
         }
       }
