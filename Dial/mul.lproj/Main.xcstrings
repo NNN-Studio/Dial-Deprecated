@@ -61,6 +61,18 @@
         }
       }
     },
+    "7DL-cg-g1P.label" : {
+      "comment" : "Class = \"NSTabViewItem\"; label = \"Controllers\"; ObjectID = \"7DL-cg-g1P\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Controllers"
+          }
+        }
+      }
+    },
     "7Ex-hz-Lmr.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"􀆝\"; ObjectID = \"7Ex-hz-Lmr\";",
       "extractionState" : "extracted_with_value",
@@ -93,6 +105,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "􀆕"
+          }
+        }
+      }
+    },
+    "15U-xF-Sgy.label" : {
+      "comment" : "Class = \"NSTabViewItem\"; label = \"General\"; ObjectID = \"15U-xF-Sgy\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "General"
           }
         }
       }
@@ -477,6 +501,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "M 􀥌1"
+          }
+        }
+      }
+    },
+    "hkO-ny-Ovd.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"SURFACE DIAL SERIAL\"; ObjectID = \"hkO-ny-Ovd\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "SURFACE DIAL SERIAL"
           }
         }
       }
@@ -885,7 +921,7 @@
     },
     "rtr-u2-S55.title" : {
       "comment" : "Class = \"NSWindow\"; title = \"Dial\"; ObjectID = \"rtr-u2-S55\";",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
