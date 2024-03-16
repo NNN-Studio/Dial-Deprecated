@@ -1,6 +1,18 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "0UN-QL-UsO.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Item 1\"; ObjectID = \"0UN-QL-UsO\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Item 1"
+          }
+        }
+      }
+    },
     "0vZ-5h-psk.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Alternative direction\"; ObjectID = \"0vZ-5h-psk\";",
       "extractionState" : "extracted_with_value",
@@ -187,6 +199,18 @@
         }
       }
     },
+    "AkB-vi-Qgn.title" : {
+      "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"AkB-vi-Qgn\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Box"
+          }
+        }
+      }
+    },
     "akJ-60-XNX.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"􀆔􀆕􀆍􀆝\"; ObjectID = \"akJ-60-XNX\";",
       "extractionState" : "extracted_with_value",
@@ -343,6 +367,18 @@
         }
       }
     },
+    "DWZ-OM-jxE.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Table View Cell\"; ObjectID = \"DWZ-OM-jxE\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Table View Cell"
+          }
+        }
+      }
+    },
     "e7L-eP-d4V.title" : {
       "comment" : "Class = \"NSBox\"; title = \"Constraint Hack\"; ObjectID = \"e7L-eP-d4V\";",
       "extractionState" : "extracted_with_value",
@@ -435,6 +471,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "This is the description of a default controller. It is intended to be multiline."
+          }
+        }
+      }
+    },
+    "gQ4-4R-17j.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Item 2\"; ObjectID = \"gQ4-4R-17j\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Item 2"
           }
         }
       }
@@ -567,6 +615,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "连续点按时触发"
+          }
+        }
+      }
+    },
+    "HRq-q5-ZaB.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Text Cell\"; ObjectID = \"HRq-q5-ZaB\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Text Cell"
           }
         }
       }
@@ -883,6 +943,18 @@
         }
       }
     },
+    "NXn-lW-Uwg.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Item 3\"; ObjectID = \"NXn-lW-Uwg\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Item 3"
+          }
+        }
+      }
+    },
     "obB-qD-kZJ.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Stepping\"; ObjectID = \"obB-qD-kZJ\";",
       "extractionState" : "extracted_with_value",
@@ -1035,6 +1107,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Hides icon while disconnected"
+          }
+        }
+      }
+    },
+    "QWy-Rw-rRS.headerCell.title" : {
+      "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Activated Controllers\"; ObjectID = \"QWy-Rw-rRS\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Activated Controllers"
           }
         }
       }
