@@ -1363,6 +1363,18 @@
         }
       }
     },
+    "Tga-N4-prA.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"SURFACE DIAL SERIAL\"; ObjectID = \"Tga-N4-prA\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "SURFACE DIAL SERIAL"
+          }
+        }
+      }
+    },
     "thO-0e-XOa.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Alternative direction\"; ObjectID = \"thO-0e-XOa\";",
       "extractionState" : "extracted_with_value",
