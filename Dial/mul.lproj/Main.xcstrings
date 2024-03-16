@@ -13,42 +13,6 @@
         }
       }
     },
-    "2oX-g5-421.ibShadowedLabels[0]" : {
-      "comment" : "Class = \"NSSegmentedCell\"; 2oX-g5-421.ibShadowedLabels[0] = \"Dialing\"; ObjectID = \"2oX-g5-421\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Dialing"
-          }
-        }
-      }
-    },
-    "2oX-g5-421.ibShadowedLabels[1]" : {
-      "comment" : "Class = \"NSSegmentedCell\"; 2oX-g5-421.ibShadowedLabels[1] = \"Pressing\"; ObjectID = \"2oX-g5-421\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Pressing"
-          }
-        }
-      }
-    },
-    "2oX-g5-421.ibShadowedLabels[2]" : {
-      "comment" : "Class = \"NSSegmentedCell\"; 2oX-g5-421.ibShadowedLabels[2] = \"Advanced\"; ObjectID = \"2oX-g5-421\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Advanced"
-          }
-        }
-      }
-    },
     "2zS-dZ-s4J.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"􀆍\"; ObjectID = \"2zS-dZ-s4J\";",
       "extractionState" : "extracted_with_value",
@@ -169,30 +133,6 @@
         }
       }
     },
-    "38z-I1-yGV.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Dialing clockwisely\"; ObjectID = \"38z-I1-yGV\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Dialing clockwisely"
-          }
-        }
-      }
-    },
-    "49j-c3-ZpY.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Double pressing\"; ObjectID = \"49j-c3-ZpY\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Double pressing"
-          }
-        }
-      }
-    },
     "78m-eA-dJD.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"1.0.0\"; ObjectID = \"78m-eA-dJD\";",
       "extractionState" : "extracted_with_value",
@@ -231,30 +171,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Quit app"
-          }
-        }
-      }
-    },
-    "a77-2D-dTp.ibShadowedLabels[0]" : {
-      "comment" : "Class = \"NSSegmentedCell\"; a77-2D-dTp.ibShadowedLabels[0] = \"Shortcuts\"; ObjectID = \"a77-2D-dTp\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Shortcuts"
-          }
-        }
-      }
-    },
-    "a77-2D-dTp.ibShadowedLabels[1]" : {
-      "comment" : "Class = \"NSSegmentedCell\"; a77-2D-dTp.ibShadowedLabels[1] = \"Advanced\"; ObjectID = \"a77-2D-dTp\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Advanced"
           }
         }
       }
@@ -361,18 +277,6 @@
         }
       }
     },
-    "cjX-jf-Jka.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Shortcuts\"; ObjectID = \"cjX-jf-Jka\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Shortcuts"
-          }
-        }
-      }
-    },
     "cNw-bZ-dzt.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"􀆝\"; ObjectID = \"cNw-bZ-dzt\";",
       "extractionState" : "extracted_with_value",
@@ -451,18 +355,6 @@
         }
       }
     },
-    "DWZ-OM-jxE.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Table View Cell\"; ObjectID = \"DWZ-OM-jxE\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Table View Cell"
-          }
-        }
-      }
-    },
     "e7L-eP-d4V.title" : {
       "comment" : "Class = \"NSBox\"; title = \"Constraint Hack\"; ObjectID = \"e7L-eP-d4V\";",
       "extractionState" : "extracted_with_value",
@@ -511,18 +403,6 @@
         }
       }
     },
-    "fca-JN-BqK.placeholderString" : {
-      "comment" : "Class = \"NSTextFieldCell\"; placeholderString = \"Controller Name\"; ObjectID = \"fca-JN-BqK\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Controller Name"
-          }
-        }
-      }
-    },
     "fcN-fZ-xG8.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Controller 2\"; ObjectID = \"fcN-fZ-xG8\";",
       "extractionState" : "extracted_with_value",
@@ -555,18 +435,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "General"
-          }
-        }
-      }
-    },
-    "fWg-Sa-Xdj.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Pressing and dialing counterclockwisely\"; ObjectID = \"fWg-Sa-Xdj\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Pressing and dialing counterclockwisely"
           }
         }
       }
@@ -829,18 +697,6 @@
         }
       }
     },
-    "jBX-ID-93W.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Pressing\"; ObjectID = \"jBX-ID-93W\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Pressing"
-          }
-        }
-      }
-    },
     "ki5-cH-MqH.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"􀆝\"; ObjectID = \"ki5-cH-MqH\";",
       "extractionState" : "extracted_with_value",
@@ -861,18 +717,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "􀆝"
-          }
-        }
-      }
-    },
-    "kkP-f5-0Lw.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Shortcuts\"; ObjectID = \"kkP-f5-0Lw\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Shortcuts"
           }
         }
       }
@@ -927,18 +771,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Extreme"
-          }
-        }
-      }
-    },
-    "lLp-cI-lmp.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Dialing counterclockwisely\"; ObjectID = \"lLp-cI-lmp\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Dialing counterclockwisely"
           }
         }
       }
@@ -1219,18 +1051,6 @@
         }
       }
     },
-    "Q0K-tR-5DC.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Shortcuts\"; ObjectID = \"Q0K-tR-5DC\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Shortcuts"
-          }
-        }
-      }
-    },
     "QCV-kZ-SeY.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Global haptic feedback\"; ObjectID = \"QCV-kZ-SeY\";",
       "extractionState" : "extracted_with_value",
@@ -1329,18 +1149,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "While disconnected to your Surface Dial, it is possible to access this page by launching this app again."
-          }
-        }
-      }
-    },
-    "SX2-e3-Yo4.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Shortcuts\"; ObjectID = \"SX2-e3-Yo4\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Shortcuts"
           }
         }
       }
@@ -1669,18 +1477,6 @@
         }
       }
     },
-    "yps-EU-irN.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Shortcuts\"; ObjectID = \"yps-EU-irN\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Shortcuts"
-          }
-        }
-      }
-    },
     "Ysz-5u-xi7.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Counterclockwise\"; ObjectID = \"Ysz-5u-xi7\";",
       "extractionState" : "extracted_with_value",
@@ -1705,18 +1501,6 @@
         }
       }
     },
-    "zqy-VD-woC.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Pressing and dialing clockwisely\"; ObjectID = \"zqy-VD-woC\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Pressing and dialing clockwisely"
-          }
-        }
-      }
-    },
     "zrA-v7-7DM.title" : {
       "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"zrA-v7-7DM\";",
       "extractionState" : "extracted_with_value",
@@ -1725,18 +1509,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Box"
-          }
-        }
-      }
-    },
-    "ZtZ-tx-qBt.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Shortcuts\"; ObjectID = \"ZtZ-tx-qBt\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Shortcuts"
           }
         }
       }
