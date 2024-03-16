@@ -1,18 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "0UN-QL-UsO.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Item 1\"; ObjectID = \"0UN-QL-UsO\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Item 1"
-          }
-        }
-      }
-    },
     "0vZ-5h-psk.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Alternative direction\"; ObjectID = \"0vZ-5h-psk\";",
       "extractionState" : "extracted_with_value",
@@ -21,6 +9,42 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Alternative direction"
+          }
+        }
+      }
+    },
+    "2oX-g5-421.ibShadowedLabels[0]" : {
+      "comment" : "Class = \"NSSegmentedCell\"; 2oX-g5-421.ibShadowedLabels[0] = \"Dialing\"; ObjectID = \"2oX-g5-421\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Dialing"
+          }
+        }
+      }
+    },
+    "2oX-g5-421.ibShadowedLabels[1]" : {
+      "comment" : "Class = \"NSSegmentedCell\"; 2oX-g5-421.ibShadowedLabels[1] = \"Clicking\"; ObjectID = \"2oX-g5-421\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Clicking"
+          }
+        }
+      }
+    },
+    "2oX-g5-421.ibShadowedLabels[2]" : {
+      "comment" : "Class = \"NSSegmentedCell\"; 2oX-g5-421.ibShadowedLabels[2] = \"Advanced\"; ObjectID = \"2oX-g5-421\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Advanced"
           }
         }
       }
@@ -265,6 +289,18 @@
         }
       }
     },
+    "cbd-JO-Ykh.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Item 2\"; ObjectID = \"cbd-JO-Ykh\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Item 2"
+          }
+        }
+      }
+    },
     "cDD-7b-vwE.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"􀆔\"; ObjectID = \"cDD-7b-vwE\";",
       "extractionState" : "extracted_with_value",
@@ -427,6 +463,30 @@
         }
       }
     },
+    "F3J-xg-aVg.title" : {
+      "comment" : "Class = \"NSBox\"; title = \"Box\"; ObjectID = \"F3J-xg-aVg\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Box"
+          }
+        }
+      }
+    },
+    "fca-JN-BqK.placeholderString" : {
+      "comment" : "Class = \"NSTextFieldCell\"; placeholderString = \"Controller Name\"; ObjectID = \"fca-JN-BqK\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Controller Name"
+          }
+        }
+      }
+    },
     "fcN-fZ-xG8.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Controller 2\"; ObjectID = \"fcN-fZ-xG8\";",
       "extractionState" : "extracted_with_value",
@@ -471,18 +531,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "This is the description of a default controller. It is intended to be multiline."
-          }
-        }
-      }
-    },
-    "gQ4-4R-17j.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Item 2\"; ObjectID = \"gQ4-4R-17j\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Item 2"
           }
         }
       }
@@ -943,18 +991,6 @@
         }
       }
     },
-    "NXn-lW-Uwg.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Item 3\"; ObjectID = \"NXn-lW-Uwg\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Item 3"
-          }
-        }
-      }
-    },
     "obB-qD-kZJ.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Stepping\"; ObjectID = \"obB-qD-kZJ\";",
       "extractionState" : "extracted_with_value",
@@ -1083,6 +1119,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Controllers"
+          }
+        }
+      }
+    },
+    "pXQ-7o-zls.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Activated\"; ObjectID = \"pXQ-7o-zls\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Activated"
           }
         }
       }
@@ -1243,6 +1291,18 @@
         }
       }
     },
+    "TqH-w8-Q2d.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Item 3\"; ObjectID = \"TqH-w8-Q2d\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Item 3"
+          }
+        }
+      }
+    },
     "TSj-Xr-163.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"􀆕\"; ObjectID = \"TSj-Xr-163\";",
       "extractionState" : "extracted_with_value",
@@ -1347,6 +1407,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "SURFACE DIAL SERIAL"
+          }
+        }
+      }
+    },
+    "x1x-GH-K8q.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"Item 1\"; ObjectID = \"x1x-GH-K8q\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Item 1"
           }
         }
       }
