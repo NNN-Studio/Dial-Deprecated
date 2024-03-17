@@ -186,21 +186,6 @@ class ControllersViewController: NSViewController {
     
     private var iconChooserViewController = IconChooserViewController()
     
-    
-    
-    private lazy var activatedControllersDataSource: NSTableViewDiffableDataSource<String, ControllerID> = .init(tableView: tableViewActivatedControllers) { (tableView, cell, row, item) -> NSView in
-        guard
-            let cell = tableView.makeView(withIdentifier: .activatedControllersColumn, owner: self) as? ActivatedControllerCell,
-            let controller = Controllers.fetch(item)
-        else { return .init() }
-        
-        cell.set(controller)
-        
-        return cell
-    }
-    
-    private let activatedControllersSection = "ActivatedControllersSection"
-    
 }
 
 extension ControllersViewController {
@@ -272,13 +257,6 @@ extension ControllersViewController {
         }
         
         tableViewActivatedControllers.rowHeight = 42
-        tableViewActivatedControllers.dataSource = activatedControllersDataSource
-        
-        var snapshot = NSDiffableDataSourceSnapshot<String, ControllerID>()
-        snapshot.appendSections([activatedControllersSection])
-        snapshot.appendItems(Defaults[.activatedControllerIDs], toSection: activatedControllersSection)
-        
-        activatedControllersDataSource.apply(snapshot, animatingDifferences: false)
     }
     
 }
@@ -674,14 +652,6 @@ extension ControllersViewController {
         let activated = sender.flag
         let controller = Controllers.selectedController
         Controllers.toggle(activated, controller: controller)
-        
-        var snapshot = activatedControllersDataSource.snapshot()
-        if activated {
-            snapshot.appendItems([controller.id], toSection: activatedControllersSection)
-        } else {
-            snapshot.deleteItems([controller.id])
-        }
-        activatedControllersDataSource.apply(snapshot, animatingDifferences: true)
     }
     
     @IBAction func addOrDeleteController(_ sender: NSSegmentedControl) {
@@ -712,11 +682,6 @@ extension ControllersViewController {
             } else {
                 Controllers.selectedController = Controllers.defaultControllers.last!
             }
-            
-            var snapshot = activatedControllersDataSource.snapshot()
-            snapshot.appendItems([selectedController.id], toSection: activatedControllersSection)
-            
-            activatedControllersDataSource.apply(snapshot, animatingDifferences: true)
         } else if index == 1 {
             // Add
             
@@ -724,11 +689,6 @@ extension ControllersViewController {
             
             Controllers.selectedController = controller
             Controllers.toggle(true, controller: controller)
-            
-            var snapshot = activatedControllersDataSource.snapshot()
-            snapshot.deleteItems([controller.id])
-            
-            activatedControllersDataSource.apply(snapshot, animatingDifferences: true)
         }
     }
     
