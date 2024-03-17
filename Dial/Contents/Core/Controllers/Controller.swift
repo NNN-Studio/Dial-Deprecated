@@ -18,7 +18,7 @@ extension Date {
     
 }
 
-enum ControllerID: Codable, Equatable, Defaults.Serializable {
+enum ControllerID: Codable, Equatable, Defaults.Serializable, Hashable {
     
     enum Default: CaseIterable, Codable {
         

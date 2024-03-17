@@ -186,6 +186,21 @@ class ControllersViewController: NSViewController {
     
     private var iconChooserViewController = IconChooserViewController()
     
+    
+    
+    private lazy var activatedControllersDataSource: NSTableViewDiffableDataSource<String, ControllerID> = .init(tableView: tableViewActivatedControllers) { (tableView, cell, row, item) -> NSView in
+        guard
+            let cell = tableView.makeView(withIdentifier: .activatedControllersColumn, owner: self) as? ActivatedControllerCell,
+            let controller = Controllers.fetch(item)
+        else { return .init() }
+        
+        cell.set(controller)
+        
+        return cell
+    }
+    
+    private let activatedControllersSection = "ActivatedControllersSection"
+    
 }
 
 extension ControllersViewController {
@@ -253,11 +268,17 @@ extension ControllersViewController {
         Task { @MainActor in
             for await _ in Defaults.updates(.activatedControllerIDs) {
                 updateActivatedControllers(Controllers.activatedControllers)
-                tableViewActivatedControllers.noteNumberOfRowsChanged()
             }
         }
         
         tableViewActivatedControllers.rowHeight = 42
+        tableViewActivatedControllers.dataSource = activatedControllersDataSource
+        
+        var snapshot = NSDiffableDataSourceSnapshot<String, ControllerID>()
+        snapshot.appendSections([activatedControllersSection])
+        snapshot.appendItems(Defaults[.activatedControllerIDs], toSection: activatedControllersSection)
+        
+        activatedControllersDataSource.apply(snapshot, animatingDifferences: false)
     }
     
 }
@@ -293,30 +314,6 @@ extension ControllersViewController {
             updateEnabledSegmentedControl(.collapsed)
             updateSegment(segmentCollapsed)
         }
-    }
-    
-}
-
-extension ControllersViewController: NSTableViewDataSource, NSTableViewDelegate {
-    
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        Controllers.activatedControllers.count
-    }
-    
-    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard let tableColumn = tableColumn else { return nil }
-        
-        if
-            tableColumn.identifier == .activatedControllersColumn,
-            let cell = tableView.makeView(withIdentifier: .activatedControllersColumn, owner: self) as? ActivatedControllerCell
-        {
-            let controller = Controllers.activatedControllers[row]
-            cell.set(controller)
-            
-            return cell
-        }
-        
-        return nil
     }
     
 }
@@ -674,7 +671,17 @@ extension ControllersViewController {
     }
     
     @IBAction func toggleController(_ sender: NSSwitch) {
-        Controllers.toggle(sender.flag, controller: Controllers.selectedController)
+        let activated = sender.flag
+        let controller = Controllers.selectedController
+        Controllers.toggle(activated, controller: controller)
+        
+        var snapshot = activatedControllersDataSource.snapshot()
+        if activated {
+            snapshot.appendItems([controller.id], toSection: activatedControllersSection)
+        } else {
+            snapshot.deleteItems([controller.id])
+        }
+        activatedControllersDataSource.apply(snapshot, animatingDifferences: true)
     }
     
     @IBAction func addOrDeleteController(_ sender: NSSegmentedControl) {
@@ -705,6 +712,11 @@ extension ControllersViewController {
             } else {
                 Controllers.selectedController = Controllers.defaultControllers.last!
             }
+            
+            var snapshot = activatedControllersDataSource.snapshot()
+            snapshot.appendItems([selectedController.id], toSection: activatedControllersSection)
+            
+            activatedControllersDataSource.apply(snapshot, animatingDifferences: true)
         } else if index == 1 {
             // Add
             
@@ -712,6 +724,11 @@ extension ControllersViewController {
             
             Controllers.selectedController = controller
             Controllers.toggle(true, controller: controller)
+            
+            var snapshot = activatedControllersDataSource.snapshot()
+            snapshot.deleteItems([controller.id])
+            
+            activatedControllersDataSource.apply(snapshot, animatingDifferences: true)
         }
     }
     
