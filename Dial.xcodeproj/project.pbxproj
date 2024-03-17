@@ -305,7 +305,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
-				LastUpgradeCheck = 1520;
+				LastUpgradeCheck = 1530;
 				TargetAttributes = {
 					C882FA1526F1430C00595EE1 = {
 						CreatedOnToolsVersion = 12.5.1;
@@ -553,6 +553,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7XRF3J9RS4;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/lib/hidapi/hidapi";
 				INFOPLIST_FILE = Dial/Info.plist;
@@ -590,6 +591,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_TEAM = 7XRF3J9RS4;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				HEADER_SEARCH_PATHS = "$(SRCROOT)/lib/hidapi/hidapi";
 				INFOPLIST_FILE = Dial/Info.plist;
