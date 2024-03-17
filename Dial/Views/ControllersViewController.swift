@@ -273,6 +273,7 @@ extension ControllersViewController {
         tableViewActivatedControllers.rowHeight = 42
         tableViewActivatedControllers.dataSource = activatedControllersDataSource
         tableViewActivatedControllers.registerForDraggedTypes([ControllerID.pasteboardType])
+        tableViewActivatedControllers.draggingDestinationFeedbackStyle = .gap
         
         var snapshot = NSDiffableDataSourceSnapshot<String, ControllerID>()
         snapshot.appendSections([activatedControllersSection])
