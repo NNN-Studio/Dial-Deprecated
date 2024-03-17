@@ -930,6 +930,9 @@
                                                                                             </segment>
                                                                                         </segments>
                                                                                     </segmentedCell>
+                                                                                    <connections>
+                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="kB3-Fa-wpQ"/>
+                                                                                    </connections>
                                                                                 </segmentedControl>
                                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N0T-Tm-tim" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                                     <rect key="frame" x="173" y="-6" width="267" height="44"/>
@@ -1025,6 +1028,9 @@
                                                                                             </segment>
                                                                                         </segments>
                                                                                     </segmentedCell>
+                                                                                    <connections>
+                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="bkc-sd-3GU"/>
+                                                                                    </connections>
                                                                                 </segmentedControl>
                                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mcj-pG-ExY" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                                     <rect key="frame" x="173" y="-6" width="267" height="44"/>
@@ -1123,6 +1129,9 @@
                                                                                             </segment>
                                                                                         </segments>
                                                                                     </segmentedCell>
+                                                                                    <connections>
+                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="CRF-Lm-qNs"/>
+                                                                                    </connections>
                                                                                 </segmentedControl>
                                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PfW-Ga-fKe" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                                     <rect key="frame" x="173" y="-6" width="267" height="44"/>
@@ -1218,6 +1227,9 @@
                                                                                             </segment>
                                                                                         </segments>
                                                                                     </segmentedCell>
+                                                                                    <connections>
+                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="zeh-SX-6Ps"/>
+                                                                                    </connections>
                                                                                 </segmentedControl>
                                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3iu-3T-IJo" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                                     <rect key="frame" x="173" y="-6" width="267" height="44"/>
@@ -1316,6 +1328,9 @@
                                                                                             </segment>
                                                                                         </segments>
                                                                                     </segmentedCell>
+                                                                                    <connections>
+                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="Wmm-cc-3jD"/>
+                                                                                    </connections>
                                                                                 </segmentedControl>
                                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XSb-TR-BRV" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                                     <rect key="frame" x="173" y="-6" width="267" height="44"/>
@@ -1411,6 +1426,9 @@
                                                                                             </segment>
                                                                                         </segments>
                                                                                     </segmentedCell>
+                                                                                    <connections>
+                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="IpO-u9-Uut"/>
+                                                                                    </connections>
                                                                                 </segmentedControl>
                                                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="44Y-el-iKF" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                                     <rect key="frame" x="173" y="-6" width="267" height="44"/>
@@ -1815,7 +1833,7 @@
                 </viewController>
                 <customObject id="fPj-Zh-g3a" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1106" y="101"/>
+            <point key="canvasLocation" x="1122" y="61"/>
         </scene>
     </scenes>
     <resources>

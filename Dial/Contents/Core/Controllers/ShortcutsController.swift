@@ -72,16 +72,16 @@ class ShortcutsController: Controller {
                 self.double = double
             }
             
-            func getModifiersFor(_ actionTarget: ModifiersOptionItem.ActionTarget) -> NSEvent.ModifierFlags {
+            func getModifiers(_ actionTarget: ModifiersOptionItem.ActionTarget) -> NSEvent.ModifierFlags {
                 switch actionTarget {
                 case .rotateClockwise:
                     rotation[.clockwise]?.modifiers ?? []
                 case .rotateCounterclockwise:
                     rotation[.counterclockwise]?.modifiers ?? []
                     
-                case .pressAndRotateClockwise:
+                case .pressedRotateClockwise:
                     pressedRotation[.clockwise]?.modifiers ?? []
-                case .pressAndRotateCounterclockwise:
+                case .pressedRotateCounterclockwise:
                     pressedRotation[.counterclockwise]?.modifiers ?? []
                     
                 case .clickSingle:
@@ -91,12 +91,12 @@ class ShortcutsController: Controller {
                 }
             }
             
-            mutating func setModifiersFor(
+            mutating func setModifiers(
                 _ actionTarget: ModifiersOptionItem.ActionTarget,
                 modifiers: NSEvent.ModifierFlags,
                 activated: Bool
             ) {
-                let original = getModifiersFor(actionTarget)
+                let original = getModifiers(actionTarget)
                 let modified = activated ? original.union(modifiers) : original.subtracting(modifiers)
                 
                 switch actionTarget {
@@ -105,9 +105,9 @@ class ShortcutsController: Controller {
                 case .rotateCounterclockwise:
                     rotation[.counterclockwise]?.modifiers = modified
                     
-                case .pressAndRotateClockwise:
+                case .pressedRotateClockwise:
                     pressedRotation[.clockwise]?.modifiers = modified
-                case .pressAndRotateCounterclockwise:
+                case .pressedRotateCounterclockwise:
                     pressedRotation[.counterclockwise]?.modifiers = modified
                     
                 case .clickSingle:

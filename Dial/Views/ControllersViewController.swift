@@ -146,22 +146,6 @@ class ControllersViewController: NSViewController {
     
     private var modifiersMenuManagers: [ModifiersOptionItem.ActionTarget: MenuManager] = [:]
     
-    private var modifiersMenuItemsArray: [ModifiersOptionItem.ActionTarget: ModifiersMenuItems] = [:]
-    
-    private var popUpButtonShortcutsModifiersArray: [ModifiersOptionItem.ActionTarget: NSPopUpButton] {
-        [
-            :
-//            .rotateClockwise: popUpButtonShortcuts1Modifiers1,
-//            .rotateCounterclockwise: popUpButtonShortcuts1Modifiers2,
-//            
-//            .pressAndRotateClockwise: popUpButtonShortcuts2Modifiers1,
-//            .pressAndRotateCounterclockwise: popUpButtonShortcuts2Modifiers2,
-//            
-//            .clickSingle: popUpButtonShortcuts3Modifiers1,
-//            .clickDouble: popUpButtonShortcuts3Modifiers2
-        ]
-    }
-    
     
     
     private var segmentCollapsed: Segment = .dialing
@@ -207,17 +191,6 @@ extension ControllersViewController {
         
         rotationTypeMenuItems = .init(delegate: self)
         
-        modifiersMenuItemsArray = [
-            .rotateClockwise: .init(delegate: self, actionTarget: .rotateClockwise),
-            .rotateCounterclockwise: .init(delegate: self, actionTarget: .rotateCounterclockwise),
-            
-            .pressAndRotateClockwise: .init(delegate: self, actionTarget: .pressAndRotateClockwise),
-            .pressAndRotateCounterclockwise: .init(delegate: self, actionTarget: .pressAndRotateCounterclockwise),
-            
-            .clickSingle: .init(delegate: self, actionTarget: .clickSingle),
-            .clickDouble: .init(delegate: self, actionTarget: .clickDouble)
-        ]
-        
         iconChooserPopover.delegate = self
         iconChooserPopover.contentViewController = iconChooserViewController
         iconChooserPopover.contentSize = .zero
@@ -261,10 +234,6 @@ extension ControllersViewController {
         rotationTypeMenuManager = .init(delegate: self) { [MenuManager.groupItems(rotationTypeMenuItems!.rotationTypeOptions)] }
         popUpButtonRotationType.menu = rotationTypeMenuManager?.menu
         
-        for actionTarget in ModifiersOptionItem.ActionTarget.allCases {
-            modifiersMenuManagers[actionTarget] = .init(delegate: self) { [MenuManager.groupItems(modifiersMenuItemsArray[actionTarget]!.modifierOptions)] }
-        }
-        
         Task { @MainActor in
             for await _ in Defaults.updates([.selectedControllerID, .shortcutsControllerSettings]) {
                 refreshControllersMenuManager()
@@ -279,15 +248,6 @@ extension ControllersViewController {
         }
         
         updateSelectedController(Controllers.selectedController)
-        
-//        popUpButtonShortcuts1Modifiers1.menu = modifiersMenuManagers[.rotateClockwise]?.menu
-//        popUpButtonShortcuts1Modifiers2.menu = modifiersMenuManagers[.rotateCounterclockwise]?.menu
-//        
-//        popUpButtonShortcuts2Modifiers1.menu = modifiersMenuManagers[.pressAndRotateClockwise]?.menu
-//        popUpButtonShortcuts2Modifiers2.menu = modifiersMenuManagers[.pressAndRotateCounterclockwise]?.menu
-//        
-//        popUpButtonShortcuts3Modifiers1.menu = modifiersMenuManagers[.clickSingle]?.menu
-//        popUpButtonShortcuts3Modifiers2.menu = modifiersMenuManagers[.clickDouble]?.menu
     }
     
 }
@@ -466,6 +426,25 @@ extension ControllersViewController {
         }
     }
     
+    func updateSelectedController(_ controller: Controller) {
+        let canDeactivate = Controllers.activatedControllers.count > 1
+        let canActivate = Controllers.activatedControllers.count < Defaults[.maxControllerCount]
+        
+        let activated = Controllers.activatedControllers.contains(where: { $0.id == controller.id })
+        switchControllerActivated.animator().flag = activated
+        switchControllerActivated.animator().isEnabled = (activated && canDeactivate) || (!activated && canActivate)
+        
+        refreshControllersMenuManager()
+        for (index, item) in popUpButtonControllerSelector.itemArray.enumerated() {
+            if
+                let controller = item.representedObject as? Controller,
+                controller.id == Controllers.selectedController.id
+            { popUpButtonControllerSelector.selectItem(at: index) }
+        }
+        
+        updateSettings(controller)
+    }
+    
     func updateSettings(_ controller: Controller) {
         if let defaultController = controller as? DefaultController {
             labelDefaultControllerDescription.stringValue = defaultController.description
@@ -493,6 +472,15 @@ extension ControllersViewController {
             segmentedControlResetController.isEnabled = true
             
             textFieldControllerName.stringValue = settings.name ?? ""
+            
+            updateModifiers(segmentedControlShortcuts1Modifiers1, modifiers: settings.shortcuts.getModifiers(.rotateClockwise))
+            updateModifiers(segmentedControlShortcuts1Modifiers2, modifiers: settings.shortcuts.getModifiers(.rotateCounterclockwise))
+            
+            updateModifiers(segmentedControlShortcuts2Modifiers1, modifiers: settings.shortcuts.getModifiers(.pressedRotateClockwise))
+            updateModifiers(segmentedControlShortcuts2Modifiers2, modifiers: settings.shortcuts.getModifiers(.pressedRotateCounterclockwise))
+            
+            updateModifiers(segmentedControlShortcuts3Modifiers1, modifiers: settings.shortcuts.getModifiers(.clickSingle))
+            updateModifiers(segmentedControlShortcuts3Modifiers2, modifiers: settings.shortcuts.getModifiers(.clickDouble))
             
             buttonShortcuts1Keys1.keys = settings.shortcuts.rotation[.clockwise]!.keys
             buttonShortcuts1Keys1.updateTitle()
@@ -527,28 +515,38 @@ extension ControllersViewController {
         }
     }
     
+    func getModifiers(_ segmentedControl: NSSegmentedControl) -> NSEvent.ModifierFlags {
+        var modifiers: NSEvent.ModifierFlags = []
+        
+        if segmentedControl.isSelected(forSegment: 0) {
+            modifiers.formUnion(.shift)
+        }
+        
+        if segmentedControl.isSelected(forSegment: 1) {
+            modifiers.formUnion(.control)
+        }
+        
+        if segmentedControl.isSelected(forSegment: 2) {
+            modifiers.formUnion(.option)
+        }
+        
+        if segmentedControl.isSelected(forSegment: 3) {
+            modifiers.formUnion(.command)
+        }
+        
+        return modifiers
+    }
+    
+    func updateModifiers(_ segmentedControl: NSSegmentedControl, modifiers: NSEvent.ModifierFlags) {
+        segmentedControl.animator().setSelected(modifiers.contains(.shift), forSegment: 0)
+        segmentedControl.animator().setSelected(modifiers.contains(.control), forSegment: 1)
+        segmentedControl.animator().setSelected(modifiers.contains(.option), forSegment: 2)
+        segmentedControl.animator().setSelected(modifiers.contains(.command), forSegment: 3)
+    }
+    
 }
 
 extension ControllersViewController: DialControllerMenuDelegate {
-    
-    func updateSelectedController(_ controller: Controller) {
-        let canDeactivate = Controllers.activatedControllers.count > 1
-        let canActivate = Controllers.activatedControllers.count < Defaults[.maxControllerCount]
-        
-        let activated = Controllers.activatedControllers.contains(where: { $0.id == controller.id })
-        switchControllerActivated.animator().flag = activated
-        switchControllerActivated.animator().isEnabled = (activated && canDeactivate) || (!activated && canActivate)
-        
-        refreshControllersMenuManager()
-        for (index, item) in popUpButtonControllerSelector.itemArray.enumerated() {
-            if
-                let controller = item.representedObject as? Controller,
-                controller.id == Controllers.selectedController.id
-            { popUpButtonControllerSelector.selectItem(at: index) }
-        }
-        
-        updateSettings(controller)
-    }
     
     func setController(_ sender: Any?) {
         guard let item = sender as? ControllerOptionItem else { return }
@@ -566,23 +564,6 @@ extension ControllersViewController: DialRotationTypeMenuDelegate {
         
         Controllers.selectedSettings?.rotationType = item.option
         rotationTypeMenuItems?.updateRotationTypeOptions(item.option)
-    }
-    
-}
-
-extension ControllersViewController: DialModifiersMenuDelegate {
-    
-    func setModifiers(_ sender: Any?) {
-        guard let option = sender as? ModifiersOptionItem else { return }
-        
-        Controllers.selectedSettings?.shortcuts.setModifiersFor(
-            option.actionTarget,
-            modifiers: option.option,
-            activated: option.flag
-        )
-        modifiersMenuItemsArray
-            .filter { $0.key == option.actionTarget }
-            .forEach { $0.value.updateModifierOptions(Controllers.selectedSettings?.shortcuts.getModifiersFor(option.actionTarget) ?? []) }
     }
     
 }
@@ -649,7 +630,7 @@ extension ControllersViewController {
     }
     
     @IBAction func resetController(_ sender: NSSegmentedControl) {
-        guard let controller = Controllers.selectedController as? ShortcutsController else { return }
+        guard Controllers.selectedController is ShortcutsController else { return }
         
         if let settings = Controllers.selectedSettings, settings.shortcuts.isEmpty {
             Controllers.selectedSettings?.reset(resetsName: true, resetsIcon: true)
@@ -708,6 +689,34 @@ extension ControllersViewController {
         
         if sender == buttonShortcuts3Keys2 {
             Controllers.selectedSettings?.shortcuts.double.keys = sender.keys
+        }
+    }
+    
+    @IBAction func toggleShortcutsModifiers(_ sender: NSSegmentedControl) {
+        let modifiers = getModifiers(sender)
+        
+        if sender == segmentedControlShortcuts1Modifiers1 {
+            Controllers.selectedSettings?.shortcuts.rotation[.clockwise]?.modifiers = modifiers
+        }
+        
+        if sender == segmentedControlShortcuts1Modifiers2 {
+            Controllers.selectedSettings?.shortcuts.rotation[.counterclockwise]?.modifiers = modifiers
+        }
+        
+        if sender == segmentedControlShortcuts2Modifiers1 {
+            Controllers.selectedSettings?.shortcuts.pressedRotation[.clockwise]?.modifiers = modifiers
+        }
+        
+        if sender == segmentedControlShortcuts2Modifiers2 {
+            Controllers.selectedSettings?.shortcuts.pressedRotation[.counterclockwise]?.modifiers = modifiers
+        }
+        
+        if sender == segmentedControlShortcuts3Modifiers1 {
+            Controllers.selectedSettings?.shortcuts.single.modifiers = modifiers
+        }
+        
+        if sender == segmentedControlShortcuts3Modifiers2 {
+            Controllers.selectedSettings?.shortcuts.double.modifiers = modifiers
         }
     }
     
