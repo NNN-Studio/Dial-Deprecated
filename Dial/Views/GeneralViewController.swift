@@ -90,9 +90,15 @@ extension GeneralViewController {
             case .connected(let serialNumber):
                 labelSerial.stringValue = serialNumber
                 imageDial.isEnabled = true
+                
+                buttonDialState.image = NSImage(systemSymbol: .checkmarkCircleFill)
+                buttonDialState.contentTintColor = .systemGreen
             default:
                 labelSerial.stringValue = Localization.ConnectionStatus.offPlaceholder.localizedName
                 imageDial.isEnabled = false
+                
+                buttonDialState.image = NSImage(systemSymbol: .xmarkCircleFill)
+                buttonDialState.contentTintColor = .systemRed
             }
         }
         
@@ -105,7 +111,6 @@ extension GeneralViewController {
     
     func initInteractives() {
         Task { @MainActor in
-            print(1)
             for await value in Defaults.updates(.hapticsEnabled) {
                 switchHaptics.flag = value
             }

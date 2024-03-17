@@ -79,17 +79,17 @@
             <objects>
                 <viewController title="General" id="Wek-8M-Jzr" customClass="GeneralViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="sV6-hO-1pd">
-                        <rect key="frame" x="0.0" y="0.0" width="710" height="369"/>
+                        <rect key="frame" x="0.0" y="0.0" width="635" height="345"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="khf-hr-jyV">
-                                <rect key="frame" x="20" y="20" width="670" height="277"/>
+                                <rect key="frame" x="20" y="20" width="595" height="253"/>
                                 <subviews>
                                     <stackView orientation="vertical" alignment="centerX" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Px9-EB-BKn" userLabel="Panel Left">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="277"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="253"/>
                                         <middleViews>
                                             <imageView verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="14f-jF-ukm" userLabel="Surface Dial Model">
-                                                <rect key="frame" x="0.0" y="43" width="250" height="191"/>
+                                                <rect key="frame" x="0.0" y="43" width="250" height="167"/>
                                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DialModel" id="yrZ-s4-U9I"/>
                                             </imageView>
                                         </middleViews>
@@ -178,19 +178,19 @@
                                         </customSpacing>
                                     </stackView>
                                     <box verticalHuggingPriority="750" boxType="custom" cornerRadius="15" title="Box" titlePosition="noTitle" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xUF-HT-LRg" userLabel="Panel Right">
-                                        <rect key="frame" x="270" y="0.0" width="400" height="277"/>
+                                        <rect key="frame" x="270" y="0.0" width="325" height="253"/>
                                         <view key="contentView" id="R7h-mG-swg">
-                                            <rect key="frame" x="1" y="1" width="398" height="275"/>
+                                            <rect key="frame" x="1" y="1" width="323" height="251"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SWc-SE-0aO" userLabel="Settings">
-                                                    <rect key="frame" x="20" y="20" width="358" height="235"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="323" height="251"/>
                                                     <subviews>
                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RtQ-LE-zZW" userLabel="1">
-                                                            <rect key="frame" x="0.0" y="211" width="358" height="24"/>
+                                                            <rect key="frame" x="0.0" y="227" width="323" height="24"/>
                                                             <subviews>
                                                                 <stackView orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eak-CO-6UU">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="358" height="24"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="323" height="24"/>
                                                                     <beginningViews>
                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UA9-oZ-h2S">
                                                                             <rect key="frame" x="-2" y="5" width="144" height="16"/>
@@ -203,7 +203,7 @@
                                                                     </beginningViews>
                                                                     <endViews>
                                                                         <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="k5o-1a-A19">
-                                                                            <rect key="frame" x="318" y="0.0" width="42" height="25"/>
+                                                                            <rect key="frame" x="283" y="0.0" width="42" height="25"/>
                                                                             <connections>
                                                                                 <action selector="toggleHaptics:" target="Wek-8M-Jzr" id="lt5-FB-Fx8"/>
                                                                             </connections>
@@ -234,13 +234,13 @@
                                                             </customSpacing>
                                                         </stackView>
                                                         <box verticalHuggingPriority="751" verticalCompressionResistancePriority="751" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="kOc-Bo-Qng">
-                                                            <rect key="frame" x="0.0" y="196" width="358" height="5"/>
+                                                            <rect key="frame" x="0.0" y="212" width="323" height="5"/>
                                                         </box>
                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ya-mQ-37Y" userLabel="2">
-                                                            <rect key="frame" x="0.0" y="134" width="358" height="52"/>
+                                                            <rect key="frame" x="0.0" y="150" width="323" height="52"/>
                                                             <subviews>
                                                                 <stackView orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9rv-a3-9NO">
-                                                                    <rect key="frame" x="0.0" y="28" width="358" height="24"/>
+                                                                    <rect key="frame" x="0.0" y="28" width="323" height="24"/>
                                                                     <beginningViews>
                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XZQ-kE-UYb">
                                                                             <rect key="frame" x="-2" y="6" width="108" height="16"/>
@@ -253,7 +253,7 @@
                                                                     </beginningViews>
                                                                     <endViews>
                                                                         <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f7N-Ce-k4n">
-                                                                            <rect key="frame" x="287" y="0.0" width="74" height="27"/>
+                                                                            <rect key="frame" x="252" y="0.0" width="74" height="27"/>
                                                                             <popUpButtonCell key="cell" type="bevel" title="Item 1" bezelStyle="regularSquare" alignment="left" controlSize="large" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="mjc-Me-0y3" id="Bbe-uG-fhY">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                 <font key="font" metaFont="menu"/>
@@ -283,7 +283,7 @@
                                                                     </customSpacing>
                                                                 </stackView>
                                                                 <stackView orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pYC-UF-z12">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="358" height="24"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="323" height="24"/>
                                                                     <beginningViews>
                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DIp-uc-vtZ">
                                                                             <rect key="frame" x="-2" y="6" width="67" height="16"/>
@@ -296,7 +296,7 @@
                                                                     </beginningViews>
                                                                     <endViews>
                                                                         <popUpButton fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RBy-T7-hEX">
-                                                                            <rect key="frame" x="287" y="0.0" width="74" height="27"/>
+                                                                            <rect key="frame" x="252" y="0.0" width="74" height="27"/>
                                                                             <popUpButtonCell key="cell" type="bevel" title="Item 1" bezelStyle="regularSquare" alignment="left" controlSize="large" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="kqm-hk-cNN" id="GUo-IV-RuV">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                 <font key="font" metaFont="menu"/>
@@ -342,13 +342,13 @@
                                                             </customSpacing>
                                                         </stackView>
                                                         <box verticalHuggingPriority="751" verticalCompressionResistancePriority="751" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="U8U-Tb-zOz">
-                                                            <rect key="frame" x="0.0" y="119" width="358" height="5"/>
+                                                            <rect key="frame" x="0.0" y="135" width="323" height="5"/>
                                                         </box>
                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KuR-ky-FM7" userLabel="3">
-                                                            <rect key="frame" x="0.0" y="49" width="358" height="60"/>
+                                                            <rect key="frame" x="0.0" y="49" width="323" height="76"/>
                                                             <subviews>
                                                                 <stackView orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rg8-lL-rYp">
-                                                                    <rect key="frame" x="0.0" y="36" width="358" height="24"/>
+                                                                    <rect key="frame" x="0.0" y="52" width="323" height="24"/>
                                                                     <beginningViews>
                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mPr-Ox-m4O">
                                                                             <rect key="frame" x="-2" y="5" width="189" height="16"/>
@@ -361,7 +361,7 @@
                                                                     </beginningViews>
                                                                     <endViews>
                                                                         <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="bIK-VF-Ldr">
-                                                                            <rect key="frame" x="318" y="0.0" width="42" height="25"/>
+                                                                            <rect key="frame" x="283" y="0.0" width="42" height="25"/>
                                                                             <connections>
                                                                                 <action selector="toggleAutoHidesIcon:" target="Wek-8M-Jzr" id="zFl-Hm-k1P"/>
                                                                             </connections>
@@ -380,7 +380,7 @@
                                                                     </customSpacing>
                                                                 </stackView>
                                                                 <textField verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="oEJ-o2-d90">
-                                                                    <rect key="frame" x="-2" y="0.0" width="362" height="32"/>
+                                                                    <rect key="frame" x="-2" y="0.0" width="327" height="48"/>
                                                                     <textFieldCell key="cell" selectable="YES" title="While disconnected to your Surface Dial, it is possible to access this page by launching this app again." id="SUh-Ir-dxz">
                                                                         <font key="font" usesAppearanceFont="YES"/>
                                                                         <color key="textColor" name="AccentColor"/>
@@ -402,13 +402,13 @@
                                                             </customSpacing>
                                                         </stackView>
                                                         <box verticalHuggingPriority="751" verticalCompressionResistancePriority="751" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Hqm-jU-xGc">
-                                                            <rect key="frame" x="0.0" y="34" width="358" height="5"/>
+                                                            <rect key="frame" x="0.0" y="34" width="323" height="5"/>
                                                         </box>
                                                         <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Clu-7T-jJN" userLabel="4">
-                                                            <rect key="frame" x="0.0" y="0.0" width="358" height="24"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="323" height="24"/>
                                                             <subviews>
                                                                 <stackView orientation="horizontal" alignment="firstBaseline" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dCJ-aa-9St">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="358" height="24"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="323" height="24"/>
                                                                     <beginningViews>
                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oXt-xI-S5d">
                                                                             <rect key="frame" x="-2" y="5" width="117" height="16"/>
@@ -421,7 +421,7 @@
                                                                     </beginningViews>
                                                                     <endViews>
                                                                         <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="AJH-Cl-Zlk">
-                                                                            <rect key="frame" x="318" y="0.0" width="42" height="25"/>
+                                                                            <rect key="frame" x="283" y="0.0" width="42" height="25"/>
                                                                             <connections>
                                                                                 <action selector="toggleStartsWithMacOS:" target="Wek-8M-Jzr" id="gL8-OR-GJP"/>
                                                                             </connections>
@@ -489,16 +489,14 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="347-YN-pkc" firstAttribute="bottom" secondItem="SWc-SE-0aO" secondAttribute="bottom" id="CuW-cA-GRo"/>
-                                                <constraint firstItem="347-YN-pkc" firstAttribute="trailing" secondItem="SWc-SE-0aO" secondAttribute="trailing" id="dth-S2-59b"/>
-                                                <constraint firstItem="SWc-SE-0aO" firstAttribute="top" secondItem="347-YN-pkc" secondAttribute="top" id="mkl-sj-i2Z"/>
-                                                <constraint firstItem="SWc-SE-0aO" firstAttribute="leading" secondItem="347-YN-pkc" secondAttribute="leading" id="qHT-jw-oPD"/>
+                                                <constraint firstAttribute="bottom" secondItem="SWc-SE-0aO" secondAttribute="bottom" id="CuW-cA-GRo"/>
+                                                <constraint firstAttribute="trailing" secondItem="SWc-SE-0aO" secondAttribute="trailing" id="dth-S2-59b"/>
+                                                <constraint firstItem="SWc-SE-0aO" firstAttribute="top" secondItem="R7h-mG-swg" secondAttribute="top" id="mkl-sj-i2Z"/>
+                                                <constraint firstItem="SWc-SE-0aO" firstAttribute="leading" secondItem="R7h-mG-swg" secondAttribute="leading" id="qHT-jw-oPD"/>
                                             </constraints>
-                                            <viewLayoutGuide key="safeArea" id="NdK-LA-CFa"/>
-                                            <viewLayoutGuide key="layoutMargins" id="347-YN-pkc"/>
                                         </view>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="W9Z-qC-fE0"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="325" id="W9Z-qC-fE0"/>
                                         </constraints>
                                         <color key="borderColor" name="separatorColor" catalog="System" colorSpace="catalog"/>
                                         <color key="fillColor" name="underPageBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -550,7 +548,7 @@
                 </viewController>
                 <customObject id="gWo-Z9-RC2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079" y="-731"/>
+            <point key="canvasLocation" x="1042" y="-718"/>
         </scene>
         <!--Controllers-->
         <scene sceneID="TMR-ff-I14">
