@@ -51,7 +51,7 @@
         <!--Settings Tab View Controller-->
         <scene sceneID="t2l-9t-8WB">
             <objects>
-                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="B0S-jd-F4c" userLabel="Settings Tab View Controller" customClass="SettingsTabViewController" customModule="Dial" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="0" tabStyle="toolbar" id="B0S-jd-F4c" userLabel="Settings Tab View Controller" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="General" identifier="" image="gearshape" catalog="system" id="15U-xF-Sgy"/>
                         <tabViewItem label="Controllers" identifier="" image="hockey.puck" catalog="system" id="7DL-cg-g1P"/>
@@ -104,6 +104,9 @@
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
                                                         <color key="contentTintColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
+                                                        <connections>
+                                                            <action selector="connect:" target="Wek-8M-Jzr" id="uiD-gd-5KO"/>
+                                                        </connections>
                                                     </button>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2iq-xW-n5R">
                                                         <rect key="frame" x="56" y="0.0" width="161" height="15"/>
@@ -133,6 +136,9 @@
                                                             <font key="font" size="10" name="SFMono-Regular"/>
                                                         </buttonCell>
                                                         <color key="contentTintColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <connections>
+                                                            <action selector="visitSourceCode:" target="Wek-8M-Jzr" id="RQD-B9-nDa"/>
+                                                        </connections>
                                                     </button>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kPa-Qg-Zng">
                                                         <rect key="frame" x="154" y="0.0" width="35" height="12"/>
@@ -198,6 +204,9 @@
                                                                     <endViews>
                                                                         <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="k5o-1a-A19">
                                                                             <rect key="frame" x="318" y="0.0" width="42" height="25"/>
+                                                                            <connections>
+                                                                                <action selector="toggleHaptics:" target="Wek-8M-Jzr" id="lt5-FB-Fx8"/>
+                                                                            </connections>
                                                                         </switch>
                                                                     </endViews>
                                                                     <constraints>
@@ -256,6 +265,9 @@
                                                                                     </items>
                                                                                 </menu>
                                                                             </popUpButtonCell>
+                                                                            <connections>
+                                                                                <action selector="toggleDirection:" target="Wek-8M-Jzr" id="eOu-S2-S0Z"/>
+                                                                            </connections>
                                                                         </popUpButton>
                                                                     </endViews>
                                                                     <constraints>
@@ -296,6 +308,9 @@
                                                                                     </items>
                                                                                 </menu>
                                                                             </popUpButtonCell>
+                                                                            <connections>
+                                                                                <action selector="toggleSensitivity:" target="Wek-8M-Jzr" id="6qi-DC-pbs"/>
+                                                                            </connections>
                                                                         </popUpButton>
                                                                     </endViews>
                                                                     <constraints>
@@ -347,6 +362,9 @@
                                                                     <endViews>
                                                                         <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="bIK-VF-Ldr">
                                                                             <rect key="frame" x="318" y="0.0" width="42" height="25"/>
+                                                                            <connections>
+                                                                                <action selector="toggleAutoHidesIcon:" target="Wek-8M-Jzr" id="zFl-Hm-k1P"/>
+                                                                            </connections>
                                                                         </switch>
                                                                     </endViews>
                                                                     <constraints>
@@ -404,6 +422,9 @@
                                                                     <endViews>
                                                                         <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="AJH-Cl-Zlk">
                                                                             <rect key="frame" x="318" y="0.0" width="42" height="25"/>
+                                                                            <connections>
+                                                                                <action selector="toggleStartsWithMacOS:" target="Wek-8M-Jzr" id="gL8-OR-GJP"/>
+                                                                            </connections>
                                                                         </switch>
                                                                     </endViews>
                                                                     <constraints>
@@ -508,10 +529,28 @@
                         <viewLayoutGuide key="safeArea" id="SGV-pp-Gka"/>
                         <viewLayoutGuide key="layoutMargins" id="Anb-Bt-pVa"/>
                     </view>
+                    <connections>
+                        <outlet property="buttonDialState" destination="lZ6-aS-eaU" id="XhL-ka-u3l"/>
+                        <outlet property="buttonSourceCode" destination="OvC-RI-Fy7" id="UfC-Hc-jpg"/>
+                        <outlet property="imageDial" destination="14f-jF-ukm" id="0xM-ZO-hs2"/>
+                        <outlet property="labelAutoHidesIcon" destination="mPr-Ox-m4O" id="nlg-gN-nrl"/>
+                        <outlet property="labelAutoHidesIconDescription" destination="oEJ-o2-d90" id="sev-Mo-zmc"/>
+                        <outlet property="labelDirection" destination="XZQ-kE-UYb" id="T3l-vn-B4J"/>
+                        <outlet property="labelHaptics" destination="UA9-oZ-h2S" id="KUT-FI-ft5"/>
+                        <outlet property="labelSensitivity" destination="DIp-uc-vtZ" id="Rn6-y5-ldx"/>
+                        <outlet property="labelSerial" destination="2iq-xW-n5R" id="PMa-Hq-5cs"/>
+                        <outlet property="labelStartsWithMacOS" destination="oXt-xI-S5d" id="ceN-80-l51"/>
+                        <outlet property="labelVersion" destination="kPa-Qg-Zng" id="7ic-m2-XPc"/>
+                        <outlet property="popUpButtonDirection" destination="f7N-Ce-k4n" id="Vy2-SS-6M0"/>
+                        <outlet property="popUpButtonSensitivity" destination="RBy-T7-hEX" id="Kfb-9g-X7Y"/>
+                        <outlet property="switchAutoHidesIcon" destination="bIK-VF-Ldr" id="3VR-8E-aIB"/>
+                        <outlet property="switchHaptics" destination="k5o-1a-A19" id="hVn-Wj-9Oh"/>
+                        <outlet property="switchStartsWithMacOS" destination="AJH-Cl-Zlk" id="axa-b8-HSH"/>
+                    </connections>
                 </viewController>
                 <customObject id="gWo-Z9-RC2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079" y="-606"/>
+            <point key="canvasLocation" x="1079" y="-731"/>
         </scene>
         <!--Controllers-->
         <scene sceneID="TMR-ff-I14">
@@ -687,9 +726,9 @@
                                                                 <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qrH-os-JGJ" userLabel="Controller Name">
                                                                     <rect key="frame" x="0.0" y="140" width="402" height="32"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6gq-Hi-L1B">
+                                                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6gq-Hi-L1B" customClass="EditableTextField" customModule="Dial" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="0.0" width="376" height="32"/>
-                                                                            <textFieldCell key="cell" controlSize="large" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Controller Name" bezelStyle="round" id="WdJ-f4-nKb">
+                                                                            <textFieldCell key="cell" controlSize="large" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Controller Name" usesSingleLineMode="YES" bezelStyle="round" id="WdJ-f4-nKb">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -741,44 +780,59 @@
                                                                         </segments>
                                                                     </segmentedCell>
                                                                 </segmentedControl>
-                                                                <textField verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="HbD-kQ-TGX">
-                                                                    <rect key="frame" x="-2" y="40" width="406" height="16"/>
-                                                                    <textFieldCell key="cell" selectable="YES" title="This is a default controller, the configurations are not applicable." id="MQp-un-YJR">
-                                                                        <font key="font" usesAppearanceFont="YES"/>
-                                                                        <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
-                                                                <textField verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="nnO-7y-tK0">
-                                                                    <rect key="frame" x="-2" y="0.0" width="406" height="32"/>
-                                                                    <textFieldCell key="cell" selectable="YES" title="This is the description of a default controller. It is intended to be multiline." id="A4q-th-rf2">
-                                                                        <font key="font" usesAppearanceFont="YES"/>
-                                                                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                    </textFieldCell>
-                                                                </textField>
+                                                                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TXt-dL-dMI">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="402" height="56"/>
+                                                                    <subviews>
+                                                                        <textField verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="HbD-kQ-TGX">
+                                                                            <rect key="frame" x="-2" y="40" width="406" height="16"/>
+                                                                            <textFieldCell key="cell" selectable="YES" title="This is a default controller, the configurations are not applicable." id="MQp-un-YJR">
+                                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                                <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                        <textField verticalHuggingPriority="751" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="nnO-7y-tK0">
+                                                                            <rect key="frame" x="-2" y="0.0" width="406" height="32"/>
+                                                                            <textFieldCell key="cell" selectable="YES" title="This is the description of a default controller. It is intended to be multiline." id="A4q-th-rf2">
+                                                                                <font key="font" usesAppearanceFont="YES"/>
+                                                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            </textFieldCell>
+                                                                        </textField>
+                                                                    </subviews>
+                                                                    <constraints>
+                                                                        <constraint firstItem="nnO-7y-tK0" firstAttribute="leading" secondItem="TXt-dL-dMI" secondAttribute="leading" id="0VU-V9-OuX"/>
+                                                                        <constraint firstItem="HbD-kQ-TGX" firstAttribute="leading" secondItem="TXt-dL-dMI" secondAttribute="leading" id="IFj-I0-bMA"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="HbD-kQ-TGX" secondAttribute="trailing" id="NUv-dl-fde"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="nnO-7y-tK0" secondAttribute="trailing" id="rDf-0N-TNU"/>
+                                                                    </constraints>
+                                                                    <visibilityPriorities>
+                                                                        <integer value="1000"/>
+                                                                        <integer value="1000"/>
+                                                                    </visibilityPriorities>
+                                                                    <customSpacing>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                        <real value="3.4028234663852886e+38"/>
+                                                                    </customSpacing>
+                                                                </stackView>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="Rrw-dm-WgW" firstAttribute="leading" secondItem="mIC-CT-dc8" secondAttribute="leading" id="9i3-N6-p3l"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Rrw-dm-WgW" secondAttribute="trailing" id="GEG-bx-RQq"/>
                                                                 <constraint firstAttribute="trailing" secondItem="qrH-os-JGJ" secondAttribute="trailing" id="HZr-Zq-mHi"/>
-                                                                <constraint firstAttribute="trailing" secondItem="HbD-kQ-TGX" secondAttribute="trailing" id="LEH-x9-eg8"/>
                                                                 <constraint firstAttribute="trailing" secondItem="GOb-Cs-mTq" secondAttribute="trailing" id="QyK-YC-9x4"/>
-                                                                <constraint firstAttribute="trailing" secondItem="nnO-7y-tK0" secondAttribute="trailing" id="Vfc-T4-z1t"/>
                                                                 <constraint firstItem="GOb-Cs-mTq" firstAttribute="leading" secondItem="mIC-CT-dc8" secondAttribute="leading" id="XpZ-Em-6QC"/>
                                                                 <constraint firstItem="qrH-os-JGJ" firstAttribute="leading" secondItem="mIC-CT-dc8" secondAttribute="leading" id="Yzg-uM-DEd"/>
-                                                                <constraint firstItem="nnO-7y-tK0" firstAttribute="leading" secondItem="mIC-CT-dc8" secondAttribute="leading" id="Z0W-gt-xZM"/>
-                                                                <constraint firstItem="HbD-kQ-TGX" firstAttribute="leading" secondItem="mIC-CT-dc8" secondAttribute="leading" id="sjW-AR-osO"/>
+                                                                <constraint firstItem="TXt-dL-dMI" firstAttribute="leading" secondItem="mIC-CT-dc8" secondAttribute="leading" id="fkd-mK-vHz"/>
+                                                                <constraint firstAttribute="trailing" secondItem="TXt-dL-dMI" secondAttribute="trailing" id="iMd-lY-wlG"/>
                                                             </constraints>
                                                             <visibilityPriorities>
                                                                 <integer value="1000"/>
                                                                 <integer value="1000"/>
                                                                 <integer value="1000"/>
                                                                 <integer value="1000"/>
-                                                                <integer value="1000"/>
                                                             </visibilityPriorities>
                                                             <customSpacing>
-                                                                <real value="3.4028234663852886e+38"/>
                                                                 <real value="3.4028234663852886e+38"/>
                                                                 <real value="3.4028234663852886e+38"/>
                                                                 <real value="3.4028234663852886e+38"/>
@@ -837,11 +891,11 @@
                                                                                 </segments>
                                                                             </segmentedCell>
                                                                         </segmentedControl>
-                                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N0T-Tm-tim">
+                                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N0T-Tm-tim" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                             <rect key="frame" x="173" y="-6" width="235" height="44"/>
                                                                             <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yOi-AD-HDP">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                <font key="font" metaFont="system"/>
+                                                                                <font key="font" size="13" name="SFMono-Regular"/>
                                                                             </buttonCell>
                                                                         </button>
                                                                     </subviews>
@@ -929,11 +983,11 @@
                                                                                 </segments>
                                                                             </segmentedCell>
                                                                         </segmentedControl>
-                                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mcj-pG-ExY">
+                                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mcj-pG-ExY" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                             <rect key="frame" x="173" y="-6" width="235" height="44"/>
                                                                             <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OhQ-wN-VVQ">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                <font key="font" metaFont="system"/>
+                                                                                <font key="font" size="13" name="SFMono-Regular"/>
                                                                             </buttonCell>
                                                                         </button>
                                                                     </subviews>
@@ -1024,11 +1078,11 @@
                                                                                 </segments>
                                                                             </segmentedCell>
                                                                         </segmentedControl>
-                                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PfW-Ga-fKe">
+                                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PfW-Ga-fKe" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                             <rect key="frame" x="173" y="-6" width="235" height="44"/>
                                                                             <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BdS-qQ-fnr">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                <font key="font" metaFont="system"/>
+                                                                                <font key="font" size="13" name="SFMono-Regular"/>
                                                                             </buttonCell>
                                                                         </button>
                                                                     </subviews>
@@ -1116,11 +1170,11 @@
                                                                                 </segments>
                                                                             </segmentedCell>
                                                                         </segmentedControl>
-                                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3iu-3T-IJo">
+                                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3iu-3T-IJo" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                             <rect key="frame" x="173" y="-6" width="235" height="44"/>
                                                                             <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X0a-dk-QiZ">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                <font key="font" metaFont="system"/>
+                                                                                <font key="font" size="13" name="SFMono-Regular"/>
                                                                             </buttonCell>
                                                                         </button>
                                                                     </subviews>
@@ -1211,11 +1265,11 @@
                                                                                 </segments>
                                                                             </segmentedCell>
                                                                         </segmentedControl>
-                                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XSb-TR-BRV">
+                                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XSb-TR-BRV" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                             <rect key="frame" x="173" y="-6" width="235" height="44"/>
                                                                             <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4nK-md-pp1">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                <font key="font" metaFont="system"/>
+                                                                                <font key="font" size="13" name="SFMono-Regular"/>
                                                                             </buttonCell>
                                                                         </button>
                                                                     </subviews>
@@ -1303,11 +1357,11 @@
                                                                                 </segments>
                                                                             </segmentedCell>
                                                                         </segmentedControl>
-                                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="44Y-el-iKF">
+                                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="44Y-el-iKF" customClass="InputButton" customModule="Dial" customModuleProvider="target">
                                                                             <rect key="frame" x="173" y="-6" width="235" height="44"/>
                                                                             <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aAy-c7-LM4">
                                                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                                <font key="font" metaFont="system"/>
+                                                                                <font key="font" size="13" name="SFMono-Regular"/>
                                                                             </buttonCell>
                                                                         </button>
                                                                     </subviews>
@@ -1629,10 +1683,54 @@
                         <viewLayoutGuide key="safeArea" id="Syl-D1-TIU"/>
                         <viewLayoutGuide key="layoutMargins" id="pBg-TL-igx"/>
                     </view>
+                    <connections>
+                        <outlet property="buttonIconChooser" destination="rrC-yh-OWU" id="mRz-yH-oSU"/>
+                        <outlet property="buttonShortcuts1Keys1" destination="N0T-Tm-tim" id="B4R-5N-en4"/>
+                        <outlet property="buttonShortcuts1Keys2" destination="mcj-pG-ExY" id="5I7-uL-ZXj"/>
+                        <outlet property="buttonShortcuts2Keys1" destination="PfW-Ga-fKe" id="kwb-uh-Ijl"/>
+                        <outlet property="buttonShortcuts2Keys2" destination="3iu-3T-IJo" id="ax5-0Y-zN6"/>
+                        <outlet property="buttonShortcuts3Keys1" destination="XSb-TR-BRV" id="g4o-0G-fFC"/>
+                        <outlet property="buttonShortcuts3Keys2" destination="44Y-el-iKF" id="iup-Ek-g5r"/>
+                        <outlet property="labelAlternativeDirection" destination="svR-Ha-Qza" id="aK1-3O-jfK"/>
+                        <outlet property="labelDefaultControllerDescription" destination="nnO-7y-tK0" id="eQM-NH-eZ7"/>
+                        <outlet property="labelHaptics" destination="Tfd-I6-7hF" id="7y6-va-QfU"/>
+                        <outlet property="labelPhysicalDirection" destination="qyD-uB-uvN" id="2cU-Gq-lPU"/>
+                        <outlet property="labelRotationType" destination="8F6-Yp-c5m" id="QGL-Kz-I2N"/>
+                        <outlet property="labelSerial" destination="kR1-hr-9AN" id="HxM-GI-4nw"/>
+                        <outlet property="popUpButtonControllerSelector" destination="508-Ce-eih" id="L0u-1M-5gW"/>
+                        <outlet property="popUpButtonRotationType" destination="40Y-g1-9KB" id="VeQ-Pi-W83"/>
+                        <outlet property="segmentedControlAddOrDeleteController" destination="KxX-5j-OQg" id="ROn-Xg-G3Z"/>
+                        <outlet property="segmentedControlDialingPressingAdvanced" destination="GOb-Cs-mTq" id="s7o-US-vZM"/>
+                        <outlet property="segmentedControlResetController" destination="Yph-36-3V7" id="nLh-qy-EH6"/>
+                        <outlet property="segmentedControlShortcuts1Modifiers1" destination="vey-zs-GyP" id="xAy-QY-9TS"/>
+                        <outlet property="segmentedControlShortcuts1Modifiers2" destination="NPh-mn-YjT" id="V6U-tB-73q"/>
+                        <outlet property="segmentedControlShortcuts2Modifiers1" destination="8OP-iF-7EK" id="0b4-SD-fYR"/>
+                        <outlet property="segmentedControlShortcuts2Modifiers2" destination="5Ex-c7-RDv" id="wza-NA-dcJ"/>
+                        <outlet property="segmentedControlShortcuts3Modifiers1" destination="icA-0w-Uam" id="was-26-piF"/>
+                        <outlet property="segmentedControlShortcuts3Modifiers2" destination="aqu-hI-eGp" id="hZk-pX-cyk"/>
+                        <outlet property="segmentedControlShortcutsAdvanced" destination="Rrw-dm-WgW" id="18t-BE-ceE"/>
+                        <outlet property="separatorShortcuts1Shortcuts2" destination="wRb-l7-UZV" id="e48-kG-5xE"/>
+                        <outlet property="separatorShortcuts2Shortcuts3" destination="Hco-00-f0y" id="xWw-PM-H8b"/>
+                        <outlet property="separatorShortcuts3Options" destination="kTx-0s-npW" id="cP3-lW-L7c"/>
+                        <outlet property="switchAlternativeDirection" destination="gdx-eC-mpt" id="YPY-Ui-uGX"/>
+                        <outlet property="switchControllerActivated" destination="zVz-Pg-Plv" id="mbB-c6-LzT"/>
+                        <outlet property="switchHaptics" destination="mAC-1R-kkA" id="Td1-QG-9iw"/>
+                        <outlet property="switchPhysicalDirection" destination="B2d-Zh-14u" id="Sxw-R8-gYI"/>
+                        <outlet property="textFieldControllerName" destination="6gq-Hi-L1B" id="6k4-2q-bGi"/>
+                        <outlet property="viewControllerName" destination="qrH-os-JGJ" id="A4x-Y4-hTm"/>
+                        <outlet property="viewDefaultControllerLabels" destination="TXt-dL-dMI" id="uPG-7I-kZA"/>
+                        <outlet property="viewOptions" destination="JLq-UB-fPg" id="W57-or-Eol"/>
+                        <outlet property="viewShortcuts1_1" destination="UOf-S9-LtS" id="343-Hy-Je5"/>
+                        <outlet property="viewShortcuts1_2" destination="v3g-WU-YbC" id="IaO-fY-Lqi"/>
+                        <outlet property="viewShortcuts2_1" destination="W2T-um-Dy5" id="SpO-sT-d19"/>
+                        <outlet property="viewShortcuts2_2" destination="RHk-p4-kTu" id="p8Z-Tg-Tqe"/>
+                        <outlet property="viewShortcuts3_1" destination="sQI-ow-KYH" id="aJK-N5-8un"/>
+                        <outlet property="viewShortcuts3_2" destination="ZXd-3D-dU6" id="vGi-HG-O9k"/>
+                    </connections>
                 </viewController>
                 <customObject id="fPj-Zh-g3a" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1106" y="190"/>
+            <point key="canvasLocation" x="1106" y="101"/>
         </scene>
     </scenes>
     <resources>

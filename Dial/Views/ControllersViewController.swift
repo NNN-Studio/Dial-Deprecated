@@ -14,23 +14,33 @@ class ControllersViewController: NSViewController {
     
     // MARK: - Views
     
-    @IBOutlet weak var viewDialCircle: NSView!
-    
     @IBOutlet weak var viewDefaultControllerLabels: NSStackView!
     
     @IBOutlet weak var viewControllerName: NSStackView!
     
-    @IBOutlet weak var viewShortcuts1: NSStackView!
+    @IBOutlet weak var viewShortcuts1_1: NSStackView!
     
-    @IBOutlet weak var viewShortcuts2: NSStackView!
+    @IBOutlet weak var viewShortcuts1_2: NSStackView!
     
-    @IBOutlet weak var viewShortcuts3: NSStackView!
+    @IBOutlet weak var separatorShortcuts1Shortcuts2: NSBox!
     
-    @IBOutlet weak var viewOptions1: NSStackView!
+    @IBOutlet weak var viewShortcuts2_1: NSStackView!
     
-    @IBOutlet weak var viewOptions2: NSStackView!
+    @IBOutlet weak var viewShortcuts2_2: NSStackView!
+    
+    @IBOutlet weak var separatorShortcuts2Shortcuts3: NSBox!
+    
+    @IBOutlet weak var viewShortcuts3_1: NSStackView!
+    
+    @IBOutlet weak var viewShortcuts3_2: NSStackView!
+    
+    @IBOutlet weak var separatorShortcuts3Options: NSBox!
+    
+    @IBOutlet weak var viewOptions: NSStackView!
     
     // MARK: - Interactives
+    
+    @IBOutlet weak var segmentedControlDialingPressingAdvanced: NSSegmentedControl!
     
     @IBOutlet weak var segmentedControlShortcutsAdvanced: NSSegmentedControl!
     
@@ -40,9 +50,9 @@ class ControllersViewController: NSViewController {
     
     @IBOutlet weak var switchControllerActivated: NSSwitch!
     
-    @IBOutlet weak var buttonDeleteController: NSButton!
+    @IBOutlet weak var segmentedControlAddOrDeleteController: NSSegmentedControl!
     
-    @IBOutlet weak var buttonAddController: NSButton!
+    @IBOutlet weak var segmentedControlResetController: NSSegmentedControl!
     
     
     
@@ -52,39 +62,39 @@ class ControllersViewController: NSViewController {
     
     
     
-    @IBOutlet weak var popUpButtonShortcuts1Modifiers1: NSPopUpButton!
+    @IBOutlet weak var segmentedControlShortcuts1Modifiers1: NSSegmentedControl!
     
     @IBOutlet weak var buttonShortcuts1Keys1: InputButton!
     
-    @IBOutlet weak var popUpButtonShortcuts1Modifiers2: NSPopUpButton!
+    @IBOutlet weak var segmentedControlShortcuts1Modifiers2: NSSegmentedControl!
     
     @IBOutlet weak var buttonShortcuts1Keys2: InputButton!
     
     
     
-    @IBOutlet weak var popUpButtonShortcuts2Modifiers1: NSPopUpButton!
+    @IBOutlet weak var segmentedControlShortcuts2Modifiers1: NSSegmentedControl!
     
     @IBOutlet weak var buttonShortcuts2Keys1: InputButton!
     
-    @IBOutlet weak var popUpButtonShortcuts2Modifiers2: NSPopUpButton!
+    @IBOutlet weak var segmentedControlShortcuts2Modifiers2: NSSegmentedControl!
     
     @IBOutlet weak var buttonShortcuts2Keys2: InputButton!
     
     
     
-    @IBOutlet weak var popUpButtonShortcuts3Modifiers1: NSPopUpButton!
+    @IBOutlet weak var segmentedControlShortcuts3Modifiers1: NSSegmentedControl!
     
     @IBOutlet weak var buttonShortcuts3Keys1: InputButton!
     
-    @IBOutlet weak var popUpButtonShortcuts3Modifiers2: NSPopUpButton!
+    @IBOutlet weak var segmentedControlShortcuts3Modifiers2: NSSegmentedControl!
     
     @IBOutlet weak var buttonShortcuts3Keys2: InputButton!
     
     
     
-    @IBOutlet weak var popUpButtonRotationType: NSPopUpButton!
-    
     @IBOutlet weak var switchHaptics: NSSwitch!
+    
+    @IBOutlet weak var popUpButtonRotationType: NSPopUpButton!
     
     @IBOutlet weak var switchPhysicalDirection: NSSwitch!
     
@@ -92,9 +102,9 @@ class ControllersViewController: NSViewController {
     
     // MARK: - Descriptives
     
-    @IBOutlet weak var labelRotationType: NSTextField!
-    
     @IBOutlet weak var labelHaptics: NSTextField!
+    
+    @IBOutlet weak var labelRotationType: NSTextField!
     
     @IBOutlet weak var labelPhysicalDirection: NSTextField!
     
@@ -128,26 +138,33 @@ class ControllersViewController: NSViewController {
     
     private var popUpButtonShortcutsModifiersArray: [ModifiersOptionItem.ActionTarget: NSPopUpButton] {
         [
-            .rotateClockwise: popUpButtonShortcuts1Modifiers1,
-            .rotateCounterclockwise: popUpButtonShortcuts1Modifiers2,
-            
-            .pressAndRotateClockwise: popUpButtonShortcuts2Modifiers1,
-            .pressAndRotateCounterclockwise: popUpButtonShortcuts2Modifiers2,
-            
-            .clickSingle: popUpButtonShortcuts3Modifiers1,
-            .clickDouble: popUpButtonShortcuts3Modifiers2
+            :
+//            .rotateClockwise: popUpButtonShortcuts1Modifiers1,
+//            .rotateCounterclockwise: popUpButtonShortcuts1Modifiers2,
+//            
+//            .pressAndRotateClockwise: popUpButtonShortcuts2Modifiers1,
+//            .pressAndRotateCounterclockwise: popUpButtonShortcuts2Modifiers2,
+//            
+//            .clickSingle: popUpButtonShortcuts3Modifiers1,
+//            .clickDouble: popUpButtonShortcuts3Modifiers2
         ]
     }
     
     
     
-    private var segment: Segment = .shortcuts
+    private var segmentCollapsed: Segment = .dialing
+    
+    private var segmentExpanded: Segment = .shortcuts
     
     enum Segment: Int {
         
-        case shortcuts = 0
+        case dialing = 0
         
-        case advanced = 1
+        case pressing = 1
+        
+        case shortcuts = 2
+        
+        case advanced = 3
         
     }
     
@@ -195,8 +212,6 @@ extension ControllersViewController {
         labelPhysicalDirection.stringValue = Localization.Controllers.Advanced.physicalDirection.localizedName
         labelAlternativeDirection.stringValue = Localization.Controllers.Advanced.alternativeDirection.localizedName
         
-        loadDialCircleViewInto(viewDialCircle)
-        
         func applyConnectionStatus(_ value: Device.ConnectionStatus) {
             switch value {
             case .connected(let serialNumber):
@@ -223,14 +238,14 @@ extension ControllersViewController {
             modifiersMenuManagers[actionTarget] = .init(delegate: self) { [MenuManager.groupItems(modifiersMenuItemsArray[actionTarget]!.modifierOptions)] }
         }
         
-        popUpButtonShortcuts1Modifiers1.menu = modifiersMenuManagers[.rotateClockwise]?.menu
-        popUpButtonShortcuts1Modifiers2.menu = modifiersMenuManagers[.rotateCounterclockwise]?.menu
-        
-        popUpButtonShortcuts2Modifiers1.menu = modifiersMenuManagers[.pressAndRotateClockwise]?.menu
-        popUpButtonShortcuts2Modifiers2.menu = modifiersMenuManagers[.pressAndRotateCounterclockwise]?.menu
-        
-        popUpButtonShortcuts3Modifiers1.menu = modifiersMenuManagers[.clickSingle]?.menu
-        popUpButtonShortcuts3Modifiers2.menu = modifiersMenuManagers[.clickDouble]?.menu
+//        popUpButtonShortcuts1Modifiers1.menu = modifiersMenuManagers[.rotateClockwise]?.menu
+//        popUpButtonShortcuts1Modifiers2.menu = modifiersMenuManagers[.rotateCounterclockwise]?.menu
+//        
+//        popUpButtonShortcuts2Modifiers1.menu = modifiersMenuManagers[.pressAndRotateClockwise]?.menu
+//        popUpButtonShortcuts2Modifiers2.menu = modifiersMenuManagers[.pressAndRotateCounterclockwise]?.menu
+//        
+//        popUpButtonShortcuts3Modifiers1.menu = modifiersMenuManagers[.clickSingle]?.menu
+//        popUpButtonShortcuts3Modifiers2.menu = modifiersMenuManagers[.clickDouble]?.menu
     }
     
 }
@@ -287,22 +302,22 @@ extension ControllersViewController: NSPopoverDelegate {
 extension ControllersViewController {
     
     func updateSegment(_ segment: Segment) {
-        self.segment = segment
-        
-        switch segment {
-        case .shortcuts:
-            viewShortcuts1.isHidden = false
-            viewShortcuts2.isHidden = false
-            viewShortcuts3.isHidden = false
-            viewOptions1.isHidden = true
-            viewOptions2.isHidden = true
-        case .advanced:
-            viewShortcuts1.isHidden = true
-            viewShortcuts2.isHidden = true
-            viewShortcuts3.isHidden = true
-            viewOptions1.isHidden = false
-            viewOptions2.isHidden = false
-        }
+        self.segmentExpanded = segment
+
+//        switch segment {
+//        case .shortcuts:
+//            viewShortcuts1.isHidden = false
+//            viewShortcuts2.isHidden = false
+//            viewShortcuts3.isHidden = false
+//            viewOptions1.isHidden = true
+//            viewOptions2.isHidden = true
+//        case .advanced:
+//            viewShortcuts1.isHidden = true
+//            viewShortcuts2.isHidden = true
+//            viewShortcuts3.isHidden = true
+//            viewOptions1.isHidden = false
+//            viewOptions2.isHidden = false
+//        }
     }
     
 }
@@ -328,16 +343,16 @@ extension ControllersViewController: DialControllerMenuDelegate {
             viewDefaultControllerLabels.isHidden = false
             viewControllerName.isHidden = true
             
-            viewShortcuts1.isHidden = true
-            viewShortcuts2.isHidden = true
-            viewShortcuts3.isHidden = true
-            viewOptions1.isHidden = true
-            viewOptions2.isHidden = true
+//            viewShortcuts1.isHidden = true
+//            viewShortcuts2.isHidden = true
+//            viewShortcuts3.isHidden = true
+//            viewOptions1.isHidden = true
+//            viewOptions2.isHidden = true
             
             segmentedControlShortcutsAdvanced.isHidden = true
             
-            buttonDeleteController.isEnabled = false
-            buttonAddController.isEnabled = true
+//            buttonDeleteController.isEnabled = false
+//            buttonAddController.isEnabled = true
             
             iconChooserViewController.setAll(false)
         }
@@ -348,12 +363,12 @@ extension ControllersViewController: DialControllerMenuDelegate {
             viewDefaultControllerLabels.isHidden = true
             viewControllerName.isHidden = false
             
-            updateSegment(self.segment)
+            updateSegment(self.segmentExpanded)
             
             segmentedControlShortcutsAdvanced.isHidden = false
             
-            buttonDeleteController.isEnabled = true
-            buttonAddController.isEnabled = true
+//            buttonDeleteController.isEnabled = true
+//            buttonAddController.isEnabled = true
             
             textFieldControllerName.stringValue = settings.name ?? ""
             

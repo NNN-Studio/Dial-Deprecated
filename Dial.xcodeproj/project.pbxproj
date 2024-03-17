@@ -17,7 +17,6 @@
 		2822C3F22B75F909000D5C58 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3F12B75F909000D5C58 /* SettingsWindow.swift */; };
 		2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2830055B2AEE7FF800D18F65 /* MenuManager.swift */; };
 		2831CA0B2B81DE470032956E /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2831CA0A2B81DE470032956E /* CGFloat+Extension.swift */; };
-		283D099D2B85758F00E08207 /* SettingsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 283D099C2B85758F00E08207 /* SettingsTabViewController.swift */; };
 		2867F1832AEC8D3B0029C937 /* DialWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F1822AEC8D3B0029C937 /* DialWindow.swift */; };
 		2867F18F2AECC6E90029C937 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 2867F18E2AECC6E90029C937 /* LaunchAtLogin */; };
 		286DFBB62B80C82B00685AFD /* ControllersViewController+DialCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286DFBB52B80C82B00685AFD /* ControllersViewController+DialCircleView.swift */; };
@@ -66,7 +65,6 @@
 		2822C3F12B75F909000D5C58 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
 		2830055B2AEE7FF800D18F65 /* MenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
 		2831CA0A2B81DE470032956E /* CGFloat+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extension.swift"; sourceTree = "<group>"; };
-		283D099C2B85758F00E08207 /* SettingsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabViewController.swift; sourceTree = "<group>"; };
 		2867F1822AEC8D3B0029C937 /* DialWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialWindow.swift; sourceTree = "<group>"; };
 		2867F18A2AEC94D50029C937 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Main.xcstrings; sourceTree = "<group>"; };
 		286DFBB42B80C24000685AFD /* Dial.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dial.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,7 +159,6 @@
 				28B833C42B77617500D96825 /* GeneralViewController.swift */,
 				28B833C22B77615500D96825 /* ControllersViewController.swift */,
 				286DFBB52B80C82B00685AFD /* ControllersViewController+DialCircleView.swift */,
-				283D099C2B85758F00E08207 /* SettingsTabViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -364,7 +361,6 @@
 				28D9F46E2B79ED2B00494B7E /* MenuItems.swift in Sources */,
 				2801CAB52AEDF18000E95B5F /* MissionController.swift in Sources */,
 				28C7A0A22AEE06E8003113D5 /* Input.swift in Sources */,
-				283D099D2B85758F00E08207 /* SettingsTabViewController.swift in Sources */,
 				28FCB9362B7DA21C0071AE01 /* IconChooserWindow.swift in Sources */,
 				2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */,
 				28D9F46C2B79EC8C00494B7E /* NSImage+Extension.swift in Sources */,

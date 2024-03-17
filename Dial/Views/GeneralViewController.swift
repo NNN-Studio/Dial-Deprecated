@@ -25,9 +25,7 @@ class GeneralViewController: NSViewController {
     
     
     
-    @IBOutlet weak var buttonBluetooth: NSButton!
-    
-    @IBOutlet weak var buttonQuit: NSButton!
+    @IBOutlet weak var buttonDialState: NSButton!
     
     @IBOutlet weak var buttonSourceCode: NSButton!
     
@@ -76,8 +74,6 @@ extension GeneralViewController {
         labelAutoHidesIcon.stringValue = Localization.General.autoHidesIcon.localizedName
         labelStartsWithMacOS.stringValue = Localization.General.startsWithMacOS.localizedName
         
-        buttonQuit.title = Localization.quit.localizedName
-        
         labelAutoHidesIconDescription.isHidden = true // Avoid glitches
         labelVersion.stringValue = AppDelegate.version ?? ""
         
@@ -109,6 +105,7 @@ extension GeneralViewController {
     
     func initInteractives() {
         Task { @MainActor in
+            print(1)
             for await value in Defaults.updates(.hapticsEnabled) {
                 switchHaptics.flag = value
             }
@@ -209,10 +206,6 @@ extension GeneralViewController {
     
     @IBAction func toggleStartsWithMacOS(_ sender: NSSwitch) {
         Defaults[.launchAtLogin] = sender.flag
-    }
-    
-    @IBAction func quitApp(_ sender: NSButton) {
-        AppDelegate.quitApp()
     }
     
 }
