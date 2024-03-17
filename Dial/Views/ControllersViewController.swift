@@ -194,7 +194,7 @@ class ControllersViewController: NSViewController {
     
     
     
-    private lazy var activatedControllersDataSource: ActivatedControllersDataSource = .init(tableView: tableViewActivatedControllers) { (tableView, cell, row, item) -> NSView in
+    private lazy var activatedControllersDataSource: ActivatedControllersDataSource = .init(tableView: tableViewActivatedControllers) { (tableView, column, row, item) -> NSView in
         guard
             let cell = tableView.makeView(withIdentifier: .activatedControllersColumn, owner: self) as? ActivatedControllerCell,
             let controller = Controllers.fetch(item)

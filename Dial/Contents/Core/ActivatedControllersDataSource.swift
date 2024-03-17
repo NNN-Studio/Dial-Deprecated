@@ -9,9 +9,18 @@ import Foundation
 import AppKit
 import Defaults
 
+// A related bug: https://forums.developer.apple.com/forums/thread/709343
 class ActivatedControllersDataSource: NSTableViewDiffableDataSource<String, ControllerID> {
     
-    func tableView(
+    @objc func tableView(
+        _ tableView: NSTableView,
+        writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard
+    ) -> Bool {
+        print(0)
+        return true
+    }
+    
+    @objc func tableView(
         _ tableView: NSTableView, pasteboardWriterForRow row: Int
     ) -> (any NSPasteboardWriting)? {
         print(1)
@@ -24,17 +33,18 @@ class ActivatedControllersDataSource: NSTableViewDiffableDataSource<String, Cont
         return item
     }
     
-    func tableView(
+    @objc func tableView(
         _ tableView: NSTableView, draggingSession session: NSDraggingSession,
         endedAt screenPoint: NSPoint, operation: NSDragOperation
     ) {
         print(2)
     }
     
-    func tableView(
+    @objc func tableView(
         _ tableView: NSTableView, validateDrop info: NSDraggingInfo,
         proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation
     ) -> NSDragOperation {
+        print(3)
         if dropOperation == .above {
             if info.draggingSourceOperationMask.contains(.move) {
                 return .move
@@ -47,11 +57,12 @@ class ActivatedControllersDataSource: NSTableViewDiffableDataSource<String, Cont
         return []
     }
     
-    func tableView(
-        _ tableView: NSTableView, acceptDrop info: NSDraggingInfo, 
+    @objc func tableView(
+        _ tableView: NSTableView, acceptDrop info: NSDraggingInfo,
         row: Int, dropOperation: NSTableView.DropOperation
     ) -> Bool {
-        true
+        print(4)
+        return true
     }
     
 }
