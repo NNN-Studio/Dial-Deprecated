@@ -212,11 +212,17 @@ struct Controllers {
         guard
             fetchAt != insertAt
                 && fetchAt >= 0 && insertAt >= 0
-                && fetchAt < Defaults[.activatedControllerIDs].count && insertAt <= Defaults[.activatedControllerIDs].count
+                && fetchAt < Defaults[.activatedControllerIDs].count && insertAt < Defaults[.activatedControllerIDs].count
         else { return }
         
-        let instance = Defaults[.activatedControllerIDs].remove(at: fetchAt)
-        Defaults[.activatedControllerIDs].insert(instance, at: insertAt)
+        let id = Defaults[.activatedControllerIDs].remove(at: fetchAt)
+        Defaults[.activatedControllerIDs].insert(id, at: insertAt)
+    }
+    
+    static func reorder(fetch controllerId: ControllerID, insertAt: Int) {
+        guard let fetchAt = Defaults[.activatedControllerIDs].firstIndex(of: controllerId) else { return }
+        print(fetchAt, insertAt)
+        reorder(fetchAt: fetchAt, insertAt: insertAt)
     }
     
 }

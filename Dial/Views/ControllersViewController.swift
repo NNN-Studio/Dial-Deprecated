@@ -204,8 +204,6 @@ class ControllersViewController: NSViewController {
         return cell
     }
     
-    private let activatedControllersSection = "ActivatedControllersSection"
-    
 }
 
 extension ControllersViewController {
@@ -276,14 +274,18 @@ extension ControllersViewController {
         tableViewActivatedControllers.draggingDestinationFeedbackStyle = .gap
         
         var snapshot = NSDiffableDataSourceSnapshot<String, ControllerID>()
-        snapshot.appendSections([activatedControllersSection])
-        snapshot.appendItems(Defaults[.activatedControllerIDs], toSection: activatedControllersSection)
+        snapshot.appendSections([ActivatedControllersDataSource.section])
+        snapshot.appendItems(Defaults[.activatedControllerIDs], toSection: ActivatedControllersDataSource.section)
         activatedControllersDataSource.apply(snapshot, animatingDifferences: false)
     }
     
 }
 
 extension ControllersViewController {
+    
+    override func mouseDragged(with event: NSEvent) {
+        tableViewActivatedControllers.reloadData()
+    }
     
     override func viewDidLayout() {
         let headerSpacing = 8.0
@@ -389,17 +391,6 @@ extension ControllersViewController {
             view.isHidden = isHidden
             view.animator().alphaValue = isHidden ? 0 : 1
         }
-    }
-    
-    func onDataSourceSnapshot<S, I>(
-        _ dataSource: NSTableViewDiffableDataSource<S, I>,
-        snapshotOperation: (inout NSDiffableDataSourceSnapshot<S, I>) -> Void,
-        animatingDifferences: Bool = true,
-        completion: (() -> Void)? = nil
-    ) {
-        var snapshot = dataSource.snapshot()
-        snapshotOperation(&snapshot)
-        dataSource.apply(snapshot, animatingDifferences: animatingDifferences, completion: completion)
     }
     
     func updateEnabledSegmentedControl(_ enabledSegmentedControl: EnabledSegmentedControl) {
@@ -684,9 +675,9 @@ extension ControllersViewController {
         let controller = Controllers.selectedController
         Controllers.toggle(activated, controller: controller)
         
-        onDataSourceSnapshot(activatedControllersDataSource) { snapshot in
+        activatedControllersDataSource.onDataSourceSnapshot { snapshot in
             if activated {
-                snapshot.appendItems([controller.id], toSection: activatedControllersSection)
+                snapshot.appendItems([controller.id], toSection: ActivatedControllersDataSource.section)
             } else {
                 snapshot.deleteItems([controller.id])
             }
@@ -722,7 +713,7 @@ extension ControllersViewController {
                 Controllers.selectedController = Controllers.defaultControllers.last!
             }
             
-            onDataSourceSnapshot(activatedControllersDataSource) { snapshot in
+            activatedControllersDataSource.onDataSourceSnapshot { snapshot in
                 snapshot.deleteItems([selectedController.id])
             }
         } else if index == 1 {
@@ -733,8 +724,8 @@ extension ControllersViewController {
             Controllers.selectedController = controller
             Controllers.toggle(true, controller: controller)
             
-            onDataSourceSnapshot(activatedControllersDataSource) { snapshot in
-                snapshot.appendItems([controller.id], toSection: activatedControllersSection)
+            activatedControllersDataSource.onDataSourceSnapshot { snapshot in
+                snapshot.appendItems([controller.id], toSection: ActivatedControllersDataSource.section)
             }
         }
     }
