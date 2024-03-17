@@ -295,18 +295,6 @@
         }
       }
     },
-    "HRq-q5-ZaB.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Text Cell\"; ObjectID = \"HRq-q5-ZaB\";",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Text Cell"
-          }
-        }
-      }
-    },
     "iIQ-VE-2IB.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"This is a default controller, the configurations are not applicable.\"; ObjectID = \"iIQ-VE-2IB\";",
       "extractionState" : "stale",
@@ -535,6 +523,18 @@
         }
       }
     },
+    "NVP-Ua-dIB.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Label\"; ObjectID = \"NVP-Ua-dIB\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Label"
+          }
+        }
+      }
+    },
     "OhQ-wN-VVQ.title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"Button\"; ObjectID = \"OhQ-wN-VVQ\";",
       "extractionState" : "extracted_with_value",
@@ -579,6 +579,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Double pressing"
+          }
+        }
+      }
+    },
+    "PJc-zy-rlH.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Table View Cell\"; ObjectID = \"PJc-zy-rlH\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Table View Cell"
           }
         }
       }

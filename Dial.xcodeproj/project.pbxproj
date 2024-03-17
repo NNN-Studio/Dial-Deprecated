@@ -39,6 +39,7 @@
 		28DBB1612B7903D000743575 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1602B7903D000743575 /* Localization.swift */; };
 		28DBB1642B79046D00743575 /* SymbolRepresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1632B79046D00743575 /* SymbolRepresentation.swift */; };
 		28DBB1682B7904B200743575 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28DBB1672B7904B200743575 /* MainController.swift */; };
+		28F8D3BA2BA6B64B006E18AA /* ActivatedControllerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F8D3B92BA6B64B006E18AA /* ActivatedControllerCell.swift */; };
 		28FA280C2B78A3310071FB1B /* SFSafeSymbols in Frameworks */ = {isa = PBXBuildFile; productRef = 28FA280B2B78A3310071FB1B /* SFSafeSymbols */; };
 		28FCB92C2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCB92B2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift */; };
 		28FCB9342B7C5ADB0071AE01 /* InputButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCB9332B7C5ADB0071AE01 /* InputButton.swift */; };
@@ -86,6 +87,7 @@
 		28DBB1602B7903D000743575 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		28DBB1632B79046D00743575 /* SymbolRepresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymbolRepresentation.swift; sourceTree = "<group>"; };
 		28DBB1672B7904B200743575 /* MainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController.swift; sourceTree = "<group>"; };
+		28F8D3B92BA6B64B006E18AA /* ActivatedControllerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivatedControllerCell.swift; sourceTree = "<group>"; };
 		28FCB92B2B7C2EBF0071AE01 /* RotationTypeMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationTypeMenuItems.swift; sourceTree = "<group>"; };
 		28FCB9332B7C5ADB0071AE01 /* InputButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputButton.swift; sourceTree = "<group>"; };
 		28FCB9352B7DA21C0071AE01 /* IconChooserWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconChooserWindow.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			children = (
 				28FCB9332B7C5ADB0071AE01 /* InputButton.swift */,
 				2822407B2B7EEBDD00F73DF4 /* EditableTextField.swift */,
+				28F8D3B92BA6B64B006E18AA /* ActivatedControllerCell.swift */,
 			);
 			path = Widgets;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				28D9F46A2B79EC5600494B7E /* SFSymbol+Extension.swift in Sources */,
 				28D9F4662B79EC0D00494B7E /* NSSwitch+Extension.swift in Sources */,
 				2822C3D62B75C443000D5C58 /* Defaults.swift in Sources */,
+				28F8D3BA2BA6B64B006E18AA /* ActivatedControllerCell.swift in Sources */,
 				28D9F4772B7A12D500494B7E /* ObservationTrackingStream.swift in Sources */,
 				2822C3DA2B75DB8C000D5C58 /* BrightnessController.swift in Sources */,
 				C882FA2D26F143E300595EE1 /* StatusBarController.swift in Sources */,

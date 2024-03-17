@@ -54,6 +54,12 @@ class ControllersViewController: NSViewController {
     
     // MARK: - Interactives
     
+    @IBOutlet weak var scrollViewActivatedControllers: NSScrollView!
+    
+    @IBOutlet weak var tableViewActivatedControllers: NSTableView!
+    
+    
+    
     @IBOutlet weak var segmentedControlCollapsed: NSSegmentedControl!
     
     @IBOutlet weak var segmentedControlExpanded: NSSegmentedControl!
@@ -146,10 +152,6 @@ class ControllersViewController: NSViewController {
     
     
     
-    private var modifiersMenuManagers: [ModifiersOptionItem.ActionTarget: MenuManager] = [:]
-    
-    
-    
     private var segmentCollapsed: Segment = .dialing
     
     private var segmentExpanded: Segment = .shortcuts
@@ -238,18 +240,17 @@ extension ControllersViewController {
         
         Task { @MainActor in
             for await _ in Defaults.updates([.selectedControllerID, .shortcutsControllerSettings]) {
-                refreshControllersMenuManager()
                 updateSelectedController(Controllers.selectedController)
             }
         }
         
         Task { @MainActor in
             for await _ in Defaults.updates([.currentControllerID, .activatedControllerIDs]) {
-                refreshControllersMenuManager()
+                updateActivatedControllers(Controllers.activatedControllers)
             }
         }
         
-        updateSelectedController(Controllers.selectedController)
+        tableViewActivatedControllers.rowHeight = 42
     }
     
 }
@@ -286,6 +287,36 @@ extension ControllersViewController {
             updateSegment(segmentCollapsed)
         }
     }
+    
+}
+
+extension ControllersViewController: NSTableViewDataSource, NSTableViewDelegate {
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        Controllers.activatedControllers.count
+    }
+    
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        guard let tableColumn = tableColumn else { return nil }
+        
+        if
+            tableColumn.identifier == .activatedControllersColumn,
+            let cell = tableView.makeView(withIdentifier: .activatedControllersColumn, owner: self) as? ActivatedControllerCell
+        {
+            let controller = Controllers.activatedControllers[row]
+            cell.set(controller)
+            
+            return cell
+        }
+        
+        return nil
+    }
+    
+}
+
+extension NSUserInterfaceItemIdentifier {
+    
+    static let activatedControllersColumn = NSUserInterfaceItemIdentifier("ActivatedControllersColumn")
     
 }
 
@@ -468,6 +499,10 @@ extension ControllersViewController {
             
             toggleViewVisibilityWithTransition(viewOptions, isHidden: false)
         }
+    }
+    
+    func updateActivatedControllers(_ controllers: [Controller]) {
+        refreshControllersMenuManager()
     }
     
     func updateSelectedController(_ controller: Controller) {

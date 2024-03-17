@@ -1080,6 +1080,18 @@
           }
         }
       }
+    },
+    "Table/Subtitle/Default" : {
+      "comment" : "default controller subtitle",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Default"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
