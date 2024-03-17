@@ -26,6 +26,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
         Task { @MainActor in
             for await _ in Defaults.updates(.currentControllerID) {
                 updateIcon(AppDelegate.shared?.dial.device.connectionStatus ?? .disconnected)
+                refreshMenuManager()
             }
         }
         
@@ -43,7 +44,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
     }
     
     func refreshMenuManager() {
-        self.menuManager = .init(delegate: self) {
+        menuManager = .init(delegate: self) {
             menuItems = .init(delegate: self)
             
             var items: [MenuManager.MenuItemGroup] = []
@@ -71,6 +72,8 @@ class StatusBarController: NSObject, NSMenuDelegate {
             
             return items
         }
+        
+        statusItem.menu = menuManager!.menu
     }
     
     func menuDidClose(_ menu: NSMenu) {
@@ -121,7 +124,6 @@ extension StatusBarController {
             }
         } else {
             refreshMenuManager()
-            statusItem.menu = menuManager!.menu
             statusItem.button?.performClick(nil)
         }
     }

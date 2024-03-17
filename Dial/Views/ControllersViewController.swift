@@ -14,6 +14,12 @@ class ControllersViewController: NSViewController {
     
     // MARK: - Views
     
+    @IBOutlet weak var viewHeader: NSStackView!
+    
+    @IBOutlet weak var viewSegmentedControllers: NSStackView!
+    
+    @IBOutlet weak var viewSettings: NSStackView!
+    
     @IBOutlet weak var viewDefaultControllerLabels: NSStackView!
     
     @IBOutlet weak var viewControllerName: NSStackView!
@@ -40,9 +46,9 @@ class ControllersViewController: NSViewController {
     
     // MARK: - Interactives
     
-    @IBOutlet weak var segmentedControlDialingPressingAdvanced: NSSegmentedControl!
+    @IBOutlet weak var segmentedControlCollapsed: NSSegmentedControl!
     
-    @IBOutlet weak var segmentedControlShortcutsAdvanced: NSSegmentedControl!
+    @IBOutlet weak var segmentedControlExpanded: NSSegmentedControl!
     
     
     
@@ -168,6 +174,18 @@ class ControllersViewController: NSViewController {
         
     }
     
+    private var enabledSegmentedControl: EnabledSegmentedControl = .collapsed
+    
+    enum EnabledSegmentedControl {
+        
+        case collapsed
+        
+        case expanded
+        
+        case none
+        
+    }
+    
     
     
     private var iconChooserPopover: NSPopover = .init()
@@ -180,9 +198,6 @@ extension ControllersViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        defaultControllerMenuItems = .init(delegate: self, source: .default)
-        shortcutsControllerMenuItems = .init(delegate: self, source: .shortcuts)
         
         rotationTypeMenuItems = .init(delegate: self)
         
@@ -207,6 +222,12 @@ extension ControllersViewController {
     }
     
     func initDescriptives() {
+        segmentedControlCollapsed.selectedSegment = 0
+        segmentedControlExpanded.selectedSegment = 0
+        
+        updateEnabledSegmentedControl(.collapsed)
+        updateSegment(.dialing)
+        
         labelRotationType.stringValue = Localization.Controllers.Advanced.rotationType.localizedName
         labelHaptics.stringValue = Localization.Controllers.Advanced.haptics.localizedName
         labelPhysicalDirection.stringValue = Localization.Controllers.Advanced.physicalDirection.localizedName
@@ -228,7 +249,12 @@ extension ControllersViewController {
         }
     }
     
-    func initInteractives() {   
+    func initInteractives() {
+        refreshControllersMenuManager()
+        popUpButtonControllerSelector.select(popUpButtonControllerSelector.menu!.items.first {
+            ($0 as? ControllerOptionItem)?.option.id == Controllers.selectedController.id
+        })
+        
         iconChooserViewController.chooseIconHandler = self
         
         rotationTypeMenuManager = .init(delegate: self) { [MenuManager.groupItems(rotationTypeMenuItems!.rotationTypeOptions)] }
@@ -236,6 +262,12 @@ extension ControllersViewController {
         
         for actionTarget in ModifiersOptionItem.ActionTarget.allCases {
             modifiersMenuManagers[actionTarget] = .init(delegate: self) { [MenuManager.groupItems(modifiersMenuItemsArray[actionTarget]!.modifierOptions)] }
+        }
+        
+        Task { @MainActor in
+            for await _ in Defaults.updates([.currentControllerID, .activatedControllerIDs]) {
+                refreshControllersMenuManager()
+            }
         }
         
 //        popUpButtonShortcuts1Modifiers1.menu = modifiersMenuManagers[.rotateClockwise]?.menu
@@ -246,6 +278,14 @@ extension ControllersViewController {
 //        
 //        popUpButtonShortcuts3Modifiers1.menu = modifiersMenuManagers[.clickSingle]?.menu
 //        popUpButtonShortcuts3Modifiers2.menu = modifiersMenuManagers[.clickDouble]?.menu
+    }
+    
+}
+
+extension ControllersViewController {
+    
+    override func viewDidLayout() {
+        let height = view.bounds.height
     }
     
 }
@@ -267,6 +307,9 @@ extension ControllersViewController: NSMenuDelegate {
     
     func refreshControllersMenuManager() {
         controllersMenuManager = .init(delegate: self) {
+            defaultControllerMenuItems = .init(delegate: self, source: .default)
+            shortcutsControllerMenuItems = .init(delegate: self, source: .shortcuts)
+            
             var items: [MenuManager.MenuItemGroup] = []
             
             items.append(MenuManager.groupItems(
@@ -289,6 +332,8 @@ extension ControllersViewController: NSMenuDelegate {
             
             return items
         }
+        
+        popUpButtonControllerSelector.menu = controllersMenuManager?.menu
     }
     
 }
@@ -301,23 +346,114 @@ extension ControllersViewController: NSPopoverDelegate {
 
 extension ControllersViewController {
     
-    func updateSegment(_ segment: Segment) {
-        self.segmentExpanded = segment
-
-//        switch segment {
-//        case .shortcuts:
-//            viewShortcuts1.isHidden = false
-//            viewShortcuts2.isHidden = false
-//            viewShortcuts3.isHidden = false
-//            viewOptions1.isHidden = true
-//            viewOptions2.isHidden = true
-//        case .advanced:
-//            viewShortcuts1.isHidden = true
-//            viewShortcuts2.isHidden = true
-//            viewShortcuts3.isHidden = true
-//            viewOptions1.isHidden = false
-//            viewOptions2.isHidden = false
-//        }
+    func updateEnabledSegmentedControl(_ enabledSegmentedControl: EnabledSegmentedControl) {
+        self.enabledSegmentedControl = enabledSegmentedControl
+        
+        switch enabledSegmentedControl {
+        case .collapsed:
+            segmentedControlCollapsed.isHidden = false
+            segmentedControlExpanded.isHidden = true
+        case .expanded:
+            segmentedControlCollapsed.isHidden = true
+            segmentedControlExpanded.isHidden = false
+        case .none:
+            segmentedControlCollapsed.isHidden = true
+            segmentedControlExpanded.isHidden = true
+        }
+    }
+    
+    func updateSegment(_ segment: Segment?) {
+        if let segment {
+            switch segment {
+            case .dialing:
+                viewShortcuts1_1.isHidden = false
+                viewShortcuts1_2.isHidden = false
+                
+                separatorShortcuts1Shortcuts2.isHidden = false
+                
+                viewShortcuts2_1.isHidden = false
+                viewShortcuts2_2.isHidden = false
+                
+                separatorShortcuts2Shortcuts3.isHidden = true
+                
+                viewShortcuts3_1.isHidden = true
+                viewShortcuts3_2.isHidden = true
+                
+                separatorShortcuts3Options.isHidden = true
+                
+                viewOptions.isHidden = true
+            case .pressing:
+                viewShortcuts1_1.isHidden = true
+                viewShortcuts1_2.isHidden = true
+                
+                separatorShortcuts1Shortcuts2.isHidden = true
+                
+                viewShortcuts2_1.isHidden = false
+                viewShortcuts2_2.isHidden = false
+                
+                separatorShortcuts2Shortcuts3.isHidden = false
+                
+                viewShortcuts3_1.isHidden = false
+                viewShortcuts3_2.isHidden = false
+                
+                separatorShortcuts3Options.isHidden = true
+                
+                viewOptions.isHidden = true
+            case .shortcuts:
+                viewShortcuts1_1.isHidden = false
+                viewShortcuts1_2.isHidden = false
+                
+                separatorShortcuts1Shortcuts2.isHidden = false
+                
+                viewShortcuts2_1.isHidden = false
+                viewShortcuts2_2.isHidden = false
+                
+                separatorShortcuts2Shortcuts3.isHidden = false
+                
+                viewShortcuts3_1.isHidden = false
+                viewShortcuts3_2.isHidden = false
+                
+                separatorShortcuts3Options.isHidden = true
+                
+                viewOptions.isHidden = true
+            case .advanced:
+                viewShortcuts1_1.isHidden = true
+                viewShortcuts1_2.isHidden = true
+                
+                separatorShortcuts1Shortcuts2.isHidden = true
+                
+                viewShortcuts2_1.isHidden = true
+                viewShortcuts2_2.isHidden = true
+                
+                separatorShortcuts2Shortcuts3.isHidden = true
+                
+                viewShortcuts3_1.isHidden = true
+                viewShortcuts3_2.isHidden = true
+                
+                separatorShortcuts3Options.isHidden = true
+                
+                viewOptions.isHidden = false
+            }
+        } else {
+            // Shows all
+            
+            viewShortcuts1_1.isHidden = false
+            viewShortcuts1_2.isHidden = false
+            
+            separatorShortcuts1Shortcuts2.isHidden = false
+            
+            viewShortcuts2_1.isHidden = false
+            viewShortcuts2_2.isHidden = false
+            
+            separatorShortcuts2Shortcuts3.isHidden = false
+            
+            viewShortcuts3_1.isHidden = false
+            viewShortcuts3_2.isHidden = false
+            
+            separatorShortcuts3Options.isHidden = false
+            
+            viewOptions.isHidden = false
+        }
     }
     
 }
@@ -349,7 +485,7 @@ extension ControllersViewController: DialControllerMenuDelegate {
 //            viewOptions1.isHidden = true
 //            viewOptions2.isHidden = true
             
-            segmentedControlShortcutsAdvanced.isHidden = true
+            segmentedControlExpanded.isHidden = true
             
 //            buttonDeleteController.isEnabled = false
 //            buttonAddController.isEnabled = true
@@ -365,7 +501,7 @@ extension ControllersViewController: DialControllerMenuDelegate {
             
             updateSegment(self.segmentExpanded)
             
-            segmentedControlShortcutsAdvanced.isHidden = false
+            segmentedControlExpanded.isHidden = false
             
 //            buttonDeleteController.isEnabled = true
 //            buttonAddController.isEnabled = true
@@ -405,7 +541,6 @@ extension ControllersViewController: DialControllerMenuDelegate {
         }
         
         refreshControllersMenuManager()
-        popUpButtonControllerSelector.menu = controllersMenuManager?.menu
         
         for (index, item) in popUpButtonControllerSelector.itemArray.enumerated() {
             if
@@ -450,8 +585,17 @@ extension ControllersViewController {
     
     // MARK: - Leading controls
     
-    @IBAction func switchSegment(_ sender: NSSegmentedControl) {
-        if let nextSegment = Segment(rawValue: sender.indexOfSelectedItem) {
+    @IBAction func switchCollapsedSegment(_ sender: NSSegmentedControl) {
+        let index = sender.indexOfSelectedItem
+        if index == 2 {
+            updateSegment(.advanced)
+        } else if let nextSegment = Segment(rawValue: index) {
+            updateSegment(nextSegment)
+        }
+    }
+    
+    @IBAction func switchExpandedSegment(_ sender: NSSegmentedControl) {
+        if let nextSegment = Segment(rawValue: sender.indexOfSelectedItem + 2) {
             updateSegment(nextSegment)
         }
     }

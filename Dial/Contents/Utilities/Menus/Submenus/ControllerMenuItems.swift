@@ -53,8 +53,14 @@ struct ControllerMenuItems {
     
     let source: ControllersSource
     
-    var controllers: [ControllerOptionItem] {
-        source.fetch.enumerated().map {
+    init(
+        delegate: DialControllerMenuDelegate,
+        source: ControllersSource
+    ) {
+        self.delegate = delegate
+        self.source = source
+        
+        self.controllers = source.fetch.enumerated().map {
             let controller = $0.element
             let index = $0.offset
             let item = ControllerOptionItem(controller.name, option: controller)
@@ -68,43 +74,34 @@ struct ControllerMenuItems {
                 item.keyEquivalentModifierMask = source.modifiers
             }
             
-            Task { @MainActor in
-                for await _ in Defaults.updates(.shortcutsControllerSettings) {
-                    if let shortcutsController = item.option as? ShortcutsController {
-                        for controller in Controllers.shortcutsControllers {
-                            if controller.id == shortcutsController.id {
-                                item.image = controller.representingSymbol.image
-                                item.title = controller.name
-                            }
-                        }
+            if let shortcutsController = item.option as? ShortcutsController {
+                for controller in Controllers.shortcutsControllers {
+                    if controller.id == shortcutsController.id {
+                        item.image = controller.representingSymbol.image
+                        item.title = controller.name
                     }
                 }
             }
             
             if (source == .activated) {
-                Task { @MainActor in
-                    for await value in Defaults.updates(.currentControllerID) {
-                        item.flag = item.option.id == value
-                    }
-                }
+                item.flag = item.option.id == Controllers.currentController.id
             } else {
-                Task { @MainActor in
-                    for await _ in Defaults.updates([
-                        .selectedControllerID,
-                        .activatedControllerIDs
-                    ]) {let activated = Controllers.activatedControllers.contains(where: { $0.id == item.option.id })
-                        
-                        if item.option.id == Controllers.selectedController.id {
-                            item.state = .on
-                        } else {
-                            item.state = activated ? .mixed : .off
-                        }
-                    }
+                let activated = Controllers.activatedControllers.contains(where: { $0.id == item.option.id })
+                
+                item.mixedStateImage =
+                item.option.id == Controllers.currentController.id ? NSImage(systemSymbol: .arrowRight) : NSImage(named: NSImage.menuMixedStateTemplateName)
+                
+                if item.option.id == Controllers.selectedController.id {
+                    item.state = .on
+                } else {
+                    item.state = activated ? .mixed : .off
                 }
             }
             
             return item
         }
     }
+    
+    var controllers: [ControllerOptionItem]
     
 }
