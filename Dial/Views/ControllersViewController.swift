@@ -260,7 +260,7 @@ extension ControllersViewController {
         let headerSpacing = 8.0
         let bodySpacing = 20.0
         let settingsSpacing = 20.0
-        let gap = 32.0
+        let gap = 34.0
         
         let currentHeight = panelRight.bounds.height
         let availableHeight = currentHeight - gap
@@ -345,16 +345,33 @@ extension ControllersViewController: NSPopoverDelegate {
 
 extension ControllersViewController {
     
+    func runFastAnimation(_ execute: () -> Void) {
+        NSAnimationContext.runAnimationGroup { context in
+            context.duration = 0.2
+            context.allowsImplicitAnimation = true
+            
+            execute()
+        }
+    }
+    
+    func toggleViewVisibilityWithTransition(_ view: NSView, isHidden: Bool) {
+        guard view.isHidden != isHidden else { return }
+        runFastAnimation {
+            view.isHidden = isHidden
+            view.animator().alphaValue = isHidden ? 0 : 1
+        }
+    }
+    
     func updateEnabledSegmentedControl(_ enabledSegmentedControl: EnabledSegmentedControl) {
         self.enabledSegmentedControl = enabledSegmentedControl
         
         switch enabledSegmentedControl {
         case .collapsed:
-            segmentedControlCollapsed.isHidden = false
-            segmentedControlExpanded.isHidden = true
+            toggleViewVisibilityWithTransition(segmentedControlCollapsed, isHidden: false)
+            toggleViewVisibilityWithTransition(segmentedControlExpanded, isHidden: true)
         case .expanded:
-            segmentedControlCollapsed.isHidden = true
-            segmentedControlExpanded.isHidden = false
+            toggleViewVisibilityWithTransition(segmentedControlCollapsed, isHidden: true)
+            toggleViewVisibilityWithTransition(segmentedControlExpanded, isHidden: false)
         case .none:
             segmentedControlCollapsed.isHidden = true
             segmentedControlExpanded.isHidden = true
@@ -365,20 +382,29 @@ extension ControllersViewController {
         if let segment {
             switch segment {
             case .dialing:
-                viewShortcuts1_1.isHidden = false
-                viewShortcuts1_2.isHidden = false
+                toggleViewVisibilityWithTransition(viewShortcuts1_1, isHidden: false)
+                toggleViewVisibilityWithTransition(viewShortcuts1_2, isHidden: false)
+//                viewShortcuts1_1.isHidden = false
+//                viewShortcuts1_2.isHidden = false
                 
-                separatorShortcuts1Shortcuts2.isHidden = false
+                toggleViewVisibilityWithTransition(separatorShortcuts1Shortcuts2, isHidden: false)
+//                separatorShortcuts1Shortcuts2.isHidden = false
                 
-                viewShortcuts2_1.isHidden = false
-                viewShortcuts2_2.isHidden = false
+                toggleViewVisibilityWithTransition(viewShortcuts2_1, isHidden: false)
+                toggleViewVisibilityWithTransition(viewShortcuts2_2, isHidden: false)
+//                viewShortcuts2_1.isHidden = false
+//                viewShortcuts2_2.isHidden = false
                 
-                separatorShortcuts2Shortcuts3.isHidden = true
+                toggleViewVisibilityWithTransition(separatorShortcuts2Shortcuts3, isHidden: true)
+//                separatorShortcuts2Shortcuts3.isHidden = true
                 
-                viewShortcuts3_1.isHidden = true
-                viewShortcuts3_2.isHidden = true
+                toggleViewVisibilityWithTransition(viewShortcuts3_1, isHidden: true)
+                toggleViewVisibilityWithTransition(viewShortcuts3_2, isHidden: true)
+//                viewShortcuts3_1.isHidden = true
+//                viewShortcuts3_2.isHidden = true
                 
-                separatorShortcuts3Options.isHidden = true
+                toggleViewVisibilityWithTransition(separatorShortcuts3Options, isHidden: true)
+//                separatorShortcuts3Options.isHidden = true
                 
                 viewOptions.isHidden = true
             case .pressing:
