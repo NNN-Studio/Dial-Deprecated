@@ -186,6 +186,20 @@ class ControllersViewController: NSViewController {
     
     private var iconChooserViewController = IconChooserViewController()
     
+    
+    
+    private lazy var activatedControllersDataSource: NSTableViewDiffableDataSource<String, ControllerID> = .init(tableView: tableViewActivatedControllers) { (tableView, cell, row, item) -> NSView in
+        guard
+            let cell = tableView.makeView(withIdentifier: .activatedControllersColumn, owner: self) as? ActivatedControllerCell,
+            let controller = Controllers.fetch(item)
+        else { return .init() }
+        
+        cell.set(controller)
+        return cell
+    }
+    
+    private let activatedControllersSection = "ActivatedControllersSection"
+    
 }
 
 extension ControllersViewController {
@@ -245,18 +259,18 @@ extension ControllersViewController {
         }
         
         Task { @MainActor in
-            for await _ in Defaults.updates(.currentControllerID) {
-                updateActivatedControllers(Controllers.activatedControllers)
-            }
-        }
-        
-        Task { @MainActor in
-            for await _ in Defaults.updates(.activatedControllerIDs) {
+            for await _ in Defaults.updates([.currentControllerID, .activatedControllerIDs]) {
                 updateActivatedControllers(Controllers.activatedControllers)
             }
         }
         
         tableViewActivatedControllers.rowHeight = 42
+        tableViewActivatedControllers.dataSource = activatedControllersDataSource
+        
+        var snapshot = NSDiffableDataSourceSnapshot<String, ControllerID>()
+        snapshot.appendSections([activatedControllersSection])
+        snapshot.appendItems(Defaults[.activatedControllerIDs], toSection: activatedControllersSection)
+        activatedControllersDataSource.apply(snapshot, animatingDifferences: false)
     }
     
 }
@@ -504,6 +518,8 @@ extension ControllersViewController {
         }
         
         updateSettings(controller)
+        
+        tableViewActivatedControllers.reloadData()
     }
     
     func updateSettings(_ controller: Controller) {
