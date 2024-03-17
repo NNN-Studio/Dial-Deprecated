@@ -245,8 +245,15 @@ extension ControllersViewController {
         }
         
         Task { @MainActor in
-            for await _ in Defaults.updates([.currentControllerID, .activatedControllerIDs]) {
+            for await _ in Defaults.updates(.currentControllerID) {
                 updateActivatedControllers(Controllers.activatedControllers)
+            }
+        }
+        
+        Task { @MainActor in
+            for await _ in Defaults.updates(.activatedControllerIDs) {
+                updateActivatedControllers(Controllers.activatedControllers)
+                tableViewActivatedControllers.noteNumberOfRowsChanged()
             }
         }
         

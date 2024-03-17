@@ -166,10 +166,7 @@ struct Controllers {
         
         if let index = shortcutsControllers.firstIndex(of: shortcutsController) {
             shortcutsControllers.remove(at: index)
-        }
-        
-        if let index = activatedControllers.firstIndex(where: { $0.id == shortcutsController.id }) {
-            activatedControllers.remove(at: index)
+            activatedControllers = activatedControllers // Trigger refresh
         }
         
         if shortcutsController.id == currentController.id {
