@@ -10,6 +10,12 @@ import AppKit
 import Defaults
 import SFSafeSymbols
 
+extension NSUserInterfaceItemIdentifier {
+    
+    static let activatedControllersColumn = NSUserInterfaceItemIdentifier("ActivatedControllersColumn")
+    
+}
+
 class ControllersViewController: NSViewController {
     
     // MARK: - Views
@@ -310,12 +316,6 @@ extension ControllersViewController {
     
 }
 
-extension NSUserInterfaceItemIdentifier {
-    
-    static let activatedControllersColumn = NSUserInterfaceItemIdentifier("ActivatedControllersColumn")
-    
-}
-
 extension ControllersViewController: ChooseIconHandler {
     
     func chooseIcon(_ icon: SFSymbol) {
@@ -387,6 +387,17 @@ extension ControllersViewController {
             view.isHidden = isHidden
             view.animator().alphaValue = isHidden ? 0 : 1
         }
+    }
+    
+    func onDataSourceSnapshot<S, I>(
+        _ dataSource: NSTableViewDiffableDataSource<S, I>,
+        snapshotOperation: (inout NSDiffableDataSourceSnapshot<S, I>) -> Void,
+        animatingDifferences: Bool = true,
+        completion: (() -> Void)? = nil
+    ) {
+        var snapshot = dataSource.snapshot()
+        snapshotOperation(&snapshot)
+        dataSource.apply(snapshot, animatingDifferences: animatingDifferences, completion: completion)
     }
     
     func updateEnabledSegmentedControl(_ enabledSegmentedControl: EnabledSegmentedControl) {
@@ -665,9 +676,19 @@ extension ControllersViewController {
     }
     
     @IBAction func toggleController(_ sender: NSSwitch) {
+        // Set activated or not
+        
         let activated = sender.flag
         let controller = Controllers.selectedController
         Controllers.toggle(activated, controller: controller)
+        
+        onDataSourceSnapshot(activatedControllersDataSource) { snapshot in
+            if activated {
+                snapshot.appendItems([controller.id], toSection: activatedControllersSection)
+            } else {
+                snapshot.deleteItems([controller.id])
+            }
+        }
     }
     
     @IBAction func addOrDeleteController(_ sender: NSSegmentedControl) {
@@ -698,6 +719,10 @@ extension ControllersViewController {
             } else {
                 Controllers.selectedController = Controllers.defaultControllers.last!
             }
+            
+            onDataSourceSnapshot(activatedControllersDataSource) { snapshot in
+                snapshot.deleteItems([selectedController.id])
+            }
         } else if index == 1 {
             // Add
             
@@ -705,6 +730,10 @@ extension ControllersViewController {
             
             Controllers.selectedController = controller
             Controllers.toggle(true, controller: controller)
+            
+            onDataSourceSnapshot(activatedControllersDataSource) { snapshot in
+                snapshot.appendItems([controller.id], toSection: activatedControllersSection)
+            }
         }
     }
     
