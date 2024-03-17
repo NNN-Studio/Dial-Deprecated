@@ -19,7 +19,6 @@ class ActivatedControllerCell: NSTableCellView {
     @IBOutlet weak var buttonRemove: NSButton!
     
     func set(_ controller: Controller) {
-        print(controller.name)
         labelName.stringValue = controller.name
         
         if controller.isDefaultController {

@@ -62,7 +62,7 @@ class ControllersViewController: NSViewController {
     
     @IBOutlet weak var scrollViewActivatedControllers: NSScrollView!
     
-    @IBOutlet weak var tableViewActivatedControllers: NSTableView!
+    @IBOutlet weak var tableViewActivatedControllers: ActivatedControllersTableView!
     
     
     
@@ -194,7 +194,7 @@ class ControllersViewController: NSViewController {
     
     
     
-    private lazy var activatedControllersDataSource: NSTableViewDiffableDataSource<String, ControllerID> = .init(tableView: tableViewActivatedControllers) { (tableView, cell, row, item) -> NSView in
+    private lazy var activatedControllersDataSource: ActivatedControllersDataSource = .init(tableView: tableViewActivatedControllers) { (tableView, cell, row, item) -> NSView in
         guard
             let cell = tableView.makeView(withIdentifier: .activatedControllersColumn, owner: self) as? ActivatedControllerCell,
             let controller = Controllers.fetch(item)
@@ -272,6 +272,7 @@ extension ControllersViewController {
         
         tableViewActivatedControllers.rowHeight = 42
         tableViewActivatedControllers.dataSource = activatedControllersDataSource
+        tableViewActivatedControllers.registerForDraggedTypes([ControllerID.pasteboardType])
         
         var snapshot = NSDiffableDataSourceSnapshot<String, ControllerID>()
         snapshot.appendSections([activatedControllersSection])

@@ -42,6 +42,8 @@ enum ControllerID: Codable, Equatable, Defaults.Serializable, Hashable {
     
     case `default`(Default)
     
+    public static let pasteboardType = NSPasteboard.PasteboardType("dial.controllerid")
+    
 }
 
 protocol Controller: AnyObject, SymbolRepresentable {
