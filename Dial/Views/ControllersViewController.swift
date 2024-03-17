@@ -384,27 +384,18 @@ extension ControllersViewController {
             case .dialing:
                 toggleViewVisibilityWithTransition(viewShortcuts1_1, isHidden: false)
                 toggleViewVisibilityWithTransition(viewShortcuts1_2, isHidden: false)
-//                viewShortcuts1_1.isHidden = false
-//                viewShortcuts1_2.isHidden = false
                 
                 toggleViewVisibilityWithTransition(separatorShortcuts1Shortcuts2, isHidden: false)
-//                separatorShortcuts1Shortcuts2.isHidden = false
                 
                 toggleViewVisibilityWithTransition(viewShortcuts2_1, isHidden: false)
                 toggleViewVisibilityWithTransition(viewShortcuts2_2, isHidden: false)
-//                viewShortcuts2_1.isHidden = false
-//                viewShortcuts2_2.isHidden = false
                 
-                toggleViewVisibilityWithTransition(separatorShortcuts2Shortcuts3, isHidden: true)
-//                separatorShortcuts2Shortcuts3.isHidden = true
+                separatorShortcuts2Shortcuts3.isHidden = true
                 
-                toggleViewVisibilityWithTransition(viewShortcuts3_1, isHidden: true)
-                toggleViewVisibilityWithTransition(viewShortcuts3_2, isHidden: true)
-//                viewShortcuts3_1.isHidden = true
-//                viewShortcuts3_2.isHidden = true
+                viewShortcuts3_1.isHidden = true
+                viewShortcuts3_2.isHidden = true
                 
-                toggleViewVisibilityWithTransition(separatorShortcuts3Options, isHidden: true)
-//                separatorShortcuts3Options.isHidden = true
+                separatorShortcuts3Options.isHidden = true
                 
                 viewOptions.isHidden = true
             case .pressing:
@@ -413,30 +404,30 @@ extension ControllersViewController {
                 
                 separatorShortcuts1Shortcuts2.isHidden = true
                 
-                viewShortcuts2_1.isHidden = false
-                viewShortcuts2_2.isHidden = false
+                toggleViewVisibilityWithTransition(viewShortcuts2_1, isHidden: false)
+                toggleViewVisibilityWithTransition(viewShortcuts2_2, isHidden: false)
                 
-                separatorShortcuts2Shortcuts3.isHidden = false
+                toggleViewVisibilityWithTransition(separatorShortcuts2Shortcuts3, isHidden: false)
                 
-                viewShortcuts3_1.isHidden = false
-                viewShortcuts3_2.isHidden = false
+                toggleViewVisibilityWithTransition(viewShortcuts3_1, isHidden: false)
+                toggleViewVisibilityWithTransition(viewShortcuts3_2, isHidden: false)
                 
                 separatorShortcuts3Options.isHidden = true
                 
                 viewOptions.isHidden = true
             case .shortcuts:
-                viewShortcuts1_1.isHidden = false
-                viewShortcuts1_2.isHidden = false
+                toggleViewVisibilityWithTransition(viewShortcuts1_1, isHidden: false)
+                toggleViewVisibilityWithTransition(viewShortcuts1_2, isHidden: false)
                 
-                separatorShortcuts1Shortcuts2.isHidden = false
+                toggleViewVisibilityWithTransition(separatorShortcuts1Shortcuts2, isHidden: false)
                 
-                viewShortcuts2_1.isHidden = false
-                viewShortcuts2_2.isHidden = false
+                toggleViewVisibilityWithTransition(viewShortcuts2_1, isHidden: false)
+                toggleViewVisibilityWithTransition(viewShortcuts2_2, isHidden: false)
                 
-                separatorShortcuts2Shortcuts3.isHidden = false
+                toggleViewVisibilityWithTransition(separatorShortcuts2Shortcuts3, isHidden: false)
                 
-                viewShortcuts3_1.isHidden = false
-                viewShortcuts3_2.isHidden = false
+                toggleViewVisibilityWithTransition(viewShortcuts3_1, isHidden: false)
+                toggleViewVisibilityWithTransition(viewShortcuts3_2, isHidden: false)
                 
                 separatorShortcuts3Options.isHidden = true
                 
@@ -457,27 +448,25 @@ extension ControllersViewController {
                 
                 separatorShortcuts3Options.isHidden = true
                 
-                viewOptions.isHidden = false
+                toggleViewVisibilityWithTransition(viewOptions, isHidden: false)
             }
         } else {
             // Shows all
             
-            viewShortcuts1_1.isHidden = false
-            viewShortcuts1_2.isHidden = false
+            toggleViewVisibilityWithTransition(viewShortcuts1_1, isHidden: false)
+            toggleViewVisibilityWithTransition(viewShortcuts1_2, isHidden: false)
             
-            separatorShortcuts1Shortcuts2.isHidden = false
+            toggleViewVisibilityWithTransition(separatorShortcuts1Shortcuts2, isHidden: false)
             
-            viewShortcuts2_1.isHidden = false
-            viewShortcuts2_2.isHidden = false
+            toggleViewVisibilityWithTransition(viewShortcuts2_1, isHidden: false)
+            toggleViewVisibilityWithTransition(viewShortcuts2_2, isHidden: false)
             
-            separatorShortcuts2Shortcuts3.isHidden = false
+            toggleViewVisibilityWithTransition(separatorShortcuts2Shortcuts3, isHidden: false)
             
-            viewShortcuts3_1.isHidden = false
-            viewShortcuts3_2.isHidden = false
+            toggleViewVisibilityWithTransition(viewShortcuts3_1, isHidden: false)
+            toggleViewVisibilityWithTransition(viewShortcuts3_2, isHidden: false)
             
-            separatorShortcuts3Options.isHidden = false
-            
-            viewOptions.isHidden = false
+            toggleViewVisibilityWithTransition(viewOptions, isHidden: false)
         }
     }
     
