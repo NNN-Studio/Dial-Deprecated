@@ -14,15 +14,21 @@ class ControllersViewController: NSViewController {
     
     // MARK: - Views
     
+    @IBOutlet weak var viewSettings: NSStackView!
+    
     @IBOutlet weak var viewHeader: NSStackView!
     
-    @IBOutlet weak var viewSegmentedControllers: NSStackView!
+    @IBOutlet weak var viewBody: NSStackView!
     
-    @IBOutlet weak var viewSettings: NSStackView!
+    
+    
+    @IBOutlet weak var viewControllerName: NSStackView!
+    
+    @IBOutlet weak var viewSegmentedControls: NSStackView!
     
     @IBOutlet weak var viewDefaultControllerLabels: NSStackView!
     
-    @IBOutlet weak var viewControllerName: NSStackView!
+    
     
     @IBOutlet weak var viewShortcuts1_1: NSStackView!
     
@@ -250,11 +256,6 @@ extension ControllersViewController {
     }
     
     func initInteractives() {
-        refreshControllersMenuManager()
-        popUpButtonControllerSelector.select(popUpButtonControllerSelector.menu!.items.first {
-            ($0 as? ControllerOptionItem)?.option.id == Controllers.selectedController.id
-        })
-        
         iconChooserViewController.chooseIconHandler = self
         
         rotationTypeMenuManager = .init(delegate: self) { [MenuManager.groupItems(rotationTypeMenuItems!.rotationTypeOptions)] }
@@ -265,10 +266,12 @@ extension ControllersViewController {
         }
         
         Task { @MainActor in
-            for await _ in Defaults.updates([.currentControllerID, .activatedControllerIDs]) {
+            for await _ in Defaults.updates([.currentControllerID, .selectedControllerID, .activatedControllerIDs, .shortcutsControllerSettings]) {
                 refreshControllersMenuManager()
             }
         }
+        
+        updateSelectedController(Controllers.selectedController)
         
 //        popUpButtonShortcuts1Modifiers1.menu = modifiersMenuManagers[.rotateClockwise]?.menu
 //        popUpButtonShortcuts1Modifiers2.menu = modifiersMenuManagers[.rotateCounterclockwise]?.menu
@@ -456,39 +459,23 @@ extension ControllersViewController {
         }
     }
     
-}
-
-extension ControllersViewController: DialControllerMenuDelegate {
-    
-    func setController(_ sender: Any?) {
-        guard let item = sender as? ControllerOptionItem else { return }
-                
-        let controller = item.option
-        Controllers.selectedController = controller
-        
-        let canDeactivate = Controllers.activatedControllers.count > 1
-        let canActivate = Controllers.activatedControllers.count < Defaults[.maxControllerCount]
-        
-        let activated = Controllers.activatedControllers.contains(where: { $0.id == controller.id })
-        switchControllerActivated.flag = activated
-        switchControllerActivated.isEnabled = (activated && canDeactivate) || (!activated && canActivate)
-        
+    func updateSettings(_ controller: Controller) {
         if let defaultController = controller as? DefaultController {
             labelDefaultControllerDescription.stringValue = defaultController.description
             
             viewDefaultControllerLabels.isHidden = false
             viewControllerName.isHidden = true
+            viewSegmentedControls.isHidden = true
+            viewBody.isHidden = true
             
-//            viewShortcuts1.isHidden = true
-//            viewShortcuts2.isHidden = true
-//            viewShortcuts3.isHidden = true
-//            viewOptions1.isHidden = true
-//            viewOptions2.isHidden = true
+            //            viewShortcuts1.isHidden = true
+            //            viewShortcuts2.isHidden = true
+            //            viewShortcuts3.isHidden = true
+            //            viewOptions1.isHidden = true
+            //            viewOptions2.isHidden = true
             
-            segmentedControlExpanded.isHidden = true
-            
-//            buttonDeleteController.isEnabled = false
-//            buttonAddController.isEnabled = true
+            //            buttonDeleteController.isEnabled = false
+            //            buttonAddController.isEnabled = true
             
             iconChooserViewController.setAll(false)
         }
@@ -498,13 +485,11 @@ extension ControllersViewController: DialControllerMenuDelegate {
             
             viewDefaultControllerLabels.isHidden = true
             viewControllerName.isHidden = false
+            viewSegmentedControls.isHidden = false
+            viewBody.isHidden = false
             
-            updateSegment(self.segmentExpanded)
-            
-            segmentedControlExpanded.isHidden = false
-            
-//            buttonDeleteController.isEnabled = true
-//            buttonAddController.isEnabled = true
+            //            buttonDeleteController.isEnabled = true
+            //            buttonAddController.isEnabled = true
             
             textFieldControllerName.stringValue = settings.name ?? ""
             
@@ -539,16 +524,38 @@ extension ControllersViewController: DialControllerMenuDelegate {
                 { popUpButtonRotationType.selectItem(at: index) }
             }
         }
+    }
+    
+}
+
+extension ControllersViewController: DialControllerMenuDelegate {
+    
+    func updateSelectedController(_ controller: Controller) {
+        let canDeactivate = Controllers.activatedControllers.count > 1
+        let canActivate = Controllers.activatedControllers.count < Defaults[.maxControllerCount]
+        
+        let activated = Controllers.activatedControllers.contains(where: { $0.id == controller.id })
+        switchControllerActivated.animator().flag = activated
+        switchControllerActivated.animator().isEnabled = (activated && canDeactivate) || (!activated && canActivate)
+        
+        updateSettings(controller)
         
         refreshControllersMenuManager()
-        
         for (index, item) in popUpButtonControllerSelector.itemArray.enumerated() {
             if
                 let controller = item.representedObject as? Controller,
                 controller.id == Controllers.selectedController.id
             { popUpButtonControllerSelector.selectItem(at: index) }
-            
         }
+    }
+    
+    func setController(_ sender: Any?) {
+        guard let item = sender as? ControllerOptionItem else { return }
+                
+        let controller = item.option
+        Controllers.selectedController = controller
+        
+        updateSelectedController(controller)
     }
     
 }
@@ -602,6 +609,14 @@ extension ControllersViewController {
     
     @IBAction func toggleController(_ sender: NSSwitch) {
         Controllers.toggle(sender.flag, controller: Controllers.selectedController)
+    }
+    
+    @IBAction func addOrDeleteController(_ sender: NSSegmentedControl) {
+        
+    }
+    
+    @IBAction func resetController(_ sender: NSSegmentedControl) {
+        
     }
     
     @IBAction func deleteController(_ sender: NSButton) {
