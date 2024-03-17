@@ -23,8 +23,8 @@
 - [X] Status bar button with menu
 - [X] Circular dialing plane
   - [X] Edge / corner auto absorb
-  - [ ] A better look with custom icons
-- [ ] Single preference window
+  - [X] A better look with custom icons
+- [X] Settings window
 
 ### Functions
 
@@ -33,8 +33,8 @@
   - [X] Playback
   - [X] Mission
   - [X] Luminance
-- [ ] Custom shortcut controllers
-  - [ ] Data storage
-  - [ ] Preference UI
-    - [ ] Named label
-    - [ ] SF icon chooser
+- [X] Custom shortcut controllers
+  - [X] Data storage
+  - [X] Preference UI
+    - [X] Named label
+    - [X] SF icon chooser
