@@ -1796,6 +1796,7 @@
                         <outlet property="labelPhysicalDirection" destination="qyD-uB-uvN" id="2cU-Gq-lPU"/>
                         <outlet property="labelRotationType" destination="8F6-Yp-c5m" id="QGL-Kz-I2N"/>
                         <outlet property="labelSerial" destination="kR1-hr-9AN" id="HxM-GI-4nw"/>
+                        <outlet property="panelRight" destination="yO6-xP-sZf" id="na6-Jz-K4R"/>
                         <outlet property="popUpButtonControllerSelector" destination="508-Ce-eih" id="L0u-1M-5gW"/>
                         <outlet property="popUpButtonRotationType" destination="40Y-g1-9KB" id="VeQ-Pi-W83"/>
                         <outlet property="segmentedControlAddOrDeleteController" destination="KxX-5j-OQg" id="ROn-Xg-G3Z"/>

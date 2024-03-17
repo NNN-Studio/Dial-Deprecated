@@ -14,6 +14,8 @@ class ControllersViewController: NSViewController {
     
     // MARK: - Views
     
+    @IBOutlet weak var panelRight: NSBox!
+    
     @IBOutlet weak var viewSettings: NSStackView!
     
     @IBOutlet weak var viewHeader: NSStackView!
@@ -255,7 +257,34 @@ extension ControllersViewController {
 extension ControllersViewController {
     
     override func viewDidLayout() {
-        let height = view.bounds.height
+        let headerSpacing = 8.0
+        let bodySpacing = 20.0
+        let settingsSpacing = 20.0
+        let gap = 32.0
+        
+        let currentHeight = panelRight.bounds.height
+        let availableHeight = currentHeight - gap
+        
+        let nameHeight = viewControllerName.bounds.height
+        let segmentedControlHeight = segmentedControlCollapsed.bounds.height
+        
+        let shortcutsHeight = viewShortcuts1_1.bounds.height + viewShortcuts1_2.bounds.height + bodySpacing
+        let optionsHeight = viewOptions.bounds.height
+        let separatorHeight = separatorShortcuts1Shortcuts2.bounds.height
+        
+        let collapsedMaxHeight = (nameHeight + segmentedControlHeight + headerSpacing) + (shortcutsHeight * 3 + separatorHeight * 2 + bodySpacing * 4) + settingsSpacing
+        let expandedMaxHeight = (nameHeight) + (shortcutsHeight * 3 + optionsHeight + separatorHeight * 3 + bodySpacing * 6) + settingsSpacing
+        
+        if availableHeight > expandedMaxHeight {
+            updateEnabledSegmentedControl(.none)
+            updateSegment(nil)
+        } else if availableHeight > collapsedMaxHeight {
+            updateEnabledSegmentedControl(.expanded)
+            updateSegment(segmentExpanded)
+        } else {
+            updateEnabledSegmentedControl(.collapsed)
+            updateSegment(segmentCollapsed)
+        }
     }
     
 }
