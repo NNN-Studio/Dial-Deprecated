@@ -266,7 +266,14 @@ extension ControllersViewController {
         }
         
         Task { @MainActor in
-            for await _ in Defaults.updates([.currentControllerID, .selectedControllerID, .activatedControllerIDs, .shortcutsControllerSettings]) {
+            for await _ in Defaults.updates([.selectedControllerID, .shortcutsControllerSettings]) {
+                refreshControllersMenuManager()
+                updateSelectedController(Controllers.selectedController)
+            }
+        }
+        
+        Task { @MainActor in
+            for await _ in Defaults.updates([.currentControllerID, .activatedControllerIDs]) {
                 refreshControllersMenuManager()
             }
         }
@@ -468,14 +475,8 @@ extension ControllersViewController {
             viewSegmentedControls.isHidden = true
             viewBody.isHidden = true
             
-            //            viewShortcuts1.isHidden = true
-            //            viewShortcuts2.isHidden = true
-            //            viewShortcuts3.isHidden = true
-            //            viewOptions1.isHidden = true
-            //            viewOptions2.isHidden = true
-            
-            //            buttonDeleteController.isEnabled = false
-            //            buttonAddController.isEnabled = true
+            segmentedControlAddOrDeleteController.setEnabled(false, forSegment: 0)
+            segmentedControlResetController.isEnabled = false
             
             iconChooserViewController.setAll(false)
         }
@@ -488,8 +489,8 @@ extension ControllersViewController {
             viewSegmentedControls.isHidden = false
             viewBody.isHidden = false
             
-            //            buttonDeleteController.isEnabled = true
-            //            buttonAddController.isEnabled = true
+            segmentedControlAddOrDeleteController.setEnabled(true, forSegment: 0)
+            segmentedControlResetController.isEnabled = true
             
             textFieldControllerName.stringValue = settings.name ?? ""
             
@@ -538,8 +539,6 @@ extension ControllersViewController: DialControllerMenuDelegate {
         switchControllerActivated.animator().flag = activated
         switchControllerActivated.animator().isEnabled = (activated && canDeactivate) || (!activated && canActivate)
         
-        updateSettings(controller)
-        
         refreshControllersMenuManager()
         for (index, item) in popUpButtonControllerSelector.itemArray.enumerated() {
             if
@@ -547,6 +546,8 @@ extension ControllersViewController: DialControllerMenuDelegate {
                 controller.id == Controllers.selectedController.id
             { popUpButtonControllerSelector.selectItem(at: index) }
         }
+        
+        updateSettings(controller)
     }
     
     func setController(_ sender: Any?) {
@@ -554,8 +555,6 @@ extension ControllersViewController: DialControllerMenuDelegate {
                 
         let controller = item.option
         Controllers.selectedController = controller
-        
-        updateSelectedController(controller)
     }
     
 }
@@ -612,44 +611,51 @@ extension ControllersViewController {
     }
     
     @IBAction func addOrDeleteController(_ sender: NSSegmentedControl) {
-        
+        let index = sender.indexOfSelectedItem
+        if index == 0 {
+            // Delete
+            
+            guard let selectedController = Controllers.selectedController as? ShortcutsController else { return }
+            
+            var previous: Controller?
+            var next: Controller?
+            var found = false
+            
+            for item in popUpButtonControllerSelector.itemArray{
+                if let controller = item.representedObject as? ShortcutsController {
+                    if controller.id == selectedController.id { found = true }
+                    else if !found { previous = controller }
+                    else if found && next == nil { next = controller }
+                }
+            }
+            
+            Controllers.remove(selectedController)
+            
+            if let next {
+                Controllers.selectedController = next
+            } else if let previous {
+                Controllers.selectedController = previous
+            } else {
+                Controllers.selectedController = Controllers.defaultControllers.last!
+            }
+        } else if index == 1 {
+            // Add
+            
+            let controller = Controllers.append()
+            
+            Controllers.selectedController = controller
+            Controllers.toggle(true, controller: controller)
+        }
     }
     
     @IBAction func resetController(_ sender: NSSegmentedControl) {
+        guard let controller = Controllers.selectedController as? ShortcutsController else { return }
         
-    }
-    
-    @IBAction func deleteController(_ sender: NSButton) {
-        guard let selectedController = Controllers.selectedController as? ShortcutsController else { return }
-        
-        var previous: Controller?
-        var next: Controller?
-        var found = false
-        
-        for item in popUpButtonControllerSelector.itemArray{
-            if let controller = item.representedObject as? ShortcutsController {
-                if controller.id == selectedController.id { found = true }
-                else if !found { previous = controller }
-                else if found && next == nil { next = controller }
-            }
-        }
-        
-        Controllers.remove(selectedController)
-        
-        if let next {
-            Controllers.selectedController = next
-        } else if let previous {
-            Controllers.selectedController = previous
+        if let settings = Controllers.selectedSettings, settings.shortcuts.isEmpty {
+            Controllers.selectedSettings?.reset(resetsName: true, resetsIcon: true)
         } else {
-            Controllers.selectedController = Controllers.defaultControllers.last!
+            Controllers.selectedSettings?.reset()
         }
-    }
-    
-    @IBAction func addController(_ sender: NSButton) {
-        let controller = Controllers.append()
-        
-        Controllers.selectedController = controller
-        Controllers.toggle(true, controller: controller)
     }
     
 }

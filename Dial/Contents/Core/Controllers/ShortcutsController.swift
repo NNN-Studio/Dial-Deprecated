@@ -50,6 +50,10 @@ class ShortcutsController: Controller {
             
             var double: ShortcutArray
             
+            var isEmpty: Bool {
+                rotation.values.allSatisfy { $0.isEmpty } && pressedRotation.values.allSatisfy { $0.isEmpty } && single.isEmpty && double.isEmpty
+            }
+            
             init(
                 rotation: [Direction : ShortcutArray] = [
                     .clockwise: .init(),
@@ -133,6 +137,22 @@ class ShortcutsController: Controller {
             
             self.rotationType = rotationType
             self.shortcuts = shortcuts
+        }
+        
+        mutating func reset(resetsName: Bool = false, resetsIcon: Bool = false) {
+            if resetsName {
+                name = nil
+            }
+            
+            if resetsIcon {
+                representingSymbol = .circleFillableFallback
+            }
+            
+            haptics = true
+            physicalDirection = false
+            alternativeDirection = false
+            rotationType = .continuous
+            shortcuts = Shortcuts()
         }
         
     }

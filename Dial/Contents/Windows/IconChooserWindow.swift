@@ -15,7 +15,7 @@ protocol ChooseIconHandler {
     
 }
 
-class IconChooserViewController: NSViewController {
+@Observable class IconChooserViewController: NSViewController {
     
     var chooseIconHandler: ChooseIconHandler?
     

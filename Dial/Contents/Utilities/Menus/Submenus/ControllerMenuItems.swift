@@ -89,7 +89,9 @@ struct ControllerMenuItems {
                 let activated = Controllers.activatedControllers.contains(where: { $0.id == item.option.id })
                 
                 item.mixedStateImage =
-                item.option.id == Controllers.currentController.id ? NSImage(systemSymbol: .arrowRight) : NSImage(named: NSImage.menuMixedStateTemplateName)
+                item.option.id == Controllers.currentController.id
+                ? NSImage(named: NSImage.menuMixedStateTemplateName)
+                : NSImage(systemSymbol: .ellipsis)
                 
                 if item.option.id == Controllers.selectedController.id {
                     item.state = .on

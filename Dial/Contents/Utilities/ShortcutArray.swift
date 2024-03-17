@@ -25,6 +25,10 @@ struct ShortcutArray: Codable, Defaults.Serializable {
         keys.map { $0.name }.joined(separator: " ")
     }
     
+    var isEmpty: Bool {
+        keys.isEmpty && modifiers.isEmpty
+    }
+    
     init(
         modifiers: NSEvent.ModifierFlags = [],
         keys: [Input] = []
