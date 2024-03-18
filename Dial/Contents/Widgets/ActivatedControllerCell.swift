@@ -18,7 +18,14 @@ class ActivatedControllerCell: NSTableCellView {
     
     @IBOutlet weak var buttonRemove: NSButton!
     
-    func set(_ controller: Controller) {
+    private var tableView: NSTableView?
+    
+    private var controller: Controller?
+    
+    func set(_ tableView: NSTableView, controller: Controller) {
+        self.tableView = tableView
+        self.controller = controller
+        
         labelName.stringValue = controller.name
         
         if controller.isDefaultController {

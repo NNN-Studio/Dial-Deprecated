@@ -200,7 +200,7 @@ class ControllersViewController: NSViewController {
             let controller = Controllers.fetch(item)
         else { return .init() }
         
-        cell.set(controller)
+        cell.set(tableView, controller: controller)
         return cell
     }
     
