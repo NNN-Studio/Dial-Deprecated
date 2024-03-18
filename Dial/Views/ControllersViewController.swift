@@ -713,12 +713,15 @@ extension ControllersViewController {
             
             let controller = Controllers.append()
             
+            // Update the table view before updating the real data
+            if Controllers.activatedControllers.count < Defaults[.maxControllerCount] {
+                activatedControllersDataSource.onDataSourceSnapshot { snapshot in
+                    snapshot.appendItems([controller.id], toSection: ActivatedControllersDataSource.section)
+                }
+            }
+            
             Controllers.selectedController = controller
             Controllers.toggle(true, controller: controller)
-            
-            activatedControllersDataSource.onDataSourceSnapshot { snapshot in
-                snapshot.appendItems([controller.id], toSection: ActivatedControllersDataSource.section)
-            }
         }
     }
     

@@ -121,19 +121,7 @@ class ActivatedControllersDataSource: NSTableViewDiffableDataSource<String, Cont
         operation: NSDragOperation
     ) {
         if operation == .delete {
-            guard Defaults[.activatedControllerIDs].count > 1 else { return }
-            
-            guard
-                let items = session.draggingPasteboard.pasteboardItems,
-                let data = items[0].data(forType: ControllerID.pasteboardType),
-                let controllerId = try? JSONDecoder().decode(ControllerID.self, from: data),
-                let row = row(forItemIdentifier: controllerId)
-            else { return }
-            
-            guard let controller = Controllers.fetch(controllerId) else { return }
-            
-            //Controllers.toggle(false, controller: controller)
-            tableView.removeRows(at: .init(integer: row))
+            // TODO: Make this work
         }
     }
     
