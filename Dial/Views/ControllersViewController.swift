@@ -257,7 +257,7 @@ extension ControllersViewController {
         popUpButtonRotationType.menu = rotationTypeMenuManager?.menu
         
         Task { @MainActor in
-            for await _ in Defaults.updates([.selectedControllerID, .shortcutsControllerSettings]) {
+            for await _ in Defaults.updates([.selectedControllerID, .shortcutsControllerSettings, .activatedControllerIDs]) {
                 updateSelectedController(Controllers.selectedController)
             }
         }
@@ -272,11 +272,7 @@ extension ControllersViewController {
         tableViewActivatedControllers.dataSource = activatedControllersDataSource
         tableViewActivatedControllers.registerForDraggedTypes([ControllerID.pasteboardType])
         tableViewActivatedControllers.draggingDestinationFeedbackStyle = .gap
-        
-        var snapshot = NSDiffableDataSourceSnapshot<String, ControllerID>()
-        snapshot.appendSections([ActivatedControllersDataSource.section])
-        snapshot.appendItems(Defaults[.activatedControllerIDs], toSection: ActivatedControllersDataSource.section)
-        activatedControllersDataSource.apply(snapshot, animatingDifferences: false)
+        tableViewActivatedControllers.setDraggingSourceOperationMask([.move, .delete], forLocal: false)
     }
     
 }

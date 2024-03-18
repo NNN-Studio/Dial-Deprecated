@@ -9,10 +9,21 @@ import Foundation
 import AppKit
 import Defaults
 
-// A related bug: https://forums.developer.apple.com/forums/thread/709343
 class ActivatedControllersDataSource: NSTableViewDiffableDataSource<String, ControllerID> {
     
     public static let section = "ActivatedControllersSection"
+    
+    override init(
+        tableView: NSTableView,
+        cellProvider: @escaping CellProvider
+    ) {
+        super.init(tableView: tableView, cellProvider: cellProvider)
+        
+        var snapshot = NSDiffableDataSourceSnapshot<String, ControllerID>()
+        snapshot.appendSections([ActivatedControllersDataSource.section])
+        snapshot.appendItems(Defaults[.activatedControllerIDs], toSection: ActivatedControllersDataSource.section)
+        apply(snapshot, animatingDifferences: false)
+    }
     
     func onDataSourceSnapshot(
         animatingDifferences: Bool = true,
@@ -26,18 +37,19 @@ class ActivatedControllersDataSource: NSTableViewDiffableDataSource<String, Cont
     
     @objc func tableView(
         _ tableView: NSTableView,
-        writeRowsWith rowIndexes: IndexSet, to pboard: NSPasteboard
+        writeRowsWith rowIndexes: IndexSet, 
+        to pboard: NSPasteboard
     ) -> Bool {
         true
     }
     
     @objc func tableView(
-        _ tableView: NSTableView, pasteboardWriterForRow row: Int
+        _ tableView: NSTableView, 
+        pasteboardWriterForRow row: Int
     ) -> (any NSPasteboardWriting)? {
         let pboard = NSPasteboardItem()
-        let encoder = JSONEncoder()
         
-        guard let data = try? encoder.encode(Defaults[.activatedControllerIDs][row]) else { return nil }
+        guard let data = try? JSONEncoder().encode(Defaults[.activatedControllerIDs][row]) else { return nil }
         
         pboard.setData(data, forType: ControllerID.pasteboardType)
         return pboard
@@ -46,8 +58,10 @@ class ActivatedControllersDataSource: NSTableViewDiffableDataSource<String, Cont
     
     
     @objc func tableView(
-        _ tableView: NSTableView, validateDrop info: NSDraggingInfo,
-        proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation
+        _ tableView: NSTableView, 
+        validateDrop info: NSDraggingInfo,
+        proposedRow row: Int, 
+        proposedDropOperation dropOperation: NSTableView.DropOperation
     ) -> NSDragOperation {
         if dropOperation == .above {
             if info.draggingSourceOperationMask.contains(.move) {
@@ -62,15 +76,16 @@ class ActivatedControllersDataSource: NSTableViewDiffableDataSource<String, Cont
     }
     
     @objc func tableView(
-        _ tableView: NSTableView, acceptDrop info: NSDraggingInfo,
-        row targetIndex: Int, dropOperation: NSTableView.DropOperation
+        _ tableView: NSTableView, 
+        acceptDrop info: NSDraggingInfo,
+        row targetIndex: Int, 
+        dropOperation: NSTableView.DropOperation
     ) -> Bool {
         guard let items = info.draggingPasteboard.pasteboardItems else { return false }
         
-        let decoder = JSONDecoder()
         guard
             let data = items[0].data(forType: ControllerID.pasteboardType),
-            let source = try? decoder.decode(ControllerID.self, from: data)
+            let source = try? JSONDecoder().decode(ControllerID.self, from: data)
         else { return false }
         
         guard
@@ -87,6 +102,39 @@ class ActivatedControllersDataSource: NSTableViewDiffableDataSource<String, Cont
         }
         
         return true
+    }
+    
+    // This is a toxic behaviour. See https://forums.developer.apple.com/forums/thread/709343
+    @objc func tableView(
+        _ tableView: NSTableView,
+        draggingSession session: NSDraggingSession,
+        endedAtPoint screenPoint: NSPoint,
+        operation: NSDragOperation
+    ) {
+        self.tableView(tableView, draggingSession: session, endedAt: screenPoint, operation: operation)
+    }
+    
+    @objc func tableView(
+        _ tableView: NSTableView,
+        draggingSession session: NSDraggingSession,
+        endedAt screenPoint: NSPoint,
+        operation: NSDragOperation
+    ) {
+        if operation == .delete {
+            guard Defaults[.activatedControllerIDs].count > 1 else { return }
+            
+            guard
+                let items = session.draggingPasteboard.pasteboardItems,
+                let data = items[0].data(forType: ControllerID.pasteboardType),
+                let controllerId = try? JSONDecoder().decode(ControllerID.self, from: data),
+                let row = row(forItemIdentifier: controllerId)
+            else { return }
+            
+            guard let controller = Controllers.fetch(controllerId) else { return }
+            
+            //Controllers.toggle(false, controller: controller)
+            tableView.removeRows(at: .init(integer: row))
+        }
     }
     
 }
