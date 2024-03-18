@@ -1015,16 +1015,16 @@
                                                                             <rect key="frame" x="0.0" y="0.0" width="434" height="32"/>
                                                                             <subviews>
                                                                                 <segmentedControl horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vey-zs-GyP">
-                                                                                    <rect key="frame" x="-6" y="-6" width="183" height="44"/>
-                                                                                    <segmentedCell key="cell" controlSize="large" borderStyle="border" alignment="left" style="rounded" trackingMode="selectAny" id="y0h-Ji-ZSn">
-                                                                                        <font key="font" metaFont="system"/>
+                                                                                    <rect key="frame" x="-6" y="-6" width="145" height="44"/>
+                                                                                    <segmentedCell key="cell" controlSize="large" alignment="left" style="rounded" trackingMode="selectAny" id="y0h-Ji-ZSn">
+                                                                                        <font key="font" metaFont="systemBold"/>
                                                                                         <segments>
-                                                                                            <segment image="shift" catalog="system" width="32" selected="YES"/>
-                                                                                            <segment image="control" catalog="system" width="32" selected="YES" tag="1"/>
-                                                                                            <segment image="option" catalog="system" width="32">
+                                                                                            <segment alignment="left" image="shift" catalog="system" selected="YES"/>
+                                                                                            <segment image="control" catalog="system" selected="YES" tag="1"/>
+                                                                                            <segment image="option" catalog="system">
                                                                                                 <nil key="label"/>
                                                                                             </segment>
-                                                                                            <segment image="command" catalog="system" width="32">
+                                                                                            <segment image="command" catalog="system">
                                                                                                 <nil key="label"/>
                                                                                             </segment>
                                                                                         </segments>
@@ -1033,9 +1033,9 @@
                                                                                         <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="kB3-Fa-wpQ"/>
                                                                                     </connections>
                                                                                 </segmentedControl>
-                                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N0T-Tm-tim" customClass="InputButton" customModule="Dial" customModuleProvider="target">
-                                                                                    <rect key="frame" x="173" y="-6" width="267" height="44"/>
-                                                                                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yOi-AD-HDP">
+                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="N0T-Tm-tim" customClass="InputButton" customModule="Dial" customModuleProvider="target">
+                                                                                    <rect key="frame" x="141" y="0.0" width="293" height="32"/>
+                                                                                    <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" imageScaling="proportionallyDown" inset="2" id="yOi-AD-HDP">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                         <font key="font" size="13" name="SFMono-Regular"/>
                                                                                     </buttonCell>
@@ -1112,28 +1112,28 @@
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ow8-Og-Z5K">
                                                                             <rect key="frame" x="0.0" y="0.0" width="434" height="32"/>
                                                                             <subviews>
-                                                                                <segmentedControl horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NPh-mn-YjT">
-                                                                                    <rect key="frame" x="-6" y="-6" width="183" height="44"/>
-                                                                                    <segmentedCell key="cell" controlSize="large" borderStyle="border" alignment="left" style="rounded" trackingMode="selectAny" id="Yhn-N0-EYc">
-                                                                                        <font key="font" metaFont="system"/>
+                                                                                <segmentedControl horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ep7-lK-pt2">
+                                                                                    <rect key="frame" x="-6" y="-6" width="145" height="44"/>
+                                                                                    <segmentedCell key="cell" controlSize="large" alignment="left" style="rounded" trackingMode="selectAny" id="f64-e0-7E7">
+                                                                                        <font key="font" metaFont="systemBold"/>
                                                                                         <segments>
-                                                                                            <segment image="shift" catalog="system" width="32" selected="YES"/>
-                                                                                            <segment image="control" catalog="system" width="32" selected="YES" tag="1"/>
-                                                                                            <segment image="option" catalog="system" width="32">
+                                                                                            <segment alignment="left" image="shift" catalog="system" selected="YES"/>
+                                                                                            <segment image="control" catalog="system" selected="YES" tag="1"/>
+                                                                                            <segment image="option" catalog="system">
                                                                                                 <nil key="label"/>
                                                                                             </segment>
-                                                                                            <segment image="command" catalog="system" width="32">
+                                                                                            <segment image="command" catalog="system">
                                                                                                 <nil key="label"/>
                                                                                             </segment>
                                                                                         </segments>
                                                                                     </segmentedCell>
                                                                                     <connections>
-                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="bkc-sd-3GU"/>
+                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="W69-zg-xlv"/>
                                                                                     </connections>
                                                                                 </segmentedControl>
-                                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mcj-pG-ExY" customClass="InputButton" customModule="Dial" customModuleProvider="target">
-                                                                                    <rect key="frame" x="173" y="-6" width="267" height="44"/>
-                                                                                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OhQ-wN-VVQ">
+                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="mcj-pG-ExY" customClass="InputButton" customModule="Dial" customModuleProvider="target">
+                                                                                    <rect key="frame" x="141" y="0.0" width="293" height="32"/>
+                                                                                    <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" imageScaling="proportionallyDown" inset="2" id="OhQ-wN-VVQ">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                         <font key="font" size="13" name="SFMono-Regular"/>
                                                                                     </buttonCell>
@@ -1143,9 +1143,9 @@
                                                                                 </button>
                                                                             </subviews>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="bottom" secondItem="NPh-mn-YjT" secondAttribute="bottom" id="7MR-P1-HoG"/>
-                                                                                <constraint firstItem="NPh-mn-YjT" firstAttribute="top" secondItem="Ow8-Og-Z5K" secondAttribute="top" id="CAB-Zo-Vy1"/>
                                                                                 <constraint firstAttribute="height" constant="32" id="EZB-AV-rtC"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="Ep7-lK-pt2" secondAttribute="bottom" id="Ire-wd-DZn"/>
+                                                                                <constraint firstItem="Ep7-lK-pt2" firstAttribute="top" secondItem="Ow8-Og-Z5K" secondAttribute="top" id="Sye-Jr-75p"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="mcj-pG-ExY" secondAttribute="bottom" id="ly9-bf-plY"/>
                                                                                 <constraint firstItem="mcj-pG-ExY" firstAttribute="top" secondItem="Ow8-Og-Z5K" secondAttribute="top" id="o57-mt-vnK"/>
                                                                             </constraints>
@@ -1213,28 +1213,28 @@
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TUe-iM-FUx">
                                                                             <rect key="frame" x="0.0" y="0.0" width="434" height="32"/>
                                                                             <subviews>
-                                                                                <segmentedControl horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8OP-iF-7EK">
-                                                                                    <rect key="frame" x="-6" y="-6" width="183" height="44"/>
-                                                                                    <segmentedCell key="cell" controlSize="large" borderStyle="border" alignment="left" style="rounded" trackingMode="selectAny" id="yfy-AY-kp1">
-                                                                                        <font key="font" metaFont="system"/>
+                                                                                <segmentedControl horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ser-it-2Lw">
+                                                                                    <rect key="frame" x="-6" y="-6" width="145" height="44"/>
+                                                                                    <segmentedCell key="cell" controlSize="large" alignment="left" style="rounded" trackingMode="selectAny" id="8Bs-bI-MhP">
+                                                                                        <font key="font" metaFont="systemBold"/>
                                                                                         <segments>
-                                                                                            <segment image="shift" catalog="system" width="32" selected="YES"/>
-                                                                                            <segment image="control" catalog="system" width="32" selected="YES" tag="1"/>
-                                                                                            <segment image="option" catalog="system" width="32">
+                                                                                            <segment alignment="left" image="shift" catalog="system" selected="YES"/>
+                                                                                            <segment image="control" catalog="system" selected="YES" tag="1"/>
+                                                                                            <segment image="option" catalog="system">
                                                                                                 <nil key="label"/>
                                                                                             </segment>
-                                                                                            <segment image="command" catalog="system" width="32">
+                                                                                            <segment image="command" catalog="system">
                                                                                                 <nil key="label"/>
                                                                                             </segment>
                                                                                         </segments>
                                                                                     </segmentedCell>
                                                                                     <connections>
-                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="CRF-Lm-qNs"/>
+                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="in0-F1-Vlo"/>
                                                                                     </connections>
                                                                                 </segmentedControl>
-                                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PfW-Ga-fKe" customClass="InputButton" customModule="Dial" customModuleProvider="target">
-                                                                                    <rect key="frame" x="173" y="-6" width="267" height="44"/>
-                                                                                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BdS-qQ-fnr">
+                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="PfW-Ga-fKe" customClass="InputButton" customModule="Dial" customModuleProvider="target">
+                                                                                    <rect key="frame" x="141" y="0.0" width="293" height="32"/>
+                                                                                    <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" imageScaling="proportionallyDown" inset="2" id="BdS-qQ-fnr">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                         <font key="font" size="13" name="SFMono-Regular"/>
                                                                                     </buttonCell>
@@ -1244,11 +1244,11 @@
                                                                                 </button>
                                                                             </subviews>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="bottom" secondItem="8OP-iF-7EK" secondAttribute="bottom" id="9bu-cx-RGy"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="Ser-it-2Lw" secondAttribute="bottom" id="Cpy-5V-cXq"/>
                                                                                 <constraint firstItem="PfW-Ga-fKe" firstAttribute="top" secondItem="TUe-iM-FUx" secondAttribute="top" id="Gy5-vl-LGy"/>
                                                                                 <constraint firstAttribute="height" constant="32" id="Nji-gY-TGc"/>
+                                                                                <constraint firstItem="Ser-it-2Lw" firstAttribute="top" secondItem="TUe-iM-FUx" secondAttribute="top" id="Oze-XY-1tk"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="PfW-Ga-fKe" secondAttribute="bottom" id="xgU-Kl-Re8"/>
-                                                                                <constraint firstItem="8OP-iF-7EK" firstAttribute="top" secondItem="TUe-iM-FUx" secondAttribute="top" id="yfB-1A-XY9"/>
                                                                             </constraints>
                                                                             <visibilityPriorities>
                                                                                 <integer value="1000"/>
@@ -1311,28 +1311,28 @@
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="n7J-un-Qdo">
                                                                             <rect key="frame" x="0.0" y="0.0" width="434" height="32"/>
                                                                             <subviews>
-                                                                                <segmentedControl horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Ex-c7-RDv">
-                                                                                    <rect key="frame" x="-6" y="-6" width="183" height="44"/>
-                                                                                    <segmentedCell key="cell" controlSize="large" borderStyle="border" alignment="left" style="rounded" trackingMode="selectAny" id="ZJO-ad-Knj">
-                                                                                        <font key="font" metaFont="system"/>
+                                                                                <segmentedControl horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sJ4-IZ-Ib0">
+                                                                                    <rect key="frame" x="-6" y="-6" width="145" height="44"/>
+                                                                                    <segmentedCell key="cell" controlSize="large" alignment="left" style="rounded" trackingMode="selectAny" id="t4U-pb-V6w">
+                                                                                        <font key="font" metaFont="systemBold"/>
                                                                                         <segments>
-                                                                                            <segment image="shift" catalog="system" width="32" selected="YES"/>
-                                                                                            <segment image="control" catalog="system" width="32" selected="YES" tag="1"/>
-                                                                                            <segment image="option" catalog="system" width="32">
+                                                                                            <segment alignment="left" image="shift" catalog="system" selected="YES"/>
+                                                                                            <segment image="control" catalog="system" selected="YES" tag="1"/>
+                                                                                            <segment image="option" catalog="system">
                                                                                                 <nil key="label"/>
                                                                                             </segment>
-                                                                                            <segment image="command" catalog="system" width="32">
+                                                                                            <segment image="command" catalog="system">
                                                                                                 <nil key="label"/>
                                                                                             </segment>
                                                                                         </segments>
                                                                                     </segmentedCell>
                                                                                     <connections>
-                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="zeh-SX-6Ps"/>
+                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="qtu-oV-dAe"/>
                                                                                     </connections>
                                                                                 </segmentedControl>
-                                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3iu-3T-IJo" customClass="InputButton" customModule="Dial" customModuleProvider="target">
-                                                                                    <rect key="frame" x="173" y="-6" width="267" height="44"/>
-                                                                                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="X0a-dk-QiZ">
+                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="3iu-3T-IJo" customClass="InputButton" customModule="Dial" customModuleProvider="target">
+                                                                                    <rect key="frame" x="141" y="0.0" width="293" height="32"/>
+                                                                                    <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" imageScaling="proportionallyDown" inset="2" id="X0a-dk-QiZ">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                         <font key="font" size="13" name="SFMono-Regular"/>
                                                                                     </buttonCell>
@@ -1344,9 +1344,9 @@
                                                                             <constraints>
                                                                                 <constraint firstAttribute="bottom" secondItem="3iu-3T-IJo" secondAttribute="bottom" id="DYX-cA-uxU"/>
                                                                                 <constraint firstAttribute="height" constant="32" id="GJg-K8-hxl"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="sJ4-IZ-Ib0" secondAttribute="bottom" id="Kkn-Ib-4Wx"/>
+                                                                                <constraint firstItem="sJ4-IZ-Ib0" firstAttribute="top" secondItem="n7J-un-Qdo" secondAttribute="top" id="R9x-an-7ub"/>
                                                                                 <constraint firstItem="3iu-3T-IJo" firstAttribute="top" secondItem="n7J-un-Qdo" secondAttribute="top" id="V3g-Gg-xAa"/>
-                                                                                <constraint firstAttribute="bottom" secondItem="5Ex-c7-RDv" secondAttribute="bottom" id="WxH-Uc-xj3"/>
-                                                                                <constraint firstItem="5Ex-c7-RDv" firstAttribute="top" secondItem="n7J-un-Qdo" secondAttribute="top" id="ffH-zb-33F"/>
                                                                             </constraints>
                                                                             <visibilityPriorities>
                                                                                 <integer value="1000"/>
@@ -1412,28 +1412,28 @@
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qXa-OI-URy">
                                                                             <rect key="frame" x="0.0" y="0.0" width="434" height="32"/>
                                                                             <subviews>
-                                                                                <segmentedControl horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="icA-0w-Uam">
-                                                                                    <rect key="frame" x="-6" y="-6" width="183" height="44"/>
-                                                                                    <segmentedCell key="cell" controlSize="large" borderStyle="border" alignment="left" style="rounded" trackingMode="selectAny" id="Pp2-e9-BZI">
-                                                                                        <font key="font" metaFont="system"/>
+                                                                                <segmentedControl horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iyN-QT-yeM">
+                                                                                    <rect key="frame" x="-6" y="-6" width="145" height="44"/>
+                                                                                    <segmentedCell key="cell" controlSize="large" alignment="left" style="rounded" trackingMode="selectAny" id="fzi-xi-p7a">
+                                                                                        <font key="font" metaFont="systemBold"/>
                                                                                         <segments>
-                                                                                            <segment image="shift" catalog="system" width="32" selected="YES"/>
-                                                                                            <segment image="control" catalog="system" width="32" selected="YES" tag="1"/>
-                                                                                            <segment image="option" catalog="system" width="32">
+                                                                                            <segment alignment="left" image="shift" catalog="system" selected="YES"/>
+                                                                                            <segment image="control" catalog="system" selected="YES" tag="1"/>
+                                                                                            <segment image="option" catalog="system">
                                                                                                 <nil key="label"/>
                                                                                             </segment>
-                                                                                            <segment image="command" catalog="system" width="32">
+                                                                                            <segment image="command" catalog="system">
                                                                                                 <nil key="label"/>
                                                                                             </segment>
                                                                                         </segments>
                                                                                     </segmentedCell>
                                                                                     <connections>
-                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="Wmm-cc-3jD"/>
+                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="zA1-5C-ysR"/>
                                                                                     </connections>
                                                                                 </segmentedControl>
-                                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XSb-TR-BRV" customClass="InputButton" customModule="Dial" customModuleProvider="target">
-                                                                                    <rect key="frame" x="173" y="-6" width="267" height="44"/>
-                                                                                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4nK-md-pp1">
+                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="XSb-TR-BRV" customClass="InputButton" customModule="Dial" customModuleProvider="target">
+                                                                                    <rect key="frame" x="141" y="0.0" width="293" height="32"/>
+                                                                                    <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" imageScaling="proportionallyDown" inset="2" id="4nK-md-pp1">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                         <font key="font" size="13" name="SFMono-Regular"/>
                                                                                     </buttonCell>
@@ -1443,11 +1443,11 @@
                                                                                 </button>
                                                                             </subviews>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="bottom" secondItem="icA-0w-Uam" secondAttribute="bottom" id="I3G-8e-ysz"/>
-                                                                                <constraint firstItem="icA-0w-Uam" firstAttribute="top" secondItem="qXa-OI-URy" secondAttribute="top" id="KVU-oB-VBQ"/>
+                                                                                <constraint firstItem="iyN-QT-yeM" firstAttribute="top" secondItem="qXa-OI-URy" secondAttribute="top" id="CNw-fd-hHk"/>
                                                                                 <constraint firstItem="XSb-TR-BRV" firstAttribute="top" secondItem="qXa-OI-URy" secondAttribute="top" id="RUo-8i-8Pw"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="XSb-TR-BRV" secondAttribute="bottom" id="aY4-RC-jv0"/>
                                                                                 <constraint firstAttribute="height" constant="32" id="arY-1z-LPW"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="iyN-QT-yeM" secondAttribute="bottom" id="nj6-TA-n2l"/>
                                                                             </constraints>
                                                                             <visibilityPriorities>
                                                                                 <integer value="1000"/>
@@ -1510,28 +1510,28 @@
                                                                         <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lVT-7H-P3U">
                                                                             <rect key="frame" x="0.0" y="0.0" width="434" height="32"/>
                                                                             <subviews>
-                                                                                <segmentedControl horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aqu-hI-eGp">
-                                                                                    <rect key="frame" x="-6" y="-6" width="183" height="44"/>
-                                                                                    <segmentedCell key="cell" controlSize="large" borderStyle="border" alignment="left" style="rounded" trackingMode="selectAny" id="Dva-iJ-L4c">
-                                                                                        <font key="font" metaFont="system"/>
+                                                                                <segmentedControl horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w8K-zR-fvy">
+                                                                                    <rect key="frame" x="-6" y="-6" width="145" height="44"/>
+                                                                                    <segmentedCell key="cell" controlSize="large" alignment="left" style="rounded" trackingMode="selectAny" id="qZd-6A-8fr">
+                                                                                        <font key="font" metaFont="systemBold"/>
                                                                                         <segments>
-                                                                                            <segment image="shift" catalog="system" width="32" selected="YES"/>
-                                                                                            <segment image="control" catalog="system" width="32" selected="YES" tag="1"/>
-                                                                                            <segment image="option" catalog="system" width="32">
+                                                                                            <segment alignment="left" image="shift" catalog="system" selected="YES"/>
+                                                                                            <segment image="control" catalog="system" selected="YES" tag="1"/>
+                                                                                            <segment image="option" catalog="system">
                                                                                                 <nil key="label"/>
                                                                                             </segment>
-                                                                                            <segment image="command" catalog="system" width="32">
+                                                                                            <segment image="command" catalog="system">
                                                                                                 <nil key="label"/>
                                                                                             </segment>
                                                                                         </segments>
                                                                                     </segmentedCell>
                                                                                     <connections>
-                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="IpO-u9-Uut"/>
+                                                                                        <action selector="toggleShortcutsModifiers:" target="pXe-L5-k3e" id="Ruv-JS-Vet"/>
                                                                                     </connections>
                                                                                 </segmentedControl>
-                                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="44Y-el-iKF" customClass="InputButton" customModule="Dial" customModuleProvider="target">
-                                                                                    <rect key="frame" x="173" y="-6" width="267" height="44"/>
-                                                                                    <buttonCell key="cell" type="push" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aAy-c7-LM4">
+                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="44Y-el-iKF" customClass="InputButton" customModule="Dial" customModuleProvider="target">
+                                                                                    <rect key="frame" x="141" y="0.0" width="293" height="32"/>
+                                                                                    <buttonCell key="cell" type="bevel" title="Button" bezelStyle="rounded" alignment="center" controlSize="large" imageScaling="proportionallyDown" inset="2" id="aAy-c7-LM4">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                         <font key="font" size="13" name="SFMono-Regular"/>
                                                                                     </buttonCell>
@@ -1541,9 +1541,9 @@
                                                                                 </button>
                                                                             </subviews>
                                                                             <constraints>
-                                                                                <constraint firstItem="aqu-hI-eGp" firstAttribute="top" secondItem="lVT-7H-P3U" secondAttribute="top" id="Q1L-sz-RvW"/>
-                                                                                <constraint firstAttribute="bottom" secondItem="aqu-hI-eGp" secondAttribute="bottom" id="Qid-0T-gQV"/>
+                                                                                <constraint firstItem="w8K-zR-fvy" firstAttribute="top" secondItem="lVT-7H-P3U" secondAttribute="top" id="SCA-zO-j74"/>
                                                                                 <constraint firstAttribute="bottom" secondItem="44Y-el-iKF" secondAttribute="bottom" id="Tw8-de-z9p"/>
+                                                                                <constraint firstAttribute="bottom" secondItem="w8K-zR-fvy" secondAttribute="bottom" id="XYh-bj-ekd"/>
                                                                                 <constraint firstItem="44Y-el-iKF" firstAttribute="top" secondItem="lVT-7H-P3U" secondAttribute="top" id="ZWO-PR-acL"/>
                                                                                 <constraint firstAttribute="height" constant="32" id="hIC-qc-V23"/>
                                                                             </constraints>
@@ -1904,11 +1904,11 @@
                         <outlet property="segmentedControlExpanded" destination="Rrw-dm-WgW" id="18t-BE-ceE"/>
                         <outlet property="segmentedControlResetController" destination="Yph-36-3V7" id="nLh-qy-EH6"/>
                         <outlet property="segmentedControlShortcuts1Modifiers1" destination="vey-zs-GyP" id="xAy-QY-9TS"/>
-                        <outlet property="segmentedControlShortcuts1Modifiers2" destination="NPh-mn-YjT" id="V6U-tB-73q"/>
-                        <outlet property="segmentedControlShortcuts2Modifiers1" destination="8OP-iF-7EK" id="0b4-SD-fYR"/>
-                        <outlet property="segmentedControlShortcuts2Modifiers2" destination="5Ex-c7-RDv" id="wza-NA-dcJ"/>
-                        <outlet property="segmentedControlShortcuts3Modifiers1" destination="icA-0w-Uam" id="was-26-piF"/>
-                        <outlet property="segmentedControlShortcuts3Modifiers2" destination="aqu-hI-eGp" id="hZk-pX-cyk"/>
+                        <outlet property="segmentedControlShortcuts1Modifiers2" destination="Ep7-lK-pt2" id="We0-fV-yhF"/>
+                        <outlet property="segmentedControlShortcuts2Modifiers1" destination="Ser-it-2Lw" id="6F3-T3-l7T"/>
+                        <outlet property="segmentedControlShortcuts2Modifiers2" destination="sJ4-IZ-Ib0" id="9Nh-q6-7vG"/>
+                        <outlet property="segmentedControlShortcuts3Modifiers1" destination="iyN-QT-yeM" id="H7x-f9-EMC"/>
+                        <outlet property="segmentedControlShortcuts3Modifiers2" destination="w8K-zR-fvy" id="zwv-zk-H7q"/>
                         <outlet property="separatorShortcuts1Shortcuts2" destination="wRb-l7-UZV" id="e48-kG-5xE"/>
                         <outlet property="separatorShortcuts2Shortcuts3" destination="Hco-00-f0y" id="xWw-PM-H8b"/>
                         <outlet property="separatorShortcuts3Options" destination="kTx-0s-npW" id="cP3-lW-L7c"/>

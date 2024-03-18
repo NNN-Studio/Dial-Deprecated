@@ -22,6 +22,8 @@ class InputButton: NSButton {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
+        showsBorderOnlyWhileMouseInside = true
+        
         Task { @MainActor in
             for await value in observationTrackingStream({ SettingsWindowController.shared!.pressedKey }) {
                 if value != .unknown && listening {
@@ -42,12 +44,16 @@ class InputButton: NSButton {
         keys = []
         listening = true
         updateTitle()
+        
+        animator().alphaValue = 0.75
     }
     
     override func mouseUp(with event: NSEvent) {
         listening = false
         sendAction(action, to: target)
         updateTitle()
+        
+        animator().alphaValue = 1
     }
     
     func updateTitle() {
