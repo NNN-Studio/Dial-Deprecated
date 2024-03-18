@@ -15,9 +15,9 @@ class ActivatedControllersDataSource: NSTableViewDiffableDataSource<String, Cont
     public static let section = "ActivatedControllersSection"
     
     func onDataSourceSnapshot(
-        snapshotOperation: (inout NSDiffableDataSourceSnapshot<String, ControllerID>) -> Void,
         animatingDifferences: Bool = true,
-        completion: (() -> Void)? = nil
+        completion: (() -> Void)? = nil,
+        snapshotOperation: (inout NSDiffableDataSourceSnapshot<String, ControllerID>) -> Void
     ) {
         var snapshot = snapshot()
         snapshotOperation(&snapshot)
@@ -74,7 +74,6 @@ class ActivatedControllersDataSource: NSTableViewDiffableDataSource<String, Cont
         else { return false }
         
         guard
-            let sourceIndex = row(forItemIdentifier: source),
             let target = itemIdentifier(forRow: targetIndex),
             source != target
         else {
@@ -82,10 +81,10 @@ class ActivatedControllersDataSource: NSTableViewDiffableDataSource<String, Cont
             return false
         }
         
-        var snapshot = self.snapshot()
-        snapshot.moveItem(source, beforeItem: target) // Moves
-        Defaults[.activatedControllerIDs] = snapshot.itemIdentifiers // Update and save
-        apply(snapshot, animatingDifferences: false)
+        onDataSourceSnapshot(animatingDifferences: false) { snapshot in
+            snapshot.moveItem(source, beforeItem: target) // Moves
+            Defaults[.activatedControllerIDs] = snapshot.itemIdentifiers // Update and save
+        }
         
         return true
     }

@@ -283,10 +283,6 @@ extension ControllersViewController {
 
 extension ControllersViewController {
     
-    override func mouseDragged(with event: NSEvent) {
-        //tableViewActivatedControllers.reloadData()
-    }
-    
     override func viewDidLayout() {
         let headerSpacing = 8.0
         let bodySpacing = 20.0
