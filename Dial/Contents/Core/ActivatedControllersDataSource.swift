@@ -43,6 +43,8 @@ class ActivatedControllersDataSource: NSTableViewDiffableDataSource<String, Cont
         return pboard
     }
     
+    
+    
     @objc func tableView(
         _ tableView: NSTableView, validateDrop info: NSDraggingInfo,
         proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation
@@ -61,32 +63,31 @@ class ActivatedControllersDataSource: NSTableViewDiffableDataSource<String, Cont
     
     @objc func tableView(
         _ tableView: NSTableView, acceptDrop info: NSDraggingInfo,
-        row: Int, dropOperation: NSTableView.DropOperation
+        row targetIndex: Int, dropOperation: NSTableView.DropOperation
     ) -> Bool {
         guard let items = info.draggingPasteboard.pasteboardItems else { return false }
         
         let decoder = JSONDecoder()
         guard
             let data = items[0].data(forType: ControllerID.pasteboardType),
-            let controllerId = try? decoder.decode(ControllerID.self, from: data)
+            let source = try? decoder.decode(ControllerID.self, from: data)
         else { return false }
         
-        var result = false
-        var fixedRow = row
-        onDataSourceSnapshot { snapshot in
-            guard snapshot.numberOfItems > 1 else { return }
-            
-            guard let index = Defaults[.activatedControllerIDs].firstIndex(of: controllerId) else { return }
-            if index < row { fixedRow -= 1 }
-            
-            result = true
-            
-            Controllers.reorder(fetch: controllerId, insertAt: fixedRow)
-            snapshot.deleteItems([controllerId])
-            
-            snapshot.appendItems([controllerId], toSection: ActivatedControllersDataSource.section)
+        guard
+            let sourceIndex = row(forItemIdentifier: source),
+            let target = itemIdentifier(forRow: targetIndex),
+            source != target
+        else {
+            // Didn't move
+            return false
         }
-        return result
+        
+        var snapshot = self.snapshot()
+        snapshot.moveItem(source, beforeItem: target) // Moves
+        Defaults[.activatedControllerIDs] = snapshot.itemIdentifiers // Update and save
+        apply(snapshot, animatingDifferences: false)
+        
+        return true
     }
     
 }

@@ -284,7 +284,7 @@ extension ControllersViewController {
 extension ControllersViewController {
     
     override func mouseDragged(with event: NSEvent) {
-        tableViewActivatedControllers.reloadData()
+        //tableViewActivatedControllers.reloadData()
     }
     
     override func viewDidLayout() {
