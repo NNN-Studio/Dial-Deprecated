@@ -200,7 +200,7 @@ class ControllersViewController: NSViewController {
             let controller = Controllers.fetch(item)
         else { return .init() }
         
-        cell.set(tableView, controller: controller)
+        cell.set(controller)
         return cell
     }
     
@@ -257,13 +257,17 @@ extension ControllersViewController {
         popUpButtonRotationType.menu = rotationTypeMenuManager?.menu
         
         Task { @MainActor in
-            for await _ in Defaults.updates([.selectedControllerID, .shortcutsControllerSettings, .activatedControllerIDs]) {
+            for await _ in Defaults.updates([.selectedControllerID,
+                                             .shortcutsControllerSettings,
+                                             .activatedControllerIDs,
+                                             .currentControllerID]) {
                 updateSelectedController(Controllers.selectedController)
             }
         }
         
         Task { @MainActor in
-            for await _ in Defaults.updates([.currentControllerID, .activatedControllerIDs]) {
+            for await _ in Defaults.updates([.currentControllerID,
+                                             .activatedControllerIDs]) {
                 updateActivatedControllers(Controllers.activatedControllers)
             }
         }

@@ -16,14 +16,11 @@ class ActivatedControllerCell: NSTableCellView {
     
     @IBOutlet weak var imageIcon: NSImageView!
     
-    @IBOutlet weak var buttonRemove: NSButton!
-    
-    private var tableView: NSTableView?
+    @IBOutlet weak var buttonBecomeCurrent: NSButton!
     
     private var controller: Controller?
     
-    func set(_ tableView: NSTableView, controller: Controller) {
-        self.tableView = tableView
+    func set(_ controller: Controller) {
         self.controller = controller
         
         labelName.stringValue = controller.name
@@ -36,14 +33,23 @@ class ActivatedControllerCell: NSTableCellView {
             labelSubtitle.isHidden = true
         }
         
-        if Controllers.activatedControllers.count > 1 {
-            buttonRemove.isHidden = false
-            buttonRemove.showsBorderOnlyWhileMouseInside = true
+        if controller.id == Controllers.currentController.id {
+            buttonBecomeCurrent.animator().isEnabled = false
+            
+            buttonBecomeCurrent.animator().image = NSImage(systemSymbol: .checkmark)
         } else {
-            buttonRemove.isHidden = true
+            buttonBecomeCurrent.animator().isEnabled = true
+            buttonBecomeCurrent.animator().showsBorderOnlyWhileMouseInside = true
+            
+            buttonBecomeCurrent.animator().image = NSImage(systemSymbol: .starFill)
         }
         
         imageIcon.image = controller.representingSymbol.image
+    }
+    
+    @IBAction func becomeCurrent(_ sender: NSButton) {
+        guard let controller else { return }
+        Controllers.currentController = controller
     }
     
 }
