@@ -17,6 +17,8 @@ You can trigger forward / backward by dialing, increase / decrease volume by dia
 """,
         comment: "playback controller description")
     
+    var rotationType: Rotation.RawType = .continuous
+    
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
         if isDoubleClick {
             // Undo pause sent on first click

@@ -25,6 +25,8 @@ You can increase / decrease screen brightness by dialing, increase / decrease ke
         comment: "brightness controller description"
     )
     
+    var rotationType: Rotation.RawType = .continuous
+    
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
         Input.postAuxKeys([Input.keyIlluminationToggle])
     }

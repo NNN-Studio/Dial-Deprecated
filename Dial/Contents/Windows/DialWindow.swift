@@ -170,7 +170,7 @@ class DialWindow: NSWindow {
                 clampedFrameOrigin.x = translatedScreenOrigin.x + offset
                 
                 dialViewController?.radiansOffset = -Double.pi / 2
-                dialViewController?.iconDirection = .right
+                dialViewController?.iconDirection = .upper
             }
         } else if reached.maxX {
             if reached.minY {
@@ -194,7 +194,7 @@ class DialWindow: NSWindow {
                 clampedFrameOrigin.x = translatedScreenOrigin.x + screenSize.width - offset
                 
                 dialViewController?.radiansOffset = Double.pi / 2
-                dialViewController?.iconDirection = .left
+                dialViewController?.iconDirection = .upper
             }
         } else if reached.minY {
             // Bottom edge
@@ -219,7 +219,7 @@ class DialWindow: NSWindow {
     
 }
 
-class DialViewController: NSViewController {
+@Observable class DialViewController: NSViewController {
     
     var radiansOffset = CGFloat.zero
     

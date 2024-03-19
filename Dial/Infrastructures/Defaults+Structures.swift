@@ -193,6 +193,10 @@ enum Rotation: Codable {
         }
     }
     
+    var autoTriggers: Bool {
+        type.autoTriggers
+    }
+    
     func conformsTo(_ type: RawType) -> Bool {
         self.type == type
     }
@@ -202,6 +206,15 @@ enum Rotation: Codable {
         case continuous
         
         case stepping
+        
+        var autoTriggers: Bool {
+            switch self {
+            case .continuous:
+                true
+            case .stepping:
+                false
+            }
+        }
         
     }
     

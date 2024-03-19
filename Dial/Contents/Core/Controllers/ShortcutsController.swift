@@ -171,6 +171,14 @@ class ShortcutsController: Controller {
         settings.representingSymbol
     }
     
+    var haptics: Bool {
+        settings.haptics
+    }
+    
+    var rotationType: Rotation.RawType {
+        settings.rotationType
+    }
+    
     init(settings: Settings) {
         self.settings = settings
     }
@@ -188,7 +196,7 @@ class ShortcutsController: Controller {
         buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval,
         _ callback: Dial.Callback
     ) {
-        guard rotation.conformsTo(settings.rotationType) else { return }
+        guard rotation.conformsTo(rotationType) else { return }
         
         var direction = rotation.direction
         
@@ -202,7 +210,8 @@ class ShortcutsController: Controller {
             settings.shortcuts.rotation[direction]?.post()
         }
         
-        if settings.haptics && rotation.type == settings.rotationType {
+        print(rotation.type, rotationType, haptics)
+        if haptics && !rotationType.autoTriggers {
             callback.device.buzz()
         }
     }

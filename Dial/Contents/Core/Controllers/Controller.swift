@@ -55,6 +55,10 @@ protocol Controller: AnyObject, SymbolRepresentable {
     /// Whether to enable haptic feedback on stepping. The default value is `false`.
     var haptics: Bool { get }
     
+    var rotationType: Rotation.RawType { get }
+    
+    var autoTriggers: Bool { get }
+    
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback)
     
     func onRotation(rotation: Rotation, totalDegrees: Int, buttonState: Device.ButtonState, interval: TimeInterval?, duration: TimeInterval, _ callback: Dial.Callback)
@@ -79,6 +83,10 @@ extension Controller {
     
     var haptics: Bool {
         false
+    }
+    
+    var autoTriggers: Bool {
+        haptics && rotationType.autoTriggers
     }
     
     func onRelease(_ callback: Dial.Callback) {

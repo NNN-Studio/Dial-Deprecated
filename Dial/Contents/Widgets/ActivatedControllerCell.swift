@@ -34,16 +34,16 @@ class ActivatedControllerCell: NSTableCellView {
         }
         
         if controller.id == Controllers.currentController.id {
-            buttonBecomeCurrent.animator().isEnabled = false
+            buttonBecomeCurrent.isEnabled = false
             
             buttonBecomeCurrent.animator().image = NSImage(systemSymbol: .checkmark)
         } else {
-            buttonBecomeCurrent.animator().isEnabled = true
-            buttonBecomeCurrent.animator().showsBorderOnlyWhileMouseInside = true
+            buttonBecomeCurrent.isEnabled = true
             
             buttonBecomeCurrent.animator().image = NSImage(systemSymbol: .starFill)
         }
         
+        buttonBecomeCurrent.showsBorderOnlyWhileMouseInside = true
         imageIcon.image = controller.representingSymbol.image
     }
     

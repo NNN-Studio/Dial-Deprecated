@@ -10,7 +10,9 @@ import SFSafeSymbols
 import AppKit
 import Defaults
 
-class MainController: Controller {
+@Observable class MainController: Controller {
+    
+    public static var instance: MainController = .init()
     
     var id: ControllerID = .default(.main)
     
@@ -19,6 +21,8 @@ class MainController: Controller {
     var representingSymbol: SFSymbol = .hockeyPuck
     
     var haptics: Bool = false
+    
+    var rotationType: Rotation.RawType = .stepping
     
     var callback: Dial.Callback?
     

@@ -1090,6 +1090,12 @@
             "state" : "new",
             "value" : "Default"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "默认"
+          }
         }
       }
     }

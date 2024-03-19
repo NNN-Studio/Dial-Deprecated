@@ -17,6 +17,8 @@ You can scroll and perform middle button clicks through this controller. Scrolls
 """,
         comment: "scroll controller description")
     
+    var rotationType: Rotation.RawType = .continuous
+    
     private var accumulated = 0
     
     func onClick(isDoubleClick: Bool, interval: TimeInterval?, _ callback: Dial.Callback) {
@@ -43,12 +45,12 @@ You can scroll and perform middle button clicks through this controller. Scrolls
         
         switch rotation {
         case .continuous(let direction):
-            let steps = accelerated ? 45 : 5
+            let steps = accelerated ? 60 : 30
             let event = CGEvent(
                 scrollWheelEvent2Source: nil,
                 units: .pixel,
                 wheelCount: 1,
-                wheel1: Int32(steps * direction.negateIf(buttonState == .pressed).rawValue),
+                wheel1: Int32(-steps * direction.negateIf(buttonState == .pressed).rawValue),
                 wheel2: 0,
                 wheel3: 0
             )

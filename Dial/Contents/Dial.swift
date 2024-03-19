@@ -18,18 +18,16 @@ class Dial {
     )
     
     var controller: Controller {
-        if mainController.isAgent {
-            return mainController
+        if MainController.instance.isAgent {
+            return MainController.instance
         } else {
             let item = statusBarController.menuItems?.controllerMenuItems.controllers
                 .filter { $0.option.id == Controllers.currentController.id }
                 .first
             
-            return item?.option ?? mainController
+            return item?.option ?? MainController.instance
         }
     }
-    
-    private var mainController: MainController = .init()
     
     private var timestamps: (
         buttonPressed: Date?,
@@ -45,7 +43,7 @@ class Dial {
     
     init() {
         device.inputHandler = self
-        mainController.callback = .init(self)
+        MainController.instance.callback = .init(self)
         
         connect()
     }
@@ -76,13 +74,13 @@ extension Dial: InputHandler {
         switch buttonState {
         case .pressed:
             // Trigger press and hold
-            if !mainController.isAgent {
-                mainController.willBeAgent()
+            if !MainController.instance.isAgent {
+                MainController.instance.willBeAgent()
             }
             
             timestamps.buttonPressed = .now
         case .released:
-            mainController.discardUpcomingAgentRole()
+            MainController.instance.discardUpcomingAgentRole()
             
             let clickInterval = Date.now.timeIntervalSince(timestamps.buttonPressed)
             guard let clickInterval, clickInterval <= NSEvent.doubleClickInterval else {
@@ -103,10 +101,9 @@ extension Dial: InputHandler {
     }
     
     func onRotation(_ direction: Direction, _ buttonState: Device.ButtonState) {
-        mainController.discardUpcomingAgentRole()
+        MainController.instance.discardUpcomingAgentRole()
         
         let interval = Date.now.timeIntervalSince(timestamps.rotation)
-        print(interval)
         if let interval, interval > NSEvent.keyRepeatDelay {
             // Rotation ended
             rotationBehavior.started = nil
@@ -142,10 +139,6 @@ extension Dial: InputHandler {
                     buttonState: buttonState, interval: interval, duration: duration,
                     callback
                 )
-                
-                if controller.haptics {
-                    device.buzz()
-                }
             }
             
             if rotationBehavior.direction != direction {

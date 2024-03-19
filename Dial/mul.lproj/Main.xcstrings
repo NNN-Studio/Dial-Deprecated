@@ -22,6 +22,12 @@
             "state" : "new",
             "value" : "Controllers"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "控制器"
+          }
         }
       }
     },
@@ -33,6 +39,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Pressing and dialing counterclockwisely"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按住并逆时针旋转"
           }
         }
       }
@@ -52,18 +64,6 @@
     "15U-xF-Sgy.label" : {
       "comment" : "Class = \"NSTabViewItem\"; label = \"General\"; ObjectID = \"15U-xF-Sgy\";",
       "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "General"
-          }
-        }
-      }
-    },
-    "81u-uF-qA7.label" : {
-      "comment" : "Class = \"NSTabViewItem\"; label = \"General\"; ObjectID = \"81u-uF-qA7\";",
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -130,6 +130,12 @@
             "state" : "new",
             "value" : "Main Menu"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : ""
+          }
         }
       }
     },
@@ -157,24 +163,6 @@
         }
       }
     },
-    "du3-b5-oEf.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when dialed counterclockwisely\"; ObjectID = \"du3-b5-oEf\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Triggers when dialed counterclockwisely"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "顺时针旋转旋钮时触发"
-          }
-        }
-      }
-    },
     "fdz-bY-nTa.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Item 2\"; ObjectID = \"fdz-bY-nTa\";",
       "extractionState" : "extracted_with_value",
@@ -187,42 +175,6 @@
         }
       }
     },
-    "gTg-Y5-LUe.ibShadowedLabels[0]" : {
-      "comment" : "Class = \"NSSegmentedCell\"; gTg-Y5-LUe.ibShadowedLabels[0] = \"Shortcuts\"; ObjectID = \"gTg-Y5-LUe\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Shortcuts"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "快捷键"
-          }
-        }
-      }
-    },
-    "gTg-Y5-LUe.ibShadowedLabels[1]" : {
-      "comment" : "Class = \"NSSegmentedCell\"; gTg-Y5-LUe.ibShadowedLabels[1] = \"Advanced\"; ObjectID = \"gTg-Y5-LUe\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Advanced"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "高级"
-          }
-        }
-      }
-    },
     "GYc-6q-N8k.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Item 2\"; ObjectID = \"GYc-6q-N8k\";",
       "extractionState" : "extracted_with_value",
@@ -231,24 +183,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Item 2"
-          }
-        }
-      }
-    },
-    "h5g-Vx-nYA.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when dialed counterclockwisely while pressing\"; ObjectID = \"h5g-Vx-nYA\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Triggers when dialed counterclockwisely while pressing"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "按住并逆时针旋转旋钮时触发"
           }
         }
       }
@@ -277,42 +211,6 @@
         }
       }
     },
-    "hNm-Mp-ggM.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when double clicked\"; ObjectID = \"hNm-Mp-ggM\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Triggers when double clicked"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "连续点按时触发"
-          }
-        }
-      }
-    },
-    "iIQ-VE-2IB.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"This is a default controller, the configurations are not applicable.\"; ObjectID = \"iIQ-VE-2IB\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "This is a default controller, the configurations are not applicable."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "自定义选项不可用于默认控制器。"
-          }
-        }
-      }
-    },
     "iJD-lk-gJk.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Starts with macOS\"; ObjectID = \"iJD-lk-gJk\";",
       "extractionState" : "extracted_with_value",
@@ -337,42 +235,6 @@
         }
       }
     },
-    "iSQ-Dt-wpe.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when dialed clockwisely while pressing\"; ObjectID = \"iSQ-Dt-wpe\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Triggers when dialed clockwisely while pressing"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "按住并顺时针旋转旋钮时触发"
-          }
-        }
-      }
-    },
-    "Iu5-Fb-NkF.placeholderString" : {
-      "comment" : "Class = \"NSTextFieldCell\"; placeholderString = \"Controller Name\"; ObjectID = \"Iu5-Fb-NkF\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Controller Name"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "控制器名称"
-          }
-        }
-      }
-    },
     "jOi-mc-zj1.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Pressing and dialing clockwisely\"; ObjectID = \"jOi-mc-zj1\";",
       "extractionState" : "extracted_with_value",
@@ -381,6 +243,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Pressing and dialing clockwisely"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按住并顺时针旋转"
           }
         }
       }
@@ -397,27 +265,9 @@
         }
       }
     },
-    "kzW-ll-5mS.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when clicked\"; ObjectID = \"kzW-ll-5mS\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Triggers when clicked"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "点按时触发"
-          }
-        }
-      }
-    },
-    "m2Z-n2-opU.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Dial connects your Surface Dial through Bluetooth. Pair your Surface Dial in System Settings before clicking this button to search for it.\"; ObjectID = \"m2Z-n2-opU\";",
-      "extractionState" : "stale",
+    "lZ6-aS-eaU.ibShadowedToolTip" : {
+      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Dial connects your Surface Dial through Bluetooth. Pair your Surface Dial in System Settings before clicking this button to search for it.\"; ObjectID = \"lZ6-aS-eaU\";",
+      "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -429,24 +279,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dial通过蓝牙连接你的Surface智能旋钮。你需要在系统设置中配对你的设备，再点按此按钮以连接。"
-          }
-        }
-      }
-    },
-    "MgD-cd-DVr.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Source Code\"; ObjectID = \"MgD-cd-DVr\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Source Code"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "源代码"
           }
         }
       }
@@ -472,6 +304,12 @@
             "state" : "new",
             "value" : "This is a default controller, the configurations are not applicable."
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "自定义选项不可用于默认控制器。"
+          }
         }
       }
     },
@@ -483,42 +321,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Haptic feedback"
-          }
-        }
-      }
-    },
-    "njj-4D-dJK.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Dial Circle\"; ObjectID = \"njj-4D-dJK\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Dial Circle"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "旋钮圆盘"
-          }
-        }
-      }
-    },
-    "NkC-uS-QmI.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Presented with 􀊵 by KrLite\"; ObjectID = \"NkC-uS-QmI\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Presented with 􀊵 by KrLite"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "用􀊵呈现，来自KrLite"
           }
         }
       }
@@ -580,6 +382,12 @@
             "state" : "new",
             "value" : "Double pressing"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "连续点按"
+          }
         }
       }
     },
@@ -603,6 +411,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Dialing counterclockwisely"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "逆时针旋转"
           }
         }
       }
@@ -628,6 +442,12 @@
             "state" : "new",
             "value" : "Controllers"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "控制器"
+          }
         }
       }
     },
@@ -639,6 +459,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Activated"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "激活"
           }
         }
       }
@@ -668,31 +494,19 @@
       }
     },
     "QWy-Rw-rRS.headerCell.title" : {
-      "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Activated Controllers\"; ObjectID = \"QWy-Rw-rRS\";",
+      "comment" : "Class = \"NSTableColumn\"; headerCell.title = \"Activated Controllers （Drag to Reorder)\"; ObjectID = \"QWy-Rw-rRS\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Activated Controllers"
-          }
-        }
-      }
-    },
-    "rtr-u2-S55.title" : {
-      "comment" : "Class = \"NSWindow\"; title = \"Dial\"; ObjectID = \"rtr-u2-S55\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Dial"
+            "value" : "Activated Controllers （Drag to Reorder)"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "智能旋钮"
+            "value" : "激活的控制器（拖动以排序）"
           }
         }
       }
@@ -718,35 +532,29 @@
             "state" : "new",
             "value" : "Dialing clockwisely"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "顺时针旋转"
+          }
         }
       }
     },
     "SUh-Ir-dxz.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"While disconnected to your Surface Dial, it is possible to access this page by launching this app again.\"; ObjectID = \"SUh-Ir-dxz\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Re-open Dial to access this page.\"; ObjectID = \"SUh-Ir-dxz\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "While disconnected to your Surface Dial, it is possible to access this page by launching this app again."
-          }
-        }
-      }
-    },
-    "tAY-67-1OO.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"While disconnected to your Surface Dial, it is possible to access this page by launching this app again.\"; ObjectID = \"tAY-67-1OO\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "While disconnected to your Surface Dial, it is possible to access this page by launching this app again."
+            "value" : "Re-open Dial to access this page."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在你的智能旋钮失去连接时，你可以通过再次启动此App的方式打开此界面。"
+            "value" : "重新打开Dial以访问此页面。"
           }
         }
       }
@@ -808,6 +616,12 @@
             "state" : "new",
             "value" : "Dialing"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "旋转操作"
+          }
         }
       }
     },
@@ -819,6 +633,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Pressing"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点按操作"
           }
         }
       }
@@ -832,6 +652,12 @@
             "state" : "new",
             "value" : "Advanced"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更多设置"
+          }
         }
       }
     },
@@ -843,6 +669,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "SOURCE CODE"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "源代码"
           }
         }
       }
@@ -856,6 +688,12 @@
             "state" : "new",
             "value" : "Controller Name"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "控制器名称"
+          }
         }
       }
     },
@@ -867,6 +705,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "General"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "通用"
           }
         }
       }
@@ -880,6 +724,12 @@
             "state" : "new",
             "value" : "Dialing and Pressing"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "按住并旋转操作"
+          }
         }
       }
     },
@@ -892,6 +742,12 @@
             "state" : "new",
             "value" : "Advanced"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "更多设置"
+          }
         }
       }
     },
@@ -903,6 +759,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Pressing"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点按"
           }
         }
       }
@@ -927,42 +789,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Item 1"
-          }
-        }
-      }
-    },
-    "Xa9-FX-na8.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSImageView\"; ibShadowedToolTip = \"Triggers when dialed clockwisely\"; ObjectID = \"Xa9-FX-na8\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Triggers when dialed clockwisely"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "逆时针旋转旋钮时触发"
-          }
-        }
-      }
-    },
-    "xl0-8n-ldy.ibShadowedToolTip" : {
-      "comment" : "Class = \"NSButton\"; ibShadowedToolTip = \"Icon chooser...\"; ObjectID = \"xl0-8n-ldy\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Icon chooser..."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "图标选择器..."
           }
         }
       }
@@ -999,24 +825,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Box"
-          }
-        }
-      }
-    },
-    "YoE-he-Lw4.label" : {
-      "comment" : "Class = \"NSTabViewItem\"; label = \"Controllers\"; ObjectID = \"YoE-he-Lw4\";",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Controllers"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "控制器"
           }
         }
       }

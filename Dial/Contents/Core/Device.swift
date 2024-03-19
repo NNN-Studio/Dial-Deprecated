@@ -55,6 +55,20 @@ protocol InputHandler {
     
     private let semaphore = DispatchSemaphore(value: 0)
     
+    init() {
+        Task { @MainActor in
+            for await _ in Defaults.updates([.currentControllerID, .shortcutsControllerSettings]) {
+                initSensitivity(autoTriggers: Controllers.currentController.autoTriggers)
+            }
+        }
+        
+        Task { @MainActor in
+            for await isAgent in observationTrackingStream({ MainController.instance.isAgent }) {
+                initSensitivity(autoTriggers: isAgent ? false : Controllers.currentController.autoTriggers)
+            }
+        }
+    }
+    
     deinit {
         stop()
         hid_exit()
@@ -159,8 +173,8 @@ extension Device {
             print("Connected to device \(serialNumber)!")
             
             connectionStatus = .connected(serialNumber)
-            initSensitivity()
             buzz(3)
+            initSensitivity(autoTriggers: Controllers.currentController.autoTriggers)
         }
         
         return isConnected
@@ -173,14 +187,16 @@ extension Device {
             
             self.dev = nil
             connectionStatus = .disconnected
+            initSensitivity(autoTriggers: false)
             
             print("Device disconnected.")
         }
     }
     
     // https://github.com/daniel5151/surface-dial-linux/blob/main/src/dial_device/haptics.rs
-    private func initSensitivity() {
+    private func initSensitivity(autoTriggers: Bool) {
         if isConnected {
+            let autoTriggers = autoTriggers && !MainController.instance.isAgent
             let steps_lo = 360 & 0xff
             let steps_hi = (360 >> 8) & 0xff
             var buf: Array<UInt8> = []
@@ -190,7 +206,7 @@ extension Device {
             buf.append(UInt8(steps_hi))
             buf.append(0x00) // Repeat count
             
-            buf.append(0x02) // Do not auto trigger haptics
+            buf.append(autoTriggers ? 0x03 : 0x02) // Buzz style
             
             buf.append(0x00) // Waveform cutoff time
             buf.append(0x00) // Retrigger period (lo)

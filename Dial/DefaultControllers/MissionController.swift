@@ -25,6 +25,8 @@ You can iterate through App Switcher and activate the app windows through this c
         comment: "mission controller description"
     )
     
+    var rotationType: Rotation.RawType = .stepping
+    
     private var inMission = false
     
     private var escapeDispatch: DispatchWorkItem?
@@ -58,6 +60,8 @@ You can iterate through App Switcher and activate the app windows through this c
             if let escapeDispatch {
                 DispatchQueue.main.asyncAfter(deadline: .now() + NSEvent.doubleClickInterval * 3, execute: escapeDispatch)
             }
+            
+            callback.device.buzz()
         default:
             break
         }
