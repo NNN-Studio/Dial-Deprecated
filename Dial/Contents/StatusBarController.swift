@@ -81,6 +81,7 @@ class StatusBarController: NSObject, NSMenuDelegate {
     }
     
     private func updateIcon(_ connectionStatus: Device.ConnectionStatus) {
+        print(connectionStatus)
         DispatchQueue.main.asyncAfter(deadline: .now()) { [self] in
             if let button = statusItem.button {
                 let dialIcon = SymbolRepresentation.dial.representingSymbol.image

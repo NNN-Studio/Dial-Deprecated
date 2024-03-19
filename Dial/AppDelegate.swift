@@ -105,8 +105,6 @@ func runTasks() {
 func setCursorVisibility(
     _ visible: Bool
 ) {
-    return
-    
     let propertyString = CFStringCreateWithCString(kCFAllocatorDefault, "SetsCursorInBackground", 0)
     CGSSetConnectionProperty(_CGSDefaultConnection(), _CGSDefaultConnection(), propertyString, kCFBooleanTrue)
     

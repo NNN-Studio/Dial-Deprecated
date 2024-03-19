@@ -61,12 +61,6 @@ protocol InputHandler {
                 initSensitivity(autoTriggers: Controllers.currentController.autoTriggers)
             }
         }
-        
-        Task { @MainActor in
-            for await isAgent in observationTrackingStream({ MainController.instance.isAgent }) {
-                initSensitivity(autoTriggers: isAgent ? false : Controllers.currentController.autoTriggers)
-            }
-        }
     }
     
     deinit {
@@ -194,9 +188,9 @@ extension Device {
     }
     
     // https://github.com/daniel5151/surface-dial-linux/blob/main/src/dial_device/haptics.rs
-    private func initSensitivity(autoTriggers: Bool) {
+    func initSensitivity(autoTriggers haptics: Bool) {
         if isConnected {
-            let autoTriggers = autoTriggers && !MainController.instance.isAgent
+            let autoTriggers = haptics && !MainController.instance.isAgent
             let steps_lo = 360 & 0xff
             let steps_hi = (360 >> 8) & 0xff
             var buf: Array<UInt8> = []
@@ -368,6 +362,10 @@ extension Device {
         
         func buzz(_ repeatCount: UInt8 = 1) {
             device.buzz(repeatCount)
+        }
+        
+        func initSensitivity(autoTriggers haptics: Bool) {
+            device.initSensitivity(autoTriggers: haptics)
         }
         
     }

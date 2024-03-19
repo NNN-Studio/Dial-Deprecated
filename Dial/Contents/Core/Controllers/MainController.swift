@@ -36,7 +36,7 @@ import Defaults
         }
     }
     
-    private var state: State = .notAgent
+    var state: State = .notAgent
     
     private var dispatch: DispatchWorkItem?
     
@@ -96,6 +96,7 @@ import Defaults
             self.isAgent = true
             self.callback?.window.show()
             self.callback?.device.buzz()
+            self.callback?.device.initSensitivity(autoTriggers: false)
             
             print("Main controller is now the agent.")
         }
@@ -113,6 +114,7 @@ import Defaults
         if isAgent {
             isAgent = false
             self.callback?.window.hide()
+            self.callback?.device.initSensitivity(autoTriggers: Controllers.currentController.autoTriggers)
             
             print("Main controller is no longer the agent.")
         }
