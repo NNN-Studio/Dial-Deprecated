@@ -210,7 +210,6 @@ class ShortcutsController: Controller {
             settings.shortcuts.rotation[direction]?.post()
         }
         
-        print(rotation.type, rotationType, haptics)
         if haptics && !rotationType.autoTriggers {
             callback.device.buzz()
         }

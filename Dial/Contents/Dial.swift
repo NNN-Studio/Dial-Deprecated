@@ -18,15 +18,7 @@ class Dial {
     )
     
     var controller: Controller {
-        if MainController.instance.isAgent {
-            return MainController.instance
-        } else {
-            let item = statusBarController.menuItems?.controllerMenuItems.controllers
-                .filter { $0.option.id == Controllers.currentController.id }
-                .first
-            
-            return item?.option ?? MainController.instance
-        }
+        MainController.instance.isAgent ? MainController.instance : Controllers.currentController
     }
     
     private var timestamps: (

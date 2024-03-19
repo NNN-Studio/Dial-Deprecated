@@ -574,9 +574,9 @@ extension ControllersViewController {
             buttonShortcuts3Keys2.keys = settings.shortcuts.double.keys
             buttonShortcuts3Keys2.updateTitle()
             
-            switchHaptics.flag = settings.haptics
-            switchPhysicalDirection.flag = settings.physicalDirection
-            switchAlternativeDirection.flag = settings.alternativeDirection
+            switchHaptics.animator().flag = settings.haptics
+            switchPhysicalDirection.animator().flag = settings.physicalDirection
+            switchAlternativeDirection.animator().flag = settings.alternativeDirection
             
             let icon = settings.representingSymbol
             buttonIconChooser.image = icon.image
