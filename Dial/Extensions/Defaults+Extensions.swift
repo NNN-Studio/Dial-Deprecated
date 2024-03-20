@@ -18,6 +18,8 @@ extension Defaults.Keys {
     
     static let autoHidesIconEnabled = Key<Bool>("autoHidesIconEnabled", default: false)
     
+    static let statusIconEnabled = Key<Bool>("statusIconEnabled", default: true)
+    
     
     
     static let shortcutsControllerSettings = Key<Bag<ShortcutsController.Settings>>("shortcutsControllerSettings", default: Bag([]))
@@ -41,9 +43,5 @@ extension Defaults.Keys {
     static let rotationThresholdDegrees = Key<UInt>("rotationThresholdDegrees", default: 10)
     
     static let maxControllerCount = Key<Int>("maxControllerCount", default: 10)
-    
-    
-    
-    static let launchAtLogin = Key<Bool>("launchAtLogin", default: false)
     
 }

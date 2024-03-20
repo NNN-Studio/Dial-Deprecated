@@ -82,12 +82,6 @@ func runTasks() {
             AppDelegate.shared?.dial.statusBarController.toggleVisibility(!value || (AppDelegate.shared?.dial.device.isConnected ?? false))
         }
     }
-    
-    Task { @MainActor in
-        for await value in Defaults.updates(.launchAtLogin) {
-            LaunchAtLogin.isEnabled = value
-        }
-    }
 }
 
 func setCursorVisibility(

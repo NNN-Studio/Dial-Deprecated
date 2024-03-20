@@ -165,7 +165,7 @@ extension StatusBarController: DialMenuDelegate {
     }
     
     @objc func toggleStartsWithMacOS(_ sender: Any?) {
-        Defaults[.launchAtLogin].toggle()
+        LaunchAtLogin.isEnabled.toggle()
     }
     
     func openSettings(_ sender: Any?) {
