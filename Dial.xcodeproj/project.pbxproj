@@ -11,7 +11,7 @@
 		280AA0872B7AF64600798BB1 /* ControllerMenuItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280AA0862B7AF64600798BB1 /* ControllerMenuItems.swift */; };
 		2822407C2B7EEBDD00F73DF4 /* EditableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822407B2B7EEBDD00F73DF4 /* EditableTextField.swift */; };
 		2822C3D42B75C42D000D5C58 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 2822C3D32B75C42D000D5C58 /* Defaults */; };
-		2822C3D62B75C443000D5C58 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D52B75C443000D5C58 /* Defaults.swift */; };
+		2822C3D62B75C443000D5C58 /* Defaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D52B75C443000D5C58 /* Defaults+Extension.swift */; };
 		2822C3D82B75C44B000D5C58 /* Defaults+Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */; };
 		2822C3DA2B75DB8C000D5C58 /* BrightnessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3D92B75DB8C000D5C58 /* BrightnessController.swift */; };
 		2822C3F22B75F909000D5C58 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3F12B75F909000D5C58 /* SettingsWindow.swift */; };
@@ -28,8 +28,6 @@
 		28B685282AEBFB80008EBE98 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 28B685272AEBFB80008EBE98 /* Localizable.xcstrings */; };
 		28B833BC2B7747D200D96825 /* ShortcutsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833BB2B7747D200D96825 /* ShortcutsController.swift */; };
 		28B833C02B77582C00D96825 /* ShortcutArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833BF2B77582C00D96825 /* ShortcutArray.swift */; };
-		28B833C32B77615500D96825 /* ControllersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833C22B77615500D96825 /* ControllersViewController.swift */; };
-		28B833C52B77617500D96825 /* GeneralViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B833C42B77617500D96825 /* GeneralViewController.swift */; };
 		28C7A0A22AEE06E8003113D5 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C7A0A12AEE06E8003113D5 /* Input.swift */; };
 		28D278EB2AEFC35D00844ADE /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D278EA2AEFC35D00844ADE /* Device.swift */; };
 		28D9F4622B79C29100494B7E /* DefaultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D9F4612B79C29100494B7E /* DefaultController.swift */; };
@@ -63,7 +61,7 @@
 		2801CAB42AEDF18000E95B5F /* MissionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionController.swift; sourceTree = "<group>"; };
 		280AA0862B7AF64600798BB1 /* ControllerMenuItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerMenuItems.swift; sourceTree = "<group>"; };
 		2822407B2B7EEBDD00F73DF4 /* EditableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableTextField.swift; sourceTree = "<group>"; };
-		2822C3D52B75C443000D5C58 /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		2822C3D52B75C443000D5C58 /* Defaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Defaults+Extension.swift"; sourceTree = "<group>"; };
 		2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Defaults+Structures.swift"; sourceTree = "<group>"; };
 		2822C3D92B75DB8C000D5C58 /* BrightnessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrightnessController.swift; sourceTree = "<group>"; };
 		2822C3F12B75F909000D5C58 /* SettingsWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindow.swift; sourceTree = "<group>"; };
@@ -78,8 +76,6 @@
 		28B685272AEBFB80008EBE98 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		28B833BB2B7747D200D96825 /* ShortcutsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsController.swift; sourceTree = "<group>"; };
 		28B833BF2B77582C00D96825 /* ShortcutArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutArray.swift; sourceTree = "<group>"; };
-		28B833C22B77615500D96825 /* ControllersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllersViewController.swift; sourceTree = "<group>"; };
-		28B833C42B77617500D96825 /* GeneralViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralViewController.swift; sourceTree = "<group>"; };
 		28C7A0A12AEE06E8003113D5 /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		28D278EA2AEFC35D00844ADE /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		28D9F4612B79C29100494B7E /* DefaultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultController.swift; sourceTree = "<group>"; };
@@ -127,6 +123,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2843D3BB2BAB1ED30028E130 /* Implementations */ = {
+			isa = PBXGroup;
+			children = (
+				28DBB1672B7904B200743575 /* MainController.swift */,
+				28B833BB2B7747D200D96825 /* ShortcutsController.swift */,
+				28D9F4612B79C29100494B7E /* DefaultController.swift */,
+				28B685262AEBFB5A008EBE98 /* Default Controllers */,
+			);
+			path = Implementations;
+			sourceTree = "<group>";
+		};
+		2843D3BD2BAB1F270028E130 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				28B685292AEC01BC008EBE98 /* Contents */,
+				28B6852C2AEC01E8008EBE98 /* Infrastructures */,
+			);
+			path = Old;
+			sourceTree = "<group>";
+		};
+		2843D3BE2BAB1F570028E130 /* Status Bar */ = {
+			isa = PBXGroup;
+			children = (
+				C882FA2C26F143E300595EE1 /* StatusBarController.swift */,
+				28D9F47A2B7A2FFE00494B7E /* Menus */,
+			);
+			path = "Status Bar";
+			sourceTree = "<group>";
+		};
 		289167242BA676400064EEB2 /* Submenus */ = {
 			isa = PBXGroup;
 			children = (
@@ -137,7 +162,7 @@
 			path = Submenus;
 			sourceTree = "<group>";
 		};
-		28B685262AEBFB5A008EBE98 /* DefaultControllers */ = {
+		28B685262AEBFB5A008EBE98 /* Default Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				C89D242A2703CF4500B1A458 /* ScrollController.swift */,
@@ -145,18 +170,14 @@
 				2801CAB42AEDF18000E95B5F /* MissionController.swift */,
 				2822C3D92B75DB8C000D5C58 /* BrightnessController.swift */,
 			);
-			path = DefaultControllers;
+			path = "Default Controllers";
 			sourceTree = "<group>";
 		};
 		28B685292AEC01BC008EBE98 /* Contents */ = {
 			isa = PBXGroup;
 			children = (
 				28FCB9322B7C5ACE0071AE01 /* Widgets */,
-				28DBB1652B79048200743575 /* Windows */,
 				28D278E92AEFC25100844ADE /* Utilities */,
-				28D278E82AEFC23E00844ADE /* Core */,
-				C882FA2C26F143E300595EE1 /* StatusBarController.swift */,
-				C89F31582701090400A8B365 /* Dial.swift */,
 			);
 			path = Contents;
 			sourceTree = "<group>";
@@ -165,26 +186,18 @@
 			isa = PBXGroup;
 			children = (
 				28C7A0A12AEE06E8003113D5 /* Input.swift */,
-				2822C3D52B75C443000D5C58 /* Defaults.swift */,
-				2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */,
 			);
 			path = Infrastructures;
-			sourceTree = "<group>";
-		};
-		28B833C12B77613700D96825 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				28B833C42B77617500D96825 /* GeneralViewController.swift */,
-				28B833C22B77615500D96825 /* ControllersViewController.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		28D278E82AEFC23E00844ADE /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				28DBB1662B79049B00743575 /* Controllers */,
 				28D278EA2AEFC35D00844ADE /* Device.swift */,
+				C89F31582701090400A8B365 /* Dial.swift */,
+				28B833BF2B77582C00D96825 /* ShortcutArray.swift */,
+				28DBB1632B79046D00743575 /* SymbolRepresentation.swift */,
+				28DBB1662B79049B00743575 /* Controllers */,
 				285E6E492BA739B300BEE4DC /* ActivatedControllersDataSource.swift */,
 			);
 			path = Core;
@@ -193,11 +206,7 @@
 		28D278E92AEFC25100844ADE /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				28D9F47A2B7A2FFE00494B7E /* Menus */,
-				28B833BF2B77582C00D96825 /* ShortcutArray.swift */,
-				28DBB1632B79046D00743575 /* SymbolRepresentation.swift */,
 				28DBB1602B7903D000743575 /* Localization.swift */,
-				28D9F4762B7A12D500494B7E /* ObservationTrackingStream.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -205,12 +214,15 @@
 		28D9F4642B79EBF500494B7E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				28D9F4762B7A12D500494B7E /* ObservationTrackingStream.swift */,
 				28D9F4652B79EC0D00494B7E /* NSSwitch+Extension.swift */,
 				28D9F4672B79EC2200494B7E /* NSButton+Extension.swift */,
 				28D9F4692B79EC5600494B7E /* SFSymbol+Extension.swift */,
 				28D9F46B2B79EC8C00494B7E /* NSImage+Extension.swift */,
 				28D9F4782B7A13E100494B7E /* NSString+Extension.swift */,
 				2831CA0A2B81DE470032956E /* CGFloat+Extension.swift */,
+				2822C3D52B75C443000D5C58 /* Defaults+Extension.swift */,
+				2822C3D72B75C44B000D5C58 /* Defaults+Structures.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -218,9 +230,9 @@
 		28D9F47A2B7A2FFE00494B7E /* Menus */ = {
 			isa = PBXGroup;
 			children = (
-				289167242BA676400064EEB2 /* Submenus */,
 				2830055B2AEE7FF800D18F65 /* MenuManager.swift */,
 				28D9F46D2B79ED2B00494B7E /* MenuItems.swift */,
+				289167242BA676400064EEB2 /* Submenus */,
 			);
 			path = Menus;
 			sourceTree = "<group>";
@@ -238,11 +250,9 @@
 		28DBB1662B79049B00743575 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2843D3BB2BAB1ED30028E130 /* Implementations */,
 				28864F032B786B58009FB069 /* Controllers.swift */,
 				C89D24282703BA5E00B1A458 /* Controller.swift */,
-				28DBB1672B7904B200743575 /* MainController.swift */,
-				28D9F4612B79C29100494B7E /* DefaultController.swift */,
-				28B833BB2B7747D200D96825 /* ShortcutsController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -270,16 +280,16 @@
 		C882FA1826F1430C00595EE1 /* Dial */ = {
 			isa = PBXGroup;
 			children = (
-				28D9F4642B79EBF500494B7E /* Extensions */,
-				28B833C12B77613700D96825 /* Views */,
-				28B6852C2AEC01E8008EBE98 /* Infrastructures */,
-				28B685292AEC01BC008EBE98 /* Contents */,
-				28B685262AEBFB5A008EBE98 /* DefaultControllers */,
 				C882FA1926F1430C00595EE1 /* AppDelegate.swift */,
 				C89F3155270106E400A8B365 /* Dial-Bridging-Header.h */,
+				28D9F4642B79EBF500494B7E /* Extensions */,
+				28D278E82AEFC23E00844ADE /* Core */,
+				28DBB1652B79048200743575 /* Windows */,
+				2843D3BE2BAB1F570028E130 /* Status Bar */,
 				C882FA1D26F1430D00595EE1 /* Assets.xcassets */,
 				C882FA2226F1430D00595EE1 /* Main.storyboard */,
 				28B685272AEBFB80008EBE98 /* Localizable.xcstrings */,
+				2843D3BD2BAB1F270028E130 /* Old */,
 			);
 			path = Dial;
 			sourceTree = "<group>";
@@ -375,7 +385,7 @@
 				28D278EB2AEFC35D00844ADE /* Device.swift in Sources */,
 				28D9F46A2B79EC5600494B7E /* SFSymbol+Extension.swift in Sources */,
 				28D9F4662B79EC0D00494B7E /* NSSwitch+Extension.swift in Sources */,
-				2822C3D62B75C443000D5C58 /* Defaults.swift in Sources */,
+				2822C3D62B75C443000D5C58 /* Defaults+Extension.swift in Sources */,
 				28F8D3BA2BA6B64B006E18AA /* ActivatedControllerCell.swift in Sources */,
 				28D9F4772B7A12D500494B7E /* ObservationTrackingStream.swift in Sources */,
 				2822C3DA2B75DB8C000D5C58 /* BrightnessController.swift in Sources */,
@@ -398,14 +408,12 @@
 				28D9F4622B79C29100494B7E /* DefaultController.swift in Sources */,
 				28D9F4792B7A13E100494B7E /* NSString+Extension.swift in Sources */,
 				C89D24292703BA5E00B1A458 /* Controller.swift in Sources */,
-				28B833C32B77615500D96825 /* ControllersViewController.swift in Sources */,
 				28B833C02B77582C00D96825 /* ShortcutArray.swift in Sources */,
 				C89D242D2704870C00B1A458 /* PlaybackController.swift in Sources */,
 				28DBB1682B7904B200743575 /* MainController.swift in Sources */,
 				28D9F4682B79EC2200494B7E /* NSButton+Extension.swift in Sources */,
 				2867F1832AEC8D3B0029C937 /* DialWindow.swift in Sources */,
 				C89F31592701090400A8B365 /* Dial.swift in Sources */,
-				28B833C52B77617500D96825 /* GeneralViewController.swift in Sources */,
 				2831CA0B2B81DE470032956E /* CGFloat+Extension.swift in Sources */,
 				285E6E4C2BA73B1C00BEE4DC /* ActivatedControllersTableView.swift in Sources */,
 				28864F042B786B58009FB069 /* Controllers.swift in Sources */,
