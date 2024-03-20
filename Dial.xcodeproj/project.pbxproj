@@ -19,6 +19,7 @@
 		2844AD9B2BAB0C5D00788310 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 2844AD9A2BAB0C5D00788310 /* Algorithms */; };
 		2844AD9E2BAB0C7100788310 /* SettingsAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 2844AD9D2BAB0C7100788310 /* SettingsAccess */; };
 		2844ADA12BAB0C8800788310 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 2844ADA02BAB0C8800788310 /* Sparkle */; };
+		2844ADA42BAB0D5600788310 /* MenuBarExtraAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 2844ADA32BAB0D5600788310 /* MenuBarExtraAccess */; };
 		285E6E4A2BA739B300BEE4DC /* ActivatedControllersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E6E492BA739B300BEE4DC /* ActivatedControllersDataSource.swift */; };
 		2867F1832AEC8D3B0029C937 /* DialWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F1822AEC8D3B0029C937 /* DialWindow.swift */; };
 		2867F18F2AECC6E90029C937 /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 2867F18E2AECC6E90029C937 /* LaunchAtLogin */; };
@@ -100,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2844ADA42BAB0D5600788310 /* MenuBarExtraAccess in Frameworks */,
 				2844AD9B2BAB0C5D00788310 /* Algorithms in Frameworks */,
 				28FA280C2B78A3310071FB1B /* SFSafeSymbols in Frameworks */,
 				2867F18F2AECC6E90029C937 /* LaunchAtLogin in Frameworks */,
@@ -277,6 +279,7 @@
 				2844AD9A2BAB0C5D00788310 /* Algorithms */,
 				2844AD9D2BAB0C7100788310 /* SettingsAccess */,
 				2844ADA02BAB0C8800788310 /* Sparkle */,
+				2844ADA32BAB0D5600788310 /* MenuBarExtraAccess */,
 			);
 			productName = MacDial;
 			productReference = 286DFBB42B80C24000685AFD /* Dial.app */;
@@ -314,6 +317,7 @@
 				2844AD992BAB0C5D00788310 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 				2844AD9C2BAB0C7100788310 /* XCRemoteSwiftPackageReference "SettingsAccess" */,
 				2844AD9F2BAB0C8800788310 /* XCRemoteSwiftPackageReference "Sparkle" */,
+				2844ADA22BAB0D5600788310 /* XCRemoteSwiftPackageReference "MenuBarExtraAccess" */,
 			);
 			productRefGroup = C882FA0D26F1430C00595EE1;
 			projectDirPath = "";
@@ -644,6 +648,14 @@
 				minimumVersion = 2.6.0;
 			};
 		};
+		2844ADA22BAB0D5600788310 /* XCRemoteSwiftPackageReference "MenuBarExtraAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/orchetect/MenuBarExtraAccess";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.5;
+			};
+		};
 		2867F18D2AECC6E90029C937 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
@@ -682,6 +694,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2844AD9F2BAB0C8800788310 /* XCRemoteSwiftPackageReference "Sparkle" */;
 			productName = Sparkle;
+		};
+		2844ADA32BAB0D5600788310 /* MenuBarExtraAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2844ADA22BAB0D5600788310 /* XCRemoteSwiftPackageReference "MenuBarExtraAccess" */;
+			productName = MenuBarExtraAccess;
 		};
 		2867F18E2AECC6E90029C937 /* LaunchAtLogin */ = {
 			isa = XCSwiftPackageProductDependency;
