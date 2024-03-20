@@ -17,6 +17,9 @@
 		2822C3F22B75F909000D5C58 /* SettingsWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2822C3F12B75F909000D5C58 /* SettingsWindow.swift */; };
 		2830055C2AEE7FF800D18F65 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2830055B2AEE7FF800D18F65 /* MenuManager.swift */; };
 		2831CA0B2B81DE470032956E /* CGFloat+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2831CA0A2B81DE470032956E /* CGFloat+Extension.swift */; };
+		2844AD9B2BAB0C5D00788310 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 2844AD9A2BAB0C5D00788310 /* Algorithms */; };
+		2844AD9E2BAB0C7100788310 /* SettingsAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 2844AD9D2BAB0C7100788310 /* SettingsAccess */; };
+		2844ADA12BAB0C8800788310 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 2844ADA02BAB0C8800788310 /* Sparkle */; };
 		285E6E4A2BA739B300BEE4DC /* ActivatedControllersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E6E492BA739B300BEE4DC /* ActivatedControllersDataSource.swift */; };
 		285E6E4C2BA73B1C00BEE4DC /* ActivatedControllersTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285E6E4B2BA73B1C00BEE4DC /* ActivatedControllersTableView.swift */; };
 		2867F1832AEC8D3B0029C937 /* DialWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2867F1822AEC8D3B0029C937 /* DialWindow.swift */; };
@@ -112,9 +115,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2844AD9B2BAB0C5D00788310 /* Algorithms in Frameworks */,
 				28FA280C2B78A3310071FB1B /* SFSafeSymbols in Frameworks */,
 				2867F18F2AECC6E90029C937 /* LaunchAtLogin in Frameworks */,
+				2844ADA12BAB0C8800788310 /* Sparkle in Frameworks */,
 				2822C3D42B75C42D000D5C58 /* Defaults in Frameworks */,
+				2844AD9E2BAB0C7100788310 /* SettingsAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +304,9 @@
 				2867F18E2AECC6E90029C937 /* LaunchAtLogin */,
 				2822C3D32B75C42D000D5C58 /* Defaults */,
 				28FA280B2B78A3310071FB1B /* SFSafeSymbols */,
+				2844AD9A2BAB0C5D00788310 /* Algorithms */,
+				2844AD9D2BAB0C7100788310 /* SettingsAccess */,
+				2844ADA02BAB0C8800788310 /* Sparkle */,
 			);
 			productName = MacDial;
 			productReference = 286DFBB42B80C24000685AFD /* Dial.app */;
@@ -332,6 +341,9 @@
 				2867F18D2AECC6E90029C937 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 				2822C3D22B75C42D000D5C58 /* XCRemoteSwiftPackageReference "Defaults" */,
 				28FA280A2B78A3310071FB1B /* XCRemoteSwiftPackageReference "SFSafeSymbols" */,
+				2844AD992BAB0C5D00788310 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
+				2844AD9C2BAB0C7100788310 /* XCRemoteSwiftPackageReference "SettingsAccess" */,
+				2844AD9F2BAB0C8800788310 /* XCRemoteSwiftPackageReference "Sparkle" */,
 			);
 			productRefGroup = C882FA0D26F1430C00595EE1;
 			projectDirPath = "";
@@ -657,6 +669,30 @@
 				kind = branch;
 			};
 		};
+		2844AD992BAB0C5D00788310 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+		2844AD9C2BAB0C7100788310 /* XCRemoteSwiftPackageReference "SettingsAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/orchetect/SettingsAccess";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.4.0;
+			};
+		};
+		2844AD9F2BAB0C8800788310 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparkle-project/Sparkle";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.6.0;
+			};
+		};
 		2867F18D2AECC6E90029C937 /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
@@ -680,6 +716,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 2822C3D22B75C42D000D5C58 /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
+		};
+		2844AD9A2BAB0C5D00788310 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2844AD992BAB0C5D00788310 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
+		};
+		2844AD9D2BAB0C7100788310 /* SettingsAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2844AD9C2BAB0C7100788310 /* XCRemoteSwiftPackageReference "SettingsAccess" */;
+			productName = SettingsAccess;
+		};
+		2844ADA02BAB0C8800788310 /* Sparkle */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2844AD9F2BAB0C8800788310 /* XCRemoteSwiftPackageReference "Sparkle" */;
+			productName = Sparkle;
 		};
 		2867F18E2AECC6E90029C937 /* LaunchAtLogin */ = {
 			isa = XCSwiftPackageProductDependency;
