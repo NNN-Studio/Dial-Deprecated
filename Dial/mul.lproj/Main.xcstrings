@@ -254,13 +254,13 @@
       }
     },
     "kqm-hk-cNN.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"An Item\"; ObjectID = \"kqm-hk-cNN\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Item 1\"; ObjectID = \"kqm-hk-cNN\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "An Item"
+            "value" : "Item 1"
           }
         }
       }

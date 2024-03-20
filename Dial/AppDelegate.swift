@@ -1,7 +1,5 @@
 import Cocoa
 import LaunchAtLogin
-import ServiceManagement
-import SwiftUI
 import Defaults
 
 @main
