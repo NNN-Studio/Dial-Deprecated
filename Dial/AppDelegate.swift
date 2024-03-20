@@ -1,8 +1,5 @@
 import Cocoa
-import LaunchAtLogin
-import ServiceManagement
-import SwiftUI
-import Defaults
+import AppKit
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -33,7 +30,6 @@ Due to an issue in macOS, if you're upgrading from an earlier version of Dial, y
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         requestPermissions()
-        runTasks()
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -74,14 +70,6 @@ extension AppDelegate {
         }
     }
     
-}
-
-func runTasks() {
-    Task { @MainActor in
-        for await value in Defaults.updates(.autoHidesIconEnabled) {
-            AppDelegate.shared?.dial.statusBarController.toggleVisibility(!value || (AppDelegate.shared?.dial.device.isConnected ?? false))
-        }
-    }
 }
 
 func setCursorVisibility(

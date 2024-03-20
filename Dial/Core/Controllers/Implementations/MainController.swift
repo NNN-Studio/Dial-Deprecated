@@ -96,7 +96,7 @@ import Defaults
             self.isAgent = true
             self.callback?.window.show()
             self.callback?.device.buzz()
-            self.callback?.device.initSensitivity(autoTriggers: false)
+            self.callback?.device.toggleSensitivity(autoTriggers: false)
             
             print("Main controller is now the agent.")
         }
@@ -114,7 +114,7 @@ import Defaults
         if isAgent {
             isAgent = false
             self.callback?.window.hide()
-            self.callback?.device.initSensitivity(autoTriggers: Controllers.currentController.autoTriggers)
+            self.callback?.device.toggleSensitivity(autoTriggers: Controllers.currentController.autoTriggers)
             
             print("Main controller is no longer the agent.")
         }

@@ -8,6 +8,7 @@
 import Foundation
 import AppKit
 import Defaults
+import LaunchAtLogin
 
 @objc protocol DialMenuDelegate: AnyObject, DialSubmenuDelegate, DialControllerMenuDelegate {
     
@@ -108,7 +109,7 @@ class MenuItems {
         item.action = #selector(delegate.toggleStartsWithMacOS(_:))
         
         Task { @MainActor in
-            for await value in Defaults.updates(.launchAtLogin) {
+            for await value in observationTrackingStream({ LaunchAtLogin.observable.isEnabled }) {
                 item.flag = value
             }
         }

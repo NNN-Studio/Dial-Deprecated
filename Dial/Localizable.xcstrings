@@ -109,6 +109,9 @@
         }
       }
     },
+    "Controllers" : {
+
+    },
     "Controllers/Advanced/AlternativeDirection.Name" : {
       "comment" : "alternative direction",
       "extractionState" : "extracted_with_value",
@@ -415,6 +418,9 @@
         }
       }
     },
+    "Dial Menu" : {
+
+    },
     "Dial/Rotation/Type/Continuous.Badge" : {
       "comment" : "continuous rotation type",
       "extractionState" : "extracted_with_value",
@@ -558,6 +564,9 @@
           }
         }
       }
+    },
+    "General" : {
+
     },
     "General/AutoHideIcon.Title" : {
       "comment" : "auto hides icon",
@@ -739,6 +748,9 @@
         }
       }
     },
+    "Hello, World!" : {
+
+    },
     "Menu/Title/Controllers" : {
       "comment" : "controllers",
       "extractionState" : "extracted_with_value",
@@ -795,7 +807,7 @@
     },
     "Menu/Title/DefaultControllers" : {
       "comment" : "default controllers",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -813,7 +825,7 @@
     },
     "Menu/Title/ShortcutsControllers" : {
       "comment" : "shortcuts controllers",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -828,6 +840,9 @@
           }
         }
       }
+    },
+    "More" : {
+
     },
     "OpenSettings.Name" : {
       "comment" : "open settings",
@@ -1083,7 +1098,7 @@
     },
     "Table/Subtitle/Default" : {
       "comment" : "default controller subtitle",
-      "extractionState" : "extracted_with_value",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

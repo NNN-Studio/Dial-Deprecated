@@ -34,6 +34,7 @@ class Dial {
     ) = (started: nil, direction: .clockwise, degrees: 0)
     
     init() {
+        print(0)
         device.inputHandler = self
         MainController.instance.callback = .init(self)
         

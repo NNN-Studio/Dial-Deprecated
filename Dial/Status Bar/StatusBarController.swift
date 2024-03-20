@@ -39,6 +39,13 @@ class StatusBarController: NSObject, NSMenuDelegate {
         Task { @MainActor in
             for await value in observationTrackingStream({ AppDelegate.shared!.dial.device.connectionStatus }) {
                 updateIcon(value)
+                initVisibility()
+            }
+        }
+        
+        Task { @MainActor in
+            for await value in Defaults.updates([.statusItemEnabled, .autoHidesStatusItemEnabled]) {
+                initVisibility()
             }
         }
     }
@@ -107,6 +114,18 @@ extension StatusBarController {
     
     func toggleVisibility(_ isVisible: Bool) {
         statusItem.isVisible = isVisible
+    }
+    
+    func initVisibility() {
+        let available = Defaults[.statusItemEnabled]
+        let autoHides = Defaults[.autoHidesStatusItemEnabled]
+        let connected = AppDelegate.shared?.dial.device.isConnected ?? false
+        
+        if available {
+            toggleVisibility(!autoHides || connected)
+        } else {
+            toggleVisibility(false)
+        }
     }
     
 }

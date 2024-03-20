@@ -58,7 +58,7 @@ protocol InputHandler {
     init() {
         Task { @MainActor in
             for await _ in Defaults.updates([.currentControllerID, .shortcutsControllerSettings]) {
-                initSensitivity(autoTriggers: Controllers.currentController.autoTriggers)
+                toggleSensitivity(autoTriggers: Controllers.currentController.autoTriggers)
             }
         }
     }
@@ -168,7 +168,7 @@ extension Device {
             
             connectionStatus = .connected(serialNumber)
             buzz(3)
-            initSensitivity(autoTriggers: Controllers.currentController.autoTriggers)
+            toggleSensitivity(autoTriggers: Controllers.currentController.autoTriggers)
         }
         
         return isConnected
@@ -181,14 +181,14 @@ extension Device {
             
             self.dev = nil
             connectionStatus = .disconnected
-            initSensitivity(autoTriggers: false)
+            toggleSensitivity(autoTriggers: false)
             
             print("Device disconnected.")
         }
     }
     
     // https://github.com/daniel5151/surface-dial-linux/blob/main/src/dial_device/haptics.rs
-    func initSensitivity(autoTriggers haptics: Bool) {
+    func toggleSensitivity(autoTriggers haptics: Bool) {
         if isConnected {
             let autoTriggers = haptics && !MainController.instance.isAgent
             let steps_lo = 360 & 0xff
@@ -364,8 +364,8 @@ extension Device {
             device.buzz(repeatCount)
         }
         
-        func initSensitivity(autoTriggers haptics: Bool) {
-            device.initSensitivity(autoTriggers: haptics)
+        func toggleSensitivity(autoTriggers haptics: Bool) {
+            device.toggleSensitivity(autoTriggers: haptics)
         }
         
     }
