@@ -1,15 +1,9 @@
 import Cocoa
-import LaunchAtLogin
-import Defaults
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     var dial = Dial()
-    
-    var generalViewController = GeneralViewController()
-    
-    var controllersViewController = ControllersViewController()
     
     func requestPermissions() {
         // More information on this behaviour: https://stackoverflow.com/questions/29006379/accessibility-permissions-reset-after-application-update
@@ -35,15 +29,6 @@ Due to an issue in macOS, if you're upgrading from an earlier version of Dial, y
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         requestPermissions()
-        runTasks()
-        
-        /*
-        // TODO: DEBUG
-        Defaults.reset(.activatedControllerIDs)
-        Defaults.reset(.shortcutsControllerSettings)
-        Defaults.reset(.currentControllerID)
-        Defaults.reset(.selectedControllerID)
-         */
     }
     
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
@@ -84,20 +69,6 @@ extension AppDelegate {
         }
     }
     
-}
-
-func runTasks() {
-    Task { @MainActor in
-        for await value in Defaults.updates(.autoHidesIconEnabled) {
-            AppDelegate.shared?.dial.statusBarController.toggleVisibility(!value || (AppDelegate.shared?.dial.device.isConnected ?? false))
-        }
-    }
-    
-    Task { @MainActor in
-        for await value in Defaults.updates(.launchAtLogin) {
-            LaunchAtLogin.isEnabled = value
-        }
-    }
 }
 
 func setCursorVisibility(

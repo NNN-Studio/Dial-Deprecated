@@ -16,7 +16,9 @@ extension Defaults.Keys {
     
     static let sensitivity = Key<Sensitivity>("sensitivity", default: .natural)
     
-    static let autoHidesIconEnabled = Key<Bool>("autoHidesIconEnabled", default: false)
+    static let autoHidesStatusItemEnabled = Key<Bool>("autoHidesStatusItemEnabled", default: false)
+    
+    static let statusItemEnabled = Key<Bool>("statusItemEnabled", default: true)
     
     
     
@@ -30,6 +32,11 @@ extension Defaults.Keys {
             .default(.mission),
             .default(.brightness)
         ]
+    )
+    
+    static let sortedControllerIDs = Key<[ControllerID]>(
+        "sortedControllerIDs",
+        default: activatedControllerIDs.defaultValue
     )
     
     static let currentControllerID = Key<ControllerID>("currentControllerID", default: .default(.scroll))

@@ -131,7 +131,7 @@ extension GeneralViewController {
         }
         
         Task { @MainActor in
-            for await value in Defaults.updates(.autoHidesIconEnabled) {
+            for await value in Defaults.updates(.autoHidesStatusItemEnabled) {
                 switchAutoHidesIcon.flag = value
                 labelAutoHidesIconDescription.isHidden = !value
             }
@@ -206,7 +206,7 @@ extension GeneralViewController {
     }
     
     @IBAction func toggleAutoHidesIcon(_ sender: NSSwitch) {
-        Defaults[.autoHidesIconEnabled] = sender.flag
+        Defaults[.autoHidesStatusItemEnabled] = sender.flag
     }
     
     @IBAction func toggleStartsWithMacOS(_ sender: NSSwitch) {
